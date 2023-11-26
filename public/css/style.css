@@ -1,0 +1,29 @@
+.fejlec{
+    transition: all 0.2s;
+    position: relative;
+    margin-right: 30px;
+}
+
+.active::after{
+    content: '';
+    height: 2px;
+    width: 100%;
+    background-color: red;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.fejlec:hover::after{
+    content: '';
+    height: 2px;
+    width: 100%;
+    background-color: grey;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.reg{
+    text-align: right;
+}
