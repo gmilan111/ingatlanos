@@ -1,10 +1,16 @@
+
+body{
+    font-family: Figtree, sans-serif;
+    font-weight: 500;
+}
+
 .fejlec{
     transition: all 0.2s;
     position: relative;
     margin-right: 30px;
 }
 
-.active::after{
+.a-fejlec::after{
     content: '';
     height: 2px;
     width: 100%;
@@ -27,3 +33,30 @@
 .reg{
     text-align: right;
 }
+
+.carousel-inner{
+    width: 60%;
+    height: 550px;
+    margin-top: 7%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-item{
+    height: 550px;
+}
+
+.carousel-item.active{
+    height: 550px;
+}
+
+.c-img{
+    height: 100%;
+    object-fit: cover;
+}
+
+.auth-hatter{
+    background-color: darkgrey;
+}
+
+

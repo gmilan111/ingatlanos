@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->string('is_ingatlanos');
+            $table->string('phone_number');
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
