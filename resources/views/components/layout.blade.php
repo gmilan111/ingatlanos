@@ -31,7 +31,7 @@
 
         <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
             <!-- Left links -->
-            @if(auth()->user()->is_ingatlanos == 'm')
+            @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active a-fejlec fejlec" aria-current="page" href="/">Kezdőlap</a>
@@ -43,7 +43,7 @@
                         <a class="nav-link fejlec" href="#">Kollégáink</a>
                     </li>
                 </ul>
-            @else
+            @elseif(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'i')
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active a-fejlec fejlec" aria-current="page" href="/">Kezdőlap</a>
@@ -56,6 +56,18 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fejlec" href="#">Saját Ingatlanok</a>
+                    </li>
+                </ul>
+            @else
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active a-fejlec fejlec" aria-current="page" href="/">Kezdőlap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fejlec" href="#">Ingatlanok</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fejlec" href="#">Kollégáink</a>
                     </li>
                 </ul>
             @endif
