@@ -37,7 +37,7 @@
                         <a class="nav-link active a-fejlec fejlec" aria-current="page" href="/">Kezdőlap</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="#">Ingatlanok</a>
+                        <a class="nav-link fejlec" href="{{route('properties.index')}}">Ingatlanok</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fejlec" href="#">Kollégáink</a>
@@ -49,7 +49,7 @@
                         <a class="nav-link active a-fejlec fejlec" aria-current="page" href="/">Kezdőlap</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="#">Ingatlanok</a>
+                        <a class="nav-link fejlec" href="{{route('properties.index')}}">Ingatlanok</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fejlec" href="#">Új Ingatlan Hozzáadása</a>
@@ -64,7 +64,7 @@
                         <a class="nav-link active a-fejlec fejlec" aria-current="page" href="/">Kezdőlap</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="#">Ingatlanok</a>
+                        <a class="nav-link fejlec" href="{{route('properties.index')}}">Ingatlanok</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fejlec" href="#">Kollégáink</a>

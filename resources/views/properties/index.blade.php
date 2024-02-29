@@ -1,3 +1,4 @@
-<x-layout>
-<h1>valami</h1>
-</x-layout>
+
+@foreach($properties as $property)
+    <p>{{$property->id}}</p>
+@endforeach
