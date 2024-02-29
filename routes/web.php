@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PropertiesController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/properties', [PropertiesController::class, 'index'])->name('properties.index');
+
 
 Route::middleware([
     'auth:sanctum',
