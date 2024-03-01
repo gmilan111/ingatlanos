@@ -10,13 +10,13 @@ class Properties extends Model
     use HasFactory;
 
     protected $fillable = [
-        'post_name',
-        'telepules',
-        'ar',
-        'szobamszam',
-        'leiras',
-        'utca_hazszam',
-        'meret',
-        'google_maps',
+        'user_id',
+        'settlement',
+        'price',
+        'rooms',
+        'description',
+        'address',
+        'size',
+        'district',
     ];
 }

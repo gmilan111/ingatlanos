@@ -52,7 +52,7 @@
                         <a class="nav-link fejlec" href="{{route('properties.index')}}">Ingatlanok</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="#">Új Ingatlan Hozzáadása</a>
+                        <a class="nav-link fejlec" href="{{route('properties.create')}}">Új Ingatlan Hozzáadása</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fejlec" href="#">Saját Ingatlanok</a>

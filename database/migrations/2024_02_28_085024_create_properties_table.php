@@ -14,14 +14,15 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('post_name');
-            $table->string('telepules');
-            $table->integer('ar');
-            $table->integer('szobaszam');
-            $table->longText('leiras');
-            $table->string('utca_hazszam');
-            $table->integer('meret');
-            $table->string('google_maps');
+            $table->string('settlement');
+            $table->integer('price');
+            $table->integer('rooms');
+            $table->longText('description');
+            $table->string('address');
+            $table->integer('district');
+            $table->integer('size');
+            /*$table->string('google_maps');*/
+
             $table->timestamps();
         });
     }
