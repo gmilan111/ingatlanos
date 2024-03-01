@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('rooms');
             $table->longText('description');
             $table->string('address');
-            $table->integer('district');
+            $table->integer('district')->default(0);
             $table->integer('size');
             /*$table->string('google_maps');*/
 
