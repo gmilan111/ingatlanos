@@ -25,6 +25,7 @@ class PropertiesController extends Controller
             'address' => ['required'],
             'district',
             'size' => ['required'],
+            'bathrooms' => ['required'],
             'rooms' => ['required'],
             'price' => ['required'],
             'description' => ['required']
@@ -33,6 +34,20 @@ class PropertiesController extends Controller
         $formfields['user_id'] = auth()->id();
 
         Properties::create($formfields);
-        return redirect('/');
+        return redirect('/properties');
+    }
+
+    public function show($property){
+        return view('properties.show',[
+        'properties' => DB::table('properties')->select('*')->where('id','=',$property)->get()
+        ]);
+    }
+
+    public function show_own(){
+        $user = auth()->id();
+        return view('properties.own',[
+            'properties' => DB::table('properties')->select('*')->where('user_id','=',$user)->get()
+        ]);
+
     }
 }
