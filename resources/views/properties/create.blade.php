@@ -35,6 +35,11 @@
             </div>
 
             <div class="mt-4">
+                <x-label for="bathrooms" value="{{ __('Fürdőszobák száma: ') }}" />
+                <x-input id="bathrooms" class="block mt-1 w-full" type="number" name="bathrooms" :value="old('bathrooms')" required autocomplete="bathrooms" />
+            </div>
+
+            <div class="mt-4">
                 <x-label for="price" value="{{ __('Ár: ') }}" />
                 <x-input id="price" class="block mt-1 w-full" type="number" name="price" :value="old('price')" required autocomplete="price" />
             </div>

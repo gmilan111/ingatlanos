@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{asset('css\style.css')}}" type="text/css">
 </head>
@@ -34,10 +35,10 @@
             @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active a-fejlec fejlec" aria-current="page" href="/">Kezdőlap</a>
+                        <a class="nav-link {{request()->is('/')?'active a-fejlec':''}} fejlec" aria-current="page" href="/">Kezdőlap</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{route('properties.index')}}">Ingatlanok</a>
+                        <a class="nav-link {{request()->is('properties')?'active a-fejlec':''}} fejlec" href="{{route('properties.index')}}">Ingatlanok</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fejlec" href="#">Kollégáink</a>
@@ -46,16 +47,16 @@
             @elseif(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'i')
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active a-fejlec fejlec" aria-current="page" href="/">Kezdőlap</a>
+                        <a class="nav-link {{request()->is('/')?'active a-fejlec':''}} fejlec" aria-current="page" href="/">Kezdőlap</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{route('properties.index')}}">Ingatlanok</a>
+                        <a class="nav-link {{request()->is('properties')?'active a-fejlec':''}} fejlec" href="{{route('properties.index')}}">Ingatlanok</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fejlec" href="{{route('properties.create')}}">Új Ingatlan Hozzáadása</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="#">Saját Ingatlanok</a>
+                        <a class="nav-link {{request()->is('properties_own')?'active a-fejlec':''}} fejlec" href="{{route('properties.own')}}">Saját Ingatlanok</a>
                     </li>
                 </ul>
             @else

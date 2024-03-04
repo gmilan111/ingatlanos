@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('settlement');
             $table->integer('price');
             $table->integer('rooms');
+            $table->integer('bathrooms');
             $table->longText('description');
             $table->string('address');
             $table->integer('district')->default(0);

@@ -23,6 +23,9 @@ Route::get('/properties', [PropertiesController::class, 'index'])->name('propert
 
 Route::get('/properties/create', [PropertiesController::class, 'store_index'])->name('properties.create');
 Route::post('/properties/store', [PropertiesController::class, 'store'])->name('properties.store');
+Route::get('/properties/{property}', [PropertiesController::class, 'show']);
+
+Route::get('/properties_own', [PropertiesController::class, 'show_own'])->name('properties.own');
 
 Route::middleware([
     'auth:sanctum',

@@ -18,5 +18,6 @@ class Properties extends Model
         'address',
         'size',
         'district',
+        'bathrooms',
     ];
 }
