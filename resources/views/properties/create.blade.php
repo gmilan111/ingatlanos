@@ -6,7 +6,7 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('properties.store') }}">
+        <form method="POST" action="{{ route('properties.store') }}" enctype="multipart/form-data">
             @csrf
 
             <div>
@@ -48,6 +48,13 @@
                 <x-label for="descrpition" value="{{__('Leírás: ')}}"/>
                 <textarea class="block mt-1 w-full rounded border-gray-300" id="descrpition" name="description" required ></textarea>
                 {{--<x-input id="descrpition" class="block mt-1 w-full" type="tel" name="phone_number" placeholder="06 70 632 3578" pattern="[0-9]{2} [0-9]{2} [0-9]{3} [0-9]{4}" requied autocomplete="phone"/>--}}
+            </div>
+
+            <div class="mt-4">
+                <x-label for="formFiles" value="{{__('Képek')}}" />
+                {{--<x-input class="block mt-1 w-full rounded border-gray-300" type="file" accept="image/*" name="images[]" id="formFiles" multiple=""/>--}}
+                <input class="form-control" type="file" id="formFile" name="images[]" multiple>
+
             </div>
 
             <div class="flex items-center justify-end mt-4">
