@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('address');
             $table->integer('district')->default(0);
             $table->integer('size');
-            /*$table->string('google_maps');*/
 
             $table->timestamps();
         });
