@@ -7,13 +7,16 @@ use App\Models\Properties;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function Laravel\Prompts\select;
+use function Livewire\on;
 
 class PropertiesController extends Controller
 {
     public function index()
     {
         return view('properties.index', [
-            'properties' => DB::table('properties')->select('*')->get()
+            'properties' => DB::table('properties')->select('*')->get(),
+            'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
         ]);
     }
 
@@ -39,42 +42,43 @@ class PropertiesController extends Controller
 
         $newProperty = Properties::create($formfields);
 
-        /*$image = array();
-        $upload_path = 'public/property_images/';
-        if ($files = $request['images']) {
+        if ($files = $request->file('images')) {
             foreach ($files as $file) {
                 $image_name = md5(rand(1000, 10000));
-                $ext = pathinfo($file, PATHINFO_EXTENSION);
+                $ext = strtolower($file->getClientOriginalExtension());
                 $image_full_name = $image_name . '.' . $ext;
-                $image_url = $upload_path . $image_full_name;
-                $file->move($upload_path . $image_full_name);
-                $image[] = $image_url;
+                $upload_path ='property_images/';
+                $image_url = $upload_path.$image_full_name;
+                $file->move($upload_path, $image_full_name);
+                $file_name = $image_url;
+                Images::create([
+                    'properties_id' => $newProperty->id,
+                    'images' => $file_name,
+                ]);
             }
+        }
 
-        }*/
-        if ($request->has('images')) {
+
+        /*if ($request->has('images')) {
             foreach ($request->file('images') as $image) {
                 $img_name = md5(rand(1000, 10000)) . '.' . $image->extension();
-                $image->move(public_path('property_images'), $img_name);
+                $image->storeAs('property_images' , $img_name);
+
                 Images::create([
                         'properties_id' => $newProperty->id,
                         'images' => $image,
                     ]
                 );
             }
-        }
+        }*/
 
-        /*Images::insert([
-            'images' => implode('|', $image),
-            'properties_id' => $newProperty->id,
-        ]);*/
         return redirect('/properties');
     }
 
     public function show($property)
     {
         return view('properties.show', [
-            'properties' => DB::table('properties')->select('*')->where('id', '=', $property)->get()
+            'properties' => DB::table('properties')->select('*')->join('images', 'properties.id', '=', 'images.properties_id')->where('properties.id', '=', $property)->get()
         ]);
     }
 
