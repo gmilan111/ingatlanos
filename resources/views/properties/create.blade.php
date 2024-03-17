@@ -8,7 +8,6 @@
 
         <form method="POST" action="{{ route('properties.store') }}" enctype="multipart/form-data">
             @csrf
-
             <div>
                 <x-label for="settlement" value="{{ __('Település neve: ') }}" />
                 <x-input id="settlement" class="block mt-1 w-full" type="text" name="settlement" :value="old('settlement')" required autofocus autocomplete="settlement " />
@@ -51,10 +50,15 @@
             </div>
 
             <div class="mt-4">
+                <x-label for="formFiles" value="{{__('Fő kép')}}" />
+                {{--<x-input class="block mt-1 w-full rounded border-gray-300" type="file" accept="image/*" name="images[]" id="formFiles" multiple=""/>--}}
+                <input class="form-control" type="file" id="main_img" name="main_img">
+            </div>
+
+            <div class="mt-4">
                 <x-label for="formFiles" value="{{__('Képek')}}" />
                 {{--<x-input class="block mt-1 w-full rounded border-gray-300" type="file" accept="image/*" name="images[]" id="formFiles" multiple=""/>--}}
                 <input class="form-control" type="file" id="formFile" name="images[]" multiple>
-
             </div>
 
             <div class="flex items-center justify-end mt-4">
