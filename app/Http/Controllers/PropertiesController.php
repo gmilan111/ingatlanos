@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Images;
+use App\Models\MainImage;
 use App\Models\Properties;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,8 +48,8 @@ class PropertiesController extends Controller
                 $image_name = md5(rand(1000, 10000));
                 $ext = strtolower($file->getClientOriginalExtension());
                 $image_full_name = $image_name . '.' . $ext;
-                $upload_path ='property_images/';
-                $image_url = $upload_path.$image_full_name;
+                $upload_path = 'property_images/';
+                $image_url = $upload_path . $image_full_name;
                 $file->move($upload_path, $image_full_name);
                 $file_name = $image_url;
                 Images::create([
@@ -56,6 +57,19 @@ class PropertiesController extends Controller
                     'images' => $file_name,
                 ]);
             }
+        }
+        if ($main_img = $request->file('main_img')) {
+            $main_image_name = md5(rand(1000, 10000));
+            $main_ext = strtolower($main_img->getClientOriginalExtension());
+            $main_image_full_name = $main_image_name . '.' . $main_ext;
+            $main_upload_path = 'property_main_images/';
+            $main_image_url = $main_upload_path . $main_image_full_name;
+            $main_img->move($main_upload_path, $main_image_full_name);
+            $main_file_name = $main_image_url;
+            MainImage::create([
+                'properties_id' => $newProperty->id,
+                'main_img' => $main_file_name,
+            ]);
         }
 
 
@@ -72,13 +86,24 @@ class PropertiesController extends Controller
             }
         }*/
 
-        return redirect('/properties');
+        /*return view('properties.index', [
+                'properties' => DB::table('properties')->select('*')->get(),
+                'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
+                'main_img' => DB::table('main_images')->select('*')->join('properties', 'main_images.properties_id', '=', 'properties.id')->get(),
+            ]
+        , ['img_order'=>$newProperty['id']]);*/
+        return redirect(route('properties.index'))->with(['properties' => DB::table('properties')->select('*')->get(),
+            'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->where('images.properties_id', '=', 'properties.id')->get(),
+            'main_img' => DB::table('main_images')->select('*')->join('properties', 'main_images.properties_id', '=', 'properties.id')->get(),]);
     }
 
     public function show($property)
     {
         return view('properties.show', [
-            'properties' => DB::table('properties')->select('*')->join('images', 'properties.id', '=', 'images.properties_id')->where('properties.id', '=', $property)->get()
+            'properties' => DB::table('properties')->select('*')->where('properties.id', '=', $property)->get(),
+            'images' => DB::table('images')->select('*')->where('images.properties_id', '=', $property)->get(),
+            'main_img' => DB::table('main_images')->select('*')->where('main_images.properties_id', '=', $property)->get(),
+
         ]);
     }
 

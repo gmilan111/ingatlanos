@@ -10,7 +10,7 @@
 
                 <div class="col-lg-3 width-33 mb-5">
                     <div class="card border-0 shadow-2xl" style="width: 25rem;">
-                        <img src="{{asset(\App\Http\Controllers\ImagesController::img_show($property->id)->images)}}" class="card-img-top" alt="...">
+                        <img src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h1 class="card-title">{{number_format(($property->price),0,'','.')}} Ft</h1>
                             <p class="card-text mb-5">{{$address}}</p>
