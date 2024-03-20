@@ -117,4 +117,18 @@ class PropertiesController extends Controller
         ]);
 
     }
+
+    public function edit($property){
+        return view('properties.edit');
+    }
+
+    public function destroy($property){
+        $record = Properties::find($property);
+
+        if($record){
+            $record->delete();
+        }
+
+        return redirect(route('properties.index'));
+    }
 }

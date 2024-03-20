@@ -28,7 +28,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="properties/{{$property->id}}" class="btn btn-primary">Részletek</a>
+                            <a href="properties/{{$property->id}}" class="btn btn-primary"><i class="fa-solid fa-circle-info"></i> Részletek</a>
+                            <a href="properties/{{$property->id}}/edit" class="btn btn-dark"><i class="fa-solid fa-pen-to-square"></i> Módosítás</a>
+                            <form action="/properties/{{$property->id}}" method="POST" >
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger"><i class="fa-solid fa-trash"></i> Törlés</button>
+                            </form>
                         </div>
                     </div>
                 </div>
