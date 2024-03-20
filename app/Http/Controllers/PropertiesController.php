@@ -92,9 +92,11 @@ class PropertiesController extends Controller
                 'main_img' => DB::table('main_images')->select('*')->join('properties', 'main_images.properties_id', '=', 'properties.id')->get(),
             ]
         , ['img_order'=>$newProperty['id']]);*/
-        return redirect(route('properties.index'))->with(['properties' => DB::table('properties')->select('*')->get(),
+        return redirect(route('properties.index'))->with([
+            'properties' => DB::table('properties')->select('*')->get(),
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->where('images.properties_id', '=', 'properties.id')->get(),
-            'main_img' => DB::table('main_images')->select('*')->join('properties', 'main_images.properties_id', '=', 'properties.id')->get(),]);
+            'main_img' => DB::table('main_images')->select('*')->join('properties', 'main_images.properties_id', '=', 'properties.id')->get(),
+            ]);
     }
 
     public function show($property)
@@ -103,7 +105,7 @@ class PropertiesController extends Controller
             'properties' => DB::table('properties')->select('*')->where('properties.id', '=', $property)->get(),
             'images' => DB::table('images')->select('*')->where('images.properties_id', '=', $property)->get(),
             'main_img' => DB::table('main_images')->select('*')->where('main_images.properties_id', '=', $property)->get(),
-
+            'agents' => DB::table('users')->select('*')->join('properties', 'users.id','=', 'properties.user_id')->where('users.is_ingatlanos', '=', 'i')->first(),
         ]);
     }
 
