@@ -50,7 +50,7 @@
                         <a class="nav-link {{request()->is('/')?'active a-fejlec':''}} fejlec" aria-current="page" href="/">Kezdőlap</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{request()->is('properties') ? 'active a-fejlec' : (request()->is('properties/store') ? 'active a-fejlec' : '')}} fejlec" href="{{route('properties.index')}}">Ingatlanok</a>
+                        <a class="nav-link {{request()->is('properties') ? 'active a-fejlec' : (request()->is('properties/store') ? 'active a-fejlec' : (request()->is('properties/*') ? 'active a-fejlec' : ''))}} fejlec" href="{{route('properties.index')}}">Ingatlanok</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fejlec" href="{{route('properties.create')}}">Új Ingatlan Hozzáadása</a>

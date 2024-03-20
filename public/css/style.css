@@ -60,9 +60,9 @@ body{
 }
 
 
-.row>* {
+/*.row>* {
     width: 0!important;
-}
+}*/
 
 .width-33{
     width: 33%!important;
@@ -82,6 +82,10 @@ body{
 
 .font-weight-600{
     font-weight: 600;
+}
+
+.card-title-price{
+    font-size: 22px !important;
 }
 
 @media (max-width: 992px){
