@@ -60,6 +60,8 @@ body{
 }
 
 
+
+
 /*.row>* {
     width: 0!important;
 }*/
@@ -88,10 +90,24 @@ body{
     font-size: 22px !important;
 }
 
+
+.close {
+    position: absolute;
+    top: 0;
+    right: -15px;
+    cursor: pointer;
+}
+
 @media (max-width: 992px){
     .carousel-inner{
         margin-top: 15%;
         margin-left: auto;
         margin-right: auto;
+    }
+}
+
+@media (min-width: 640px){
+    .auth-card-w{
+        max-width: 100rem;
     }
 }

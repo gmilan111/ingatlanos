@@ -119,7 +119,42 @@ class PropertiesController extends Controller
     }
 
     public function edit($property){
-        return view('properties.edit');
+        $item = Properties::find($property);
+        return view('properties.edit', compact('item'));
+    }
+
+    public function update(Request $request, $property){
+        $item = Properties::find($property);
+        $item->settlement = $request['settlement'];
+        $item->address = $request['address'];
+        $item->district = $request['district'];
+        $item->size = $request['size'];
+        $item->rooms = $request['rooms'];
+        $item->bathrooms = $request['bathrooms'];
+        $item->price = $request['price'];
+        $item->description = $request['description'];
+
+       /* if($request -> hasFile('main_img')){
+            $same = 'property_main_images/'.$item->main_img;
+            if(file_exists($same)){
+                \Illuminate\Http\File::delete($same);
+            }
+
+            $file = $request->file('main_img');
+            $main_image_name = md5(rand(1000, 10000));
+            $main_ext = strtolower($file->getClientOriginalExtension());
+            $main_image_full_name = $main_image_name . '.' . $main_ext;
+            $main_upload_path = 'property_main_images/';
+            $main_image_url = $main_upload_path . $main_image_full_name;
+            $file->move($main_upload_path, $main_image_full_name);
+            $main_file_name = $main_image_url;
+            $item->main_img = $main_file_name;
+        }
+        dd($item);*/
+
+
+        $item->save();
+        return redirect(route('properties.own'));
     }
 
     public function destroy($property){

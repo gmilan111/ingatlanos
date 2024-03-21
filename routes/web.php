@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\MainImageController;
 use App\Http\Controllers\PropertiesController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
@@ -38,8 +39,23 @@ Route::get('/properties_own', [PropertiesController::class, 'show_own'])->name('
 #Módosítás form megjelenítése
 Route::get('properties/{property}/edit', [PropertiesController::class, 'edit'])->name('properties.edit');
 
+#Képek kezelése form megjelenítés
+Route::get('/image/{property}/edit', [ImagesController::class, 'edit']);
+
+#Módosítás funkció
+Route::put('/properties/{property}', [PropertiesController::class, 'update']);
+
 #Poszt törlése
 Route::delete('properties/{property}', [PropertiesController::class, 'destroy']);
+
+#Képek törlése
+Route::get('images/{image}',[ImagesController::class, 'destroy']);
+
+#Képek létrehozása
+Route::post('/images/{propertyID}', [ImagesController::class, 'store']);
+
+#Főkép törlése
+Route::get('main_image/{image}',[MainImageController::class, 'destroy']);
 
 Route::middleware([
     'auth:sanctum',

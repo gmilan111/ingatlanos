@@ -29,7 +29,8 @@
                                 </div>
                             </div>
                             <a href="properties/{{$property->id}}" class="btn btn-primary"><i class="fa-solid fa-circle-info"></i> Részletek</a>
-                            <a href="properties/{{$property->id}}/edit" class="btn btn-dark"><i class="fa-solid fa-pen-to-square"></i> Módosítás</a>
+                            <a href="properties/{{$property->id}}/edit" class="btn btn-dark"><i class="fa-solid fa-pen-to-square"></i> Ingatlan módosítás</a>
+                            <a href="/image/{{$property->id}}/edit" class="btn btn-dark"><i class="fa-solid fa-pen-to-square"></i> Ingatlanhoz tartozó képek módosítás</a>
                             <form action="/properties/{{$property->id}}" method="POST" >
                                 @csrf
                                 @method('DELETE')
