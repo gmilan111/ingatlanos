@@ -57,6 +57,9 @@ Route::post('/images/{propertyID}', [ImagesController::class, 'store']);
 #Főkép törlése
 Route::get('main_image/{image}',[MainImageController::class, 'destroy']);
 
+#Keresés
+Route::get('search', [PropertiesController::class, 'search'])->name('properties.search');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

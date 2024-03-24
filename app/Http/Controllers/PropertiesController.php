@@ -92,27 +92,6 @@ class PropertiesController extends Controller
                 'main_img' => $main_file_name,
             ]);
         }
-
-
-        /*if ($request->has('images')) {
-            foreach ($request->file('images') as $image) {
-                $img_name = md5(rand(1000, 10000)) . '.' . $image->extension();
-                $image->storeAs('property_images' , $img_name);
-
-                Images::create([
-                        'properties_id' => $newProperty->id,
-                        'images' => $image,
-                    ]
-                );
-            }
-        }*/
-
-        /*return view('properties.index', [
-                'properties' => DB::table('properties')->select('*')->get(),
-                'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
-                'main_img' => DB::table('main_images')->select('*')->join('properties', 'main_images.properties_id', '=', 'properties.id')->get(),
-            ]
-        , ['img_order'=>$newProperty['id']]);*/
         return redirect(route('properties.index'))->with([
             'properties' => DB::table('properties')->select('*')->get(),
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->where('images.properties_id', '=', 'properties.id')->get(),
@@ -155,25 +134,6 @@ class PropertiesController extends Controller
         $item->price = $request['price'];
         $item->description = $request['description'];
 
-       /* if($request -> hasFile('main_img')){
-            $same = 'property_main_images/'.$item->main_img;
-            if(file_exists($same)){
-                \Illuminate\Http\File::delete($same);
-            }
-
-            $file = $request->file('main_img');
-            $main_image_name = md5(rand(1000, 10000));
-            $main_ext = strtolower($file->getClientOriginalExtension());
-            $main_image_full_name = $main_image_name . '.' . $main_ext;
-            $main_upload_path = 'property_main_images/';
-            $main_image_url = $main_upload_path . $main_image_full_name;
-            $file->move($main_upload_path, $main_image_full_name);
-            $main_file_name = $main_image_url;
-            $item->main_img = $main_file_name;
-        }
-        dd($item);*/
-
-
         $item->save();
         return redirect(route('properties.own'));
     }
@@ -186,5 +146,19 @@ class PropertiesController extends Controller
         }
 
         return redirect(route('properties.index'));
+    }
+
+    public function search(Request $request){
+        $properties_search = $request['search'];
+
+
+        /*if(request()->has('search')){
+            $properties_search = $properties_search->where('settlement', 'like', '%' . request()->get('search','').'%' );
+        }*/
+
+        return view('properties.index',[
+            'properties' => DB::table('properties')->select('*')->where('settlement', 'like', '%'.$properties_search.'%')->get(),
+            'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
+        ]);
     }
 }

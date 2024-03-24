@@ -1,6 +1,9 @@
 <x-layout>
     <div class="container margin-top">
         <div class="row">
+            @if(count($properties)<1)
+                <p>NINCS TALÁLAT</p>
+            @endif
             @foreach($properties as $property)
                 @php
                     $address = ($property->settlement).','.' '.($property->address).'.';
