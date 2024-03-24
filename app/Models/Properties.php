@@ -22,7 +22,6 @@ class Properties extends Model
         'bathrooms',
         'condition',
         'year_construction',
-        'comfort',
         'floor',
         'building_levels',
         'lift',

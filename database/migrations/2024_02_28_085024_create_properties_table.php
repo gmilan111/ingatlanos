@@ -25,7 +25,6 @@ return new class extends Migration
             $table->integer('size');
             $table->string('condition')->default('Nincs megadva')->nullable();
             $table->string('year_construction')->default('Nincs megadva')->nullable();
-            $table->string('comfort')->default('Nincs megadva')->nullable();
             $table->integer('floor')->default(0)->nullable();
             $table->integer('building_levels')->default(0)->nullable();
             $table->string('lift');

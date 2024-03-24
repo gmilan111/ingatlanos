@@ -126,6 +126,7 @@ class PropertiesController extends Controller
     public function update(Request $request, $property){
         $item = Properties::find($property);
         $item->settlement = $request['settlement'];
+        $item->state = $request['state'];
         $item->address = $request['address'];
         $item->district = $request['district'];
         $item->size = $request['size'];
@@ -133,6 +134,25 @@ class PropertiesController extends Controller
         $item->bathrooms = $request['bathrooms'];
         $item->price = $request['price'];
         $item->description = $request['description'];
+        $item->condition = $request['condition'];
+        $item->year_construction = $request['year_construction'];
+        $item->floor = $request['floor'];
+        $item->building_levels = $request['building_levels'];
+        $item->lift = $request['lift'];
+        $item->inner_height = $request['inner_height'];
+        $item->air_conditioner = $request['air_conditioner'];
+        $item->accessible = $request['accessible'];
+        $item->attic = $request['attic'];
+        $item->balcony = $request['balcony'];
+        $item->parking = $request['parking'];
+        $item->parking_price = $request['parking_price'];
+        $item->avg_gas = $request['avg_gas'];
+        $item->avg_electricity = $request['avg_electricity'];
+        $item->overhead_cost = $request['overhead_cost'];
+        $item->common_cost = $request['common_cost'];
+        $item->heating = $request['heating'];
+        $item->insulation = $request['insulation'];
+        $item->energy = $request['energy'];
 
         $item->save();
         return redirect(route('properties.own'));
@@ -150,11 +170,6 @@ class PropertiesController extends Controller
 
     public function search(Request $request){
         $properties_search = $request['search'];
-
-
-        /*if(request()->has('search')){
-            $properties_search = $properties_search->where('settlement', 'like', '%' . request()->get('search','').'%' );
-        }*/
 
         return view('properties.index',[
             'properties' => DB::table('properties')->select('*')->where('settlement', 'like', '%'.$properties_search.'%')->get(),
