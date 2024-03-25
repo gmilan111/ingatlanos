@@ -1,9 +1,30 @@
 <x-layout>
     <form action="{{route('properties.search')}}" method="GET">
-        <div class="input-group margin-top">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" name="search"
-                   aria-describedby="search-addon"/>
-            <button class="btn btn-outline-primary">search</button>
+
+        <div class="input-group margin-top row">
+            <div class="col">
+                <input type="search" class="form-control rounded" placeholder="Település" aria-label="Search" name="settlement_search"
+                       aria-describedby="search-addon"/>
+            </div>
+            <div class="col">
+                <input type="search" class="form-control rounded" placeholder="Min" aria-label="Search" name="price_min_search"
+                       aria-describedby="search-addon"/>
+            </div>
+            <div class="col">
+                <input type="search" class="form-control rounded" placeholder="Max" aria-label="Search" name="price_max_search"
+                       aria-describedby="search-addon"/>
+            </div>
+            <div class="col">
+                <input type="search" class="form-control rounded" placeholder="Min" aria-label="Search" name="rooms_min_search"
+                       aria-describedby="search-addon"/>
+            </div>
+            <div class="col">
+                <input type="search" class="form-control rounded" placeholder="Max" aria-label="Search" name="rooms_max_search"
+                       aria-describedby="search-addon"/>
+            </div>
+            <div class="col">
+                <button class="btn btn-outline-primary">search</button>
+            </div>
         </div>
     </form>
 

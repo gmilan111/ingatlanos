@@ -96,7 +96,7 @@ class PropertiesController extends Controller
             'properties' => DB::table('properties')->select('*')->get(),
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->where('images.properties_id', '=', 'properties.id')->get(),
             'main_img' => DB::table('main_images')->select('*')->join('properties', 'main_images.properties_id', '=', 'properties.id')->get(),
-            ]);
+        ]);
     }
 
     public function show($property)
@@ -105,7 +105,7 @@ class PropertiesController extends Controller
             'properties' => DB::table('properties')->select('*')->where('properties.id', '=', $property)->get(),
             'images' => DB::table('images')->select('*')->where('images.properties_id', '=', $property)->get(),
             'main_img' => DB::table('main_images')->select('*')->where('main_images.properties_id', '=', $property)->get(),
-            'agents' => DB::table('users')->select('*')->join('properties', 'users.id','=', 'properties.user_id')->where('users.is_ingatlanos', '=', 'i')->first(),
+            'agents' => DB::table('users')->select('*')->join('properties', 'users.id', '=', 'properties.user_id')->where('users.is_ingatlanos', '=', 'i')->first(),
         ]);
     }
 
@@ -118,12 +118,14 @@ class PropertiesController extends Controller
 
     }
 
-    public function edit($property){
+    public function edit($property)
+    {
         $item = Properties::find($property);
         return view('properties.edit', compact('item'));
     }
 
-    public function update(Request $request, $property){
+    public function update(Request $request, $property)
+    {
         $item = Properties::find($property);
         $item->settlement = $request['settlement'];
         $item->state = $request['state'];
@@ -158,21 +160,55 @@ class PropertiesController extends Controller
         return redirect(route('properties.own'));
     }
 
-    public function destroy($property){
+    public function destroy($property)
+    {
         $record = Properties::find($property);
 
-        if($record){
+        if ($record) {
             $record->delete();
         }
 
         return redirect(route('properties.index'));
     }
 
-    public function search(Request $request){
-        $properties_search = $request['search'];
+    public function search(Request $request)
+    {
 
-        return view('properties.index',[
-            'properties' => DB::table('properties')->select('*')->where('settlement', 'like', '%'.$properties_search.'%')->get(),
+        $settlement_search = $request['settlement_search'];
+        $price_min_search = $request['price_min_search'];
+        $price_max_search = $request['price_max_search'];
+        $rooms_min_search = $request['rooms_min_search'];
+        $rooms_max_search = $request['rooms_max_search'];
+
+        $a = Properties::query();
+
+        $a->select('*')
+            ->when($settlement_search != null, function ($a) use ($request) {
+                $a->where('settlement', 'like', '%' . $request['settlement_search'] . '%');
+            });
+
+        $a->when($price_min_search != null, function ($a) use ($request) {
+                $a->where('price', '>=', $request['price_min_search']);
+            });
+
+
+        $a->when($price_max_search != null, function ($a) use ($request) {
+                $a->where('price', '<=', $request['price_max_search']);
+            });
+
+
+        $a->when($rooms_min_search != null, function ($a) use ($request) {
+                $a->where('rooms', '>=', $request['rooms_min_search']);
+            });
+
+        $a->when($rooms_max_search != null, function ($a) use ($request) {
+                $a->where('rooms', '<=', $request['rooms_max_search']);
+            });
+
+        $anyad=$a->get();
+        return view('properties.index', [
+            'properties' => $anyad,
+/*            'properties' => DB::table('properties')->select('*')->where('settlement', 'like', '%' . $settlement_search . '%')->whereBetween('price', [$price_min_search, $price_max_search])->whereBetween('rooms', [$rooms_min_search, $rooms_max_search])->get(),*/
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
         ]);
     }
