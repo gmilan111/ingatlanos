@@ -1,6 +1,7 @@
-/*import '@/bootstrap.js';
+/*import '@/bootstrap.js';*/
+/*import * as bootstrap from './bootstrap.js';*/
 
-import { Navbar, Dropdown, initMDB } from "mdb-ui-kit";
+/*import { Navbar, Dropdown, initMDB } from "mdb-ui-kit";
 
 initMDB({ Navbar, Dropdown });*/
 
