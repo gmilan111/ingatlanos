@@ -13,22 +13,36 @@
 
                 <div class="col-lg-3 width-33 mb-5">
                     <div class="card border-0 shadow-2xl" style="width: 25rem;">
-                        <img src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}" class="card-img-top" alt="...">
+                        @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
+                            <img
+                                src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
+                                class="card-img-top image" alt="...">
+                            <button type="button" class="star"><i class="fa-regular fa-star fa-xl" style="color: #f8c920;"></i></button>
+                        @else
+                            <img
+                                src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
+                                class="card-img-top" alt="...">
+                        @endif
                         <div class="card-body">
                             <h1 class="card-title">{{number_format(($property->price),0,'','.')}} Ft</h1>
                             <p class="card-text mb-5">{{$address}}</p>
                             <div class="row mb-4">
                                 <div class="col-md-3 width-33">
                                     <div>
-                                        <i class="fa-solid fa-bed icon-size"></i><span class="px-2 font-weight-600">{{$property->rooms}}</span>
+                                        <i class="fa-solid fa-bed icon-size"></i><span
+                                            class="px-2 font-weight-600">{{$property->rooms}}</span>
                                     </div>
-                                </div><div class="col-md-3 width-33">
+                                </div>
+                                <div class="col-md-3 width-33">
                                     <div>
-                                        <i class="fa-solid fa-shower icon-size"></i><span class="px-2 font-weight-600">{{$property->bathrooms}}</span>
+                                        <i class="fa-solid fa-shower icon-size"></i><span
+                                            class="px-2 font-weight-600">{{$property->bathrooms}}</span>
                                     </div>
-                                </div><div class="col-md-3 width-33">
+                                </div>
+                                <div class="col-md-3 width-33">
                                     <div>
-                                        <i class="fa-solid fa-vector-square icon-size"></i><span class="px-2 font-weight-600">{{$property->size}} m<sup>2</sup></span>
+                                        <i class="fa-solid fa-vector-square icon-size"></i><span
+                                            class="px-2 font-weight-600">{{$property->size}} m<sup>2</sup></span>
                                     </div>
                                 </div>
                             </div>
