@@ -1,6 +1,6 @@
 <x-layout>
     <form action="{{route('properties.search')}}" method="GET">
-
+        @csrf
         <div class="input-group margin-top row">
             <div class="col">
                 <input type="search" class="form-control rounded" placeholder="Település" aria-label="Search" name="settlement_search"

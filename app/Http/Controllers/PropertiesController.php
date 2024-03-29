@@ -205,9 +205,9 @@ class PropertiesController extends Controller
                 $a->where('rooms', '<=', $request['rooms_max_search']);
             });
 
-        $anyad=$a->get();
+        $search=$a->get();
         return view('properties.index', [
-            'properties' => $anyad,
+            'properties' => $search,
 /*            'properties' => DB::table('properties')->select('*')->where('settlement', 'like', '%' . $settlement_search . '%')->whereBetween('price', [$price_min_search, $price_max_search])->whereBetween('rooms', [$rooms_min_search, $rooms_max_search])->get(),*/
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
         ]);
