@@ -17,7 +17,20 @@
                             <img
                                 src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
                                 class="card-img-top image" alt="...">
-                            <button type="button" class="star"><i class="fa-regular fa-star fa-xl" style="color: #f8c920;"></i></button>
+                            @if(\App\Models\LikedProperties::where([['user_id', '=', auth()->id()], ['properties_id', '=', $property->id]])->count()>0)
+                                <form action="/like/delete/{{$property->id}}" method="GET">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="star"><i class="fa-solid fa-star fa-xl" style="color: #f8c920;"></i></button>
+                                </form>
+                            @else
+                                <form action="/like/{{$property->id}}" method="POST">
+                                    @csrf
+                                    <button class="star"><i class="fa-regular fa-star fa-xl" style="color: #f8c920;"></i></button>
+                                </form>
+
+                            @endif
+
                         @else
                             <img
                                 src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"

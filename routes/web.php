@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\LikedPropertiesController;
 use App\Http\Controllers\MainImageController;
 use App\Http\Controllers\PropertiesController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -59,6 +60,12 @@ Route::get('main_image/{image}',[MainImageController::class, 'destroy']);
 
 #Keresés
 Route::get('search', [PropertiesController::class, 'search'])->name('properties.search');
+
+#Kedvelt ingatlan mentése
+Route::post('like/{data}', [LikedPropertiesController::class, 'store']);
+
+#Kedvelt ingatlan törlés
+Route::get('like/delete/{data}', [LikedPropertiesController::class, 'destroy']);
 
 Route::middleware([
     'auth:sanctum',
