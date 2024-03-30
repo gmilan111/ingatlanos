@@ -173,7 +173,6 @@ class PropertiesController extends Controller
 
     public function search(Request $request)
     {
-
         $settlement_search = $request['settlement_search'];
         $price_min_search = $request['price_min_search'];
         $price_max_search = $request['price_max_search'];
@@ -208,7 +207,11 @@ class PropertiesController extends Controller
         $search=$a->get();
         return view('properties.index', [
             'properties' => $search,
-/*            'properties' => DB::table('properties')->select('*')->where('settlement', 'like', '%' . $settlement_search . '%')->whereBetween('price', [$price_min_search, $price_max_search])->whereBetween('rooms', [$rooms_min_search, $rooms_max_search])->get(),*/
+            'settlement_search' => $request['settlement_search'],
+            'price_min_search' => $request['price_min_search'],
+            'price_max_search' => $request['price_max_search'],
+            'rooms_min_search' => $request['rooms_min_search'],
+            'rooms_max_search' => $request['rooms_max_search'],
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
         ]);
     }

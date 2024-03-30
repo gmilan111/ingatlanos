@@ -1,9 +1,8 @@
-/*import '@/bootstrap.js';*/
-/*import * as bootstrap from './bootstrap.js';*/
+import '@/bootstrap.js';
 
-/*import { Navbar, Dropdown, initMDB } from "mdb-ui-kit";
+import { Navbar, Dropdown, initMDB } from "mdb-ui-kit";
 
-initMDB({ Navbar, Dropdown });*/
+initMDB({ Navbar, Dropdown });
 
 $(document).ready(function(){
     $("button.plusbtn").on("click",function(){
