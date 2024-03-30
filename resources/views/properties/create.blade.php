@@ -15,7 +15,30 @@
                 </div>
                 <div class="col">
                     <x-label for="state" value="{{ __('Vármegye: ') }}" />
-                    <x-input id="state" class="block mt-1 w-full" type="text" name="state" :value="old('state')" required autocomplete="state" />
+                    {{--<x-input id="state" class="block mt-1 w-full" type="text" name="state" :value="old('state')" required autocomplete="state" />--}}
+                    <select
+                        class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                        name="condition" id="condition" aria-label="Default select example">
+                        <option selected value="1">Győr-Moson-Sopron</option>
+                        <option value="2">Vas</option>
+                        <option value="3">Zala</option>
+                        <option value="4">Komárom-Esztergom</option>
+                        <option value="5">Veszprém</option>
+                        <option value="6">Somogy</option>
+                        <option value="7">Fejér</option>
+                        <option value="8">Tolna</option>
+                        <option value="9">Baranya</option>
+                        <option value="10">Pest</option>
+                        <option value="11">Bács-Kiskun</option>
+                        <option value="12">Nógrád</option>
+                        <option value="13">Heves</option>
+                        <option value="14">Jász-Nagykun-Szolnok</option>
+                        <option value="15">Csongrád-Csanád</option>
+                        <option value="16">Borsod-Abaúj-Zemplén</option>
+                        <option value="17">Szabolcs-Szatmár-Bereg</option>
+                        <option value="18">Hajdú-Bihar</option>
+                        <option value="19">Békés</option>
+                    </select>
                 </div>
                 <div class="col">
                     <x-label for="address" value="{{ __('Utca, házszám: ') }}" />
@@ -53,7 +76,19 @@
 
                 <div class="col">
                     <x-label for="condition" value="{{ __('Ingatlan állapota: ') }}" />
-                    <x-input id="condition" class="block mt-1 w-full" type="text" name="condition" :value="old('condition')" autocomplete="condition" />
+                    <select
+                        class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                        name="condition" id="condition" aria-label="Default select example">
+                        <option selected>Nincs kiválasztva</option>
+                        <option value="1">Új építésű</option>
+                        <option value="2">Újszerű</option>
+                        <option value="3">Felújított</option>
+                        <option value="4">Jó állapotú</option>
+                        <option value="5">Közepes állapotú</option>
+                        <option value="6">Felújítandó</option>
+                        <option value="7">Befejezetlen</option>
+                    </select>
+                    {{--<x-input id="condition" class="block mt-1 w-full" type="text" name="condition" :value="old('condition')" autocomplete="condition" />--}}
                 </div>
 
             </div>
@@ -87,7 +122,14 @@
 
                 <div class="col">
                     <x-label for="inner_height" value="{{ __('Belmagasság: ') }}" />
-                    <x-input id="inner_height" class="block mt-1 w-full" type="number" name="inner_height" :value="old('inner_height')" autocomplete="inner_height" />
+                    <select
+                        class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                        name="inner_height" id="inner_height" aria-label="Default select example">
+                        <option selected>Nincs kiválasztva</option>
+                        <option value="1">3 méternél alacsonyabb</option>
+                        <option value="2">3 méter vagy magasabb</option>
+                    </select>
+                    {{--<x-input id="inner_height" class="block mt-1 w-full" type="number" name="inner_height" :value="old('inner_height')" autocomplete="inner_height" />--}}
                 </div>
 
                 <div class="col">
@@ -112,7 +154,13 @@
 
                 <div class="col">
                     <x-label for="attic" value="{{ __('Tetőtér: ') }}" />
-                    <x-input id="attic" class="block mt-1 w-full" type="text" name="attic" :value="old('attic')" autocomplete="attic" />
+                    <select class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="attic" id="attic" aria-label="Default select example">
+                        <option selected>Nincs kiválasztva</option>
+                        <option value="1">Tetőréri</option>
+                        <option value="2">Nem tetőtéri</option>
+                        <option value="3">Legfelső emelet, nem tetőtéri</option>
+                    </select>
+                    {{--<x-input id="attic" class="block mt-1 w-full" type="text" name="attic" :value="old('attic')" autocomplete="attic" />--}}
                 </div>
 
                 <div class="col">
@@ -124,7 +172,16 @@
             <div class="row mt-4">
                 <div class="col">
                     <x-label for="parking" value="{{ __('Parkolás: ') }}" />
-                    <x-input id="parking" class="block mt-1 w-full" type="text" name="parking" :value="old('parking')"/>
+                    <select
+                        class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                        name="parking" id="parking" aria-label="Default select example">
+                        <option selected>Nincs kiválasztva</option>
+                        <option value="1">Udvari beálló</option>
+                        <option value="2">Garázs</option>
+                        <option value="3">Önálló garázs</option>
+                        <option value="4">Utca, közterület</option>
+                    </select>
+                    {{--<x-input id="parking" class="block mt-1 w-full" type="text" name="parking" :value="old('parking')"/>--}}
                 </div>
 
                 <div class="col">
@@ -158,7 +215,23 @@
             <div class="row mt-4">
                 <div class="col">
                     <x-label for="heating" value="{{ __('Fűtés: ') }}" />
-                    <x-input id="heating" class="block mt-1 w-full" type="text" name="heating" :value="old('heating')"/>
+                    <select
+                        class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                        name="heating" id="heating" aria-label="Default select example">
+                        <option selected>Nincs kiválasztva</option>
+                        <option value="1">Gáz (konvektor)</option>
+                        <option value="2">Házközponti</option>
+                        <option value="3">Távfűtés</option>
+                        <option value="4">Elektromos konvektor</option>
+                        <option value="5">Elektromos fűtőpanel</option>
+                        <option value="6">Klíma</option>
+                        <option value="7">Kandalló</option>
+                        <option value="8">Kályha</option>
+                        <option value="9">Cserépkájha</option>
+                        <option value="10">Padlófűtés</option>
+                        <option value="11">Falfűtés</option>
+                    </select>
+                    {{--<x-input id="heating" class="block mt-1 w-full" type="text" name="heating" :value="old('heating')"/>--}}
                 </div>
 
                 <div class="col">
@@ -167,8 +240,14 @@
                 </div>
 
                 <div class="col">
-                    <x-label for="energy" value="{{ __('Energetikai tanúsítvány: ') }}" />
-                    <x-input id="energy" class="block mt-1 w-full" type="number" name="energy" :value="old('energy')" autocomplete="energy" />
+                    <x-label for="type" value="{{ __('Típus: ') }}"/>
+                    <select
+                        class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                        name="type" id="type" aria-label="Default select example">
+                        <option selected>Nincs kiválasztva</option>
+                        <option value="1">Tégla lakás</option>
+                        <option value="2">Panel lakás</option>
+                    </select>
                 </div>
             </div>
 
