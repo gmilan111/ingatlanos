@@ -57,7 +57,7 @@ class PropertiesController extends Controller
             'common_cost' => 'nullable|integer',
             'heating' => 'nullable|string',
             'insulation' => 'nullable|string',
-            'energy' => 'nullable|integer',
+            'type' => 'nullable|integer',
         ]);
 
         $formfields['user_id'] = auth()->id();

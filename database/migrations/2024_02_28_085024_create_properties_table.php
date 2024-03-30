@@ -41,7 +41,7 @@ return new class extends Migration
             $table->integer('common_cost')->default(0)->nullable();
             $table->string('heating')->default('Nincs megadva')->nullable();
             $table->string('insulation')->default('Nincs megadva')->nullable();
-            $table->integer('energy')->default(0)->nullable();
+            $table->integer('type')->default('Nincs megadva')->nullable();
 
             $table->timestamps();
         });

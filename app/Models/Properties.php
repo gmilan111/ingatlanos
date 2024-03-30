@@ -38,6 +38,6 @@ class Properties extends Model
         'common_cost',
         'heating',
         'insulation',
-        'energy',
+        'type',
     ];
 }
