@@ -103,6 +103,30 @@
 <main>
     {{$slot}}
 </main>
+
+<footer class="py-3 mt-4 shadow-lg">
+    @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Kezdőlap</a></li>
+            <li class="nav-item"><a href="{{route('properties.index')}}" class="nav-link px-2 text-body-secondary">Ingatlanok</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Kollégáink</a></li>
+        </ul>
+    @elseif(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'i')
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Kezdőlap</a></li>
+            <li class="nav-item"><a href="{{route('properties.index')}}" class="nav-link px-2 text-body-secondary">Ingatlanok</a></li>
+            <li class="nav-item"><a href="{{route('properties.create')}}" class="nav-link px-2 text-body-secondary">Új Ingatlan Hozzáadása</a></li>
+            <li class="nav-item"><a href="{{route('properties.own')}}" class="nav-link px-2 text-body-secondary">Saját Ingatlanok</a></li>
+        </ul>
+    @else
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Kezdőlap</a></li>
+            <li class="nav-item"><a href="{{route('properties.index')}}" class="nav-link px-2 text-body-secondary">Ingatlanok</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Kollégáink</a></li>
+        </ul>
+    @endif
+    <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
+</footer>
 {{--<!-- MDB -->
 <script
     type="text/javascript"
