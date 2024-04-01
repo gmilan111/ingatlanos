@@ -1,5 +1,5 @@
 <x-layout>
-    <form action="{{route('properties.search')}}" method="GET">
+    <form action="{{route('properties.search')}}" method="POST">
         @csrf
         <div class="input-group margin-top row">
             <div class="col">
