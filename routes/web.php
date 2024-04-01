@@ -59,7 +59,7 @@ Route::post('/images/{propertyID}', [ImagesController::class, 'store']);
 Route::get('main_image/{image}',[MainImageController::class, 'destroy']);
 
 #Keresés
-Route::get('search', [PropertiesController::class, 'search'])->name('properties.search');
+Route::post('search', [PropertiesController::class, 'search'])->name('properties.search');
 
 #Kedvelt ingatlan mentése
 Route::post('like/{data}', [LikedPropertiesController::class, 'store']);

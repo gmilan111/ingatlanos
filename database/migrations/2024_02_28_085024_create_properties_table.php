@@ -28,7 +28,7 @@ return new class extends Migration
             $table->integer('floor')->default(0)->nullable();
             $table->integer('building_levels')->default(0)->nullable();
             $table->string('lift');
-            $table->integer('inner_height')->default(0)->nullable();
+            $table->string('inner_height')->default(0)->nullable();
             $table->string('air_conditioner');
             $table->string('accessible');
             $table->string('attic')->default('Nincs megadva')->nullable();
@@ -41,7 +41,7 @@ return new class extends Migration
             $table->integer('common_cost')->default(0)->nullable();
             $table->string('heating')->default('Nincs megadva')->nullable();
             $table->string('insulation')->default('Nincs megadva')->nullable();
-            $table->integer('type')->default('Nincs megadva')->nullable();
+            $table->string('type')->default('Nincs megadva')->nullable();
 
             $table->timestamps();
         });

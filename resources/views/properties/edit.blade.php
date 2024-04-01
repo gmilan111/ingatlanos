@@ -16,7 +16,30 @@
                 </div>
                 <div class="col">
                     <x-label for="state" value="{{ __('Vármegye: ') }}" />
-                    <x-input id="state" class="block mt-1 w-full" type="text" name="state" :value="old('state')" value="{{$item->state}}" required autocomplete="state" />
+                    {{--<x-input id="state" class="block mt-1 w-full" type="text" name="state" :value="old('state')" value="{{$item->state}}" required autocomplete="state" />--}}
+                    <select
+                        class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                        name="state" id="state" aria-label="Default select example">
+                        <option value="Győr-Moson-Sopron" @if($item->state == "Győr-Moson-Sopron") selected @endif>Győr-Moson-Sopron</option>
+                        <option value="Vas" @if($item->state == "Vas") selected @endif>Vas</option>
+                        <option value="Zala" @if($item->state == "Zala") selected @endif>Zala</option>
+                        <option value="Komárom-Esztergom" @if($item->state == "Komárom-Esztergom") selected @endif>Komárom-Esztergom</option>
+                        <option value="Veszprém" @if($item->state == "Veszprém") selected @endif>Veszprém</option>
+                        <option value="Somogy" @if($item->state == "Somogy") selected @endif>Somogy</option>
+                        <option value="Fejér" @if($item->state == "Fejér") selected @endif>Fejér</option>
+                        <option value="Tolna" @if($item->state == "Tolna") selected @endif>Tolna</option>
+                        <option value="Baranya" @if($item->state == "Baranya") selected @endif>Baranya</option>
+                        <option value="Pest" @if($item->state == "Pest") selected @endif>Pest</option>
+                        <option value="Bács-Kiskun" @if($item->state == "Bács-Kiskun") selected @endif>Bács-Kiskun</option>
+                        <option value="Nógrád" @if($item->state == "Nógrád") selected @endif>Nógrád</option>
+                        <option value="Heves" @if($item->state == "Heves") selected @endif>Heves</option>
+                        <option value="Jász-Nagykun-Szolnok" @if($item->state == "Jász-Nagykun-Szolnok") selected @endif>Jász-Nagykun-Szolnok</option>
+                        <option value="Csongrád-Csanád" @if($item->state == "Csongrád-Csanád") selected @endif>Csongrád-Csanád</option>
+                        <option value="Borsod-Abaúj-Zemplén" @if($item->state == "Borsod-Abaúj-Zemplén") selected @endif>Borsod-Abaúj-Zemplén</option>
+                        <option value="Szabolcs-Szatmár-Bereg" @if($item->state == "Szabolcs-Szatmár-Bereg") selected @endif>Szabolcs-Szatmár-Bereg</option>
+                        <option value="Hajdú-Bihar" @if($item->state == "Hajdú-Bihar") selected @endif>Hajdú-Bihar</option>
+                        <option value="Békés" @if($item->state == "Békés") selected @endif>Békés</option>
+                    </select>
                 </div>
                 <div class="col">
                     <x-label for="address" value="{{ __('Utca, házszám: ') }}" />
@@ -52,7 +75,19 @@
                 </div>
                 <div class="col">
                     <x-label for="condition" value="{{ __('Ingatlan állapota: ') }}" />
-                    <x-input id="condition" class="block mt-1 w-full" type="text" name="condition" :value="old('condition')" value="{{$item->condition}}" autocomplete="condition" />
+                    <select
+                        class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                        name="condition" id="condition" aria-label="Default select example">
+                        <option value="Új építésű" @if($item->condition == "Új építésű") selected @endif>Új építésű</option>
+                        <option value="Újszerű" @if($item->condition == "Újszerű") selected @endif>Újszerű</option>
+                        <option value="Felújított" @if($item->condition == "Felújított") selected @endif>Felújított</option>
+                        <option value="Jó állapotú" @if($item->condition == "Jó állapotú") selected @endif>Jó állapotú</option>
+                        <option value="Közepes állapotú" @if($item->condition == "Közepes állapotú") selected @endif>Közepes állapotú</option>
+                        <option value="Felújítandó" @if($item->condition == "Felújítandó") selected @endif>Felújítandó</option>
+                        <option value="Befejezetlen" @if($item->condition == "Befejezetlen") selected @endif>Befejezetlen</option>
+                    </select>
+
+                    {{--<x-input id="condition" class="block mt-1 w-full" type="text" name="condition" :value="old('condition')" value="{{$item->condition}}" autocomplete="condition" />--}}
                 </div>
             </div>
 
@@ -77,23 +112,29 @@
                 <div class="col">
                     <x-label for="lift" value="{{ __('Lift: ') }}" />
                     <select class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="lift" id="lift" aria-label="Default select example">
-                        <option value="0" @if($item->lift == 0) selected @endif>Nincs kiválasztva</option>
-                        <option value="1" @if($item->lift == 1) selected @endif>Van</option>
-                        <option value="2" @if($item->lift == 2) selected @endif>Nincs</option>
+                        <option value="Nincs kiválasztva" @if($item->lift == "Nincs kiválasztva") selected @endif>Nincs kiválasztva</option>
+                        <option value="Van" @if($item->lift == "Van") selected @endif>Van</option>
+                        <option value="Nincs" @if($item->lift == "Nincs") selected @endif>Nincs</option>
                     </select>
                 </div>
 
                 <div class="col">
                     <x-label for="inner_height" value="{{ __('Belmagasság: ') }}" />
-                    <x-input id="inner_height" class="block mt-1 w-full" type="number" name="inner_height" :value="old('inner_height')" value="{{$item->inner_height}}" autocomplete="inner_height" />
+                    <select
+                        class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                        name="inner_height" id="inner_height" aria-label="Default select example">
+                        <option value="3 méternél alacsonyabb" @if($item->inner_height == "3 méternél alacsonyabb") selected @endif>3 méternél alacsonyabb</option>
+                        <option value="3 méter vagy magasabb" @if($item->inner_height == "3 méter vagy magasabb") selected @endif>3 méter vagy magasabb</option>
+                    </select>
+                    {{--<x-input id="inner_height" class="block mt-1 w-full" type="number" name="inner_height" :value="old('inner_height')" value="{{$item->inner_height}}" autocomplete="inner_height" />--}}
                 </div>
 
                 <div class="col">
                     <x-label for="air_conditioner" value="{{ __('Légkondícionáló: ') }}" />
                     <select class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="air_conditioner" id="air_conditioner" aria-label="Default select example">
-                        <option value="0" @if($item->air_conditioner == 0) selected @endif>Nincs kiválasztva</option>
-                        <option value="1" @if($item->air_conditioner == 1) selected @endif>Van</option>
-                        <option value="2" @if($item->air_conditioner == 2) selected @endif>Nincs</option>
+                        <option value="Nincs kiválasztva" @if($item->air_conditioner == "Nincs kiválasztva") selected @endif>Nincs kiválasztva</option>
+                        <option value="Van" @if($item->air_conditioner == "Van") selected @endif>Van</option>
+                        <option value="Nincs" @if($item->air_conditioner == "Nincs") selected @endif>Nincs</option>
                     </select>
                 </div>
             </div>
@@ -102,15 +143,20 @@
                 <div class="col">
                     <x-label for="accessible" value="{{ __('Akadálymentesített: ') }}" />
                     <select class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="accessible" id="accessible" aria-label="Default select example">
-                        <option value="0" @if($item->accessible == 0) selected @endif>Nincs kiválasztva</option>
-                        <option value="1" @if($item->accessible == 1) selected @endif>Igen</option>
-                        <option value="2" @if($item->accessible == 2) selected @endif>Nem</option>
+                        <option value="Nincs kiválasztva" @if($item->accessible == "Nincs kiválasztva") selected @endif>Nincs kiválasztva</option>
+                        <option value="Igen" @if($item->accessible == "Igen") selected @endif>Igen</option>
+                        <option value="Nem" @if($item->accessible == "Nem") selected @endif>Nem</option>
                     </select>
                 </div>
 
                 <div class="col">
                     <x-label for="attic" value="{{ __('Tetőtér: ') }}" />
-                    <x-input id="attic" class="block mt-1 w-full" type="text" name="attic" :value="old('attic')" value="{{$item->attic}}" autocomplete="attic" />
+                    <select class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="attic" id="attic" aria-label="Default select example">
+                        <option value="Tetőréri" @if($item->attic == "Tetőtéri") selected @endif>Tetőréri</option>
+                        <option value="Nem tetőtéri" @if($item->attic == "Nem tetőtéri") selected @endif>Nem tetőtéri</option>
+                        <option value="Legfelső emelet, nem tetőtéri" @if($item->attic == "Legfelső emelet, nem tetőtéri") selected @endif>Legfelső emelet, nem tetőtéri</option>
+                    </select>
+                    {{--<x-input id="attic" class="block mt-1 w-full" type="text" name="attic" :value="old('attic')" value="{{$item->attic}}" autocomplete="attic" />--}}
                 </div>
 
                 <div class="col">
@@ -122,7 +168,15 @@
             <div class="row mt-4">
                 <div class="col">
                     <x-label for="parking" value="{{ __('Parkolás: ') }}" />
-                    <x-input id="parking" class="block mt-1 w-full" type="text" name="parking" :value="old('parking')" value="{{$item->parking}}"/>
+                    <select
+                        class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                        name="parking" id="parking" aria-label="Default select example">
+                        <option value="Udvari beálló" @if($item->parking == "Udvari beálló") selected @endif>Udvari beálló</option>
+                        <option value="Garázs" @if($item->parking == "Garázs") selected @endif>Garázs</option>
+                        <option value="Önálló garázs" @if($item->parking == "Önálló garázs") selected @endif>Önálló garázs</option>
+                        <option value="Utca, közterület" @if($item->parking == "Utca, közterüle") selected @endif>Utca, közterület</option>
+                    </select>
+                    {{--<x-input id="parking" class="block mt-1 w-full" type="text" name="parking" :value="old('parking')" value="{{$item->parking}}"/>--}}
                 </div>
 
                 <div class="col">
@@ -156,7 +210,22 @@
             <div class="row mt-4">
                 <div class="col">
                     <x-label for="heating" value="{{ __('Fűtés: ') }}" />
-                    <x-input id="heating" class="block mt-1 w-full" type="text" name="heating" :value="old('heating')" value="{{$item->heating}}"/>
+                    <select
+                        class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                        name="heating" id="heating" aria-label="Default select example">
+                        <option value="Gáz (konvektor)" @if($item->heating == "Gáz (konvektor)") selected @endif>Gáz (konvektor)</option>
+                        <option value="Házközponti" @if($item->heating == "Házközponti") selected @endif>Házközponti</option>
+                        <option value="Távfűtés" @if($item->heating == "Távfűtés") selected @endif>Távfűtés</option>
+                        <option value="Elektromos konvektor" @if($item->heating == "Elektromos konvektor") selected @endif>Elektromos konvektor</option>
+                        <option value="Elektromos fűtőpanel" @if($item->heating == "Elektromos fűtőpanel") selected @endif>Elektromos fűtőpanel</option>
+                        <option value="Klíma" @if($item->heating == "Klíma") selected @endif>Klíma</option>
+                        <option value="Kandalló" @if($item->heating == "Kandalló") selected @endif>Kandalló</option>
+                        <option value="Kályha" @if($item->heating == "Kályha") selected @endif>Kályha</option>
+                        <option value="Cserépkájha" @if($item->heating == "Cserépkájha") selected @endif>Cserépkájha</option>
+                        <option value="Padlófűtés" @if($item->heating == "Padlófűtés") selected @endif>Padlófűtés</option>
+                        <option value="Falfűtés" @if($item->heating == "Falfűtés") selected @endif>Falfűtés</option>
+                    </select>
+                    {{--<x-input id="heating" class="block mt-1 w-full" type="text" name="heating" :value="old('heating')" value="{{$item->heating}}"/>--}}
                 </div>
 
                 <div class="col">
@@ -165,8 +234,14 @@
                 </div>
 
                 <div class="col">
-                    <x-label for="energy" value="{{ __('Energetikai tanúsítvány: ') }}" />
-                    <x-input id="energy" class="block mt-1 w-full" type="number" name="energy" :value="old('energy')" value="{{$item->energy}}" autocomplete="energy" />
+                    <x-label for="type" value="{{ __('Típus: ') }}"/>
+                    <select
+                        class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                        name="type" id="type" aria-label="Default select example">
+                        <option @if($item->type == "Nincs kiválasztva") selected @endif>Nincs kiválasztva</option>
+                        <option value="Tégla lakás" @if($item->type == "Tégla lakás") selected @endif>Tégla lakás</option>
+                        <option value="Panel lakás" @if($item->type == "Panel lakás") selected @endif>Panel lakás</option>
+                    </select>
                 </div>
             </div>
 

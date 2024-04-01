@@ -44,7 +44,7 @@ class PropertiesController extends Controller
             'floor' => 'nullable|integer',
             'building_levels' => 'nullable|integer',
             'lift' => ['required'],
-            'inner_height' => 'nullable|integer',
+            'inner_height' => 'nullable|string',
             'air_conditioner' => ['required'],
             'accessible' => ['required'],
             'attic' => 'nullable|string',
@@ -57,7 +57,7 @@ class PropertiesController extends Controller
             'common_cost' => 'nullable|integer',
             'heating' => 'nullable|string',
             'insulation' => 'nullable|string',
-            'type' => 'nullable|integer',
+            'type' => 'nullable|string',
         ]);
 
         $formfields['user_id'] = auth()->id();
@@ -154,7 +154,7 @@ class PropertiesController extends Controller
         $item->common_cost = $request['common_cost'];
         $item->heating = $request['heating'];
         $item->insulation = $request['insulation'];
-        $item->energy = $request['energy'];
+        $item->type = $request['type'];
 
         $item->save();
         return redirect(route('properties.own'));
@@ -178,6 +178,21 @@ class PropertiesController extends Controller
         $price_max_search = $request['price_max_search'];
         $rooms_min_search = $request['rooms_min_search'];
         $rooms_max_search = $request['rooms_max_search'];
+        $size_min = $request['size_min'];
+        $size_max = $request['size_max'];
+        $bathrooms_min = $request['bathrooms_min'];
+        $bathrooms_max = $request['bathrooms_max'];
+        $states = $request['state'];
+        $condition = $request['condition'];
+        $floor_min = $request['floor_min'];
+        $floor_max = $request['floor_max'];
+        $type = $request['type'];
+        $lift = $request['lift'];
+        $inner_height = $request['inner_height'];
+        $air_conditioner = $request['air_conditioner'];
+        $accessible = $request['accessible'];
+        $parking = $request['parking'];
+        $heating = $request['heating'];
 
         $a = Properties::query();
 
@@ -204,14 +219,97 @@ class PropertiesController extends Controller
                 $a->where('rooms', '<=', $request['rooms_max_search']);
             });
 
+        $a->when($size_min != null, function ($a) use ($request) {
+                $a->where('size', '>=', $request['size_min']);
+            });
+
+        $a->when($size_max != null, function ($a) use ($request) {
+                $a->where('size', '<=', $request['size_max']);
+            });
+
+        $a->when($bathrooms_min != null, function ($a) use ($request) {
+                $a->where('bathrooms', '>=', $request['bathrooms_min']);
+            });
+
+        $a->when($bathrooms_max != null, function ($a) use ($request) {
+                $a->where('bathrooms', '<=', $request['bathrooms_max']);
+            });
+
+        $a->when($states != null, function ($a) use ($request) {
+                $states = $request['state'];
+
+                $a->whereIn('state', $states);
+            });
+
+        $a->when($condition != null, function ($a) use ($request) {
+                $conditions = $request['condition'];
+
+                $a->whereIn('condition', $conditions);
+            });
+
+        $a->when($floor_min != null && $floor_min != "Mindegy", function ($a) use ($request) {
+            $a->where('floor', '>=', $request['floor_min']);
+        });
+
+        $a->when($floor_max != null  && $floor_min != "Mindegy", function ($a) use ($request) {
+            $a->where('floor', '<=', $request['floor_max']);
+        });
+
+        $a->when($type != null && $type != "Mindegy", function ($a) use ($request) {
+                $a->where('type', 'like', $request['type']);
+            });
+
+        $a->when($lift != null && $lift != "Mindegy", function ($a) use ($request) {
+                $a->where('lift', 'like', $request['lift']);
+            });
+
+        $a->when($inner_height != null && $inner_height != "Mindegy", function ($a) use ($request) {
+                $a->where('inner_height', 'like', $request['inner_height']);
+            });
+
+        $a->when($air_conditioner != null && $air_conditioner != "Mindegy", function ($a) use ($request) {
+                $a->where('air_conditioner', 'like', $request['air_conditioner']);
+            });
+
+        $a->when($accessible != null && $accessible != "Mindegy", function ($a) use ($request) {
+                $a->where('accessible', 'like', $request['accessible']);
+            });
+
+        $a->when($parking != null, function ($a) use ($request) {
+            $parking = $request['parking'];
+
+            $a->whereIn('parking', $parking);
+        });
+
+        $a->when($heating != null, function ($a) use ($request) {
+            $heating = $request['heating'];
+
+            $a->whereIn('heating', $heating);
+        });
+
         $search=$a->get();
         return view('properties.index', [
             'properties' => $search,
-            'settlement_search' => $request['settlement_search'],
-            'price_min_search' => $request['price_min_search'],
-            'price_max_search' => $request['price_max_search'],
-            'rooms_min_search' => $request['rooms_min_search'],
-            'rooms_max_search' => $request['rooms_max_search'],
+            'settlement_search' => $settlement_search,
+            'price_min_search' => $price_min_search,
+            'price_max_search' => $price_max_search,
+            'rooms_min_search' => $rooms_min_search,
+            'rooms_max_search' => $rooms_max_search,
+            'size_min' => $size_min,
+            'size_max' => $size_max,
+            'bathrooms_min' => $bathrooms_min,
+            'bathrooms_max' => $bathrooms_max,
+            'states' => $states,
+            'condition' => $condition,
+            'floor_min' => $floor_min,
+            'floor_max' => $floor_max,
+            'type' => $type,
+            'lift' => $lift,
+            'inner_height' => $inner_height,
+            'air_conditioner' => $air_conditioner,
+            'accessible' => $accessible,
+            'parking' => $parking,
+            'heating' => $heating,
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
         ]);
     }
