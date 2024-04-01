@@ -1,36 +1,23 @@
 <x-layout>
 
-    {{--@foreach($properties as $property)
-        <h1>{{$property->settlement}}</h1>
-
-
-    @endforeach
-    @php
-
-        @endphp
-    @foreach($images as $image)
-
-        <img src="{{asset($image->images)}}" alt="">
-    @endforeach
-    @foreach($main_img as $img)
-
-        <img src="{{asset($img->main_img)}}" alt="">
-    @endforeach--}}
-
     @foreach($properties as $property)
         @php
             $address = ($property->settlement).','.' '.($property->address).'.';
+            /*$carousel = sizeof($images) + sizeof($main_img);*/
         @endphp
         <div class="container mt-6">
             <div id="carouselExampleIndicators" class="carousel slide mb-5">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                            class="active bg-dark" aria-current="true" aria-label="Slide 1"></button>
+                {{--<div class="carousel-indicators">
+                    @for ($i = 0; $i < $carousel; $i++)
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="$i"
+                                class="active bg-dark" aria-current="true" aria-label="Slide {{$i}}"></button>
+                    @endfor
+
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
                             class="bg-dark" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
                             class="bg-dark" aria-label="Slide 3"></button>
-                </div>
+                </div>--}}
                 <div class="carousel-inner">
                     @foreach($main_img as $img)
                         <div class="carousel-item active">
@@ -220,8 +207,56 @@
 
                             <img src="{{asset($agents->profile_photo_path)}}" alt="">
                             <h1 class="card-title">{{$agents->name}}</h1>
-                            <a href="" class="btn btn-primary"><i class="fa-regular fa-star fa-xl"
-                                                                  style="color: #f8c920;"></i>Hirdetés mentése</a>
+
+                            @if(auth()->user() == null)
+                                <div id="liveAlertPlaceholder"></div>
+                                <button type="button" class="btn btn-primary" id="liveAlertBtn"><i
+                                        class="fa-regular fa-star fa-xl"
+                                        style="color: #f8c920;"></i>Hirdetés mentése
+                                </button>
+
+                            @else
+                                @if(\App\Models\LikedProperties::where([['user_id', '=', auth()->id()], ['properties_id', '=', $property->id]])->count()>0)
+                                    <form action="/like/delete/{{$property->id}}" method="GET">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-primary"><i class="fa-solid fa-star fa-xl"
+                                                                           style="color: #f8c920;"></i>Hirdetés mentve
+                                        </button>
+                                    </form>
+                                @else
+                                    <form action="/like/{{$property->id}}" method="POST">
+                                        @csrf
+                                        <button class="btn btn-primary"><i class="fa-regular fa-star fa-xl"
+                                                                           style="color: #f8c920;"></i>Hirdetés mentése
+                                        </button>
+                                    </form>
+
+                                @endif
+                            @endif
+
+                            <script>
+                                const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+                                const appendAlert = (message, type) => {
+                                    const wrapper = document.createElement('div')
+                                    wrapper.innerHTML = [
+                                        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+                                        `   <div>${message}</div>`,
+                                        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-solid fa-x"></i></button>',
+                                        '</div>'
+                                    ].join('')
+
+                                    alertPlaceholder.append(wrapper)
+                                }
+
+
+                                const alertTrigger = document.getElementById('liveAlertBtn')
+                                if (alertTrigger) {
+                                    alertTrigger.addEventListener('click', () => {
+                                        appendAlert('Csak regisztrált vagy bejelentkezett felhasználók menthetnek el hirdetést', 'danger')
+                                    })
+                                }
+                            </script>
 
                         </div>
                     </div>

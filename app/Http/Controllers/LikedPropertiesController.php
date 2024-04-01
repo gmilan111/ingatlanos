@@ -18,10 +18,7 @@ class LikedPropertiesController extends Controller
            'user_id' => $user,
         ]);
 
-        return view('properties.index', [
-            'properties' => DB::table('properties')->select('*')->get(),
-            'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
-        ]);
+        return redirect(route('properties.index'));
     }
 
     public function destroy($data){
@@ -32,9 +29,11 @@ class LikedPropertiesController extends Controller
             $record->delete();
         }
 
-        return view('properties.index', [
+        /*return view('properties.index', [
             'properties' => DB::table('properties')->select('*')->get(),
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
-        ]);
+        ]);*/
+
+        return redirect(route('properties.index'));
     }
 }
