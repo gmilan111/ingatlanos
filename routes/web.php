@@ -67,6 +67,14 @@ Route::post('like/{data}', [LikedPropertiesController::class, 'store']);
 #Kedvelt ingatlan törlés
 Route::get('like/delete/{data}', [LikedPropertiesController::class, 'destroy']);
 
+#Kedvelt ingatlanok megjelenítése
+Route::get('/liked_properties', [LikedPropertiesController::class, 'index'])->name('liked.index');
+
+#Saját kedvelt ingatlan törlése
+Route::get('liked_prop/delete/{data}', [LikedPropertiesController::class, 'destroy_liked']);
+
+Route::post('search_liked', [LikedPropertiesController::class, 'search_liked'])->name('liked_prop.search');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
