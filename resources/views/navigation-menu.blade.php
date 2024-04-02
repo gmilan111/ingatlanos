@@ -35,7 +35,7 @@
                                 {{ __('Profil szerkesztése') }}
                             </div>
                             @if(auth()->user()->is_ingatlanos == 'm')
-                                <x-dropdown-link href="{{ route('profile.show') }}">
+                                <x-dropdown-link href="{{ route('liked.index') }}">
                                     {{ __('Kedvenc ingatlanok') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link href="{{ route('profile.show') }}">

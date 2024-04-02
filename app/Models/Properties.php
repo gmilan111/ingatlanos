@@ -9,6 +9,10 @@ class Properties extends Model
 {
     use HasFactory;
 
+    public function liked(){
+        return $this->belongsToMany(User::class, 'liked_properties','properties_id', 'user_id');
+    }
+
     protected $fillable = [
         'user_id',
         'settlement',
