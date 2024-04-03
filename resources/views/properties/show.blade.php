@@ -205,7 +205,7 @@
                                         felfedése</a></h1>
                             @endif
 
-                            <img src="{{asset($agents->profile_photo_path)}}" alt="">
+                            <img class="mt-5 mb-3 rounded-3 shadow-lg" src="{{asset('storage/'.$agents->profile_photo_path)}}" alt="{{$agents->name}}">
                             <h1 class="card-title">{{$agents->name}}</h1>
 
                             @if(auth()->user() == null)
