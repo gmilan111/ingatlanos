@@ -1,5 +1,17 @@
 <x-layout>
     <div class="container margin-top">
+        <form action="{{route('own.properties.search')}}" method="POST" class="mb-5">
+            @csrf
+            <div class="input-group margin-top row">
+                <div class="col">
+                    <input type="search" class="form-control rounded" placeholder="Település" aria-label="Search" name="settlement_search"
+                           aria-describedby="search-addon"/>
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-primary">search</button>
+                </div>
+            </div>
+        </form>
         <div class="row">
             @foreach($properties as $property)
                 @php
@@ -9,7 +21,7 @@
                         style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
                 <div class="col-lg-3 width-33 mb-5">
                     <div class="card border-0 shadow-2xl" style="width: 25rem;">
-                        <img src="..." class="card-img-top" alt="...">
+                        <img src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h1 class="card-title">{{number_format(($property->price),0,'','.')}} Ft</h1>
                             <p class="card-text mb-5">{{$address}}</p>
