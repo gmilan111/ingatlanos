@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Images;
 use App\Models\MainImage;
 use App\Models\Properties;
+use DeepCopy\Matcher\PropertyTypeMatcher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -310,6 +311,28 @@ class PropertiesController extends Controller
             'accessible' => $accessible,
             'parking' => $parking,
             'heating' => $heating,
+            'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
+        ]);
+    }
+
+    public function own_search(Request $request)
+    {
+        $settlement_search = $request['settlement_search'];
+
+        $a = Properties::query();
+
+
+        $a->select('*')
+            ->when($settlement_search != null, function ($a) use ($request) {
+                $user_id = auth()->id();
+                $a->where([['settlement', 'like', '%' . $request['settlement_search'] . '%'],['user_id', '=', $user_id]]);
+            });
+
+        $search=$a->get();
+
+        return view('properties.own', [
+            'properties' => $search,
+            'settlement_search' => $settlement_search,
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
         ]);
     }

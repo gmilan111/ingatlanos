@@ -73,7 +73,9 @@ Route::get('/liked_properties', [LikedPropertiesController::class, 'index'])->na
 #Saját kedvelt ingatlan törlése
 Route::get('liked_prop/delete/{data}', [LikedPropertiesController::class, 'destroy_liked']);
 
-Route::post('search_liked', [LikedPropertiesController::class, 'search_liked'])->name('liked_prop.search');
+/*Route::post('search_liked', [LikedPropertiesController::class, 'search_liked'])->name('liked_prop.search');*/
+
+Route::post('own_search', [PropertiesController::class, 'own_search'])->name('own.properties.search');
 
 Route::middleware([
     'auth:sanctum',
