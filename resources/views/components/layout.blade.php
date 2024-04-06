@@ -74,7 +74,7 @@
                         <a class="nav-link fejlec" href="{{route('properties.index')}}">Ingatlanok</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="#">Kollégáink</a>
+                        <a class="nav-link fejlec" href="{{route('agents.index')}}">Kollégáink</a>
                     </li>
                 </ul>
             @endif

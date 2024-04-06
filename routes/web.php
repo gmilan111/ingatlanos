@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgentsController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\LikedPropertiesController;
 use App\Http\Controllers\MainImageController;
@@ -32,7 +33,7 @@ Route::get('/properties/create', [PropertiesController::class, 'store_index'])->
 Route::post('/properties/store', [PropertiesController::class, 'store'])->name('properties.store');
 
 #Egy ingatlan részletes oldal megjelenítése
-Route::get('/properties/{property}', [PropertiesController::class, 'show']);
+Route::get('/properties/{property}', [PropertiesController::class, 'show'])->name('properties.show');
 
 #Ingatlanos saját posztjainak megjelenítése
 Route::get('/properties_own', [PropertiesController::class, 'show_own'])->name('properties.own');
@@ -75,7 +76,14 @@ Route::get('liked_prop/delete/{data}', [LikedPropertiesController::class, 'destr
 
 /*Route::post('search_liked', [LikedPropertiesController::class, 'search_liked'])->name('liked_prop.search');*/
 
+#Ingatlanos tud keresni saját ingatlanjai között
 Route::post('own_search', [PropertiesController::class, 'own_search'])->name('own.properties.search');
+
+#Ingatlanosok megjelenítése
+Route::get('/agents', [AgentsController::class, 'index'])->name('agents.index');
+
+#Ingatlanosok részletes oldal
+Route::get('/agents/{agent}', [AgentsController::class, 'show']);
 
 Route::middleware([
     'auth:sanctum',
