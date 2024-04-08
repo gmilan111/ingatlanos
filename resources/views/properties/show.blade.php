@@ -205,7 +205,8 @@
                                         felfedése</a></h1>
                             @endif
 
-                            <img class="mt-5 mb-3 rounded-3 shadow-lg" src="{{asset('storage/'.$agents->profile_photo_path)}}" alt="{{$agents->name}}">
+                            <img class="mt-5 mb-3 rounded-3 shadow-lg"
+                                 src="{{asset('storage/'.$agents->profile_photo_path)}}" alt="{{$agents->name}}">
                             <h1 class="card-title">{{$agents->name}}</h1>
 
                             @if(auth()->user() == null)
@@ -233,6 +234,52 @@
                                     </form>
 
                                 @endif
+                                <div class="mt-3">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
+                                        Üzenet küldése
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Üzenet küldése</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 mb-3">
+                                                            <x-label for="name" value="{{ __('Név') }}"/>
+                                                            <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
+                                                                     autofocus autocomplete="name"/>
+                                                        </div>
+
+                                                        <div class="col-sm-6 mb-3">
+                                                            <x-label for="email" value="{{ __('Email') }}"/>
+                                                            <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
+                                                                     autocomplete="email"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="exampleFormControlTextarea1" class="form-label">Üzenet</label>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Vissza
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary">Küldés</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @endif
 
                             <script>
