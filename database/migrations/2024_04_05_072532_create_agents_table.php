@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('agents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('salary');
-            $table->integer('experience');
-            $table->string('help');
-            $table->string('language');
-            $table->string('description');
+            $table->string('salary')->nullable();
+            $table->integer('experience')->nullable();
+            $table->string('help')->nullable();
+            $table->string('language')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

@@ -9,16 +9,19 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class Mail extends Mailable
+class Contact extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $data;
+    protected $url;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($data, $url)
     {
-        //
+        $this->data = $data;
+        $this->url = $url;
     }
 
     /**
@@ -27,7 +30,7 @@ class Mail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Mail',
+            subject: 'Új üzenet érkezett',
         );
     }
 
@@ -37,7 +40,11 @@ class Mail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.email',
+            markdown: 'emails.user-sent-email',
+            with: [
+                'data' => $this->data,
+                'url' => $this->url,
+            ]
         );
     }
 

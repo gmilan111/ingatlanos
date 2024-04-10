@@ -59,14 +59,14 @@
                 <div class="mt-4">
                     <x-label for="commission" value="{{ __('Jutalék') }}"/>
                     <x-input id="commission" class="block mt-1 w-full" type="text" name="commission"
-                             :value="old('commission')" required
+                             :value="old('commission')" {{--required--}}
                              autocomplete="commission"/>
                 </div>
 
                 <div class="mt-4">
                     <x-label for="experience" value="{{ __('Tapasztalat') }}"/>
                     <x-input id="experience" class="block mt-1 w-full" type="number" name="experience"
-                             :value="old('experience')" required
+                             :value="old('experience')" {{--required--}}
                              autocomplete="experience"/>
                 </div>
 
@@ -150,7 +150,7 @@
                 <div class="mt-4">
                     <x-label for="known_language" value="{{ __('Nyelvtudás') }}"/>
                     <x-input id="known_language" class="block mt-1 w-full" type="text" name="known_language"
-                             :value="old('known_language')" required
+                             :value="old('known_language')" {{--required--}}
                              autocomplete="known_language"/>
                 </div>
 
@@ -159,7 +159,7 @@
                         <x-label for="description" value="{{__('Leírás: ')}}"/>
                         <textarea class="block mt-1 w-full rounded border-gray-300" id="description"
                                   name="description"
-                                  required></textarea>
+                                  {{--required--}}></textarea>
                     </div>
                 </div>
             </div>

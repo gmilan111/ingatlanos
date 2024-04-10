@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AgentsController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\LikedPropertiesController;
 use App\Http\Controllers\MainImageController;
@@ -84,6 +85,9 @@ Route::get('/agents', [AgentsController::class, 'index'])->name('agents.index');
 
 #Ingatlanosok részletes oldal
 Route::get('/agents/{agent}', [AgentsController::class, 'show']);
+
+#Email küldése
+Route::get('/email/{info}', [EmailController::class, 'sendEmail']);
 
 Route::middleware([
     'auth:sanctum',
