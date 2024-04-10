@@ -102,11 +102,13 @@ class PropertiesController extends Controller
 
     public function show($property)
     {
+
+
         return view('properties.show', [
             'properties' => DB::table('properties')->select('*')->where('properties.id', '=', $property)->get(),
             'images' => DB::table('images')->select('*')->where('images.properties_id', '=', $property)->get(),
             'main_img' => DB::table('main_images')->select('*')->where('main_images.properties_id', '=', $property)->get(),
-            'agents' => DB::table('users')->select('*')->join('properties', 'users.id', '=', 'properties.user_id')->where('users.is_ingatlanos', '=', 'i')->first(),
+            /*'agents' => DB::table('users')->select('*')->join('properties', 'users.id', '=', 'properties.user_id')->first(),*/
         ]);
     }
 

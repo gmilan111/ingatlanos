@@ -20,13 +20,17 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+            /*'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',*/
             'phone_number' => ['required'],
+            'salary' => ['nullable', 'string'],
+            'experience' => ['nullable', 'integer'],
+            'help' => 'nullable',
+            'language' => ['nullable', 'string'],
+            'descritpion' => ['nullable', 'string'],
         ])->validate();
 
         $user = User::create([
@@ -37,15 +41,22 @@ class CreateNewUser implements CreatesNewUsers
             'phone_number'=>$input['phone_number'],
         ]);
 
-        Agents::create([
-            'user_id' => $user->id,
-            'salary' => $input['commission'],
-            'experience' => $input['experience'],
-            'help' => implode(',', $input['help']),
-            'language' => $input['known_language'],
-            'description' => $input['description'],
-        ]);
+        if($input['user'] == 'i'){
+            Agents::create([
+                'user_id' => $user->id,
+                'salary' => $input['commission'],
+                'experience' => $input['experience'],
+                'language' => $input['known_language'],
+                'description' => $input['description'],
+            ]);
 
+            if(isset($input['help'])){
+                Agents::created([
+                    'help' => implode(',', $input['help']),
+                ]);
+
+            }
+        }
         return $user;
     }
 }

@@ -34,7 +34,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Tapasztalatom:</th>
-                                        <td>{{$info->experience}}</td>
+                                        <td>{{$info->experience}} Év</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Nyelvudásom:</th>
