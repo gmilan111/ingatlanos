@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\AgentsController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\LikedPropertiesController;
 use App\Http\Controllers\MainImageController;
 use App\Http\Controllers\PropertiesController;
+use App\Http\Controllers\RecommendationsController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [Controller::class, 'index']);
 
 #Ingatlanok megjelenítése
 Route::get('/properties', [PropertiesController::class, 'index'])->name('properties.index');
@@ -88,6 +88,8 @@ Route::get('/agents/{agent}', [AgentsController::class, 'show']);
 
 #Email küldése
 Route::get('/email/{info}', [EmailController::class, 'sendEmail']);
+
+/*Route::get('/', [RecommendationsController::class, 'index']);*/
 
 Route::middleware([
     'auth:sanctum',
