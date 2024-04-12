@@ -18,6 +18,13 @@ class Controller extends BaseController
             $user_id = auth()->id();
             $helper = DB::table('recommendations')->select('*')->where('user_id', '=', $user_id)->inRandomOrder()->get();
             $liked_helper = DB::table('liked_properties')->select('*')->join('properties', 'liked_properties.properties_id', '=', 'properties.id')->where('liked_properties.user_id', '=', $user_id)->inRandomOrder()->get();
+            if(count($helper) < 1 && count($liked_helper) < 1){
+                $non_reg_prop = DB::table('properties')->select('*')->inRandomOrder()->get();
+                return view('index',[
+                    'properties' => $non_reg_prop,
+                    'igaz' => true,
+                ]);
+            }
             $settlement = array();
             $states_helper = array();
             foreach ($helper as $item) {
@@ -44,6 +51,27 @@ class Controller extends BaseController
             }
             foreach ($liked_helper as $item) {
                 $settlement[] = $item->settlement;
+
+                if ($item->size != null) {
+                    $max_size_helper[] = $item->size;
+                    if($item->size == 1){
+                        $min_size_helper[] = $item->size;
+                    }else{
+                        $min_size_helper[] = $item->size - 1;
+                    }
+                }
+                if ($item->price != null) {
+                    $max_price_helper[] = $item->price;
+                    $min_price_helper[] = $item->price - 1;
+                }
+                if ($item->rooms != null) {
+                    $max_rooms_helper[] = $item->rooms;
+                    if($item->size == 1){
+                        $min_rooms_helper[] = $item->rooms;
+                    }else{
+                        $min_rooms_helper[] = $item->rooms - 1;
+                    }
+                }
             }
 
             $min_size = min($min_size_helper);
@@ -52,6 +80,7 @@ class Controller extends BaseController
             $max_price = max($max_price_helper);
             $min_rooms = min($min_rooms_helper);
             $max_rooms = max($max_rooms_helper);
+
 
             $states = array();
             foreach ($states_helper as $value) {
@@ -105,11 +134,19 @@ class Controller extends BaseController
                 $properties->where('rooms', '<=', $max_rooms);
             });
 
+
+
             $recommendations = $properties->get();
             return view('index', [
                 'recommendations' => $recommendations,
+                'igaz' => false,
             ]);
         }
-        return view('index');
+
+        $non_reg_prop = DB::table('properties')->select('*')->inRandomOrder()->get();
+        return view('index',[
+            'properties' => $non_reg_prop,
+            'igaz' => false,
+        ]);
     }
 }
