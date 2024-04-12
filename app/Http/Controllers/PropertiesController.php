@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Images;
 use App\Models\MainImage;
 use App\Models\Properties;
+use App\Models\Recommendations;
 use DeepCopy\Matcher\PropertyTypeMatcher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -289,6 +290,35 @@ class PropertiesController extends Controller
 
             $a->whereIn('heating', $heating);
         });
+
+        $user_id = auth()->id();
+
+        if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m"){
+            if(isset($states)) {
+                Recommendations::create([
+                    'user_id' => $user_id,
+                    'settlement' => $settlement_search,
+                    'state' => implode(',', $states),
+                    'min_size' => $size_min,
+                    'max_size' => $size_max,
+                    'min_price' => $price_min_search,
+                    'max_price' => $price_max_search,
+                    'min_rooms' => $rooms_min_search,
+                    'max_rooms' => $rooms_max_search,
+                ]);
+            }else{
+                Recommendations::create([
+                    'user_id' => $user_id,
+                    'settlement' => $settlement_search,
+                    'min_size' => $size_min,
+                    'max_size' => $size_max,
+                    'min_price' => $price_min_search,
+                    'max_price' => $price_max_search,
+                    'min_rooms' => $rooms_min_search,
+                    'max_rooms' => $rooms_max_search,
+                ]);
+            }
+        }
 
         $search=$a->get();
         return view('properties.index', [
