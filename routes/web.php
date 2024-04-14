@@ -8,6 +8,7 @@ use App\Http\Controllers\LikedPropertiesController;
 use App\Http\Controllers\MainImageController;
 use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RecommendationsController;
+use App\Http\Controllers\SoldPropertiesController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -89,7 +90,8 @@ Route::get('/agents/{agent}', [AgentsController::class, 'show']);
 #Email küldése
 Route::get('/email/{info}', [EmailController::class, 'sendEmail']);
 
-/*Route::get('/', [RecommendationsController::class, 'index']);*/
+#Ingatlan státusza "eladva"-ra váltása
+Route::put('/sold/{property_id}', [PropertiesController::class, 'sold']);
 
 Route::middleware([
     'auth:sanctum',

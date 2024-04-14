@@ -368,4 +368,13 @@ class PropertiesController extends Controller
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
         ]);
     }
+
+    public function sold($property_id){
+        $property = Properties::find($property_id);
+        $property->sold = true;
+
+        $property->save();
+
+        return redirect(route('properties.own'));
+    }
 }
