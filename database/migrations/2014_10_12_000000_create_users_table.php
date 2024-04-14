@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('is_ingatlanos');
             $table->string('phone_number');
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->boolean('email_notification')->default(false);
             $table->timestamps();
         });
     }

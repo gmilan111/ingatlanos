@@ -40,33 +40,18 @@
                          autocomplete="phone"/>
             </div>
 
-            <div class="mt-4">
-                <label for="magan" class="flex items-center">
-                    <x-input id="magan" name="user" onclick="igen()" type="radio" value="m" required autocomplete="m"/>
-                    <span class="ms-2 text-sm text-gray-600">Magánszemély</span>
-                </label>
-            </div>
-
-            <div class="mt-4">
-                <label for="ingatlanos" class="flex items-center">
-                    <x-input id="ingatlanos" onclick="igen()" name="user" type="radio" value="i" required
-                             autocomplete="i"/>
-                    <span class="ms-2 text-sm text-gray-600">Ingatlanos</span>
-                </label>
-            </div>
-
             <div id="plus_agent" style="display: none">
                 <div class="mt-4">
                     <x-label for="commission" value="{{ __('Jutalék') }}"/>
                     <x-input id="commission" class="block mt-1 w-full" type="text" name="commission"
-                             :value="old('commission')" {{--required--}}
+                             :value="old('commission')"
                              autocomplete="commission"/>
                 </div>
 
                 <div class="mt-4">
                     <x-label for="experience" value="{{ __('Tapasztalat') }}"/>
                     <x-input id="experience" class="block mt-1 w-full" type="number" name="experience"
-                             :value="old('experience')" {{--required--}}
+                             :value="old('experience')"
                              autocomplete="experience"/>
                 </div>
 
@@ -150,7 +135,7 @@
                 <div class="mt-4">
                     <x-label for="known_language" value="{{ __('Nyelvtudás') }}"/>
                     <x-input id="known_language" class="block mt-1 w-full" type="text" name="known_language"
-                             :value="old('known_language')" {{--required--}}
+                             :value="old('known_language')"
                              autocomplete="known_language"/>
                 </div>
 
@@ -158,10 +143,33 @@
                     <div class="col">
                         <x-label for="description" value="{{__('Leírás: ')}}"/>
                         <textarea class="block mt-1 w-full rounded border-gray-300" id="description"
-                                  name="description"
-                                  {{--required--}}></textarea>
+                                  name="description"></textarea>
                     </div>
                 </div>
+            </div>
+
+            <div id="plus_user" style="display: none">
+                <div class="mt-4">
+                    <label for="email_notification" class="flex items-center">
+                        <x-input id="email_notification" name="email_notification" type="checkbox" value="{{true}}"/>
+                        <span class="ms-2 text-sm text-gray-600">Szeretnék kapni emailt új ingatlanok közzétételéről</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <label for="magan" class="flex items-center">
+                    <x-input id="magan" name="user" onclick="plusinfo()" type="radio" value="m" required autocomplete="m"/>
+                    <span class="ms-2 text-sm text-gray-600">Magánszemély</span>
+                </label>
+            </div>
+
+            <div class="mt-4">
+                <label for="ingatlanos" class="flex items-center">
+                    <x-input id="ingatlanos" onclick="plusinfo()" name="user" type="radio" value="i" required
+                             autocomplete="i"/>
+                    <span class="ms-2 text-sm text-gray-600">Ingatlanos</span>
+                </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">

@@ -39,6 +39,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
             'is_ingatlanos'=>$input['user'],
             'phone_number'=>$input['phone_number'],
+            'email_notification' => $input['email_notification'] ?? false,
         ]);
 
         if($input['user'] == 'i'){
@@ -54,7 +55,6 @@ class CreateNewUser implements CreatesNewUsers
                 Agents::created([
                     'help' => implode(',', $input['help']),
                 ]);
-
             }
         }
         return $user;
