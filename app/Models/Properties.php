@@ -43,5 +43,6 @@ class Properties extends Model
         'heating',
         'insulation',
         'type',
+        'sold',
     ];
 }

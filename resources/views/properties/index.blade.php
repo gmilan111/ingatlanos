@@ -663,8 +663,10 @@
                                                 </div>
                                                 @if(isset($condition))
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Új építésű"
-                                                               name="condition[]" id="uj_epitesu" @if(in_array("Új építésű",$condition)) checked @endif>
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Új építésű"
+                                                               name="condition[]" id="uj_epitesu"
+                                                               @if(in_array("Új építésű",$condition)) checked @endif>
                                                         <label class="form-check-label" for="uj_epitesu">
                                                             Új építésű
                                                         </label>
@@ -672,23 +674,28 @@
 
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value="Újszerű"
-                                                               name="condition[]" id="ujszeru" @if(in_array("Újszerű",$condition)) checked @endif>
+                                                               name="condition[]" id="ujszeru"
+                                                               @if(in_array("Újszerű",$condition)) checked @endif>
                                                         <label class="form-check-label" for="ujszeru">
                                                             Újszerű
                                                         </label>
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Felújított"
-                                                               name="condition[]" id="felujitott" @if(in_array("Felújított",$condition)) checked @endif>
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Felújított"
+                                                               name="condition[]" id="felujitott"
+                                                               @if(in_array("Felújított",$condition)) checked @endif>
                                                         <label class="form-check-label" for="felujitott">
                                                             Felújított
                                                         </label>
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Jó állapotú"
-                                                               name="condition[]" id="jo_allapotu" @if(in_array("Jó állapotú",$condition)) checked @endif>
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Jó állapotú"
+                                                               name="condition[]" id="jo_allapotu"
+                                                               @if(in_array("Jó állapotú",$condition)) checked @endif>
                                                         <label class="form-check-label" for="jo_allapotu">
                                                             Jó állapotú
                                                         </label>
@@ -697,23 +704,28 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox"
                                                                value="Közepes állapotú"
-                                                               name="condition[]" id="kozepes_allapotu" @if(in_array("Közepes állapotú",$condition)) checked @endif>
+                                                               name="condition[]" id="kozepes_allapotu"
+                                                               @if(in_array("Közepes állapotú",$condition)) checked @endif>
                                                         <label class="form-check-label" for="kozepes_allapotu">
                                                             Közepes állapotú
                                                         </label>
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Felújítandó"
-                                                               name="condition[]" id="felujitando" @if(in_array("Felújítandó",$condition)) checked @endif>
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Felújítandó"
+                                                               name="condition[]" id="felujitando"
+                                                               @if(in_array("Felújítandó",$condition)) checked @endif>
                                                         <label class="form-check-label" for="felujitando">
                                                             Felújítandó
                                                         </label>
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Befejezetlen"
-                                                               name="condition[]" id="befejezetlen" @if(in_array("Befejezetlen",$condition)) checked @endif>
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Befejezetlen"
+                                                               name="condition[]" id="befejezetlen"
+                                                               @if(in_array("Befejezetlen",$condition)) checked @endif>
                                                         <label class="form-check-label" for="befejezetlen">
                                                             Befejezetlen
                                                         </label>
@@ -721,7 +733,8 @@
 
                                                 @else
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Új építésű"
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Új építésű"
                                                                name="condition[]" id="uj_epitesu">
                                                         <label class="form-check-label" for="uj_epitesu">
                                                             Új építésű
@@ -737,7 +750,8 @@
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Felújított"
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Felújított"
                                                                name="condition[]" id="felujitott">
                                                         <label class="form-check-label" for="felujitott">
                                                             Felújított
@@ -745,7 +759,8 @@
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Jó állapotú"
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Jó állapotú"
                                                                name="condition[]" id="jo_allapotu">
                                                         <label class="form-check-label" for="jo_allapotu">
                                                             Jó állapotú
@@ -762,7 +777,8 @@
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Felújítandó"
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Felújítandó"
                                                                name="condition[]" id="felujitando">
                                                         <label class="form-check-label" for="felujitando">
                                                             Felújítandó
@@ -770,7 +786,8 @@
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Befejezetlen"
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Befejezetlen"
                                                                name="condition[]" id="befejezetlen">
                                                         <label class="form-check-label" for="befejezetlen">
                                                             Befejezetlen
@@ -1085,7 +1102,8 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox"
                                                                value="Udvari beálló"
-                                                               name="parking[]" id="udvari_beálló" @if(in_array("Udvari beálló", $parking)) checked @endif>
+                                                               name="parking[]" id="udvari_beálló"
+                                                               @if(in_array("Udvari beálló", $parking)) checked @endif>
                                                         <label class="form-check-label" for="udvari_beálló">
                                                             Udvari beálló
                                                         </label>
@@ -1093,7 +1111,8 @@
 
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value="Garázs"
-                                                               name="parking[]" id="garazs" @if(in_array("Garázs", $parking)) checked @endif>
+                                                               name="parking[]" id="garazs"
+                                                               @if(in_array("Garázs", $parking)) checked @endif>
                                                         <label class="form-check-label" for="garazs">
                                                             Garázs
                                                         </label>
@@ -1102,7 +1121,8 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox"
                                                                value="Önálló garázs"
-                                                               name="parking[]" id="onallo_garazs" @if(in_array("Önálló garázs", $parking)) checked @endif>
+                                                               name="parking[]" id="onallo_garazs"
+                                                               @if(in_array("Önálló garázs", $parking)) checked @endif>
                                                         <label class="form-check-label" for="onallo_garazs">
                                                             Önálló garázs
                                                         </label>
@@ -1111,7 +1131,8 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox"
                                                                value="Utca, közterület"
-                                                               name="parking[]" id="utca" @if(in_array("Utca, közterület", $parking)) checked @endif>
+                                                               name="parking[]" id="utca"
+                                                               @if(in_array("Utca, közterület", $parking)) checked @endif>
                                                         <label class="form-check-label" for="utca">
                                                             Utca, közterület
                                                         </label>
@@ -1202,15 +1223,18 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox"
                                                                value="Gáz (konvektor)"
-                                                               name="heating[]" id="gaz" @if(in_array("Gáz (konvektor)", $heating)) checked @endif>
+                                                               name="heating[]" id="gaz"
+                                                               @if(in_array("Gáz (konvektor)", $heating)) checked @endif>
                                                         <label class="form-check-label" for="gaz">
                                                             Gáz (konvektor)
                                                         </label>
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Házközponti"
-                                                               name="heating[]" id="hazkozponti" @if(in_array("Házközponti", $heating)) checked @endif>
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Házközponti"
+                                                               name="heating[]" id="hazkozponti"
+                                                               @if(in_array("Házközponti", $heating)) checked @endif>
                                                         <label class="form-check-label" for="hazkozponti">
                                                             Házközponti
                                                         </label>
@@ -1218,7 +1242,8 @@
 
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value="Távfűtés"
-                                                               name="heating[]" id="tavfutes" @if(in_array("Távfűtés", $heating)) checked @endif>
+                                                               name="heating[]" id="tavfutes"
+                                                               @if(in_array("Távfűtés", $heating)) checked @endif>
                                                         <label class="form-check-label" for="tavfutes">
                                                             Távfűtés
                                                         </label>
@@ -1227,7 +1252,8 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox"
                                                                value="Elektromos konvektor"
-                                                               name="heating[]" id="elektromos_konvektor" @if(in_array("Elektromos konvektor", $heating)) checked @endif>
+                                                               name="heating[]" id="elektromos_konvektor"
+                                                               @if(in_array("Elektromos konvektor", $heating)) checked @endif>
                                                         <label class="form-check-label" for="elektromos_konvektor">
                                                             Elektromos konvektor
                                                         </label>
@@ -1236,7 +1262,8 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox"
                                                                value="Elektromos fűtőpanel"
-                                                               name="heating[]" id="elektromos_futopanel" @if(in_array("Elektromos fűtőpanel", $heating)) checked @endif>
+                                                               name="heating[]" id="elektromos_futopanel"
+                                                               @if(in_array("Elektromos fűtőpanel", $heating)) checked @endif>
                                                         <label class="form-check-label" for="elektromos_futopanel">
                                                             Elektromos fűtőpanel
                                                         </label>
@@ -1244,7 +1271,8 @@
 
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value="Klíma"
-                                                               name="heating[]" id="klima" @if(in_array("Klíma", $heating)) checked @endif>
+                                                               name="heating[]" id="klima"
+                                                               @if(in_array("Klíma", $heating)) checked @endif>
                                                         <label class="form-check-label" for="klima">
                                                             Klíma
                                                         </label>
@@ -1252,7 +1280,8 @@
 
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value="Kandalló"
-                                                               name="heating[]" id="kandallo" @if(in_array("Kandalló", $heating)) checked @endif>
+                                                               name="heating[]" id="kandallo"
+                                                               @if(in_array("Kandalló", $heating)) checked @endif>
                                                         <label class="form-check-label" for="kandallo">
                                                             Kandalló
                                                         </label>
@@ -1260,23 +1289,28 @@
 
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value="Kályha"
-                                                               name="heating[]" id="kalyha" @if(in_array("Kályha", $heating)) checked @endif>
+                                                               name="heating[]" id="kalyha"
+                                                               @if(in_array("Kályha", $heating)) checked @endif>
                                                         <label class="form-check-label" for="kalyha">
                                                             Kályha
                                                         </label>
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Cserépkájha"
-                                                               name="heating[]" id="cserepkalyha" @if(in_array("Cserépkájha", $heating)) checked @endif>
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Cserépkájha"
+                                                               name="heating[]" id="cserepkalyha"
+                                                               @if(in_array("Cserépkájha", $heating)) checked @endif>
                                                         <label class="form-check-label" for="cserepkalyha">
                                                             Cserépkájha
                                                         </label>
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Padlófűtés"
-                                                               name="heating[]" id="padlofutes" @if(in_array("Padlófűtés", $heating)) checked @endif>
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Padlófűtés"
+                                                               name="heating[]" id="padlofutes"
+                                                               @if(in_array("Padlófűtés", $heating)) checked @endif>
                                                         <label class="form-check-label" for="padlofutes">
                                                             Padlófűtés
                                                         </label>
@@ -1284,7 +1318,8 @@
 
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value="Falfűtés"
-                                                               name="heating[]" id="falfutes" @if(in_array("Falfűtés", $heating)) checked @endif>
+                                                               name="heating[]" id="falfutes"
+                                                               @if(in_array("Falfűtés", $heating)) checked @endif>
                                                         <label class="form-check-label" for="falfutes">
                                                             Falfűtés
                                                         </label>
@@ -1300,7 +1335,8 @@
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Házközponti"
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Házközponti"
                                                                name="heating[]" id="hazkozponti">
                                                         <label class="form-check-label" for="hazkozponti">
                                                             Házközponti
@@ -1358,7 +1394,8 @@
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Cserépkájha"
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Cserépkájha"
                                                                name="heating[]" id="cserepkalyha">
                                                         <label class="form-check-label" for="cserepkalyha">
                                                             Cserépkájha
@@ -1366,7 +1403,8 @@
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Padlófűtés"
+                                                        <input class="form-check-input" type="checkbox"
+                                                               value="Padlófűtés"
                                                                name="heating[]" id="padlofutes">
                                                         <label class="form-check-label" for="padlofutes">
                                                             Padlófűtés
@@ -1416,67 +1454,71 @@
             @if(count($properties)<1)
                 <p>NINCS TALÁLAT</p>
             @endif
+
             @foreach($properties as $property)
-                @php
-                    $address = ($property->settlement).','.' '.($property->address).'.';
-                @endphp
-                {{--<iframe src="https://maps.google.it/maps?q=<?php echo $address?>&output=embed" width="600" height="450"
-                        style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
+                @if(!$property->sold)
+                    @php
+                        $address = ($property->settlement).','.' '.($property->address).'.';
+                    @endphp
+                    {{--<iframe src="https://maps.google.it/maps?q=<?php echo $address?>&output=embed" width="600" height="450"
+                            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
 
-                <div class="col-lg-3 width-33 mb-5">
-                    <div class="card border-0 shadow-2xl" style="width: 25rem;">
-                        @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
-                            <img
-                                src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
-                                class="card-img-top image" alt="...">
-                            @if(\App\Models\LikedProperties::where([['user_id', '=', auth()->id()], ['properties_id', '=', $property->id]])->count()>0)
-                                <form action="/like/delete/{{$property->id}}" method="GET">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="star"><i class="fa-solid fa-star fa-xl" style="color: #f8c920;"></i>
-                                    </button>
-                                </form>
+                    <div class="col-lg-3 width-33 mb-5">
+                        <div class="card border-0 shadow-2xl" style="width: 25rem;">
+                            @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
+                                <img
+                                    src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
+                                    class="card-img-top image" alt="...">
+                                @if(\App\Models\LikedProperties::where([['user_id', '=', auth()->id()], ['properties_id', '=', $property->id]])->count()>0)
+                                    <form action="/like/delete/{{$property->id}}" method="GET">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="star"><i class="fa-solid fa-star fa-xl"
+                                                                style="color: #f8c920;"></i>
+                                        </button>
+                                    </form>
+                                @else
+                                    <form action="/like/{{$property->id}}" method="POST">
+                                        @csrf
+                                        <button class="star"><i class="fa-regular fa-star fa-xl"
+                                                                style="color: #f8c920;"></i></button>
+                                    </form>
+
+                                @endif
+
                             @else
-                                <form action="/like/{{$property->id}}" method="POST">
-                                    @csrf
-                                    <button class="star"><i class="fa-regular fa-star fa-xl"
-                                                            style="color: #f8c920;"></i></button>
-                                </form>
-
+                                <img
+                                    src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
+                                    class="card-img-top" alt="...">
                             @endif
-
-                        @else
-                            <img
-                                src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
-                                class="card-img-top" alt="...">
-                        @endif
-                        <div class="card-body">
-                            <h1 class="card-title">{{number_format(($property->price),0,'','.')}} Ft</h1>
-                            <p class="card-text mb-5">{{$address}}</p>
-                            <div class="row mb-4">
-                                <div class="col-md-3 width-33">
-                                    <div>
-                                        <i class="fa-solid fa-bed icon-size"></i><span
-                                            class="px-2 font-weight-600">{{$property->rooms}}</span>
+                            <div class="card-body">
+                                <h1 class="card-title">{{number_format(($property->price),0,'','.')}} Ft</h1>
+                                <p class="card-text mb-5">{{$address}}</p>
+                                <div class="row mb-4">
+                                    <div class="col-md-3 width-33">
+                                        <div>
+                                            <i class="fa-solid fa-bed icon-size"></i><span
+                                                class="px-2 font-weight-600">{{$property->rooms}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 width-33">
+                                        <div>
+                                            <i class="fa-solid fa-shower icon-size"></i><span
+                                                class="px-2 font-weight-600">{{$property->bathrooms}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 width-33">
+                                        <div>
+                                            <i class="fa-solid fa-vector-square icon-size"></i><span
+                                                class="px-2 font-weight-600">{{$property->size}} m<sup>2</sup></span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 width-33">
-                                    <div>
-                                        <i class="fa-solid fa-shower icon-size"></i><span
-                                            class="px-2 font-weight-600">{{$property->bathrooms}}</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 width-33">
-                                    <div>
-                                        <i class="fa-solid fa-vector-square icon-size"></i><span
-                                            class="px-2 font-weight-600">{{$property->size}} m<sup>2</sup></span>
-                                    </div>
-                                </div>
+                                <a href="properties/{{$property->id}}" class="btn btn-primary">Go somewhere</a>
                             </div>
-                            <a href="properties/{{$property->id}}" class="btn btn-primary">Go somewhere</a>
                         </div>
                     </div>
-                </div>
+                @endif
             @endforeach
         </div>
     </div>

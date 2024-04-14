@@ -42,6 +42,7 @@ return new class extends Migration
             $table->string('heating')->default('Nincs megadva')->nullable();
             $table->string('insulation')->default('Nincs megadva')->nullable();
             $table->string('type')->default('Nincs megadva')->nullable();
+            $table->boolean('sold')->default(false);
 
             $table->timestamps();
         });
