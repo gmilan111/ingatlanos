@@ -63,6 +63,10 @@ class PropertiesController extends Controller
             'heating' => 'nullable|string',
             'insulation' => 'nullable|string',
             'type' => 'nullable|string',
+            'furniture' => 'nullable|string',
+            'smoking' => 'nullable|string',
+            'animal' => 'nullable|string',
+            'sale_rent' => ['required'],
         ]);
 
         $formfields['user_id'] = auth()->id();
@@ -101,14 +105,17 @@ class PropertiesController extends Controller
         $state = $newProperty->state;
         $user_helper = User::query();
         $user_helper -> select('*')
-            ->where('notification_state', 'like', "%".$state."%");
+            ->where('notification_state', 'like', "%".$state."%")
+            ->where('email_notification', '=', true);
 
         $users = $user_helper->get();
         $url = "http://otthonvadasz.test/properties/".$newProperty->id;
         $agent = DB::table('users')->select('*')->where('id', "=", $newProperty->user_id)->first();
 
-        foreach ($users as $user){
-            Mail::to($user->email)->send(new Notification($newProperty, $user, $url, $agent));
+        if(isset($users)) {
+            foreach ($users as $user) {
+                Mail::to($user->email)->send(new Notification($newProperty, $user, $url, $agent));
+            }
         }
 
         return redirect(route('properties.index'))->with([
@@ -176,6 +183,9 @@ class PropertiesController extends Controller
         $item->heating = $request['heating'];
         $item->insulation = $request['insulation'];
         $item->type = $request['type'];
+        $item->furniture = $request['furniture'];
+        $item->smoking = $request['smoking'];
+        $item->animal = $request['animal'];
 
         $item->save();
         return redirect(route('properties.own'));
@@ -194,6 +204,7 @@ class PropertiesController extends Controller
 
     public function search(Request $request)
     {
+        $sale_rent_search = $request['sale_rent'];
         $settlement_search = $request['settlement_search'];
         $price_min_search = $request['price_min_search'];
         $price_max_search = $request['price_max_search'];
@@ -218,9 +229,13 @@ class PropertiesController extends Controller
         $a = Properties::query();
 
         $a->select('*')
-            ->when($settlement_search != null, function ($a) use ($request) {
-                $a->where('settlement', 'like', '%' . $request['settlement_search'] . '%');
+            ->when($sale_rent_search != null, function ($a) use ($request) {
+                $a->where('sale_rent', '=', $request['sale_rent']);
             });
+
+        $a->when($settlement_search != null, function ($a) use ($request) {
+            $a->where('settlement', 'like', '%' . $request['settlement_search'] . '%');
+        });
 
         $a->when($price_min_search != null, function ($a) use ($request) {
                 $a->where('price', '>=', $request['price_min_search']);
@@ -339,6 +354,7 @@ class PropertiesController extends Controller
 
         $search=$a->get();
         return view('properties.index', [
+            'sale_rent' => $sale_rent_search,
             'properties' => $search,
             'settlement_search' => $settlement_search,
             'price_min_search' => $price_min_search,
@@ -367,6 +383,7 @@ class PropertiesController extends Controller
     public function own_search(Request $request)
     {
         $settlement_search = $request['settlement_search'];
+        $sale_rent_search = $request['sale_rent'];
 
         $a = Properties::query();
 
@@ -377,11 +394,16 @@ class PropertiesController extends Controller
                 $a->where([['settlement', 'like', '%' . $request['settlement_search'] . '%'],['user_id', '=', $user_id]]);
             });
 
-        $search=$a->get();
+        $a->when($sale_rent_search != null, function ($a) use ($request) {
+            $a->where('sale_rent', '=', $request['sale_rent']);
+        });
+
+        $search = $a->get();
 
         return view('properties.own', [
             'properties' => $search,
             'settlement_search' => $settlement_search,
+            'sale_rent' => $sale_rent_search,
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
         ]);
     }

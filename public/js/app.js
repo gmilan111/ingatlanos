@@ -33,4 +33,11 @@ function plusinfo () {
     }
 }
 
+function salerent(){
+    if(document.getElementById("rent").checked){
+        document.getElementById("rent_part").style.display = "flex";
+    }else{
+        document.getElementById("rent_part").style.display = "none"
+    }
+}
 

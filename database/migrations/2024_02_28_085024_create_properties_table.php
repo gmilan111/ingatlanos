@@ -43,6 +43,10 @@ return new class extends Migration
             $table->string('insulation')->default('Nincs megadva')->nullable();
             $table->string('type')->default('Nincs megadva')->nullable();
             $table->boolean('sold')->default(false);
+            $table->string('furniture')->default('Nincs megadva')->nullable();
+            $table->string('smoking')->default('Nincs megadva')->nullable();
+            $table->string('animal')->default('Nincs megadva')->nullable();
+            $table->string('sale_rent');
 
             $table->timestamps();
         });
