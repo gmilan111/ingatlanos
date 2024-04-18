@@ -30,6 +30,8 @@ class LikedPropertiesController extends Controller
            'user_id' => $user,
         ]);
 
+        
+
         return redirect(route('properties.index'));
     }
 
