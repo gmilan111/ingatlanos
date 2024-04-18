@@ -22,7 +22,7 @@ class Controller extends BaseController
             $helper = DB::table('recommendations')->select('*')->where('user_id', '=', $user_id)->inRandomOrder()->get();
             $liked_helper = DB::table('properties')->select('*')->join('liked_properties', 'liked_properties.properties_id', '=', 'properties.id')->where('liked_properties.user_id', '=', $user_id)->inRandomOrder()->get();
             if(count($helper) < 1 && count($liked_helper) < 1){
-                $non_reg_prop = DB::table('properties')->select('*')->inRandomOrder()->get();
+                $non_reg_prop = DB::table('properties')->select('*')->where('sold', '=', false)->inRandomOrder()->get();
                 return view('index',[
                     'properties' => $non_reg_prop,
                     'igaz' => true,
@@ -146,16 +146,17 @@ class Controller extends BaseController
                 });
             }
 
-
+            $properties->where('sold', '=', false);
 
             $recommendations = $properties->get();
+
             return view('index', [
                 'recommendations' => $recommendations,
                 'igaz' => false,
             ]);
         }
 
-        $non_reg_prop = DB::table('properties')->select('*')->inRandomOrder()->get();
+        $non_reg_prop = DB::table('properties')->select('*')->where('sold', '=', false)->inRandomOrder()->get();
         return view('index',[
             'properties' => $non_reg_prop,
             'igaz' => false,

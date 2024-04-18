@@ -44,5 +44,10 @@ class Properties extends Model
         'insulation',
         'type',
         'sold',
+        'furniture',
+        'smoking',
+        'animal',
+        'sale_rent',
+
     ];
 }

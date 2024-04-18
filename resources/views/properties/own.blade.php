@@ -4,9 +4,35 @@
             @csrf
             <div class="input-group margin-top row">
                 <div class="col">
-                    <input type="search" class="form-control rounded" placeholder="Település" aria-label="Search"
-                           name="settlement_search"
-                           aria-describedby="search-addon"/>
+                    <label for="sale" class="flex items-center">
+                        @if(isset($sale_rent) && $sale_rent == 'sale')
+                            <x-input checked id="sale" name="sale_rent" onclick="salerent()" type="radio" value="sale"/>
+                            <span class="ms-2 text-sm text-gray-600">Eladó</span>
+                        @else
+                            <x-input id="sale" name="sale_rent" onclick="salerent()" type="radio" value="sale"/>
+                            <span class="ms-2 text-sm text-gray-600">Eladó</span>
+                        @endif
+                    </label>
+                    <label for="rent" class="flex items-center">
+                        @if(isset($sale_rent) && $sale_rent == 'rent')
+                            <x-input id="rent" name="sale_rent" onclick="salerent()" checked type="radio" value="rent"/>
+                            <span class="ms-2 text-sm text-gray-600">Kiadó</span>
+                        @else
+                            <x-input id="rent" name="sale_rent" onclick="salerent()" type="radio" value="rent"/>
+                            <span class="ms-2 text-sm text-gray-600">Kiadó</span>
+                        @endif
+                    </label>
+                </div>
+                <div class="col">
+                    @if(isset($settlement_search))
+                        <input type="search" class="form-control rounded" placeholder="Település" aria-label="Search"
+                               name="settlement_search"
+                               aria-describedby="search-addon" value="{{$settlement_search}}"/>
+                    @else
+                        <input type="search" class="form-control rounded" placeholder="Település" aria-label="Search"
+                               name="settlement_search"
+                               aria-describedby="search-addon"/>
+                    @endif
                 </div>
                 <div class="col">
                     <button class="btn btn-outline-primary">search</button>

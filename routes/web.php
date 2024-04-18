@@ -4,6 +4,7 @@ use App\Http\Controllers\AgentsController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\LangController;
 use App\Http\Controllers\LikedPropertiesController;
 use App\Http\Controllers\MainImageController;
 use App\Http\Controllers\PropertiesController;
@@ -95,6 +96,9 @@ Route::put('/sold/{property_id}', [PropertiesController::class, 'sold']);
 
 #Hírlevél módosítása
 Route::put('/notification/{user_id}', [Controller::class, 'notification_update']);
+
+#Nyelv megváltoztatása
+Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
 
 Route::middleware([
     'auth:sanctum',

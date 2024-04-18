@@ -43,44 +43,50 @@
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link {{request()->is('/')?'active a-fejlec':''}} fejlec" aria-current="page"
-                           href="/">Kezdőlap</a>
+                           href="/">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Kezdőlap", app()->getLocale()) }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{request()->is('properties')?'active a-fejlec':''}} fejlec"
-                           href="{{route('properties.index')}}">Ingatlanok</a>
+                           href="{{route('properties.index')}}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Ingatlanok", app()->getLocale()) }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{route('agents.index')}}">Kollégáink</a>
+                        <a class="nav-link fejlec" href="{{route('agents.index')}}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Kollégáink", app()->getLocale()) }}</a>
                     </li>
                 </ul>
             @elseif(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'i')
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link {{request()->is('/')?'active a-fejlec':''}} fejlec" aria-current="page"
-                           href="/">Kezdőlap</a>
+                           href="/">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Kezdőlap", app()->getLocale()) }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{request()->is('properties') ? 'active a-fejlec' : (request()->is('properties/store') ? 'active a-fejlec' : (request()->is('properties/*') ? 'active a-fejlec' : (request()->is('search*') ? 'active a-fejlec' : '')))}} fejlec"
-                           href="{{route('properties.index')}}">Ingatlanok</a>
+                           href="{{route('properties.index')}}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Ingatlanok", app()->getLocale()) }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{route('properties.create')}}">Új Ingatlan Hozzáadása</a>
+                        <a class="nav-link fejlec" href="{{route('properties.create')}}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Új Ingatlan Hozzáadása", app()->getLocale()) }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{request()->is('properties_own')?'active a-fejlec':''}} fejlec"
-                           href="{{route('properties.own')}}">Saját Ingatlanok</a>
+                           href="{{route('properties.own')}}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Saját Ingatlanok", app()->getLocale()) }}</a>
                     </li>
                 </ul>
             @else
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active a-fejlec fejlec" aria-current="page" href="/">Kezdőlap</a>
+                        <a class="nav-link active a-fejlec fejlec" aria-current="page" href="/">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Kezdőlap", app()->getLocale()) }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{route('properties.index')}}">Ingatlanok</a>
+                        <a class="nav-link fejlec" href="{{route('properties.index')}}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Ingatlanok", app()->getLocale()) }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{route('agents.index')}}">Kollégáink</a>
+                        <a class="nav-link fejlec" href="{{route('agents.index')}}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Kollégáink", app()->getLocale()) }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <select class="form-select changeLang">
+                            <option value="hu" {{session()->get('locale') == 'hu' ? 'selected' : ''}}>Magyar</option>
+                            <option value="en" {{session()->get('locale') == 'en' ? 'selected' : ''}}>English</option>
+                        </select>
                     </li>
                 </ul>
             @endif
@@ -93,10 +99,10 @@
                     @livewire('navigation-menu')
                 @else
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{ route('register') }}">Regisztráció</a>
+                        <a class="nav-link fejlec" href="{{ route('register') }}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Regisztráció", app()->getLocale()) }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{ route('login') }}">Bejelentkezés</a>
+                        <a class="nav-link fejlec" href="{{ route('login') }}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Bejelentkezés", app()->getLocale()) }}</a>
                     </li>
                 @endauth
             </ul>
@@ -651,5 +657,12 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+<script type="text/javascript">
+    var url = "{{ route('changeLang') }}";
+
+    $(".changeLang").change(function (){
+        window.location.href = url + "?lang=" + $(this).val();
+    })
+</script>
 </body>
 </html>

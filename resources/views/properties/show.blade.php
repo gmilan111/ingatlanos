@@ -74,7 +74,7 @@
 
                     <div class="card border-0 shadow-2xl mt-5">
                         <div class="card-body">
-                            <h1 class="card-title mt-2">Leírás</h1>
+                            <h1 class="card-title mt-2">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Leírás", app()->getLocale()) }}</h1>
                             <p class="card-text mb-2">{{$property->description}}</p>
                         </div>
                     </div>
