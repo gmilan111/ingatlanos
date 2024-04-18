@@ -41,6 +41,11 @@
                                 <x-dropdown-link href="{{ route('profile.show') }}">
                                     {{ __('Profil') }}
                                 </x-dropdown-link>
+                                <x-dropdown-link type="button" data-bs-toggle="modal" data-bs-target="#notificationSetting">
+                                    {{__('Hírlevél beállítások')}}
+                                </x-dropdown-link>
+
+
                             @else
                                 <x-dropdown-link href="{{ route('profile.show') }}">
                                     {{ __('Profil') }}
@@ -159,3 +164,4 @@
             </div>
         </div>--}}
 </nav>
+

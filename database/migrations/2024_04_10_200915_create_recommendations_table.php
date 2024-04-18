@@ -20,11 +20,11 @@ return new class extends Migration
             $table->integer('min_size')->nullable();
             $table->integer('max_size')->nullable();
             /*$table->integer('price');*/
-            $table->integer('min_price');
-            $table->integer('max_price');
+            $table->integer('min_price')->nullable();
+            $table->integer('max_price')->nullable();
             /*$table->integer('rooms');*/
-            $table->integer('min_rooms');
-            $table->integer('max_rooms');
+            $table->integer('min_rooms')->nullable();
+            $table->integer('max_rooms')->nullable();
             $table->timestamps();
         });
     }

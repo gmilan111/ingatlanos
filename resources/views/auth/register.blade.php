@@ -152,14 +152,250 @@
                 <div class="mt-4">
                     <label for="email_notification" class="flex items-center">
                         <x-input id="email_notification" name="email_notification" type="checkbox" value="{{true}}"/>
-                        <span class="ms-2 text-sm text-gray-600">Szeretnék kapni emailt új ingatlanok közzétételéről</span>
+                        <span
+                            class="ms-2 text-sm text-gray-600">Szeretnék kapni emailt új ingatlanok közzétételéről</span>
                     </label>
                 </div>
+
+                <div class="mt-4">
+                    <x-label for="description" value="{{__('Válassza ki milyen vármegyékről szeretne hírlevelet: ')}}"/>
+                    <div class="">
+                        {{--<button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#state" aria-expanded="false"
+                                aria-controls="collapseExample">
+                            Vármegyék:
+                        </button>
+                        <div class="collapse" id="state" style="max-width: 650px">--}}
+                        <div class="card card-body" {{--style="width: 650px"--}}>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Győr-Moson-Sopron"
+                                               name="state[]" id="gyor_moson">
+                                        <label class="form-check-label" for="gyor_moson">
+                                            Győr-Moson-Sopron
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Vas"
+                                               name="state[]" id="vas">
+                                        <label class="form-check-label" for="vas">
+                                            Vas
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Zala"
+                                               name="state[]" id="zala">
+                                        <label class="form-check-label" for="zala">
+                                            Zala
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Komárom-Esztergom"
+                                               name="state[]" id="komarom">
+                                        <label class="form-check-label" for="komarom">
+                                            Komárom-Esztergom
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Veszprém"
+                                               name="state[]" id="veszprem">
+                                        <label class="form-check-label" for="veszprem">
+                                            Veszprém
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Somogy"
+                                               name="state[]" id="somogy">
+                                        <label class="form-check-label" for="somogy">
+                                            Somogy
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Fejér"
+                                               name="state[]" id="fejer">
+                                        <label class="form-check-label" for="fejer">
+                                            Fejér
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Tolna"
+                                               name="state[]" id="tolna">
+                                        <label class="form-check-label" for="tolna">
+                                            Tolna
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Baranya"
+                                               name="state[]" id="baranya">
+                                        <label class="form-check-label" for="baranya">
+                                            Baranya
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Pest"
+                                               name="state[]" id="pest">
+                                        <label class="form-check-label" for="pest">
+                                            Pest
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Bács-Kiskun"
+                                               name="state[]" id="bacs_kiskun">
+                                        <label class="form-check-label" for="bacs_kiskun">
+                                            Bács-Kiskun
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Nógrád"
+                                               name="state[]" id="nograd">
+                                        <label class="form-check-label" for="nograd">
+                                            Nógrád
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Heves"
+                                               name="state[]" id="heves">
+                                        <label class="form-check-label" for="heves">
+                                            Heves
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Jász-Nagykun-Szolnok"
+                                               name="state[]" id="jasz">
+                                        <label class="form-check-label" for="jasz">
+                                            Jász-Nagykun-Szolnok
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Csongrád-Csanád"
+                                               name="state[]" id="csongrad">
+                                        <label class="form-check-label" for="csongrad">
+                                            Csongrád-Csanád
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Borsod-Abaúj-Zemplén"
+                                               name="state[]" id="borsod">
+                                        <label class="form-check-label" for="borsod">
+                                            Borsod-Abaúj-Zemplén
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Szabolcs-Szatmár-Bereg"
+                                               name="state[]" id="szabolcs">
+                                        <label class="form-check-label" for="szabolcs">
+                                            Szabolcs-Szatmár-Bereg
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Hajdú-Bihar"
+                                               name="state[]" id="hajdu">
+                                        <label class="form-check-label" for="hajdu">
+                                            Hajdú-Bihar
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Békés"
+                                               name="state[]" id="bekes">
+                                        <label class="form-check-label" for="bekes">
+                                            Békés
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{--</div>--}}
             </div>
 
             <div class="mt-4">
                 <label for="magan" class="flex items-center">
-                    <x-input id="magan" name="user" onclick="plusinfo()" type="radio" value="m" required autocomplete="m"/>
+                    <x-input id="magan" name="user" onclick="plusinfo()" type="radio" value="m" required
+                             autocomplete="m"/>
                     <span class="ms-2 text-sm text-gray-600">Magánszemély</span>
                 </label>
             </div>

@@ -40,6 +40,7 @@ class CreateNewUser implements CreatesNewUsers
             'is_ingatlanos'=>$input['user'],
             'phone_number'=>$input['phone_number'],
             'email_notification' => $input['email_notification'] ?? false,
+            'notification_state' => json_encode($input['state'], JSON_UNESCAPED_UNICODE),
         ]);
 
         if($input['user'] == 'i'){

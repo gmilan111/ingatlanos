@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Notification;
 use App\Models\Images;
 use App\Models\MainImage;
 use App\Models\Properties;
 use App\Models\Recommendations;
+use App\Models\User;
 use DeepCopy\Matcher\PropertyTypeMatcher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use function Laravel\Prompts\select;
 use function Livewire\on;
 
@@ -94,6 +97,20 @@ class PropertiesController extends Controller
                 'main_img' => $main_file_name,
             ]);
         }
+
+        $state = $newProperty->state;
+        $user_helper = User::query();
+        $user_helper -> select('*')
+            ->where('notification_state', 'like', "%".$state."%");
+
+        $users = $user_helper->get();
+        $url = "http://otthonvadasz.test/properties/".$newProperty->id;
+        $agent = DB::table('users')->select('*')->where('id', "=", $newProperty->user_id)->first();
+
+        foreach ($users as $user){
+            Mail::to($user->email)->send(new Notification($newProperty, $user, $url, $agent));
+        }
+
         return redirect(route('properties.index'))->with([
             'properties' => DB::table('properties')->select('*')->get(),
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->where('images.properties_id', '=', 'properties.id')->get(),

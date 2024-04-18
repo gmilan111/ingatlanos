@@ -30,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'is_ingatlanos',
         'phone_number',
         'email_notification',
+        'notification_state',
     ];
 
     /**
@@ -51,6 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'notification_state' => 'array',
     ];
 
     /**

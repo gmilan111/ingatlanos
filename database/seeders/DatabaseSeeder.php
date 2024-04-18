@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'is_ingatlanos' => 'i',
             'phone_number' => '06 70 774 3036',
+            'notification_state' => 'Pest,Zala',
         ]);
 
         User::factory()->create([
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'is_ingatlanos' => 'm',
             'phone_number' => '06 71 72 3028',
+            'notification_state' => 'Pest,Zala',
         ]);
         // \App\Models\User::factory(10)->create();
 

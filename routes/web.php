@@ -93,6 +93,9 @@ Route::get('/email/{info}', [EmailController::class, 'sendEmail']);
 #Ingatlan státusza "eladva"-ra váltása
 Route::put('/sold/{property_id}', [PropertiesController::class, 'sold']);
 
+#Hírlevél módosítása
+Route::put('/notification/{user_id}', [Controller::class, 'notification_update']);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
