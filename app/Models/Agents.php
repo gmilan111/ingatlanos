@@ -17,4 +17,8 @@ class Agents extends Model
         'language',
         'description',
     ];
+
+    protected $casts = [
+        'help' => 'array',
+    ];
 }

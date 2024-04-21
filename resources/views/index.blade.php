@@ -3,7 +3,7 @@
         @csrf
         <div class="input-group margin-top row">
             <div class="col">
-                <input type="search" class="form-control rounded" placeholder="Település" aria-label="Search"
+                <input type="search" class="form-control rounded" placeholder="@lang('messages.settlement')" aria-label="Search"
                        name="settlement_search"
                        aria-describedby="search-addon"/>
             </div>
@@ -28,7 +28,7 @@
                        aria-describedby="search-addon"/>
             </div>
             <div class="col">
-                <button class="btn btn-outline-primary">search</button>
+                <button class="btn btn-outline-primary">@lang('messages.search')</button>
             </div>
         </div>
     </form>
@@ -53,9 +53,6 @@
                     @php
                         $address = ($item->settlement).','.' '.($item->address).'.';
                     @endphp
-                    {{--<iframe src="https://maps.google.it/maps?q=<?php echo $address?>&output=embed" width="600" height="450"
-                            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
-
                     <div class="col-lg-3 width-33 mb-5">
                         <div class="card border-0 shadow-2xl" style="width: 25rem;">
                             @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
@@ -75,9 +72,7 @@
                                         <button class="star"><i class="fa-regular fa-star fa-xl"
                                                                 style="color: #f8c920;"></i></button>
                                     </form>
-
                                 @endif
-
                             @else
                                 <img
                                     src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($item->id)->main_img)}}"
@@ -106,7 +101,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="properties/{{$item->id}}" class="btn btn-primary">Go somewhere</a>
+                                <a href="properties/{{$item->id}}" class="btn btn-primary">@lang('messages.details')</a>
                             </div>
                         </div>
                     </div>
@@ -118,9 +113,6 @@
                     @php
                         $address = ($property->settlement).','.' '.($property->address).'.';
                     @endphp
-                    {{--<iframe src="https://maps.google.it/maps?q=<?php echo $address?>&output=embed" width="600" height="450"
-                            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
-
                     <div class="col-lg-3 width-33 mb-5">
                         <div class="card border-0 shadow-2xl" style="width: 25rem;">
                             @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
@@ -142,7 +134,6 @@
                                     </form>
 
                                 @endif
-
                             @else
                                 <img
                                     src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
@@ -171,7 +162,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="properties/{{$property->id}}" class="btn btn-primary">Go somewhere</a>
+                                <a href="properties/{{$property->id}}" class="btn btn-primary">@lang('messages.details')</a>
                             </div>
                         </div>
                     </div>
@@ -184,9 +175,6 @@
                 @php
                     $address = ($property->settlement).','.' '.($property->address).'.';
                 @endphp
-                {{--<iframe src="https://maps.google.it/maps?q=<?php echo $address?>&output=embed" width="600" height="450"
-                        style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
-
                 <div class="col-lg-3 width-33 mb-5">
                     <div class="card border-0 shadow-2xl" style="width: 25rem;">
                         @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
@@ -208,7 +196,6 @@
                                 </form>
 
                             @endif
-
                         @else
                             <img
                                 src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
@@ -237,13 +224,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="properties/{{$property->id}}" class="btn btn-primary">Go somewhere</a>
+                            <a href="properties/{{$property->id}}" class="btn btn-primary">@lang('messages.details')</a>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
     @endif
-
-
 </x-layout>

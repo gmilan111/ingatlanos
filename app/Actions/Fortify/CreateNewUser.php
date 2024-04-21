@@ -31,8 +31,12 @@ class CreateNewUser implements CreatesNewUsers
             'help' => 'nullable',
             'language' => ['nullable', 'string'],
             'descritpion' => ['nullable', 'string'],
+            'notification_state' => ['nullable'],
         ])->validate();
 
+        if(!isset($input['state'])){
+            $input['state'] = array();
+        }
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
@@ -43,20 +47,18 @@ class CreateNewUser implements CreatesNewUsers
             'notification_state' => json_encode($input['state'], JSON_UNESCAPED_UNICODE),
         ]);
 
+        if(!isset($input['help'])){
+            $input['help'] = array();
+        }
         if($input['user'] == 'i'){
             Agents::create([
                 'user_id' => $user->id,
                 'salary' => $input['commission'],
                 'experience' => $input['experience'],
+                'help' => json_encode($input['help'], JSON_UNESCAPED_UNICODE),
                 'language' => $input['known_language'],
                 'description' => $input['description'],
             ]);
-
-            if(isset($input['help'])){
-                Agents::created([
-                    'help' => implode(',', $input['help']),
-                ]);
-            }
         }
         return $user;
     }

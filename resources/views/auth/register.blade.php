@@ -10,31 +10,31 @@
             @csrf
 
             <div>
-                <x-label for="name" value="{{ __('Név') }}"/>
+                <x-label for="name">@lang('messages.name')</x-label>
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
                          autofocus autocomplete="name"/>
             </div>
 
             <div class="mt-4">
-                <x-label for="email" value="{{ __('Email') }}"/>
+                <x-label for="email">@lang('messages.email')</x-label>
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
                          autocomplete="email"/>
             </div>
 
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Jelszó') }}"/>
+                <x-label for="password">@lang('messages.password')</x-label>
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
                          autocomplete="new-password"/>
             </div>
 
             <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Jelszó megerősítése') }}"/>
+                <x-label for="password_confirmation">@lang('messages.password_conf')</x-label>
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
                          name="password_confirmation" required autocomplete="new-password"/>
             </div>
 
             <div class="mt-4">
-                <x-label for="phone_number" value="{{__('Telefonszám')}}"/>
+                <x-label for="phone_number">@lang('messages.mobile_phone')</x-label>
                 <x-input id="phone_number" class="block mt-1 w-full" type="tel" name="phone_number"
                          placeholder="06 70 632 3578" pattern="[0-9]{2} [0-9]{2} [0-9]{3} [0-9]{4}" requied
                          autocomplete="phone"/>
@@ -42,14 +42,14 @@
 
             <div id="plus_agent" style="display: none">
                 <div class="mt-4">
-                    <x-label for="commission" value="{{ __('Jutalék') }}"/>
+                    <x-label for="commission">@lang('messages.commission')</x-label>
                     <x-input id="commission" class="block mt-1 w-full" type="text" name="commission"
                              :value="old('commission')"
                              autocomplete="commission"/>
                 </div>
 
                 <div class="mt-4">
-                    <x-label for="experience" value="{{ __('Tapasztalat') }}"/>
+                    <x-label for="experience">@lang('messages.experience')</x-label>
                     <x-input id="experience" class="block mt-1 w-full" type="number" name="experience"
                              :value="old('experience')"
                              autocomplete="experience"/>
@@ -60,7 +60,7 @@
                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#help" aria-expanded="false"
                                 aria-controls="collapseExample">
-                            Amiben segítséget tud nyújtani:
+                            @lang('messages.help_reg')
                         </button>
                         <div class="collapse" id="help">
                             <div class="card card-body">
@@ -68,7 +68,7 @@
                                     <input class="form-check-input" type="checkbox" value="belsőépítész"
                                            name="help[]" id="belsőépítész">
                                     <label class="form-check-label" for="belsőépítész">
-                                        belsőépítész
+                                        @lang('messages.int_designer')
                                     </label>
                                 </div>
 
@@ -76,7 +76,7 @@
                                     <input class="form-check-input" type="checkbox" value="energetikai tanúsító"
                                            name="help[]" id="energetikai_tanúsító">
                                     <label class="form-check-label" for="energetikai_tanúsító">
-                                        energetikai tanúsító
+                                        @lang('messages.energy_certificate')
                                     </label>
                                 </div>
 
@@ -84,7 +84,7 @@
                                     <input class="form-check-input" type="checkbox" value="építész"
                                            name="help[]" id="epitesz">
                                     <label class="form-check-label" for="epitesz">
-                                        építész
+                                        @lang('messages.architect')
                                     </label>
                                 </div>
 
@@ -92,7 +92,7 @@
                                     <input class="form-check-input" type="checkbox" value="földhivatali ügyintézés"
                                            name="help[]" id="foldhivatali_ugyintezes">
                                     <label class="form-check-label" for="foldhivatali_ugyintezes">
-                                        földhivatali ügyintézés
+                                        @lang('messages.land_reg_administration')
                                     </label>
                                 </div>
 
@@ -101,7 +101,7 @@
                                            value="hitelügyintézés"
                                            name="help[]" id="hitel">
                                     <label class="form-check-label" for="hitel">
-                                        hitelügyintézés
+                                        @lang('messages.credit_management')
                                     </label>
                                 </div>
 
@@ -109,7 +109,7 @@
                                     <input class="form-check-input" type="checkbox" value="közjegyző"
                                            name="help[]" id="kozjegyzo">
                                     <label class="form-check-label" for="kozjegyzo">
-                                        közjegyző
+                                        @lang('messages.notary_public')
                                     </label>
                                 </div>
 
@@ -117,7 +117,7 @@
                                     <input class="form-check-input" type="checkbox" value="lakberendező"
                                            name="help[]" id="lakberendezo">
                                     <label class="form-check-label" for="lakberendezo">
-                                        lakberendező
+                                        @lang('messages.decorator')
                                     </label>
                                 </div>
 
@@ -125,7 +125,7 @@
                                     <input class="form-check-input" type="checkbox" value="ügyvéd"
                                            name="help[]" id="ugyved">
                                     <label class="form-check-label" for="ugyved">
-                                        ügyvéd
+                                        @lang('messages.lawyer')
                                     </label>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    <x-label for="known_language" value="{{ __('Nyelvtudás') }}"/>
+                    <x-label for="known_language">@lang('messages.language')</x-label>
                     <x-input id="known_language" class="block mt-1 w-full" type="text" name="known_language"
                              :value="old('known_language')"
                              autocomplete="known_language"/>
@@ -141,7 +141,7 @@
 
                 <div class="mt-4">
                     <div class="col">
-                        <x-label for="description" value="{{__('Leírás: ')}}"/>
+                        <x-label for="description">@lang('messages.description')</x-label>
                         <textarea class="block mt-1 w-full rounded border-gray-300" id="description"
                                   name="description"></textarea>
                     </div>
@@ -153,20 +153,14 @@
                     <label for="email_notification" class="flex items-center">
                         <x-input id="email_notification" name="email_notification" type="checkbox" value="{{true}}"/>
                         <span
-                            class="ms-2 text-sm text-gray-600">Szeretnék kapni emailt új ingatlanok közzétételéről</span>
+                            class="ms-2 text-sm text-gray-600">@lang('messages.newsletter')</span>
                     </label>
                 </div>
 
                 <div class="mt-4">
-                    <x-label for="description" value="{{__('Válassza ki milyen vármegyékről szeretne hírlevelet: ')}}"/>
-                    <div class="">
-                        {{--<button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#state" aria-expanded="false"
-                                aria-controls="collapseExample">
-                            Vármegyék:
-                        </button>
-                        <div class="collapse" id="state" style="max-width: 650px">--}}
-                        <div class="card card-body" {{--style="width: 650px"--}}>
+                    <x-label for="description">@lang('messages.newsletter_county')</x-label>
+                    <div>
+                        <div class="card card-body">
                             <div class="row">
                                 <div class="col">
                                     <div class="form-check">
@@ -389,14 +383,13 @@
                         </div>
                     </div>
                 </div>
-                {{--</div>--}}
             </div>
 
             <div class="mt-4">
                 <label for="magan" class="flex items-center">
                     <x-input id="magan" name="user" onclick="plusinfo()" type="radio" value="m" required
                              autocomplete="m"/>
-                    <span class="ms-2 text-sm text-gray-600">Magánszemély</span>
+                    <span class="ms-2 text-sm text-gray-600">@lang('messages.private_person')</span>
                 </label>
             </div>
 
@@ -404,18 +397,18 @@
                 <label for="ingatlanos" class="flex items-center">
                     <x-input id="ingatlanos" onclick="plusinfo()" name="user" type="radio" value="i" required
                              autocomplete="i"/>
-                    <span class="ms-2 text-sm text-gray-600">Ingatlanos</span>
+                    <span class="ms-2 text-sm text-gray-600">@lang('messages.real_estate_agent')</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                    href="{{ route('login') }}">
-                    {{ __('Van már fiókod?') }}
+                    @lang('messages.have_account')
                 </a>
 
                 <x-button class="ms-4">
-                    {{ __('Regisztrálás') }}
+                    @lang('messages.registration')
                 </x-button>
             </div>
         </form>

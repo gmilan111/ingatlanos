@@ -14,7 +14,7 @@
                         <label for="sale" class="flex items-center">
                             <x-input id="sale" name="sale_rent" onclick="salerent()" checked type="radio" value="sale"
                                      required autocomplete="sale"/>
-                            <span class="ms-2 text-sm text-gray-600">Eladó</span>
+                            <span class="ms-2 text-sm text-gray-600">@lang('messages.for_sale')</span>
                         </label>
                     </div>
                 </div>
@@ -24,20 +24,20 @@
                         <label for="rent" class="flex items-center">
                             <x-input id="rent" name="sale_rent" onclick="salerent()" type="radio" value="rent"
                                      required autocomplete="rent"/>
-                            <span class="ms-2 text-sm text-gray-600">Kiadó</span>
+                            <span class="ms-2 text-sm text-gray-600">@lang('messages.for_rent')</span>
                         </label>
                     </div>
                 </div>
 
                 <div class="row mt-2">
                     <div class="col">
-                        <x-label for="settlement" value="{{ __('Település neve: ') }}"/>
+                        <x-label for="settlement">@lang('messages.settlement')</x-label>
                         <x-input id="settlement" class="block mt-1 w-full" type="text" name="settlement"
                                  :value="old('settlement')" required autofocus autocomplete="settlement "/>
                     </div>
                     <div class="col">
-                        <x-label for="state" value="{{ __('Vármegye: ') }}"/>
-                        {{--<x-input id="state" class="block mt-1 w-full" type="text" name="state" :value="old('state')" required autocomplete="state" />--}}
+                        <x-label for="state">@lang('messages.county')</x-label>
+
                         <select
                             class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             name="state" id="state" aria-label="Default select example">
@@ -63,7 +63,7 @@
                         </select>
                     </div>
                     <div class="col">
-                        <x-label for="address" value="{{ __('Utca, házszám: ') }}"/>
+                        <x-label for="address">@lang('messages.address')</x-label>
                         <x-input id="address" class="block mt-1 w-full" type="text" name="address"
                                  :value="old('address')" required autocomplete="address"/>
                     </div>
@@ -71,19 +71,19 @@
 
                 <div class="row mt-4">
                     <div class="col">
-                        <x-label for="district" value="{{ __('Kerület/Irányítószám: (Opcionális)') }}"/>
+                        <x-label for="district">@lang('messages.district')</x-label>
                         <x-input id="district" class="block mt-1 w-full" type="text" name="district"
                                  :value="old('district')" autocomplete="district"/>
                     </div>
 
                     <div class="col">
-                        <x-label for="size" value="{{ __('Méret: ') }}"/>
+                        <x-label for="size">@lang('messages.size')</x-label>
                         <x-input id="size" class="block mt-1 w-full" type="number" name="size" :value="old('size')"
                                  required autocomplete="size"/>
                     </div>
 
                     <div class="col">
-                        <x-label for="rooms" value="{{ __('Szobaszám: ') }}"/>
+                        <x-label for="rooms">@lang('messages.rooms')</x-label>
                         <x-input id="rooms" class="block mt-1 w-full" type="number" name="rooms" :value="old('rooms')"
                                  required autocomplete="rooms"/>
                     </div>
@@ -91,30 +91,30 @@
 
                 <div class="row mt-4">
                     <div class="col">
-                        <x-label for="bathrooms" value="{{ __('Fürdőszobák száma: ') }}"/>
+                        <x-label for="bathrooms">@lang('messages.bathrooms')</x-label>
                         <x-input id="bathrooms" class="block mt-1 w-full" type="number" name="bathrooms"
                                  :value="old('bathrooms')" required autocomplete="bathrooms"/>
                     </div>
 
                     <div class="col">
-                        <x-label for="price" value="{{ __('Ár: ') }}"/>
+                        <x-label for="price">@lang('messages.price')</x-label>
                         <x-input id="price" class="block mt-1 w-full" type="number" name="price" :value="old('price')"
                                  required autocomplete="price"/>
                     </div>
 
                     <div class="col">
-                        <x-label for="condition" value="{{ __('Ingatlan állapota: ') }}"/>
+                        <x-label for="condition">@lang('messages.condition')</x-label>
                         <select
                             class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             name="condition" id="condition" aria-label="Default select example">
-                            <option selected>Nincs kiválasztva</option>
-                            <option value="Új építésű">Új építésű</option>
-                            <option value="Újszerű">Újszerű</option>
-                            <option value="Felújított">Felújított</option>
-                            <option value="Jó állapotú">Jó állapotú</option>
-                            <option value="Közepes állapotú">Közepes állapotú</option>
-                            <option value="Felújítandó">Felújítandó</option>
-                            <option value="Befejezetlen">Befejezetlen</option>
+                            <option selected>@lang('messages.not_selected')</option>
+                            <option value="Új építésű">@lang('messages.newly_built')</option>
+                            <option value="Újszerű">@lang('messages.novel')</option>
+                            <option value="Felújított">@lang('messages.renovated')</option>
+                            <option value="Jó állapotú">@lang('messages.in_good_condition')</option>
+                            <option value="Közepes állapotú">@lang('messages.in_medium_condition')</option>
+                            <option value="Felújítandó">@lang('messages.to_be_renovated')</option>
+                            <option value="Befejezetlen">@lang('messages.unfinished')</option>
                         </select>
                         {{--<x-input id="condition" class="block mt-1 w-full" type="text" name="condition" :value="old('condition')" autocomplete="condition" />--}}
                     </div>
@@ -123,19 +123,19 @@
 
                 <div class="row mt-4">
                     <div class="col">
-                        <x-label for="year_construction" value="{{ __('Építés éve: ') }}"/>
+                        <x-label for="year_construction">@lang('messages.year_construction')</x-label>
                         <x-input id="year_construction" class="block mt-1 w-full" type="text" name="year_construction"
                                  :value="old('year_construction')" autocomplete="year_construction"/>
                     </div>
 
                     <div class="col">
-                        <x-label for="floor" value="{{ __('Emelet: ') }}"/>
+                        <x-label for="floor">@lang('messages.floor')</x-label>
                         <x-input id="floor" class="block mt-1 w-full" type="number" name="floor" :value="old('floor')"
                                  autocomplete="floor"/>
                     </div>
 
                     <div class="col">
-                        <x-label for="building_levels" value="{{ __('Épület szintjei: ') }}"/>
+                        <x-label for="building_levels">@lang('messages.building_levels')</x-label>
                         <x-input id="building_levels" class="block mt-1 w-full" type="number" name="building_levels"
                                  :value="old('building_levels')" autocomplete="building_levels"/>
                     </div>
@@ -143,67 +143,67 @@
 
                 <div class="row mt-4">
                     <div class="col">
-                        <x-label for="lift" value="{{ __('Lift: ') }}"/>
+                        <x-label for="lift">@lang('messages.lift')</x-label>
                         <select
                             class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             name="lift" id="lift" aria-label="Default select example">
-                            <option selected>Nincs kiválasztva</option>
-                            <option value="Van">Van</option>
-                            <option value="Nincs">Nincs</option>
+                            <option selected>@lang('messages.not_selected')</option>
+                            <option value="Van">@lang('messages.there_is')</option>
+                            <option value="Nincs">@lang('messages.there_is_not')</option>
                         </select>
                     </div>
 
                     <div class="col">
-                        <x-label for="inner_height" value="{{ __('Belmagasság: ') }}"/>
+                        <x-label for="inner_height">@lang('messages.inner_height')</x-label>
                         <select
                             class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             name="inner_height" id="inner_height" aria-label="Default select example">
-                            <option selected>Nincs kiválasztva</option>
-                            <option value="3 méternél alacsonyabb">3 méternél alacsonyabb</option>
-                            <option value="3 méter vagy magasabb">3 méter vagy magasabb</option>
+                            <option selected>@lang('messages.not_selected')</option>
+                            <option value="3 méternél alacsonyabb">@lang('messages.less_then_3')</option>
+                            <option value="3 méter vagy magasabb">@lang('messages.3_or_higher')</option>
                         </select>
                         {{--<x-input id="inner_height" class="block mt-1 w-full" type="number" name="inner_height" :value="old('inner_height')" autocomplete="inner_height" />--}}
                     </div>
 
                     <div class="col">
-                        <x-label for="air_conditioner" value="{{ __('Légkondícionáló: ') }}"/>
+                        <x-label for="air_conditioner">@lang('messages.air_conditioner')</x-label>
                         <select
                             class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             name="air_conditioner" id="air_conditioner" aria-label="Default select example">
-                            <option selected>Nincs kiválasztva</option>
-                            <option value="Van">Van</option>
-                            <option value="Nincs">Nincs</option>
+                            <option selected>@lang('messages.not_selected')</option>
+                            <option value="Van">@lang('messages.there_is')</option>
+                            <option value="Nincs">@lang('messages.there_is_not')</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="row mt-4">
                     <div class="col">
-                        <x-label for="accessible" value="{{ __('Akadálymentesített: ') }}"/>
+                        <x-label for="accessible">@lang('messages.accessible')</x-label>
                         <select
                             class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             name="accessible" id="accessible" aria-label="Default select example">
-                            <option selected>Nincs kiválasztva</option>
-                            <option value="Igen">Igen</option>
-                            <option value="Nem">Nem</option>
+                            <option selected>@lang('messages.not_selected')</option>
+                            <option value="Igen">@lang('messages.yes')</option>
+                            <option value="Nem">@lang('messages.no')</option>
                         </select>
                     </div>
 
                     <div class="col">
-                        <x-label for="attic" value="{{ __('Tetőtér: ') }}"/>
+                        <x-label for="attic">@lang('messages.attic')</x-label>
                         <select
                             class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             name="attic" id="attic" aria-label="Default select example">
-                            <option selected>Nincs kiválasztva</option>
-                            <option value="Tetőréri">Tetőréri</option>
-                            <option value="Nem tetőtéri">Nem tetőtéri</option>
-                            <option value="Legfelső emelet, nem tetőtéri">Legfelső emelet, nem tetőtéri</option>
+                            <option selected>@lang('messages.not_selected')</option>
+                            <option value="Tetőréri">@lang('messages.atticish')</option>
+                            <option value="Nem tetőtéri">@lang('messages.not_a_loft')</option>
+                            <option value="Legfelső emelet, nem tetőtéri">@lang('messages.top_floor_not_attic')</option>
                         </select>
                         {{--<x-input id="attic" class="block mt-1 w-full" type="text" name="attic" :value="old('attic')" autocomplete="attic" />--}}
                     </div>
 
                     <div class="col">
-                        <x-label for="balcony" value="{{ __('Erkély mérete: ') }}"/>
+                        <x-label for="balcony">@lang('messages.balcony')</x-label>
                         <x-input id="balcony" class="block mt-1 w-full" type="number" name="balcony"
                                  :value="old('balcony')"/>
                     </div>
@@ -211,27 +211,27 @@
 
                 <div class="row mt-4">
                     <div class="col">
-                        <x-label for="parking" value="{{ __('Parkolás: ') }}"/>
+                        <x-label for="parking">@lang('messages.parking')</x-label>
                         <select
                             class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             name="parking" id="parking" aria-label="Default select example">
-                            <option selected>Nincs kiválasztva</option>
-                            <option value="Udvari beálló">Udvari beálló</option>
-                            <option value="Garázs">Garázs</option>
-                            <option value="Önálló garázs">Önálló garázs</option>
-                            <option value="Utca, közterület">Utca, közterület</option>
+                            <option selected>@lang('messages.not_selected')</option>
+                            <option value="Udvari beálló">@lang('messages.court_stand')</option>
+                            <option value="Garázs">@lang('messages.garage')</option>
+                            <option value="Önálló garázs">@lang('messages.detached_garage')</option>
+                            <option value="Utca, közterület">@lang('messages.street_public_space')</option>
                         </select>
                         {{--<x-input id="parking" class="block mt-1 w-full" type="text" name="parking" :value="old('parking')"/>--}}
                     </div>
 
                     <div class="col">
-                        <x-label for="parking_price" value="{{ __('Parkolóhely ára: ') }}"/>
+                        <x-label for="parking_price">@lang('messages.parking_price')</x-label>
                         <x-input id="parking_price" class="block mt-1 w-full" type="number" name="parking_price"
                                  :value="old('parking_price')" autocomplete="parking_price"/>
                     </div>
 
                     <div class="col">
-                        <x-label for="avg_gas" value="{{ __('Átlag gázfogyasztás: ') }}"/>
+                        <x-label for="avg_gas">@lang('messages.avg_gas')</x-label>
                         <x-input id="avg_gas" class="block mt-1 w-full" type="number" name="avg_gas"
                                  :value="old('avg_gas')" autocomplete="avg_gas"/>
                     </div>
@@ -239,19 +239,19 @@
 
                 <div class="row mt-4">
                     <div class="col">
-                        <x-label for="avg_electricity" value="{{ __('Átlag áramfogyasztás: ') }}"/>
+                        <x-label for="avg_electricity">@lang('messages.avg_electricity')</x-label>
                         <x-input id="avg_electricity" class="block mt-1 w-full" type="number" name="avg_electricity"
                                  :value="old('avg_electricity')"/>
                     </div>
 
                     <div class="col">
-                        <x-label for="overhead_cost" value="{{ __('Rezsiköltség: ') }}"/>
+                        <x-label for="overhead_cost">@lang('messages.overhead_cost')</x-label>
                         <x-input id="overhead_cost" class="block mt-1 w-full" type="number" name="overhead_cost"
                                  :value="old('overhead_cost')" autocomplete="overhead_cost"/>
                     </div>
 
                     <div class="col">
-                        <x-label for="common_cost" value="{{ __('Közös költség: ') }}"/>
+                        <x-label for="common_cost">@lang('messages.common_cost')</x-label>
                         <x-input id="common_cost" class="block mt-1 w-full" type="number" name="common_cost"
                                  :value="old('common_cost')" autocomplete="common_cost"/>
                     </div>
@@ -259,74 +259,74 @@
 
                 <div class="row mt-4">
                     <div class="col">
-                        <x-label for="heating" value="{{ __('Fűtés: ') }}"/>
+                        <x-label for="heating">@lang('messages.heating')</x-label>
                         <select
                             class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             name="heating" id="heating" aria-label="Default select example">
-                            <option selected>Nincs kiválasztva</option>
-                            <option value="Gáz (konvektor)">Gáz (konvektor)</option>
-                            <option value="Házközponti">Házközponti</option>
-                            <option value="Távfűtés">Távfűtés</option>
-                            <option value="Elektromos konvektor">Elektromos konvektor</option>
-                            <option value="Elektromos fűtőpanel">Elektromos fűtőpanel</option>
-                            <option value="Klíma">Klíma</option>
-                            <option value="Kandalló">Kandalló</option>
-                            <option value="Kályha">Kályha</option>
-                            <option value="Cserépkájha">Cserépkájha</option>
-                            <option value="Padlófűtés">Padlófűtés</option>
-                            <option value="Falfűtés">Falfűtés</option>
+                            <option selected>@lang('messages.not_selected')</option>
+                            <option value="Gáz (konvektor)">@lang('messages.gas_convector')</option>
+                            <option value="Házközponti">@lang('messages.central_heating')</option>
+                            <option value="Távfűtés">@lang('messages.district_heating')</option>
+                            <option value="Elektromos konvektor">@lang('messages.electric_convector')</option>
+                            <option value="Elektromos fűtőpanel">@lang('messages.electric_heating_panel')</option>
+                            <option value="Légkondicionáló">@lang('messages.air_conditioner')</option>
+                            <option value="Kandalló">@lang('messages.fireplace')</option>
+                            <option value="Kályha">@lang('messages.stove')</option>
+                            <option value="Cserépkájha">@lang('messages.tile_stove')</option>
+                            <option value="Padlófűtés">@lang('messages.floor_heating')</option>
+                            <option value="Falfűtés">@lang('messages.wall_heating')</option>
                         </select>
                     </div>
 
                     <div class="col">
-                        <x-label for="insulation" value="{{ __('Szigetelés: ') }}"/>
+                        <x-label for="insulation">@lang('messages.insulation')</x-label>
                         <x-input id="insulation" class="block mt-1 w-full" type="text" name="insulation"
                                  :value="old('insulation')" autocomplete="insulation"/>
                     </div>
 
                     <div class="col">
-                        <x-label for="type" value="{{ __('Típus: ') }}"/>
+                        <x-label for="type">@lang('messages.type')</x-label>
                         <select
                             class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             name="type" id="type" aria-label="Default select example">
-                            <option selected>Nincs kiválasztva</option>
-                            <option value="Tégla lakás">Tégla lakás</option>
-                            <option value="Panel lakás">Panel lakás</option>
+                            <option selected>@lang('messages.not_selected')</option>
+                            <option value="Tégla lakás">@lang('messages.brick_built_apartment')</option>
+                            <option value="Panel lakás">@lang('messages.panel_apartment')</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="row mt-4" id="rent_part" style="display: none;">
                     <div class="col">
-                        <x-label for="furniture" value="{{ __('Bútorozott-e: ') }}"/>
+                        <x-label for="furniture">@lang('messages.is_it_furnished')</x-label>
                         <select
                             class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             name="furniture" id="furniture" aria-label="Default select example">
-                            <option selected>Nincs kiválasztva</option>
-                            <option value="Igen">Igen</option>
-                            <option value="Nem">Nem</option>
+                            <option selected>@lang('messages.not_selected')</option>
+                            <option value="Igen">@lang('messages.yes')</option>
+                            <option value="Nem">@lang('messages.no')</option>
                         </select>
                     </div>
 
                     <div class="col">
-                        <x-label for="smoking" value="{{ __('Dohányzás engelyézett-e: ') }}"/>
+                        <x-label for="smoking">@lang('messages.smoking')</x-label>
                         <select
                             class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             name="smoking" id="smoking" aria-label="Default select example">
-                            <option selected>Nincs kiválasztva</option>
-                            <option value="Igen">Igen</option>
-                            <option value="Nem">Nem</option>
+                            <option selected>@lang('messages.not_selected')</option>
+                            <option value="Igen">@lang('messages.yes')</option>
+                            <option value="Nem">@lang('messages.no')</option>
                         </select>
                     </div>
 
                     <div class="col">
-                        <x-label for="animal" value="{{ __('Kisállat hozható-e: ') }}"/>
+                        <x-label for="animal">@lang('messages.animal')</x-label>
                         <select
                             class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             name="animal" id="animal" aria-label="Default select example">
-                            <option selected>Nincs kiválasztva</option>
-                            <option value="Igen">Igen</option>
-                            <option value="Nem">Nem</option>
+                            <option selected>@lang('messages.not_selected')</option>
+                            <option value="Igen">@lang('messages.yes')</option>
+                            <option value="Nem">@lang('messages.no')</option>
                         </select>
                     </div>
                 </div>
@@ -349,12 +349,12 @@
                     </div>--}}
 
                     <div class="col">
-                        <x-label for="formFiles" value="{{__('Fő kép')}}"/>
+                        <x-label for="formFiles">@lang('messages.main_img')</x-label>
                         <x-input class="form-control block mt-2 w-full" type="file" id="main_img" name="main_img"/>
                     </div>
 
                     <div class="col">
-                        <x-label for="formFiles" value="{{__('Képek')}}"/>
+                        <x-label for="formFiles">@lang('messages.images')</x-label>
                         <x-input class="form-control block mt-2 w-full" type="file" id="formFile" name="images[]"
                                  multiple/>
                     </div>
@@ -363,7 +363,7 @@
 
                 <div class="row mt-4">
                     <div class="col">
-                        <x-label for="descrpition" value="{{__('Leírás: ')}}"/>
+                        <x-label for="descrpition">@lang('messages.description')</x-label>
                         <textarea class="block mt-1 w-full rounded border-gray-300" id="descrpition" name="description"
                                   required></textarea>
                     </div>
@@ -371,7 +371,7 @@
 
                 <div class="flex items-center justify-end mt-4">
                     <x-button class="ms-4">
-                        {{ __('Közzététel') }}
+                        @lang('messages.save')
                     </x-button>
                 </div>
             </form>

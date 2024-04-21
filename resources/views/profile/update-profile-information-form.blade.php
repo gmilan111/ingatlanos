@@ -1,11 +1,10 @@
 <x-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Profil Információ') }}
+        @lang('messages.profile_info')
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Módosítsa fiókja profiladatait és e-mail címét.
-') }}
+        @lang('messages.profile.edit')
     </x-slot>
 
     <x-slot name="form">
@@ -25,7 +24,7 @@
                                     reader.readAsDataURL($refs.photo.files[0]);
                             "/>
 
-                <x-label for="photo" value="{{ __('Profilkép') }}"/>
+                <x-label for="photo">@lang('messages.profile_pic')</x-label>
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
@@ -41,12 +40,12 @@
                 </div>
 
                 <x-secondary-button class="mt-2 me-2" type="button" x-on:click.prevent="$refs.photo.click()">
-                    {{ __('Új fénykép hozzáadása') }}
+                    @lang('messages.new_pic')
                 </x-secondary-button>
 
                 @if ($this->user->profile_photo_path)
                     <x-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
-                        {{ __('Fénykép kitörlése') }}
+                        @lang('messages.delete_pic')
                     </x-secondary-button>
                 @endif
 
@@ -56,7 +55,7 @@
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="name" value="{{ __('Név') }}"/>
+            <x-label for="name">@lang('messages.name')</x-label>
             <x-input id="name" type="text" class="mt-1 block w-full" wire:model="state.name" required
                      autocomplete="name"/>
             <x-input-error for="name" class="mt-2"/>
@@ -64,25 +63,25 @@
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="email" value="{{ __('Email') }}"/>
+            <x-label for="email">@lang('messages.email')</x-label>
             <x-input id="email" type="email" class="mt-1 block w-full" wire:model="state.email" required
                      autocomplete="username"/>
             <x-input-error for="email" class="mt-2"/>
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2">
-                    {{ __('Az Ön e-mail címe nincs ellenőrizve.') }}
+                    @lang('messages.email_verify')
 
                     <button type="button"
                             class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             wire:click.prevent="sendEmailVerification">
-                        {{ __('Kattintson ide az ellenőrző e-mail újbóli elküldéséhez.') }}
+                        @lang('messages.email_verify_btn')
                     </button>
                 </p>
 
                 @if ($this->verificationLinkSent)
                     <p class="mt-2 font-medium text-sm text-green-600">
-                        {{ __('Új ellenőrző linket küldtünk az e-mail címére.') }}
+                        @lang('messages.new_email_verify')
                     </p>
                 @endif
             @endif
@@ -93,7 +92,7 @@
                 <label for="email_notification" class="flex items-center">
                     <x-input id="email_notification" wire:model="state.email_notification" type="checkbox"
                              value="{{true}}"/>
-                    <span class="ms-2 text-sm text-gray-600">Szeretnék kapni emailt új ingatlanok közzétételéről</span>
+                    <span class="ms-2 text-sm text-gray-600">@lang('messages.newsletter')</span>
                 </label>
             </div>
         @elseif($this->user->is_ingatlanos == 'm' && $this->user->email_notification)
@@ -101,7 +100,7 @@
                 <label for="email_notification_cancel" class="flex items-center">
                     <x-input id="email_notification_cancel" wire:model="state.email_notification_cancel" type="checkbox"
                              value="0"/>
-                    <span class="ms-2 text-sm text-gray-600">Nem szeretnék kapni többé emailt az új ingatlanok közzétételéről</span>
+                    <span class="ms-2 text-sm text-gray-600">@lang('messages.no_newsletter')</span>
                 </label>
             </div>
         @endif
@@ -110,11 +109,11 @@
 
     <x-slot name="actions">
         <x-action-message class="me-3" on="saved">
-            {{ __('Elmentve.') }}
+            @lang('messages.saved')
         </x-action-message>
 
         <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Mentés') }}
+            @lang('messages.save')
         </x-button>
     </x-slot>
 </x-form-section>

@@ -74,44 +74,56 @@
 
                     <div class="card border-0 shadow-2xl mt-5">
                         <div class="card-body">
-                            <h1 class="card-title mt-2">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Leírás", app()->getLocale()) }}</h1>
-                            <p class="card-text mb-2">{{$property->description}}</p>
+                            <h1 class="card-title mt-2">@lang('messages.description')</h1>
+                            <p class="card-text mb-2">{{___($property->description)}}</p>
                         </div>
                     </div>
 
                     <div class="card border-0 shadow-2xl mt-5">
                         <div class="card-body row">
-                            <h1 class="card-title mt-2">Általános információk</h1>
+                            <h1 class="card-title mt-2">@lang('messages.general_info')</h1>
                             <div class="col-sm-5">
                                 <table class="table">
                                     <tbody>
                                     <tr>
-                                        <th scope="row">Ingatlan állapota:</th>
-                                        <td>{{$property->condition}}</td>
+                                        <th scope="row">@lang('messages.condition')</th>
+                                        <td>{{___($property->condition)}}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Ingatlan típusa:</th>
-                                        <td>{{$property->type}}</td>
+                                        <th scope="row">@lang('messages.property_type')</th>
+                                        <td>{{___($property->type)}}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Építés éve:</th>
+                                        <th scope="row">@lang('messages.year_construction')</th>
                                         <td>{{$property->year_construction}}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Emelet:</th>
+                                        <th scope="row">@lang('messages.floor')</th>
                                         <td>{{$property->floor}}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Épület szintjei:</th>
+                                        <th scope="row">@lang('messages.building_levels')</th>
                                         <td>{{$property->building_levels}}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Lift:</th>
-                                        <td>{{$property->lift}}</td>
+                                        <th scope="row">@lang('messages.lift')</th>
+                                        @if($property->lift == "Van")
+                                            <td>@lang('messages.there_is')</td>
+                                        @elseif($property->lift == "Nincs")
+                                            <td>@lang('messages.there_is_not')</td>
+                                        @elseif($property->lift == "Nincs kiválasztva")
+                                            <td>@lang('messages.not_selected')</td>
+                                        @endif
                                     </tr>
                                     <tr>
-                                        <th scope="row">Belmagasság:</th>
-                                        <td>{{$property->inner_height}}</td>
+                                        <th scope="row">@lang('messages.inner_height')</th>
+                                        @if($property->inner_height == "3 méternél alacsonyabb")
+                                            <td>@lang('messages.less_then_3')</td>
+                                        @elseif($property->inner_height == "3 méter vagy magasabb")
+                                            <td>@lang('messages.3_or_higher')</td>
+                                        @elseif($property->inner_height == "Nincs kiválasztva")
+                                            <td>@lang('messages.not_selected')</td>
+                                        @endif
                                     </tr>
                                     </tbody>
                                 </table>
@@ -120,27 +132,39 @@
                                 <table class="table">
                                     <tbody>
                                     <tr>
-                                        <th scope="row">Légkondícionáló:</th>
-                                        <td>{{$property->air_conditioner}}</td>
+                                        <th scope="row">@lang('messages.air_conditioner')</th>
+                                        @if($property->air_conditioner == "Van")
+                                            <td>@lang('messages.there_is')</td>
+                                        @elseif($property->air_conditioner == "Nincs")
+                                            <td>@lang('messages.there_is_not')</td>
+                                        @elseif($property->air_conditioner == "Nincs kiválasztva")
+                                            <td>@lang('messages.not_selected')</td>
+                                        @endif
                                     </tr>
                                     <tr>
-                                        <th scope="row">Akadálymentesített:</th>
-                                        <td>{{$property->accessible}}</td>
+                                        <th scope="row">@lang('messages.accessible')</th>
+                                        @if($property->accessible == "Igen")
+                                            <td>@lang('messages.yes')</td>
+                                        @elseif($property->accessible == "Nem")
+                                            <td>@lang('messages.no')</td>
+                                        @elseif($property->accessible == "Nincs kiválasztva")
+                                            <td>@lang('messages.not_selected')</td>
+                                        @endif
                                     </tr>
                                     <tr>
-                                        <th scope="row">Tetőtér:</th>
-                                        <td>{{$property->attic}}</td>
+                                        <th scope="row">@lang('messages.attic')</th>
+                                        <td>{{___($property->attic)}}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Erkély:</th>
+                                        <th scope="row">@lang('messages.balcony')</th>
                                         <td>{{$property->balcony}}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Parkolási lehetőségek:</th>
-                                        <td>{{$property->parking}}</td>
+                                        <th scope="row">@lang('messages.parking')</th>
+                                        <td>{{___($property->parking)}}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Parkolási költségek:</th>
+                                        <th scope="row">@lang('messages.parking_costs')</th>
                                         <td>{{$property->parking_price}}</td>
                                     </tr>
                                     </tbody>
@@ -151,32 +175,32 @@
 
                     <div class="card border-0 shadow-2xl mt-5">
                         <div class="card-body">
-                            <h1 class="card-title mt-2">Hasznos információk</h1>
+                            <h1 class="card-title mt-2">@lang('messages.useful_info')</h1>
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <th scope="row">Átlagos gázköltségek:</th>
+                                    <th scope="row">@lang('messages.avg_gas_cost')</th>
                                     <td>{{number_format(($property->avg_gas),0,'','.')}} Ft</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Átlagos áramköltségek:</th>
+                                    <th scope="row">@lang('messages.avg_electricity_cost')</th>
                                     <td>{{number_format(($property->avg_electricity),0,'','.')}} Ft</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Rezsi költség (Átlagosan):</th>
+                                    <th scope="row">@lang('messages.avg_overhead_cost')</th>
                                     <td>{{number_format(($property->overhead_cost),0,'','.')}} Ft</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Közös költség:</th>
+                                    <th scope="row">@lang('messages.common_cost')</th>
                                     <td>{{number_format(($property->common_cost),0,'','.')}} Ft</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Fűtés:</th>
-                                    <td>{{$property->heating}}</td>
+                                    <th scope="row">@lang('messages.heating')</th>
+                                    <td>{{___($property->heating)}}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Szigetelés:</th>
-                                    <td>{{$property->insulation}}</td>
+                                    <th scope="row">@lang('messages.insulation')</th>
+                                    <td>{{___($property->insulation)}}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -196,7 +220,7 @@
                 <div class="col-sm-4">
                     <div class="card border-0 shadow-2xl text-center">
                         <div class="card-body">
-                            <h1 class="card-title">Lépj kapcsolatba a hirdetővel!</h1>
+                            <h1 class="card-title">@lang('messages.contact_advertiser')</h1>
                             <hr class="mb-4">
                             @php
                                 $agents = DB::table('users')->select('*')->where('id', '=', $property->user_id)->first();
@@ -204,8 +228,7 @@
                             @if(isset(auth()->user()->is_ingatlanos))
                                 <h2 style="font-size: 20px">(IDE JÖHET EGY ICON){{$agents->phone_number}}</h2>
                             @else
-                                <h1 class="card-title"><a href="{{route('login')}}" class="btn btn-primary">Telefonszám
-                                        felfedése</a></h1>
+                                <h1 class="card-title"><a href="{{route('login')}}" class="btn btn-primary">@lang('messages.show_phone_number')</a></h1>
                             @endif
 
                             <img class="mt-5 mb-3 rounded-3 shadow-lg"
@@ -216,7 +239,7 @@
                                 <div id="liveAlertPlaceholder"></div>
                                 <button type="button" class="btn btn-primary" id="liveAlertBtn"><i
                                         class="fa-regular fa-star fa-xl"
-                                        style="color: #f8c920;"></i>Hirdetés mentése
+                                        style="color: #f8c920;"></i>@lang('messages.save_ad')
                                 </button>
 
                             @else
@@ -225,14 +248,14 @@
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-primary"><i class="fa-solid fa-star fa-xl"
-                                                                           style="color: #f8c920;"></i>Hirdetés mentve
+                                                                           style="color: #f8c920;"></i>@lang('messages.ad_saved')
                                         </button>
                                     </form>
                                 @else
                                     <form action="/like/{{$property->id}}" method="POST">
                                         @csrf
                                         <button class="btn btn-primary"><i class="fa-regular fa-star fa-xl"
-                                                                           style="color: #f8c920;"></i>Hirdetés mentése
+                                                                           style="color: #f8c920;"></i>@lang('messages.save_ad')
                                         </button>
                                     </form>
 
@@ -241,7 +264,7 @@
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal">
-                                        Üzenet küldése
+                                        @lang('messages.send_message')
                                     </button>
 
                                     <!-- Modal -->
@@ -251,20 +274,19 @@
                                             <div class="modal-content">
                                                 <form action="/email/{{$property->id}}" method="GET">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Üzenet
-                                                            küldése</h1>
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">@lang('messages.send_message')</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class=" mb-3">
-                                                            <x-label for="name" value="{{ __('Név') }}"/>
+                                                            <x-label for="name">@lang('messages.name')</x-label>
                                                             <x-input id="name" class="block mt-1 w-full" type="text"
                                                                      name="name" :value="old('name')" required
                                                                      autofocus autocomplete="name"/>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="exampleFormControlTextarea1" class="form-label">Üzenet</label>
+                                                            <label for="exampleFormControlTextarea1" class="form-label">@lang('messages.message')</label>
                                                             <textarea class="form-control"
                                                                       id="exampleFormControlTextarea1"
                                                                       rows="3" name="description"></textarea>
@@ -272,9 +294,9 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Vissza
+                                                                data-bs-dismiss="modal">@lang('messages.back')
                                                         </button>
-                                                        <button class="btn btn-primary">Küldés</button>
+                                                        <button class="btn btn-primary">@lang('messages.send')</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -282,7 +304,6 @@
                                     </div>
                                 </div>
                             @endif
-
                             <script>
                                 const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
                                 const appendAlert = (message, type) => {
@@ -297,21 +318,17 @@
                                     alertPlaceholder.append(wrapper)
                                 }
 
-
                                 const alertTrigger = document.getElementById('liveAlertBtn')
                                 if (alertTrigger) {
                                     alertTrigger.addEventListener('click', () => {
-                                        appendAlert('Csak regisztrált vagy bejelentkezett felhasználók menthetnek el hirdetést', 'danger')
+                                        appendAlert('@lang('messages.only_auth_user')', 'danger')
                                     })
                                 }
                             </script>
-
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
     @endforeach
 </x-layout>

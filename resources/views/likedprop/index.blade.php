@@ -74,7 +74,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="properties/{{$property->id}}" class="btn btn-primary">Go somewhere</a>
+                            <a href="properties/{{$property->id}}" class="btn btn-primary">@lang('messages.details')</a>
                         </div>
                     </div>
                 </div>

@@ -7,45 +7,45 @@
                     <label for="sale" class="flex items-center">
                         @if(isset($sale_rent) && $sale_rent == 'sale')
                             <x-input checked id="sale" name="sale_rent" onclick="salerent()" type="radio" value="sale"/>
-                            <span class="ms-2 text-sm text-gray-600">Eladó</span>
+                            <span class="ms-2 text-sm text-gray-600">@lang('messages.for_sale')</span>
                         @else
                             <x-input id="sale" name="sale_rent" onclick="salerent()" type="radio" value="sale"/>
-                            <span class="ms-2 text-sm text-gray-600">Eladó</span>
+                            <span class="ms-2 text-sm text-gray-600">@lang('messages.for_sale')</span>
                         @endif
                     </label>
                     <label for="rent" class="flex items-center">
                         @if(isset($sale_rent) && $sale_rent == 'rent')
                             <x-input id="rent" name="sale_rent" onclick="salerent()" checked type="radio" value="rent"/>
-                            <span class="ms-2 text-sm text-gray-600">Kiadó</span>
+                            <span class="ms-2 text-sm text-gray-600">@lang('messages.for_rent')</span>
                         @else
                             <x-input id="rent" name="sale_rent" onclick="salerent()" type="radio" value="rent"/>
-                            <span class="ms-2 text-sm text-gray-600">Kiadó</span>
+                            <span class="ms-2 text-sm text-gray-600">@lang('messages.for_rent')</span>
                         @endif
                     </label>
                 </div>
                 <div class="col">
                     @if(isset($settlement_search))
-                        <input type="search" class="form-control rounded" placeholder="Település" aria-label="Search"
+                        <input type="search" class="form-control rounded" placeholder="@lang('messages.settlement')" aria-label="Search"
                                name="settlement_search"
                                aria-describedby="search-addon" value="{{$settlement_search}}"/>
                     @else
-                        <input type="search" class="form-control rounded" placeholder="Település" aria-label="Search"
+                        <input type="search" class="form-control rounded" placeholder="@lang('messages.settlement')" aria-label="Search"
                                name="settlement_search"
                                aria-describedby="search-addon"/>
                     @endif
                 </div>
                 <div class="col">
-                    <button class="btn btn-outline-primary">search</button>
+                    <button class="btn btn-outline-primary">@lang('messages.search')</button>
                 </div>
             </div>
         </form>
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-offer-tab" data-bs-toggle="tab" data-bs-target="#nav-offer"
-                        type="button" role="tab" aria-controls="nav-offer" aria-selected="true">Eladó
+                        type="button" role="tab" aria-controls="nav-offer" aria-selected="true">@lang('messages.for_sale')
                 </button>
                 <button class="nav-link" id="nav-sold-tab" data-bs-toggle="tab" data-bs-target="#nav-sold"
-                        type="button" role="tab" aria-controls="nav-sold" aria-selected="false">Eladott
+                        type="button" role="tab" aria-controls="nav-sold" aria-selected="false">@lang('messages.sold_properties')
                 </button>
             </div>
         </nav>
@@ -88,23 +88,22 @@
                                             </div>
                                         </div>
                                         <a href="properties/{{$property->id}}" class="btn btn-primary"><i
-                                                class="fa-solid fa-circle-info"></i> Részletek</a>
+                                                class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
                                         <a href="properties/{{$property->id}}/edit" class="btn btn-dark"><i
-                                                class="fa-solid fa-pen-to-square"></i> Ingatlan módosítás</a>
+                                                class="fa-solid fa-pen-to-square"></i> @lang('messages.property_edit')</a>
                                         <a href="/image/{{$property->id}}/edit" class="btn btn-dark"><i
-                                                class="fa-solid fa-pen-to-square"></i> Ingatlanhoz tartozó képek
-                                            módosítás</a>
+                                                class="fa-solid fa-pen-to-square"></i> @lang('messages.property_img_edit')</a>
                                         <form action="/properties/{{$property->id}}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger"><i class="fa-solid fa-trash"></i> Törlés
+                                            <button class="btn btn-danger"><i class="fa-solid fa-trash"></i> @lang('messages.delete')
                                             </button>
                                         </form>
                                         <form action="sold/{{$property->id}}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <button class="btn btn-warning"><i class="fa-solid fa-sack-dollar"></i>
-                                                Eladva
+                                                @lang('messages.sold')
                                             </button>
                                         </form>
                                     </div>
@@ -154,16 +153,15 @@
                                             </div>
                                         </div>
                                         <a href="properties/{{$property->id}}" class="btn btn-primary"><i
-                                                class="fa-solid fa-circle-info"></i> Részletek</a>
+                                                class="fa-solid fa-circle-info"></i>@lang('messages.details')</a>
                                         <a href="properties/{{$property->id}}/edit" class="btn btn-dark"><i
-                                                class="fa-solid fa-pen-to-square"></i> Ingatlan módosítás</a>
+                                                class="fa-solid fa-pen-to-square"></i>@lang('messages.property_edit')</a>
                                         <a href="/image/{{$property->id}}/edit" class="btn btn-dark"><i
-                                                class="fa-solid fa-pen-to-square"></i> Ingatlanhoz tartozó képek
-                                            módosítás</a>
+                                                class="fa-solid fa-pen-to-square"></i>@lang('messages.property_img_edit')</a>
                                         <form action="/properties/{{$property->id}}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger"><i class="fa-solid fa-trash"></i> Törlés
+                                            <button class="btn btn-danger"><i class="fa-solid fa-trash"></i>@lang('messages.delete')
                                             </button>
                                         </form>
                                     </div>

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
-class LanguageManager
+class LanguageManagerV2
 {
     /**
      * Handle an incoming request.
@@ -20,10 +20,6 @@ class LanguageManager
         $locale = Session::get('locale')??'hu';
         Session::put('locale', $locale);
         App::setLocale($locale);
-
-        if(session()->has('locale')){
-            App::setLocale(session()->get('locale'));
-        }
 
         return $next($request);
     }

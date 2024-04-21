@@ -1,12 +1,5 @@
 <x-layout>
     <div class="container margin-top">
-        {{--@foreach($agents as $agent)
-            {{$agent->name}}
-        @endforeach
-        @foreach($agents_info as $info)
-            {{$info->language}}
-        @endforeach--}}
-
         @foreach($agents as $agent)
             @foreach($agents_info as $info)
                 <div class="row">
@@ -17,28 +10,29 @@
                                 <h1 class="card-title mt-2">{{$agent->name}}</h1>
                                 <h1 class="card-title mt-2"
                                     style="font-size: 20px !important;">{{$agent->phone_number}}</h1>
-                                <p class="card-text mb-2">ALVBALKÉLSLKJDLKASDLJASKJKGAJS</p>
-                                <button class="btn btn-primary">Üzenet küldése</button>
+                                {{--<p class="card-text mb-2">ALVBALKÉLSLKJDLKASDLJASKJKGAJS</p>--}}
+                                <button class="btn btn-primary">@lang('messages.send_message')</button>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-8">
                         <div class="card border-0 shadow-2xl mt-5">
                             <div class="card-body">
-                                <h1 class="card-title mt-2">Általános információk</h1>
+                                <h1 class="card-title mt-2">@lang('messages.general_info')</h1>
                                 <table class="table">
                                     <tbody>
                                     <tr>
-                                        <th scope="row">Járulékom:</th>
-                                        <td>{{$info->salary}}</td>
+                                        <th scope="row">@lang('messages.my_commission')</th>
+                                        <td>{{___($info->salary)}}</td>
+                                        {{--<td>{{$info->salary}}</td>--}}
                                     </tr>
                                     <tr>
-                                        <th scope="row">Tapasztalatom:</th>
-                                        <td>{{$info->experience}} Év</td>
+                                        <th scope="row">@lang('messages.experience')</th>
+                                        <td>{{$info->experience}} @lang('messages.year')</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Nyelvudásom:</th>
-                                        <td>{{$info->language}}</td>
+                                        <th scope="row">@lang('messages.language')</th>
+                                        <td>{{___($info->language)}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -46,37 +40,35 @@
                         </div>
 
                         <div class="card border-0 shadow-2xl mt-5">
-                            @php
-                                $array = explode(',', $info->help);
-
-                            @endphp
                             <div class="card-body">
-                                <h1 class="card-title mt-2">Ezekben tudok segíteni</h1>
-                                @foreach($array as $item)
-                                    <div class="rounded-3 p-3 bg-danger">{{$item}}</div>
+                                <h1 class="card-title mt-2">@lang('messages.help')</h1>
+                                @foreach($agent_help as $item)
+                                    <div class="rounded-3 p-3 bg-danger mt-2">{{___($item)}}</div>
                                 @endforeach
                             </div>
                         </div>
 
                         <div class="card border-0 shadow-2xl mt-5">
                             <div class="card-body">
-                                <h1 class="card-title mt-2">Rólam</h1>
+                                <h1 class="card-title mt-2">@lang('messages.about_me')</h1>
                                 <p class="card-text">
-                                    {{$info->description}}
+                                    {{___($info->description)}}
                                 </p>
                             </div>
                         </div>
 
                         <div class="card border-0 shadow-2xl mt-5">
                             <div class="card-body">
-                                <h1 class="card-title mt-2">Ingatlanok</h1>
+                                <h1 class="card-title mt-2">@lang('messages.real_estates')</h1>
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                         <button class="nav-link active" id="nav-offer-tab" data-bs-toggle="tab" data-bs-target="#nav-offer"
-                                                type="button" role="tab" aria-controls="nav-offer" aria-selected="true">Eladó
+                                                type="button" role="tab" aria-controls="nav-offer" aria-selected="true">
+                                            @lang('messages.for_sale')
                                         </button>
                                         <button class="nav-link" id="nav-sold-tab" data-bs-toggle="tab" data-bs-target="#nav-sold"
-                                                type="button" role="tab" aria-controls="nav-sold" aria-selected="false">Eladott
+                                                type="button" role="tab" aria-controls="nav-sold" aria-selected="false">
+                                            @lang('messages.sold_properties')
                                         </button>
                                     </div>
                                 </nav>
@@ -119,23 +111,24 @@
                                                                     </div>
                                                                 </div>
                                                                 <a href="properties/{{$property->id}}" class="btn btn-primary"><i
-                                                                        class="fa-solid fa-circle-info"></i> Részletek</a>
+                                                                        class="fa-solid fa-circle-info"></i>@lang('messages.details')</a>
                                                                 <a href="properties/{{$property->id}}/edit" class="btn btn-dark"><i
-                                                                        class="fa-solid fa-pen-to-square"></i> Ingatlan módosítás</a>
+                                                                        class="fa-solid fa-pen-to-square"></i> @lang('messages.property_edit')</a>
                                                                 <a href="/image/{{$property->id}}/edit" class="btn btn-dark"><i
-                                                                        class="fa-solid fa-pen-to-square"></i> Ingatlanhoz tartozó képek
-                                                                    módosítás</a>
+                                                                        class="fa-solid fa-pen-to-square"></i>
+                                                                    @lang('messages.property_img_edit')</a>
                                                                 <form action="/properties/{{$property->id}}" method="POST">
                                                                     @csrf
                                                                     @method('DELETE')
-                                                                    <button class="btn btn-danger"><i class="fa-solid fa-trash"></i> Törlés
+                                                                    <button class="btn btn-danger"><i class="fa-solid fa-trash"></i>
+                                                                        @lang('messages.delete')
                                                                     </button>
                                                                 </form>
                                                                 <form action="sold/{{$property->id}}" method="POST">
                                                                     @csrf
                                                                     @method('PUT')
                                                                     <button class="btn btn-warning"><i class="fa-solid fa-sack-dollar"></i>
-                                                                        Eladva
+                                                                        @lang('messages.sold')
                                                                     </button>
                                                                 </form>
                                                             </div>
@@ -185,16 +178,15 @@
                                                                     </div>
                                                                 </div>
                                                                 <a href="properties/{{$property->id}}" class="btn btn-primary"><i
-                                                                        class="fa-solid fa-circle-info"></i> Részletek</a>
+                                                                        class="fa-solid fa-circle-info"></i>@lang('messages.details')</a>
                                                                 <a href="properties/{{$property->id}}/edit" class="btn btn-dark"><i
-                                                                        class="fa-solid fa-pen-to-square"></i> Ingatlan módosítás</a>
+                                                                        class="fa-solid fa-pen-to-square"></i>@lang('messages.property_edit')</a>
                                                                 <a href="/image/{{$property->id}}/edit" class="btn btn-dark"><i
-                                                                        class="fa-solid fa-pen-to-square"></i> Ingatlanhoz tartozó képek
-                                                                    módosítás</a>
+                                                                        class="fa-solid fa-pen-to-square"></i> @lang('messages.property_img_edit')</a>
                                                                 <form action="/properties/{{$property->id}}" method="POST">
                                                                     @csrf
                                                                     @method('DELETE')
-                                                                    <button class="btn btn-danger"><i class="fa-solid fa-trash"></i> Törlés
+                                                                    <button class="btn btn-danger"><i class="fa-solid fa-trash"></i>@lang('messages.delete')
                                                                     </button>
                                                                 </form>
                                                             </div>

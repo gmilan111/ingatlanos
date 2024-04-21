@@ -100,6 +100,9 @@ Route::put('/notification/{user_id}', [Controller::class, 'notification_update']
 #Nyelv megváltoztatása
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
 
+#Nyelv megváltoztatása 2.0
+Route::get('locale/{lang}', [LangController::class, 'setLocale']);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
