@@ -7,29 +7,29 @@
                     <label for="sale" class="flex items-center">
                         @if(isset($sale_rent) && $sale_rent == 'sale')
                             <x-input checked id="sale" name="sale_rent" onclick="salerent()" type="radio" value="sale"/>
-                            <span class="ms-2 text-sm text-gray-600">Eladó</span>
+                            <span class="ms-2 text-sm text-gray-600">@lang('messages.for_sale')</span>
                         @else
                             <x-input id="sale" name="sale_rent" onclick="salerent()" type="radio" value="sale"/>
-                            <span class="ms-2 text-sm text-gray-600">Eladó</span>
+                            <span class="ms-2 text-sm text-gray-600">@lang('messages.for_sale')</span>
                         @endif
                     </label>
                     <label for="rent" class="flex items-center">
                         @if(isset($sale_rent) && $sale_rent == 'rent')
                             <x-input id="rent" name="sale_rent" onclick="salerent()" checked type="radio" value="rent"/>
-                            <span class="ms-2 text-sm text-gray-600">Kiadó</span>
+                            <span class="ms-2 text-sm text-gray-600">@lang('messages.for_rent')</span>
                         @else
                             <x-input id="rent" name="sale_rent" onclick="salerent()" type="radio" value="rent"/>
-                            <span class="ms-2 text-sm text-gray-600">Kiadó</span>
+                            <span class="ms-2 text-sm text-gray-600">@lang('messages.for_rent')</span>
                         @endif
                     </label>
                 </div>
                 <div class="col">
                     @if(isset($settlement_search))
-                        <input type="search" class="form-control rounded" placeholder="Település" aria-label="Search"
+                        <input type="search" class="form-control rounded" placeholder="@lang('messages.settlement')" aria-label="Search"
                                name="settlement_search"
                                aria-describedby="search-addon" value="{{$settlement_search}}"/>
                     @else
-                        <input type="search" class="form-control rounded" placeholder="Település" aria-label="Search"
+                        <input type="search" class="form-control rounded" placeholder="@lang('messages.settlement')" aria-label="Search"
                                name="settlement_search"
                                aria-describedby="search-addon"/>
                     @endif
@@ -81,18 +81,18 @@
 
                 </div>
                 <div class="col">
-                    <button class="btn btn-outline-primary">search</button>
+                    <button class="btn btn-outline-primary">@lang('messages.search')</button>
                 </div>
                 <div class="col">
                     <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Szűrés
+                        @lang('messages.filter')
                     </button>
                     <div class="collapse" id="collapseExample" style="max-width: 1320px !important;">
                         <div class="card card-body" style="width: 1300px">
                             <div class="row">
                                 <div class="col">
-                                    <x-label for="size" value="{{ __('Méret: ') }}"/>
+                                    <x-label for="size">@lang('messages.size')</x-label>
                                     <div class="row">
                                         <div class="col">
                                             @if(isset($size_min))
@@ -126,7 +126,7 @@
                                 </div>
 
                                 <div class="col">
-                                    <x-label for="bathrooms" value="{{ __('Fürdőszobák száma: ') }}"/>
+                                    <x-label for="bathrooms">@lang('messages.bathrooms')</x-label>
                                     <div class="row">
                                         <div class="col">
                                             @if(isset($bathrooms_min))
@@ -162,7 +162,7 @@
                                     <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#state" aria-expanded="false"
                                             aria-controls="collapseExample">
-                                        Vármegyék:
+                                        @lang('messages.county')
                                     </button>
                                     <div class="collapse" id="state" style="max-width: 650px">
                                         <div class="card card-body" style="width: 650px">
@@ -172,7 +172,7 @@
                                                         <input class="form-check-input" type="checkbox" value="Mindegy"
                                                                name="mindegy" id="mindegy" onchange="States()">
                                                         <label class="form-check-label" for="mindegy">
-                                                            Mindegy
+                                                            @lang('messages.any')
                                                         </label>
                                                     </div>
                                                 </div>
@@ -664,7 +664,7 @@
                                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#condition" aria-expanded="false"
                                                 aria-controls="collapseExample">
-                                            Ingatlan állapota:
+                                            @lang('messages.condition')
                                         </button>
                                         <div class="collapse" id="condition">
                                             <div class="card card-body">
@@ -676,7 +676,7 @@
                                                                    name="mindegy_cond" id="mindegy_cond"
                                                                    onchange="Conditions()">
                                                             <label class="form-check-label" for="mindegy_cond">
-                                                                Mindegy
+                                                                @lang('messages.any')
                                                             </label>
                                                         </div>
                                                     </div>
@@ -688,7 +688,7 @@
                                                                name="condition[]" id="uj_epitesu"
                                                                @if(in_array("Új építésű",$condition)) checked @endif>
                                                         <label class="form-check-label" for="uj_epitesu">
-                                                            Új építésű
+                                                            @lang('messages.newly_built')
                                                         </label>
                                                     </div>
 
@@ -697,7 +697,7 @@
                                                                name="condition[]" id="ujszeru"
                                                                @if(in_array("Újszerű",$condition)) checked @endif>
                                                         <label class="form-check-label" for="ujszeru">
-                                                            Újszerű
+                                                            @lang('messages.novel')
                                                         </label>
                                                     </div>
 
@@ -707,7 +707,7 @@
                                                                name="condition[]" id="felujitott"
                                                                @if(in_array("Felújított",$condition)) checked @endif>
                                                         <label class="form-check-label" for="felujitott">
-                                                            Felújított
+                                                            @lang('messages.renovated')
                                                         </label>
                                                     </div>
 
@@ -717,7 +717,7 @@
                                                                name="condition[]" id="jo_allapotu"
                                                                @if(in_array("Jó állapotú",$condition)) checked @endif>
                                                         <label class="form-check-label" for="jo_allapotu">
-                                                            Jó állapotú
+                                                            @lang('messages.in_good_condition')
                                                         </label>
                                                     </div>
 
@@ -727,7 +727,7 @@
                                                                name="condition[]" id="kozepes_allapotu"
                                                                @if(in_array("Közepes állapotú",$condition)) checked @endif>
                                                         <label class="form-check-label" for="kozepes_allapotu">
-                                                            Közepes állapotú
+                                                            @lang('messages.in_medium_condition')
                                                         </label>
                                                     </div>
 
@@ -737,7 +737,7 @@
                                                                name="condition[]" id="felujitando"
                                                                @if(in_array("Felújítandó",$condition)) checked @endif>
                                                         <label class="form-check-label" for="felujitando">
-                                                            Felújítandó
+                                                            @lang('messages.to_be_renovated')
                                                         </label>
                                                     </div>
 
@@ -747,7 +747,7 @@
                                                                name="condition[]" id="befejezetlen"
                                                                @if(in_array("Befejezetlen",$condition)) checked @endif>
                                                         <label class="form-check-label" for="befejezetlen">
-                                                            Befejezetlen
+                                                            @lang('messages.unfinished')
                                                         </label>
                                                     </div>
 
@@ -757,7 +757,7 @@
                                                                value="Új építésű"
                                                                name="condition[]" id="uj_epitesu">
                                                         <label class="form-check-label" for="uj_epitesu">
-                                                            Új építésű
+                                                            @lang('messages.newly_built')
                                                         </label>
                                                     </div>
 
@@ -765,7 +765,7 @@
                                                         <input class="form-check-input" type="checkbox" value="Újszerű"
                                                                name="condition[]" id="ujszeru">
                                                         <label class="form-check-label" for="ujszeru">
-                                                            Újszerű
+                                                            @lang('messages.novel')
                                                         </label>
                                                     </div>
 
@@ -774,7 +774,7 @@
                                                                value="Felújított"
                                                                name="condition[]" id="felujitott">
                                                         <label class="form-check-label" for="felujitott">
-                                                            Felújított
+                                                            @lang('messages.renovated')
                                                         </label>
                                                     </div>
 
@@ -783,7 +783,7 @@
                                                                value="Jó állapotú"
                                                                name="condition[]" id="jo_allapotu">
                                                         <label class="form-check-label" for="jo_allapotu">
-                                                            Jó állapotú
+                                                            @lang('messages.in_good_condition')
                                                         </label>
                                                     </div>
 
@@ -792,7 +792,7 @@
                                                                value="Közepes állapotú"
                                                                name="condition[]" id="kozepes_allapotu">
                                                         <label class="form-check-label" for="kozepes_allapotu">
-                                                            Közepes állapotú
+                                                            @lang('messages.in_medium_condition')
                                                         </label>
                                                     </div>
 
@@ -801,7 +801,7 @@
                                                                value="Felújítandó"
                                                                name="condition[]" id="felujitando">
                                                         <label class="form-check-label" for="felujitando">
-                                                            Felújítandó
+                                                            @lang('messages.to_be_renovated')
                                                         </label>
                                                     </div>
 
@@ -810,7 +810,7 @@
                                                                value="Befejezetlen"
                                                                name="condition[]" id="befejezetlen">
                                                         <label class="form-check-label" for="befejezetlen">
-                                                            Befejezetlen
+                                                            @lang('messages.unfinished')
                                                         </label>
                                                     </div>
                                                 @endif
@@ -836,7 +836,7 @@
                                     </div>
 
                                     <div class="col">
-                                        <x-label for="floor" value="{{ __('Emelet: ') }}"/>
+                                        <x-label for="floor">@lang('messages.floor')</x-label>
                                         <div class="row">
                                             <div class="col">
                                                 @if(isset($floor_min))
@@ -844,40 +844,30 @@
                                                         class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                                         name="floor_min" id="floor_min"
                                                         aria-label="Default select example">
-                                                        <option @if($floor_min == "Mindegy") selected @endif>Mindegy
+                                                        <option @if($floor_min == "Mindegy") selected @endif>@lang('messages.any')
                                                         </option>
                                                         <option value="0" @if($floor_min == 0) selected @endif>
-                                                            Földszint
+                                                            @lang('messages.ground_floor')
                                                         </option>
                                                         <option value="1" @if($floor_min == 1) selected @endif>1.
-                                                            emelet
                                                         </option>
                                                         <option value="2" @if($floor_min == 2) selected @endif>2.
-                                                            emelet
                                                         </option>
                                                         <option value="3" @if($floor_min == 3) selected @endif>3.
-                                                            emelet
                                                         </option>
                                                         <option value="4" @if($floor_min == 4) selected @endif>4.
-                                                            emelet
                                                         </option>
                                                         <option value="5" @if($floor_min == 5) selected @endif>5.
-                                                            emelet
                                                         </option>
                                                         <option value="6" @if($floor_min == 6) selected @endif>6.
-                                                            emelet
                                                         </option>
                                                         <option value="7" @if($floor_min == 7) selected @endif>7.
-                                                            emelet
                                                         </option>
                                                         <option value="8" @if($floor_min == 8) selected @endif>8.
-                                                            emelet
                                                         </option>
                                                         <option value="9" @if($floor_min == 9) selected @endif>9.
-                                                            emelet
                                                         </option>
                                                         <option value="10" @if($floor_min == 10) selected @endif>10.
-                                                            emelet
                                                         </option>
                                                     </select>
                                                 @else
@@ -885,18 +875,18 @@
                                                         class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                                         name="floor_min" id="floor_min"
                                                         aria-label="Default select example">
-                                                        <option selected>Mindegy</option>
-                                                        <option value="0">Földszint</option>
-                                                        <option value="1">1. emelet</option>
-                                                        <option value="2">2. emelet</option>
-                                                        <option value="3">3. emelet</option>
-                                                        <option value="4">4. emelet</option>
-                                                        <option value="5">5. emelet</option>
-                                                        <option value="6">6. emelet</option>
-                                                        <option value="7">7. emelet</option>
-                                                        <option value="8">8. emelet</option>
-                                                        <option value="9">9. emelet</option>
-                                                        <option value="10">10. emelet</option>
+                                                        <option selected>@lang('messages.any')</option>
+                                                        <option value="0">@lang('messages.ground_floor')</option>
+                                                        <option value="1">1.</option>
+                                                        <option value="2">2.</option>
+                                                        <option value="3">3.</option>
+                                                        <option value="4">4.</option>
+                                                        <option value="5">5.</option>
+                                                        <option value="6">6.</option>
+                                                        <option value="7">7.</option>
+                                                        <option value="8">8.</option>
+                                                        <option value="9">9.</option>
+                                                        <option value="10">10.</option>
                                                     </select>
                                                 @endif
 
@@ -907,40 +897,30 @@
                                                         class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                                         name="floor_max" id="floor_max"
                                                         aria-label="Default select example">
-                                                        <option @if($floor_max == "Mindegy") selected @endif>Mindegy
+                                                        <option @if($floor_max == "Mindegy") selected @endif>@lang('messages.any')
                                                         </option>
                                                         <option value="0" @if($floor_max == 0) selected @endif>
-                                                            Földszint
+                                                            @lang('messages.ground_floor')
                                                         </option>
                                                         <option value="1" @if($floor_max == 1) selected @endif>1.
-                                                            emelet
                                                         </option>
                                                         <option value="2" @if($floor_max == 2) selected @endif>2.
-                                                            emelet
                                                         </option>
                                                         <option value="3" @if($floor_max == 3) selected @endif>3.
-                                                            emelet
                                                         </option>
                                                         <option value="4" @if($floor_max == 4) selected @endif>4.
-                                                            emelet
                                                         </option>
                                                         <option value="5" @if($floor_max == 5) selected @endif>5.
-                                                            emelet
                                                         </option>
                                                         <option value="6" @if($floor_max == 6) selected @endif>6.
-                                                            emelet
                                                         </option>
                                                         <option value="7" @if($floor_max == 7) selected @endif>7.
-                                                            emelet
                                                         </option>
                                                         <option value="8" @if($floor_max == 8) selected @endif>8.
-                                                            emelet
                                                         </option>
                                                         <option value="9" @if($floor_max == 9) selected @endif>9.
-                                                            emelet
                                                         </option>
                                                         <option value="10" @if($floor_max == 10) selected @endif>10.
-                                                            emelet
                                                         </option>
                                                     </select>
                                                 @else
@@ -948,49 +928,45 @@
                                                         class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                                         name="floor_max" id="floor_max"
                                                         aria-label="Default select example">
-                                                        <option selected>Mindegy</option>
-                                                        <option value="0">Földszint</option>
-                                                        <option value="1">1. emelet</option>
-                                                        <option value="2">2. emelet</option>
-                                                        <option value="3">3. emelet</option>
-                                                        <option value="4">4. emelet</option>
-                                                        <option value="5">5. emelet</option>
-                                                        <option value="6">6. emelet</option>
-                                                        <option value="7">7. emelet</option>
-                                                        <option value="8">8. emelet</option>
-                                                        <option value="9">9. emelet</option>
-                                                        <option value="10">10. emelet</option>
+                                                        <option selected>@lang('messages.any')</option>
+                                                        <option value="0">@lang('messages.ground_floor')</option>
+                                                        <option value="1">1.</option>
+                                                        <option value="2">2.</option>
+                                                        <option value="3">3.</option>
+                                                        <option value="4">4.</option>
+                                                        <option value="5">5.</option>
+                                                        <option value="6">6.</option>
+                                                        <option value="7">7.</option>
+                                                        <option value="8">8.</option>
+                                                        <option value="9">9.</option>
+                                                        <option value="10">10.</option>
                                                     </select>
                                                 @endif
-
                                             </div>
-
-
                                         </div>
-
                                     </div>
 
                                     <div class="col">
-                                        <x-label for="type" value="{{ __('Típus: ') }}"/>
+                                        <x-label for="type">@lang('messages.type')</x-label>
                                         @if(isset($type))
                                             <select
                                                 class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                                 name="type" id="type" aria-label="Default select example">
-                                                <option @if($type == "Mindegy") selected @endif>Mindegy</option>
+                                                <option @if($type == "Mindegy") selected @endif>@lang('messages.any')</option>
                                                 <option value="Tégla lakás" @if($type == "Tégla lakás") selected @endif>
-                                                    Tégla lakás
+                                                    @lang('messages.brick_built_apartment')
                                                 </option>
                                                 <option value="Panel lakás" @if($type == "Panel lakás") selected @endif>
-                                                    Panel lakás
+                                                    @lang('messages.panel_apartment')
                                                 </option>
                                             </select>
                                         @else
                                             <select
                                                 class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                                 name="type" id="type" aria-label="Default select example">
-                                                <option selected>Mindegy</option>
-                                                <option value="Tégla lakás">Tégla lakás</option>
-                                                <option value="Panel lakás">Panel lakás</option>
+                                                <option selected>@lang('messages.any')</option>
+                                                <option value="Tégla lakás">@lang('messages.brick_built_apartment')</option>
+                                                <option value="Panel lakás">@lang('messages.panel_apartment')</option>
                                             </select>
                                         @endif
 
@@ -1000,40 +976,38 @@
 
                                 <div class="row mt-4">
                                     <div class="col">
-                                        <x-label for="lift" value="{{ __('Lift: ') }}"/>
+                                        <x-label for="lift">@lang('messages.lift')</x-label>
                                         @if(isset($lift))
                                             <select
                                                 class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                                 name="lift" id="lift" aria-label="Default select example">
-                                                <option @if($lift == "Mindegy") selected @endif>Mindegy</option>
-                                                <option value="Van" @if($lift == "Van") selected @endif>Van</option>
+                                                <option @if($lift == "Mindegy") selected @endif>@lang('messages.any')</option>
+                                                <option value="Van" @if($lift == "Van") selected @endif>@lang('messages.there_is')</option>
                                             </select>
                                         @else
                                             <select
                                                 class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                                 name="lift" id="lift" aria-label="Default select example">
-                                                <option selected>Mindegy</option>
-                                                <option value="Van">Van</option>
+                                                <option selected>@lang('messages.any')</option>
+                                                <option value="Van">@lang('messages.there_is')</option>
                                             </select>
                                         @endif
 
                                     </div>
 
                                     <div class="col">
-                                        <x-label for="inner_height" value="{{ __('Belmagasság: ') }}"/>
+                                        <x-label for="inner_height">@lang('messages.inner_height')</x-label>
                                         @if(isset($inner_height))
                                             <select
                                                 class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                                 name="inner_height" id="inner_height"
                                                 aria-label="Default select example">
-                                                <option @if($inner_height == "Mindegy") selected @endif>Mindegy</option>
+                                                <option @if($inner_height == "Mindegy") selected @endif>@lang('messages.any')</option>
                                                 <option value="3 méternél alacsonyabb"
-                                                        @if($inner_height == "3 méternél alacsonyabb") selected @endif>3
-                                                    méternél alacsonyabb
+                                                        @if($inner_height == "3 méternél alacsonyabb") selected @endif>@lang('messages.less_then_3')
                                                 </option>
                                                 <option value="3 méter vagy magasabb"
-                                                        @if($inner_height == "3 méter vagy magasabb") selected @endif>3
-                                                    méter vagy magasabb
+                                                        @if($inner_height == "3 méter vagy magasabb") selected @endif>@lang('messages.3_or_higher')
                                                 </option>
                                             </select>
                                         @else
@@ -1041,24 +1015,24 @@
                                                 class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                                 name="inner_height" id="inner_height"
                                                 aria-label="Default select example">
-                                                <option selected>Mindegy</option>
-                                                <option value="3 méternél alacsonyabb">3 méternél alacsonyabb</option>
-                                                <option value="3 méter vagy magasabb">3 méter vagy magasabb</option>
+                                                <option selected>@lang('messages.any')</option>
+                                                <option value="3 méternél alacsonyabb">@lang('messages.less_then_3')</option>
+                                                <option value="3 méter vagy magasabb">@lang('messages.3_or_higher')</option>
                                             </select>
                                         @endif
 
                                     </div>
 
                                     <div class="col">
-                                        <x-label for="air_conditioner" value="{{ __('Légkondícionáló: ') }}"/>
+                                        <x-label for="air_conditioner">@lang('messages.air_conditioner')</x-label>
                                         @if(isset($air_conditioner))
                                             <select
                                                 class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                                 name="air_conditioner" id="air_conditioner"
                                                 aria-label="Default select example">
-                                                <option @if($air_conditioner == "Mindegy") selected @endif>Mindegy
+                                                <option @if($air_conditioner == "Mindegy") selected @endif>@lang('messages.any')
                                                 </option>
-                                                <option value="Van" @if($air_conditioner == "Vam") selected @endif>Van
+                                                <option value="Van" @if($air_conditioner == "Vam") selected @endif>@lang('messages.there_is')
                                                 </option>
                                             </select>
                                         @else
@@ -1066,8 +1040,8 @@
                                                 class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                                 name="air_conditioner" id="air_conditioner"
                                                 aria-label="Default select example">
-                                                <option selected>Mindegy</option>
-                                                <option value="Van">Van</option>
+                                                <option selected>@lang('messages.any')</option>
+                                                <option value="Van">@lang('messages.there_is')</option>
                                             </select>
                                         @endif
 
@@ -1076,31 +1050,31 @@
 
                                 <div class="row mt-4">
                                     <div class="col">
-                                        <x-label for="accessible" value="{{ __('Akadálymentesített: ') }}"/>
+                                        <x-label for="accessible">@lang('messages.accessible')</x-label>
                                         @if(isset($accessible))
                                             <select
                                                 class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                                 name="accessible" id="accessible" aria-label="Default select example">
-                                                <option @if($accessible == "Mindegy") selected @endif>Mindegy</option>
-                                                <option value="Igen" @if($accessible == "Igen") selected @endif>Igen
+                                                <option @if($accessible == "Mindegy") selected @endif>@lang('messages.any')</option>
+                                                <option value="Igen" @if($accessible == "Igen") selected @endif>@lang('messages.there_is')
                                                 </option>
                                             </select>
                                         @else
                                             <select
                                                 class="form-select block mt-1 w-full h-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                                 name="accessible" id="accessible" aria-label="Default select example">
-                                                <option selected>Mindegy</option>
-                                                <option value="Igen">Igen</option>
+                                                <option selected>@lang('messages.any')</option>
+                                                <option value="Igen">@lang('messages.there_is')</option>
                                             </select>
                                         @endif
 
                                     </div>
 
-                                    <div class="col">
+                                    <div class="col mt-4">
                                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#parking" aria-expanded="false"
                                                 aria-controls="collapseExample">
-                                            Parkolás:
+                                            @lang('messages.parking')
                                         </button>
                                         <div class="collapse" id="parking">
                                             <div class="card card-body">
@@ -1112,7 +1086,7 @@
                                                                    name="mindegy_parking" id="mindegy_parking"
                                                                    onchange="Parking()">
                                                             <label class="form-check-label" for="mindegy_parking">
-                                                                Mindegy
+                                                                @lang('messages.any')
                                                             </label>
                                                         </div>
                                                     </div>
@@ -1125,7 +1099,7 @@
                                                                name="parking[]" id="udvari_beálló"
                                                                @if(in_array("Udvari beálló", $parking)) checked @endif>
                                                         <label class="form-check-label" for="udvari_beálló">
-                                                            Udvari beálló
+                                                            @lang('messages.court_stand')
                                                         </label>
                                                     </div>
 
@@ -1134,7 +1108,7 @@
                                                                name="parking[]" id="garazs"
                                                                @if(in_array("Garázs", $parking)) checked @endif>
                                                         <label class="form-check-label" for="garazs">
-                                                            Garázs
+                                                            @lang('messages.garage')
                                                         </label>
                                                     </div>
 
@@ -1144,7 +1118,7 @@
                                                                name="parking[]" id="onallo_garazs"
                                                                @if(in_array("Önálló garázs", $parking)) checked @endif>
                                                         <label class="form-check-label" for="onallo_garazs">
-                                                            Önálló garázs
+                                                            @lang('messages.detached_garage')
                                                         </label>
                                                     </div>
 
@@ -1154,7 +1128,7 @@
                                                                name="parking[]" id="utca"
                                                                @if(in_array("Utca, közterület", $parking)) checked @endif>
                                                         <label class="form-check-label" for="utca">
-                                                            Utca, közterület
+                                                            @lang('messages.street_public_space')
                                                         </label>
                                                     </div>
                                                 @else
@@ -1163,7 +1137,7 @@
                                                                value="Udvari beálló"
                                                                name="parking[]" id="udvari_beálló">
                                                         <label class="form-check-label" for="udvari_beálló">
-                                                            Udvari beálló
+                                                            @lang('messages.court_stand')
                                                         </label>
                                                     </div>
 
@@ -1171,7 +1145,7 @@
                                                         <input class="form-check-input" type="checkbox" value="Garázs"
                                                                name="parking[]" id="garazs">
                                                         <label class="form-check-label" for="garazs">
-                                                            Garázs
+                                                            @lang('messages.garage')
                                                         </label>
                                                     </div>
 
@@ -1180,7 +1154,7 @@
                                                                value="Önálló garázs"
                                                                name="parking[]" id="onallo_garazs">
                                                         <label class="form-check-label" for="onallo_garazs">
-                                                            Önálló garázs
+                                                            @lang('messages.detached_garage')
                                                         </label>
                                                     </div>
 
@@ -1189,7 +1163,7 @@
                                                                value="Utca, közterület"
                                                                name="parking[]" id="utca">
                                                         <label class="form-check-label" for="utca">
-                                                            Utca, közterület
+                                                            @lang('messages.street_public_space')
                                                         </label>
                                                     </div>
                                                 @endif
@@ -1213,15 +1187,11 @@
                                         </script>
                                     </div>
 
-                                    <div class="col">
-
-                                    </div>
-
-                                    <div class="col">
+                                    <div class="col mt-4">
                                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#heating" aria-expanded="false"
                                                 aria-controls="collapseExample">
-                                            Fűtés:
+                                            @lang('messages.heating')
                                         </button>
                                         <div class="collapse" id="heating">
                                             <div class="card card-body">
@@ -1233,7 +1203,7 @@
                                                                    name="mindegy_heating" id="mindegy_heating"
                                                                    onchange="Heating()">
                                                             <label class="form-check-label" for="mindegy_heating">
-                                                                Mindegy
+                                                                @lang('messages.any')
                                                             </label>
                                                         </div>
                                                     </div>
@@ -1246,7 +1216,7 @@
                                                                name="heating[]" id="gaz"
                                                                @if(in_array("Gáz (konvektor)", $heating)) checked @endif>
                                                         <label class="form-check-label" for="gaz">
-                                                            Gáz (konvektor)
+                                                            @lang('messages.gas_convector')
                                                         </label>
                                                     </div>
 
@@ -1256,7 +1226,7 @@
                                                                name="heating[]" id="hazkozponti"
                                                                @if(in_array("Házközponti", $heating)) checked @endif>
                                                         <label class="form-check-label" for="hazkozponti">
-                                                            Házközponti
+                                                            @lang('messages.central_heating')
                                                         </label>
                                                     </div>
 
@@ -1265,7 +1235,7 @@
                                                                name="heating[]" id="tavfutes"
                                                                @if(in_array("Távfűtés", $heating)) checked @endif>
                                                         <label class="form-check-label" for="tavfutes">
-                                                            Távfűtés
+                                                            @lang('messages.district_heating')
                                                         </label>
                                                     </div>
 
@@ -1275,7 +1245,7 @@
                                                                name="heating[]" id="elektromos_konvektor"
                                                                @if(in_array("Elektromos konvektor", $heating)) checked @endif>
                                                         <label class="form-check-label" for="elektromos_konvektor">
-                                                            Elektromos konvektor
+                                                            @lang('messages.electric_convector')
                                                         </label>
                                                     </div>
 
@@ -1285,16 +1255,16 @@
                                                                name="heating[]" id="elektromos_futopanel"
                                                                @if(in_array("Elektromos fűtőpanel", $heating)) checked @endif>
                                                         <label class="form-check-label" for="elektromos_futopanel">
-                                                            Elektromos fűtőpanel
+                                                            @lang('messages.electric_heating_panel')
                                                         </label>
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Klíma"
+                                                        <input class="form-check-input" type="checkbox" value="Légkondicionáló"
                                                                name="heating[]" id="klima"
-                                                               @if(in_array("Klíma", $heating)) checked @endif>
+                                                               @if(in_array("Légkondicionáló", $heating)) checked @endif>
                                                         <label class="form-check-label" for="klima">
-                                                            Klíma
+                                                            @lang('messages.air_conditioner')
                                                         </label>
                                                     </div>
 
@@ -1303,7 +1273,7 @@
                                                                name="heating[]" id="kandallo"
                                                                @if(in_array("Kandalló", $heating)) checked @endif>
                                                         <label class="form-check-label" for="kandallo">
-                                                            Kandalló
+                                                            @lang('messages.fireplace')
                                                         </label>
                                                     </div>
 
@@ -1312,7 +1282,7 @@
                                                                name="heating[]" id="kalyha"
                                                                @if(in_array("Kályha", $heating)) checked @endif>
                                                         <label class="form-check-label" for="kalyha">
-                                                            Kályha
+                                                            @lang('messages.stove')
                                                         </label>
                                                     </div>
 
@@ -1322,7 +1292,7 @@
                                                                name="heating[]" id="cserepkalyha"
                                                                @if(in_array("Cserépkájha", $heating)) checked @endif>
                                                         <label class="form-check-label" for="cserepkalyha">
-                                                            Cserépkájha
+                                                            @lang('messages.tile_stove')
                                                         </label>
                                                     </div>
 
@@ -1332,7 +1302,7 @@
                                                                name="heating[]" id="padlofutes"
                                                                @if(in_array("Padlófűtés", $heating)) checked @endif>
                                                         <label class="form-check-label" for="padlofutes">
-                                                            Padlófűtés
+                                                            @lang('messages.floor_heating')
                                                         </label>
                                                     </div>
 
@@ -1341,7 +1311,7 @@
                                                                name="heating[]" id="falfutes"
                                                                @if(in_array("Falfűtés", $heating)) checked @endif>
                                                         <label class="form-check-label" for="falfutes">
-                                                            Falfűtés
+                                                            @lang('messages.wall_heating')
                                                         </label>
                                                     </div>
                                                 @else
@@ -1350,7 +1320,7 @@
                                                                value="Gáz (konvektor)"
                                                                name="heating[]" id="gaz">
                                                         <label class="form-check-label" for="gaz">
-                                                            Gáz (konvektor)
+                                                            @lang('messages.gas_convector')
                                                         </label>
                                                     </div>
 
@@ -1359,7 +1329,7 @@
                                                                value="Házközponti"
                                                                name="heating[]" id="hazkozponti">
                                                         <label class="form-check-label" for="hazkozponti">
-                                                            Házközponti
+                                                            @lang('messages.central_heating')
                                                         </label>
                                                     </div>
 
@@ -1367,7 +1337,7 @@
                                                         <input class="form-check-input" type="checkbox" value="Távfűtés"
                                                                name="heating[]" id="tavfutes">
                                                         <label class="form-check-label" for="tavfutes">
-                                                            Távfűtés
+                                                            @lang('messages.district_heating')
                                                         </label>
                                                     </div>
 
@@ -1376,7 +1346,7 @@
                                                                value="Elektromos konvektor"
                                                                name="heating[]" id="elektromos_konvektor">
                                                         <label class="form-check-label" for="elektromos_konvektor">
-                                                            Elektromos konvektor
+                                                            @lang('messages.electric_convector')
                                                         </label>
                                                     </div>
 
@@ -1385,15 +1355,15 @@
                                                                value="Elektromos fűtőpanel"
                                                                name="heating[]" id="elektromos_futopanel">
                                                         <label class="form-check-label" for="elektromos_futopanel">
-                                                            Elektromos fűtőpanel
+                                                            @lang('messages.electric_heating_panel')
                                                         </label>
                                                     </div>
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="Klíma"
+                                                        <input class="form-check-input" type="checkbox" value="Légkondicionáló"
                                                                name="heating[]" id="klima">
                                                         <label class="form-check-label" for="klima">
-                                                            Klíma
+                                                            @lang('messages.air_conditioner')
                                                         </label>
                                                     </div>
 
@@ -1401,7 +1371,7 @@
                                                         <input class="form-check-input" type="checkbox" value="Kandalló"
                                                                name="heating[]" id="kandallo">
                                                         <label class="form-check-label" for="kandallo">
-                                                            Kandalló
+                                                            @lang('messages.fireplace')
                                                         </label>
                                                     </div>
 
@@ -1409,7 +1379,7 @@
                                                         <input class="form-check-input" type="checkbox" value="Kályha"
                                                                name="heating[]" id="kalyha">
                                                         <label class="form-check-label" for="kalyha">
-                                                            Kályha
+                                                            @lang('messages.stove')
                                                         </label>
                                                     </div>
 
@@ -1418,7 +1388,7 @@
                                                                value="Cserépkájha"
                                                                name="heating[]" id="cserepkalyha">
                                                         <label class="form-check-label" for="cserepkalyha">
-                                                            Cserépkájha
+                                                            @lang('messages.tile_stove')
                                                         </label>
                                                     </div>
 
@@ -1427,7 +1397,7 @@
                                                                value="Padlófűtés"
                                                                name="heating[]" id="padlofutes">
                                                         <label class="form-check-label" for="padlofutes">
-                                                            Padlófűtés
+                                                            @lang('messages.floor_heating')
                                                         </label>
                                                     </div>
 
@@ -1435,7 +1405,7 @@
                                                         <input class="form-check-input" type="checkbox" value="Falfűtés"
                                                                name="heating[]" id="falfutes">
                                                         <label class="form-check-label" for="falfutes">
-                                                            Falfűtés
+                                                            @lang('messages.wall_heating')
                                                         </label>
                                                     </div>
                                                 @endif
@@ -1461,7 +1431,7 @@
                                     </div>
                                 </div>
                                 <div class="row mt-4 d-flex justify-content-center">
-                                    <button class="btn btn-outline-primary width-33">Keresés</button>
+                                    <button class="btn btn-outline-primary width-33">@lang('messages.search')</button>
                                 </div>
                             </div>
                         </div>
@@ -1534,7 +1504,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="properties/{{$property->id}}" class="btn btn-primary">Go somewhere</a>
+                                <a href="properties/{{$property->id}}" class="btn btn-primary">@lang('messages.details')</a>
                             </div>
                         </div>
                     </div>

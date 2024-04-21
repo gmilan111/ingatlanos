@@ -43,49 +43,61 @@
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link {{request()->is('/')?'active a-fejlec':''}} fejlec" aria-current="page"
-                           href="/">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Kezdőlap", app()->getLocale()) }}</a>
+                           href="/">@lang('messages.homepage')</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{request()->is('properties')?'active a-fejlec':''}} fejlec"
-                           href="{{route('properties.index')}}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Ingatlanok", app()->getLocale()) }}</a>
+                           href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{route('agents.index')}}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Kollégáink", app()->getLocale()) }}</a>
+                        <a class="nav-link fejlec" href="{{route('agents.index')}}">@lang('messages.agents')</a>
+                    </li>
+                    <li class="nav-item">
+                        <select class="form-select changeLang">
+                            <option value="hu" {{session()->get('locale') == 'hu' ? 'selected' : ''}}>Magyar</option>
+                            <option value="en" {{session()->get('locale') == 'en' ? 'selected' : ''}}>English</option>
+                        </select>
                     </li>
                 </ul>
             @elseif(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'i')
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link {{request()->is('/')?'active a-fejlec':''}} fejlec" aria-current="page"
-                           href="/">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Kezdőlap", app()->getLocale()) }}</a>
+                           href="/">@lang('messages.homepage')</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{request()->is('properties') ? 'active a-fejlec' : (request()->is('properties/store') ? 'active a-fejlec' : (request()->is('properties/*') ? 'active a-fejlec' : (request()->is('search*') ? 'active a-fejlec' : '')))}} fejlec"
-                           href="{{route('properties.index')}}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Ingatlanok", app()->getLocale()) }}</a>
+                           href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{route('properties.create')}}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Új Ingatlan Hozzáadása", app()->getLocale()) }}</a>
+                        <a class="nav-link fejlec" href="{{route('properties.create')}}">@lang('messages.add_new_property')</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{request()->is('properties_own')?'active a-fejlec':''}} fejlec"
-                           href="{{route('properties.own')}}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Saját Ingatlanok", app()->getLocale()) }}</a>
-                    </li>
-                </ul>
-            @else
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active a-fejlec fejlec" aria-current="page" href="/">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Kezdőlap", app()->getLocale()) }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{route('properties.index')}}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Ingatlanok", app()->getLocale()) }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{route('agents.index')}}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Kollégáink", app()->getLocale()) }}</a>
+                           href="{{route('properties.own')}}">@lang('messages.own_properties')</a>
                     </li>
                     <li class="nav-item">
                         <select class="form-select changeLang">
                             <option value="hu" {{session()->get('locale') == 'hu' ? 'selected' : ''}}>Magyar</option>
                             <option value="en" {{session()->get('locale') == 'en' ? 'selected' : ''}}>English</option>
+                        </select>
+                    </li>
+                </ul>
+            @else
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active a-fejlec fejlec" aria-current="page" href="/">@lang('messages.homepage')</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fejlec" href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fejlec" href="{{route('agents.index')}}">@lang('messages.agents')</a>
+                    </li>
+                    <li class="nav-item">
+                        <select class="form-select changeLang">
+                            <option value="hu" {{session()->get('locale') == 'hu' ? 'selected' : ''}}><a href="locale/hu" class="text-decoration-none">Magyar</a> </option>
+                            <option value="en" {{session()->get('locale') == 'en' ? 'selected' : ''}}><a href="locale/en" class="text-decoration-none">English</a> </option>
                         </select>
                     </li>
                 </ul>
@@ -99,10 +111,10 @@
                     @livewire('navigation-menu')
                 @else
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{ route('register') }}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Regisztráció", app()->getLocale()) }}</a>
+                        <a class="nav-link fejlec" href="{{ route('register') }}">@lang('messages.registration')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{ route('login') }}">{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans("Bejelentkezés", app()->getLocale()) }}</a>
+                        <a class="nav-link fejlec" href="{{ route('login') }}">@lang('messages.login')</a>
                     </li>
                 @endauth
             </ul>
@@ -133,7 +145,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">{{__('Hírlevél beállítások')}}</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">@lang('messages.newsletter_settings')</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -604,8 +616,8 @@
                             @endif
                         </div>
                         <div class="mt-4 modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button class="btn btn-primary">Understood</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('messages.back')</button>
+                            <button class="btn btn-primary">@lang('messages.save')</button>
                         </div>
                     </form>
                 </div>
@@ -623,27 +635,25 @@
 <footer class="py-3 mt-4 shadow-lg">
     @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Kezdőlap</a></li>
-            <li class="nav-item"><a href="{{route('properties.index')}}" class="nav-link px-2 text-body-secondary">Ingatlanok</a>
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">@lang('messages.homepage')</a></li>
+            <li class="nav-item"><a href="{{route('properties.index')}}" class="nav-link px-2 text-body-secondary">@lang('messages.real_estates')</a>
             </li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Kollégáink</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">@lang('messages.agents')</a></li>
         </ul>
     @elseif(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'i')
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Kezdőlap</a></li>
-            <li class="nav-item"><a href="{{route('properties.index')}}" class="nav-link px-2 text-body-secondary">Ingatlanok</a>
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">@lang('messages.homepage')</a></li>
+            <li class="nav-item"><a href="{{route('properties.index')}}" class="nav-link px-2 text-body-secondary">@lang('messages.real_estates')</a>
             </li>
-            <li class="nav-item"><a href="{{route('properties.create')}}" class="nav-link px-2 text-body-secondary">Új
-                    Ingatlan Hozzáadása</a></li>
-            <li class="nav-item"><a href="{{route('properties.own')}}" class="nav-link px-2 text-body-secondary">Saját
-                    Ingatlanok</a></li>
+            <li class="nav-item"><a href="{{route('properties.create')}}" class="nav-link px-2 text-body-secondary">@lang('messages.add_new_property')</a></li>
+            <li class="nav-item"><a href="{{route('properties.own')}}" class="nav-link px-2 text-body-secondary">@lang('messages.own_properties')</a></li>
         </ul>
     @else
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Kezdőlap</a></li>
-            <li class="nav-item"><a href="{{route('properties.index')}}" class="nav-link px-2 text-body-secondary">Ingatlanok</a>
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">@lang('messages.homepage')</a></li>
+            <li class="nav-item"><a href="{{route('properties.index')}}" class="nav-link px-2 text-body-secondary">@lang('messages.real_estates')</a>
             </li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Kollégáink</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">@lang('messages.agents')</a></li>
         </ul>
     @endif
     <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
