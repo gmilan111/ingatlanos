@@ -1,44 +1,5 @@
 <x-layout>
     <div class="container margin-top">
-        <form action="{{route('own.properties.search')}}" method="POST" class="mb-5">
-            @csrf
-            <div class="input-group margin-top row">
-                <div class="col">
-                    <label for="sale" class="flex items-center">
-                        @if(isset($sale_rent) && $sale_rent == 'sale')
-                            <x-input checked id="sale" name="sale_rent" onclick="salerent()" type="radio" value="sale"/>
-                            <span class="ms-2 text-sm text-gray-600">@lang('messages.for_sale')</span>
-                        @else
-                            <x-input id="sale" name="sale_rent" onclick="salerent()" type="radio" value="sale"/>
-                            <span class="ms-2 text-sm text-gray-600">@lang('messages.for_sale')</span>
-                        @endif
-                    </label>
-                    <label for="rent" class="flex items-center">
-                        @if(isset($sale_rent) && $sale_rent == 'rent')
-                            <x-input id="rent" name="sale_rent" onclick="salerent()" checked type="radio" value="rent"/>
-                            <span class="ms-2 text-sm text-gray-600">@lang('messages.for_rent')</span>
-                        @else
-                            <x-input id="rent" name="sale_rent" onclick="salerent()" type="radio" value="rent"/>
-                            <span class="ms-2 text-sm text-gray-600">@lang('messages.for_rent')</span>
-                        @endif
-                    </label>
-                </div>
-                <div class="col">
-                    @if(isset($settlement_search))
-                        <input type="search" class="form-control rounded" placeholder="@lang('messages.settlement')" aria-label="Search"
-                               name="settlement_search"
-                               aria-describedby="search-addon" value="{{$settlement_search}}"/>
-                    @else
-                        <input type="search" class="form-control rounded" placeholder="@lang('messages.settlement')" aria-label="Search"
-                               name="settlement_search"
-                               aria-describedby="search-addon"/>
-                    @endif
-                </div>
-                <div class="col">
-                    <button class="btn btn-outline-primary">@lang('messages.search')</button>
-                </div>
-            </div>
-        </form>
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-offer-tab" data-bs-toggle="tab" data-bs-target="#nav-offer"
@@ -53,7 +14,7 @@
             <div class="tab-pane fade show active p-3" id="nav-offer" role="tabpanel" aria-labelledby="nav-offer-tab">
                 <div class="row">
                     @foreach($properties as $property)
-                        @if(!$property->sold && !$property->auction)
+                        @if(!$property->sold)
                             @php
                                 $address = ($property->settlement).','.' '.($property->address).'.';
                             @endphp
@@ -118,7 +79,7 @@
             <div class="tab-pane fade p-3" id="nav-sold" role="tabpanel" aria-labelledby="nav-sold-tab">
                 <div class="row">
                     @foreach($properties as $property)
-                        @if($property->sold && !$property->auction)
+                        @if($property->sold)
                             @php
                                 $address = ($property->settlement).','.' '.($property->address).'.';
                             @endphp

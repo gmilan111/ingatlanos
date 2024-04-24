@@ -47,6 +47,9 @@ return new class extends Migration
             $table->string('smoking')->default('Nincs megadva')->nullable();
             $table->string('animal')->default('Nincs megadva')->nullable();
             $table->string('sale_rent');
+            $table->boolean('auction')->default(false);
+            $table->double('deposit')->nullable();
+            $table->integer('immediate_purchase')->nullable();
 
             $table->timestamps();
         });

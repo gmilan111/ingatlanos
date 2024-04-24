@@ -96,8 +96,14 @@
                                  :value="old('bathrooms')" required autocomplete="bathrooms"/>
                     </div>
 
-                    <div class="col">
+                    <div class="col" id="price">
                         <x-label for="price">@lang('messages.price')</x-label>
+                        <x-input id="price" class="block mt-1 w-full" type="number" name="price" :value="old('price')"
+                                 required autocomplete="price"/>
+                    </div>
+
+                    <div class="col" style="display: none" id="starting_price">
+                        <x-label for="price">Kezdőár</x-label>
                         <x-input id="price" class="block mt-1 w-full" type="number" name="price" :value="old('price')"
                                  required autocomplete="price"/>
                     </div>
@@ -332,31 +338,25 @@
                 </div>
 
                 {{--<div class="row mt-4">
-
-
                     <div class="col">
-                        <x-label for="price" value="{{ __('Ár: ') }}" />
-                        <x-input id="price" class="block mt-1 w-full" type="number" name="price" :value="old('price')" required autocomplete="price" />
+                        <label for="auction" class="flex items-center">
+                            <x-input id="auction" name="auction" type="radio" value="{{true}}" required
+                                     autocomplete="{{true}}"/>
+                            <span class="ms-2 text-sm text-gray-600">Árverésre bocsátás</span>
+                        </label>
                     </div>
-
-
                 </div>--}}
 
                 <div class="row mt-4">
-                    {{--<div class="col">
-                        <x-label for="price" value="{{ __('Ár: ') }}" />
-                        <x-input id="price" class="block mt-1 w-full" type="number" name="price" :value="old('price')" required autocomplete="price" />
-                    </div>--}}
-
                     <div class="col">
                         <x-label for="formFiles">@lang('messages.main_img')</x-label>
-                        <x-input class="form-control block mt-2 w-full" type="file" id="main_img" name="main_img"/>
+                        <x-input class="form-control block mt-2 w-full" type="file" id="main_img" name="main_img" required/>
                     </div>
 
                     <div class="col">
                         <x-label for="formFiles">@lang('messages.images')</x-label>
                         <x-input class="form-control block mt-2 w-full" type="file" id="formFile" name="images[]"
-                                 multiple/>
+                                 multiple required/>
                     </div>
 
                 </div>
@@ -367,6 +367,27 @@
                         <textarea class="block mt-1 w-full rounded border-gray-300" id="descrpition" name="description"
                                   required></textarea>
                     </div>
+                </div>
+
+                <div class="row mt-4" style="display: none" id="auctions_info">
+                    <div class="col-sm-4">
+                        <x-label for="deposit">Letét (%-ban)</x-label>
+                        <x-input id="deposit" class="block mt-1 w-full" type="number" name="deposit" :value="old('deposit')"
+                                 autocomplete="deposit"/>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <x-label for="immediate_purchase">Azonnali vételár</x-label>
+                        <x-input id="immediate_purchase" class="block mt-1 w-full" type="number" name="immediate_purchase" :value="old('immediate_purchase')"
+                                 autocomplete="immediate_purchase"/>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-end mt-4">
+                    <label class="btn btn-block btn-success active">
+                        <x-input id="auction" name="auction" type="checkbox" onclick="auctions()" value="{{true}}"/>
+                        <span class="ms-2 text-sm text-gray-600">Árverésre bocsátás</span>
+                    </label>
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
