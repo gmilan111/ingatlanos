@@ -38,6 +38,9 @@
                                 <x-dropdown-link href="{{ route('liked.index') }}">
                                     @lang('messages.liked_properties')
                                 </x-dropdown-link>
+                                <x-dropdown-link href="{{ route('likedauctions.index') }}">
+                                    Kedvenc aukciók
+                                </x-dropdown-link>
                                 <x-dropdown-link href="{{ route('profile.show') }}">
                                     @lang('messages.profile')
                                 </x-dropdown-link>
@@ -45,8 +48,13 @@
                                     @lang('messages.newsletter_settings')
                                 </x-dropdown-link>
 
-
                             @else
+                                <x-dropdown-link href="{{route('properties.own')}}">
+                                    @lang('messages.own_properties')
+                                </x-dropdown-link>
+                                <x-dropdown-link href="{{route('auctions.own')}}">
+                                    Saját aukciók
+                                </x-dropdown-link>
                                 <x-dropdown-link href="{{ route('profile.show') }}">
                                     @lang('messages.profile')
                                 </x-dropdown-link>

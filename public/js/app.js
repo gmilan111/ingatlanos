@@ -33,11 +33,23 @@ function plusinfo () {
     }
 }
 
-function salerent(){
-    if(document.getElementById("rent").checked){
+function salerent() {
+    if (document.getElementById("rent").checked) {
         document.getElementById("rent_part").style.display = "flex";
-    }else{
+    } else {
         document.getElementById("rent_part").style.display = "none"
+    }
+}
+
+function auctions(){
+    if(document.getElementById('auction').checked){
+        document.getElementById('auctions_info').style.display = "flex";
+        document.getElementById('starting_price').style.display = "flex";
+        document.getElementById('price').style.display = "none";
+    }else{
+        document.getElementById('auctions_info').style.display = "none";
+        document.getElementById('starting_price').style.display = "none";
+        document.getElementById('price').style.display = "flex";
     }
 }
 

@@ -152,8 +152,7 @@
                 <div class="mt-4">
                     <label for="email_notification" class="flex items-center">
                         <x-input id="email_notification" name="email_notification" type="checkbox" value="{{true}}"/>
-                        <span
-                            class="ms-2 text-sm text-gray-600">@lang('messages.newsletter')</span>
+                        <span class="ms-2 text-sm text-gray-600">@lang('messages.newsletter')</span>
                     </label>
                 </div>
 

@@ -49,6 +49,8 @@
                         <a class="nav-link {{request()->is('properties')?'active a-fejlec':''}} fejlec"
                            href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
                     </li>
+
+                    <li class="nav-item"><a href="{{route('auctions.index')}}" class="nav-link fejlec">Aukciók</a></li>
                     <li class="nav-item">
                         <a class="nav-link fejlec" href="{{route('agents.index')}}">@lang('messages.agents')</a>
                     </li>
@@ -72,10 +74,11 @@
                     <li class="nav-item">
                         <a class="nav-link fejlec" href="{{route('properties.create')}}">@lang('messages.add_new_property')</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item"><a href="{{route('auctions.index')}}" class="nav-link fejlec">Aukciók</a></li>
+                    {{--<li class="nav-item">
                         <a class="nav-link {{request()->is('properties_own')?'active a-fejlec':''}} fejlec"
                            href="{{route('properties.own')}}">@lang('messages.own_properties')</a>
-                    </li>
+                    </li>--}}
                     <li class="nav-item">
                         <select class="form-select changeLang">
                             <option value="hu" {{session()->get('locale') == 'hu' ? 'selected' : ''}}>Magyar</option>
@@ -636,8 +639,8 @@
     @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">@lang('messages.homepage')</a></li>
-            <li class="nav-item"><a href="{{route('properties.index')}}" class="nav-link px-2 text-body-secondary">@lang('messages.real_estates')</a>
-            </li>
+            <li class="nav-item"><a href="{{route('properties.index')}}" class="nav-link px-2 text-body-secondary">@lang('messages.real_estates')</a></li>
+            <li class="nav-item"><a href="{{route('auctions.index')}}" class="nav-link px-2 text-body-secondary">Aukciók</a></li>
             <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">@lang('messages.agents')</a></li>
         </ul>
     @elseif(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'i')

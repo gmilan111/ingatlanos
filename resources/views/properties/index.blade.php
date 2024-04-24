@@ -1446,7 +1446,7 @@
             @endif
 
             @foreach($properties as $property)
-                @if(!$property->sold)
+                @if(!$property->sold && !$property->auction)
                     @php
                         $address = ($property->settlement).','.' '.($property->address).'.';
                     @endphp

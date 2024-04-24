@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Notification;
+use App\Models\Auctions;
 use App\Models\Images;
 use App\Models\MainImage;
 use App\Models\Properties;
@@ -67,11 +68,22 @@ class PropertiesController extends Controller
             'smoking' => 'nullable|string',
             'animal' => 'nullable|string',
             'sale_rent' => ['required'],
+            'deposit' => 'nullable',
+            'immediate_purchase' => 'nullable|integer',
         ]);
 
+        $formfields['auction'] = $request['auction'] ?? false;
         $formfields['user_id'] = auth()->id();
 
         $newProperty = Properties::create($formfields);
+
+        if($newProperty->auction){
+            $auctions['properties_id'] = $newProperty->id;
+            $auctions['price'] = $newProperty->price;
+            $auctions['closed'] = false;
+
+            Auctions::create($auctions);
+        }
 
         if ($files = $request->file('images')) {
             foreach ($files as $file) {
@@ -127,8 +139,6 @@ class PropertiesController extends Controller
 
     public function show($property)
     {
-
-
         return view('properties.show', [
             'properties' => DB::table('properties')->select('*')->where('properties.id', '=', $property)->get(),
             'images' => DB::table('images')->select('*')->where('images.properties_id', '=', $property)->get(),

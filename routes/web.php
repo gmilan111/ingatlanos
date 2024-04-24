@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\AgentsController;
+use App\Http\Controllers\AuctionsController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\LangController;
+use App\Http\Controllers\LikedAuctionsController;
 use App\Http\Controllers\LikedPropertiesController;
 use App\Http\Controllers\MainImageController;
 use App\Http\Controllers\PropertiesController;
@@ -102,6 +104,27 @@ Route::get('lang/change', [LangController::class, 'change'])->name('changeLang')
 
 #Nyelv megváltoztatása 2.0
 Route::get('locale/{lang}', [LangController::class, 'setLocale']);
+
+#Aukciok megjelenitese
+Route::get('/auctions', [AuctionsController::class, 'index'])->name('auctions.index');
+
+#Aukcuó részletes megjelenítés
+Route::get('/auctions/{auction_id}', [AuctionsController::class, 'show']);
+
+#Ingatlanos saját aukciók
+Route::get('/auctions_own', [AuctionsController::class, 'show_own'])->name('auctions.own');
+
+#Felhasználó által belikeolt aukció(k) megjelenítése
+Route::get('liked_auctions', [LikedAuctionsController::class, 'index'])->name('likedauctions.index');
+
+#Aukció kedvelése
+Route::post('liked_auction/{data}', [LikedAuctionsController::class, 'store']);
+
+#Aukció kedvelésének törlése
+Route::get('liked_auction/delete/{data}', [LikedAuctionsController::class, 'destroy']);
+
+#Már kedvelt auckió törlése
+Route::get('own_liked_auction/delete/{data}', [LikedAuctionsController::class, 'destroy_liked']);
 
 Route::middleware([
     'auth:sanctum',

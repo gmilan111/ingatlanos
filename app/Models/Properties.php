@@ -48,6 +48,8 @@ class Properties extends Model
         'smoking',
         'animal',
         'sale_rent',
-
+        'auction',
+        'deposit',
+        'immediate_purchase',
     ];
 }
