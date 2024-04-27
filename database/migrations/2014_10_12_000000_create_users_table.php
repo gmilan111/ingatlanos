@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->boolean('email_notification')->default(false);
             $table->json('notification_state')->nullable();
+            $table->boolean('auction_entered')->default(false);
             $table->timestamps();
         });
     }

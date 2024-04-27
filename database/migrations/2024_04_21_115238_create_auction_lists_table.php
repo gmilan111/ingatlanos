@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('auction_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer('offer');
+            $table->boolean('buy_now')->default(false);
             $table->timestamps();
         });
     }

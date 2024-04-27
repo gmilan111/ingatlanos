@@ -51,5 +51,6 @@ class Properties extends Model
         'auction',
         'deposit',
         'immediate_purchase',
+        'auction_price',
     ];
 }

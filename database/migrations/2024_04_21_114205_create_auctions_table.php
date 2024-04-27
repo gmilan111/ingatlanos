@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('auctions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('properties_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer('price');
             $table->boolean('closed');
+            $table->date('deadline');
 
             $table->timestamps();
         });

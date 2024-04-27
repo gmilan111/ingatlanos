@@ -16,8 +16,10 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     @vite(['resources/css/app.css'])
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <!-- import Material Icons from Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
 
+    
 
     <link rel="stylesheet" href="{{asset('css\style.css')}}" type="text/css">
 
@@ -661,15 +663,16 @@
     @endif
     <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
 </footer>
-{{--<!-- MDB -->
+<!-- MDB -->
 <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"
-></script>--}}
+></script>
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     var url = "{{ route('changeLang') }}";
 

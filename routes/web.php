@@ -2,16 +2,15 @@
 
 use App\Http\Controllers\AgentsController;
 use App\Http\Controllers\AuctionsController;
+use App\Http\Controllers\AuctionsEnteredController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\LangController;
-use App\Http\Controllers\LikedAuctionsController;
 use App\Http\Controllers\LikedPropertiesController;
 use App\Http\Controllers\MainImageController;
 use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RecommendationsController;
-use App\Http\Controllers\SoldPropertiesController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -115,16 +114,36 @@ Route::get('/auctions/{auction_id}', [AuctionsController::class, 'show']);
 Route::get('/auctions_own', [AuctionsController::class, 'show_own'])->name('auctions.own');
 
 #Felhasználó által belikeolt aukció(k) megjelenítése
-Route::get('liked_auctions', [LikedAuctionsController::class, 'index'])->name('likedauctions.index');
+Route::get('auctions_entered', [AuctionsEnteredController::class, 'index'])->name('auctions_entered.index');
 
 #Aukció kedvelése
-Route::post('liked_auction/{data}', [LikedAuctionsController::class, 'store']);
+Route::put('enter_auction/{data}', [AuctionsEnteredController::class, 'store']);
 
-#Aukció kedvelésének törlése
-Route::get('liked_auction/delete/{data}', [LikedAuctionsController::class, 'destroy']);
+#Licitálás
+Route::put('bid/{property_id}', [AuctionsController::class, 'bid']);
 
-#Már kedvelt auckió törlése
-Route::get('own_liked_auction/delete/{data}', [LikedAuctionsController::class, 'destroy_liked']);
+#Teljes ár kifizetése
+Route::put('buy/{property_id}', [AuctionsController::class, 'buy']);
+
+#Aukciók keresése
+Route::post('auction_search', [AuctionsController::class, 'search'])->name('auctions.search');
+
+#Ingatlanos tud keresni saját aukciói között
+Route::post('own_auction_search', [AuctionsController::class, 'own_search'])->name('own.auctions.search');
+
+Route::get('entered_auction/delete/{data}', [AuctionsEnteredController::class, 'destroy']);
+
+#Aukció (saját) lezárása
+Route::put('/own_closed/{property_id}', [AuctionsController::class, 'own_closed']);
+
+#Aukció lezárása
+Route::put('/closed/{property_id}', [AuctionsController::class, 'closed']);
+
+#Aukció törlése
+Route::delete('auction/{property_id}', [AuctionsController::class, 'destroy']);
+
+#Aukció "győztes" email küldése
+Route::get('/auction_winner/{property_id}', [EmailController::class, 'closed_auction_winner']);
 
 Route::middleware([
     'auth:sanctum',

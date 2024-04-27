@@ -38,7 +38,7 @@
                                 <x-dropdown-link href="{{ route('liked.index') }}">
                                     @lang('messages.liked_properties')
                                 </x-dropdown-link>
-                                <x-dropdown-link href="{{ route('likedauctions.index') }}">
+                                <x-dropdown-link href="{{ route('auctions_entered.index') }}">
                                     Kedvenc aukciók
                                 </x-dropdown-link>
                                 <x-dropdown-link href="{{ route('profile.show') }}">
