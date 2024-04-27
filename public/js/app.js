@@ -36,20 +36,19 @@ function plusinfo () {
 function salerent() {
     if (document.getElementById("rent").checked) {
         document.getElementById("rent_part").style.display = "flex";
+        document.getElementById("auction_div").style.display = "none";
+        document.getElementById('auctions_info').style.display = "none"
     } else {
-        document.getElementById("rent_part").style.display = "none"
+        document.getElementById("rent_part").style.display = "none";
+        document.getElementById("auction_div").style.display = "flex";
     }
 }
 
 function auctions(){
     if(document.getElementById('auction').checked){
         document.getElementById('auctions_info').style.display = "flex";
-        document.getElementById('starting_price').style.display = "flex";
-        document.getElementById('price').style.display = "none";
     }else{
         document.getElementById('auctions_info').style.display = "none";
-        document.getElementById('starting_price').style.display = "none";
-        document.getElementById('price').style.display = "flex";
     }
 }
 

@@ -1,51 +1,91 @@
 <x-layout>
     <div class="container margin-top">
-        <div class="row">
-            @if(count($properties)<1)
+        <form action="{{route('auctions.search')}}" method="POST">
+            @csrf
+            <div class="input-group margin-top row">
+                <div class="col">
+                    @if(isset($settlement_search))
+                        <input type="search" class="form-control rounded" placeholder="@lang('messages.settlement')"
+                               aria-label="Search"
+                               name="settlement_search"
+                               aria-describedby="search-addon" value="{{$settlement_search}}"/>
+                    @else
+                        <input type="search" class="form-control rounded" placeholder="@lang('messages.settlement')"
+                               aria-label="Search"
+                               name="settlement_search"
+                               aria-describedby="search-addon"/>
+                    @endif
+                </div>
+                <div class="col">
+                    @if(isset($size_min))
+                        <x-input id="size_min" class="block mt-1 w-full" type="number"
+                                 name="size_min"
+                                 value="{{$size_min}}" placeholder="MIN"
+                                 autocomplete="size_min"/>
+                    @else
+                        <x-input id="size_min" class="block mt-1 w-full" type="number"
+                                 name="size_min"
+                                 :value="old('size_min')" placeholder="MIN"
+                                 autocomplete="size_min"/>
+                    @endif
+                </div>
+                <div class="col">
+                    @if(isset($size_max))
+                        <x-input id="size_max" class="block mt-1 w-full" type="number"
+                                 name="size_max"
+                                 value="{{$size_max}}" placeholder="MAX"
+                                 autocomplete="size_max"/>
+                    @else
+                        <x-input id="size_max" class="block mt-1 w-full" type="number"
+                                 name="size_max"
+                                 :value="old('size_max')" placeholder="MAX"
+                                 autocomplete="size_max"/>
+                    @endif
+                </div>
+                <div class="col">
+                    @if(isset($rooms_min_search))
+                        <input type="search" class="form-control rounded" placeholder="Min" aria-label="Search"
+                               name="rooms_min_search"
+                               aria-describedby="search-addon" value="{{$rooms_min_search}}"/>
+                    @else
+                        <input type="search" class="form-control rounded" placeholder="Min" aria-label="Search"
+                               name="rooms_min_search"
+                               aria-describedby="search-addon"/>
+                    @endif
+                </div>
+                <div class="col">
+                    @if(isset($rooms_max_search))
+                        <input type="search" class="form-control rounded" placeholder="Max" aria-label="Search"
+                               name="rooms_max_search"
+                               aria-describedby="search-addon" value="{{$rooms_max_search}}"/>
+                    @else
+                        <input type="search" class="form-control rounded" placeholder="Max" aria-label="Search"
+                               name="rooms_max_search"
+                               aria-describedby="search-addon"/>
+                    @endif
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-primary">@lang('messages.search')</button>
+                </div>
+            </div>
+        </form>
+        <div class="row mt-5">
+            @if(count($auctions)<1)
                 <p>NINCS TALÁLAT</p>
             @endif
-
-            @foreach($properties as $property)
-                @if(!$property->sold)
-                    @php
-                        $address = ($property->settlement).','.' '.($property->address).'.';
-                    @endphp
-                    {{--<iframe src="https://maps.google.it/maps?q=<?php echo $address?>&output=embed" width="600" height="450"
-                            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
-
+            @foreach($auctions as $auction)
+                @php
+                    $property = \Illuminate\Support\Facades\DB::table('properties')->select('*')->where('id', '=', $auction->properties_id)->first();
+                    $address = ($property->settlement).','.' '.($property->address).'.';
+                @endphp
+                @if(!$property->sold && !$auction->closed)
                     <div class="col-lg-3 width-33 mb-5">
                         <div class="card border-0 shadow-2xl" style="width: 25rem;">
-                            {{--@if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
-                                <img
-                                    src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
-                                    class="card-img-top image" alt="...">
-                                @if(\App\Models\LikedProperties::where([['user_id', '=', auth()->id()], ['properties_id', '=', $property->id]])->count()>0)
-                                    <form action="/like/delete/{{$property->id}}" method="GET">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="star"><i class="fa-solid fa-star fa-xl"
-                                                                style="color: #f8c920;"></i>
-                                        </button>
-                                    </form>
-                                @else
-                                    <form action="/like/{{$property->id}}" method="POST">
-                                        @csrf
-                                        <button class="star"><i class="fa-regular fa-star fa-xl"
-                                                                style="color: #f8c920;"></i></button>
-                                    </form>
-
-                                @endif
-
-                            @else
-                                <img
-                                    src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
-                                    class="card-img-top" alt="...">
-                            @endif--}}
                             <img
                                 src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
                                 class="card-img-top " alt="...">
                             <div class="card-body">
-                                <h1 class="card-title">{{number_format(($property->price),0,'','.')}} Ft</h1>
+                                <h1 class="card-title">{{number_format(($property->auction_price),0,'','.')}} Ft</h1>
                                 <p class="card-text mb-5">{{$address}}</p>
                                 <div class="row mb-4">
                                     <div class="col-md-3 width-33">
@@ -67,38 +107,28 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{--<a href="properties/{{$property->id}}"
-                                   class="btn btn-primary" >@lang('messages.details')</a>--}}
-                                <a href="properties/{{$property->id}}" class="btn btn-primary">@lang('messages.details')</a>
-                                <!-- Button trigger modal -->
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#auctions">
-                                    Aukció megtekintése
-                                </button>
+                                <a href="properties/{{$property->id}}"
+                                   class="btn btn-primary">@lang('messages.details')</a>
 
-                                @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "i")
-                                    <button class="btn btn-primary">
-                                        Aukció lezárása
-                                    </button>
+                                @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m")
+                                    <a class="btn btn-primary" href="/auctions/{{$property->id}}">Aukció
+                                        megtekintése</a>
                                 @endif
 
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="auctions" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">FIGYELEM!</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Az aukcióra való belépéshez szükséges letétet fizetni. <br> Pontosan: {{number_format(($property->price*0.05),0,'','.')}} Ft
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vissza</button>
-                                                    <a class="btn btn-primary" href="/auctions/{{$property->id}}">Tovább</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <a class="btn btn-primary" href="/auction_winner/{{$property->id}}">Email</a>
+
+                                @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "i")
+                                    <a class="btn btn-primary" href="/auctions/{{$property->id}}">Aukció
+                                        megtekintése</a>
+                                    <form action="/closed/{{$property->id}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn btn-warning"><i class="fa-solid fa-sack-dollar"></i>
+                                            Lezárás
+                                        </button>
+                                    </form>
+                                @endif
+
 
                             </div>
                         </div>

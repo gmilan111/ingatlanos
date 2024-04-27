@@ -9,12 +9,14 @@ class Auctions extends Model
 {
     use HasFactory;
 
-    public function liked_auctions(){
-        return $this->belongsToMany(User::class, 'liked_auctions','auctions_id', 'user_id');
+    public function auctions_entered(){
+        return $this->belongsToMany(User::class, 'auctions_entereds','auctions_id', 'user_id');
     }
     protected $fillable = [
         'properties_id',
+        'user_id',
         'price',
         'closed',
+        'deadline',
     ];
 }

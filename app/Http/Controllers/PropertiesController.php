@@ -72,8 +72,12 @@ class PropertiesController extends Controller
             'immediate_purchase' => 'nullable|integer',
         ]);
 
+        if($formfields['insulation'] == null){
+            $formfields['insulation'] = "Nincs kiválasztva";
+        }
         $formfields['auction'] = $request['auction'] ?? false;
         $formfields['user_id'] = auth()->id();
+        $formfields['auction_price'] = $request['price'];
 
         $newProperty = Properties::create($formfields);
 
@@ -81,6 +85,8 @@ class PropertiesController extends Controller
             $auctions['properties_id'] = $newProperty->id;
             $auctions['price'] = $newProperty->price;
             $auctions['closed'] = false;
+            $auctions['deadline'] = $request['deadline'];
+            $auctions['user_id'] = auth()->id();
 
             Auctions::create($auctions);
         }
@@ -130,10 +136,14 @@ class PropertiesController extends Controller
             }
         }
 
-        return redirect(route('properties.index'))->with([
+        /*return redirect(route('properties.index'))->with([
             'properties' => DB::table('properties')->select('*')->get(),
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->where('images.properties_id', '=', 'properties.id')->get(),
             'main_img' => DB::table('main_images')->select('*')->join('properties', 'main_images.properties_id', '=', 'properties.id')->get(),
+        ]);*/
+        return redirect(route('properties.index'))->with([
+            'properties' => DB::table('properties')->select('*')->get(),
+            'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
         ]);
     }
 
@@ -249,8 +259,7 @@ class PropertiesController extends Controller
 
         $a->when($price_min_search != null, function ($a) use ($request) {
                 $a->where('price', '>=', $request['price_min_search']);
-            });
-
+        });
 
         $a->when($price_max_search != null, function ($a) use ($request) {
                 $a->where('price', '<=', $request['price_max_search']);

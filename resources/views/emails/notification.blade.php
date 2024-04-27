@@ -9,7 +9,7 @@ Vármegye: {{$properties_data->state}}<br>
 Utca, házszám: {{$properties_data->address}}<br>
 Szobák száma: {{$properties_data->rooms}}<br>
 Fürdőszobák száma: {{$properties_data->bathrooms}}<br>
-Ár: {{$properties_data->price}}<br>
+Ár: {{number_format(($properties_data->price),0,'','.')}} Ft<br>
 
 <x-mail::button :url="$url">
 Részletek megtekintése

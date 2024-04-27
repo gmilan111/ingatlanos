@@ -357,6 +357,28 @@
                 </div>
             @endif
 
+            @if($item->auction)
+                <div class="row mt-4">
+                    <div class="col-sm-4">
+                        <x-label for="deposit">Letét (%-ban)</x-label>
+                        <x-input id="deposit" class="block mt-1 w-full" type="number" name="deposit" value="{{$item->deposit}}"
+                                 autocomplete="deposit"/>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <x-label for="immediate_purchase">Azonnali vételár</x-label>
+                        <x-input id="immediate_purchase" class="block mt-1 w-full" type="number" name="immediate_purchase" value="{{$item->immediate_purchase}}"
+                                 autocomplete="immediate_purchase"/>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <x-label for="deadline">Határidő</x-label>
+                        <x-input id="deadline" class="block mt-1 w-full" type="date" name="deadline" value="{{$item->deadline}}"
+                                 autocomplete="deadline"/>
+                    </div>
+                </div>
+            @endif
+
             <div class="row mt-4">
                 <div class="col">
                     <x-label for="descrpition">@lang('messages.description')</x-label>

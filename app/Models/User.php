@@ -31,6 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone_number',
         'email_notification',
         'notification_state',
+        'auction_entered',
     ];
 
     /**

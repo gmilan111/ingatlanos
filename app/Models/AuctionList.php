@@ -13,5 +13,6 @@ class AuctionList extends Model
         'auction_id',
         'user_id',
         'offer',
+        'buy_now',
     ];
 }

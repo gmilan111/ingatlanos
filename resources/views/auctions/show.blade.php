@@ -27,6 +27,8 @@
 
         @php
             $address = ($properties_info->settlement).','.' '.($properties_info->address).'.';
+            $auction = \Illuminate\Support\Facades\DB::table('auctions')->select('*')->where('properties_id', '=', $properties_info->id)->first();
+            $auction_list2 = \Illuminate\Support\Facades\DB::table('auctions_entereds')->select('*')->where('auctions_id', '=', $auction->id)->get();
         @endphp
 
         <div class="row">
@@ -36,11 +38,12 @@
                         <h1 class="card-title mt-2">{{$address}}</h1>
                         <div class="row mt-4 mb-4">
                             <div class="col-sm-6">
-                                <h1 class="card-title-price card-title">Kezdőár: {{number_format(($properties_info->price),0,'','.')}}
+                                <h1 class="card-title-price card-title">
+                                    Kezdőár: {{number_format(($properties_info->auction_price),0,'','.')}}
                                     Ft</h1>
                             </div>
                             <div class="col-sm-6">
-                                <h1 class="card-title-price card-title">Határidő: 2024.05.12.</h1>
+                                <h1 class="card-title-price card-title">Határidő: {{$auction->deadline}}</h1>
                             </div>
                         </div>
                         <div class="row mb-2 d-flex justify-content-between">
@@ -66,37 +69,48 @@
                     </div>
                 </div>
 
-                @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m")
+                @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m" && isset(auth()->user()->auction_entered) && auth()->user()->auction_entered == true && count($auction_list2)>0)
                     <div class="card border-0 shadow-2xl">
                         <div class="card-body">
                             <h1 class="card-title mt-2">Licitálás</h1>
-                            <div class="row mb-2 d-flex justify-content-between">
-                                <div class="col-sm-5">
-                                    <div>
-                                        <x-input id="deposit" class="block w-full" type="number" name="deposit" :value="old('deposit')"
-                                                 autocomplete="deposit"/>
+                            <form action="/bid/{{$properties_info->id}}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <div class="row mb-2 d-flex justify-content-between">
+                                    <div class="col-sm-5">
+                                        <div>
+                                            <input type="hidden" name="auction_id" value="{{$auction->id}}">
+                                            <x-input id="bid" class="block w-full" type="number" name="bid"
+                                                     :value="old('bid')"
+                                                     autocomplete="bid" min="{{$properties_info->auction_price+50000}}" max="{{$properties_info->immediate_purchase-1}}"/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-5 d-flex align-items-center">
-                                    <div>
-                                        <button class="btn btn-primary">Licitálás
-                                        </button>
+                                    <div class="col-sm-5 d-flex align-items-center">
+                                        <div>
+                                            <button class="btn btn-primary">Licitálás
+                                            </button>
+                                        </div>
                                     </div>
+                                    <div class="col-sm-2"></div>
                                 </div>
-                                <div class="col-sm-2"></div>
-                            </div>
+                            </form>
                         </div>
 
                         <div class="card-body">
                             <h1 class="card-title mt-2">Azonnali megvásárlás</h1>
-                            <h1 class="card-title-price">Ára: {{number_format(($properties_info->immediate_purchase),0,'','.')}} Ft</h1>
+                            <h1 class="card-title-price">
+                                Ára: {{number_format(($properties_info->immediate_purchase),0,'','.')}} Ft</h1>
                             <div class="row mt-2 mb-2 d-flex justify-content-between">
-                                <div class="col d-flex align-items-center">
-                                    <div>
-                                        <button class="btn btn-primary">Vásárlás
-                                        </button>
+                                <form action="/buy/{{$properties_info->id}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="col d-flex align-items-center">
+                                        <div>
+                                            <button class="btn btn-primary">Vásárlás
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                                 <div class="col-sm-2"></div>
                             </div>
                         </div>
@@ -105,21 +119,26 @@
                     <div class="card border-0 shadow-2xl mt-5">
                         <div class="card-body row">
                             <h1 class="card-title mt-2">@lang('messages.general_info')</h1>
-                            <div class="col-sm-5">
+                            <div class="col">
                                 <table class="table">
-                                    <tbody>
+                                    <thead>
                                     <tr>
-                                        <th scope="row">@lang('messages.condition')</th>
+                                        <td>Felhasználó neve</td>
+                                        <td>Ajánlat</td>
                                     </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-sm-7">
-                                <table class="table">
+                                    </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">@lang('messages.air_conditioner')</th>
-                                    </tr>
+                                    @foreach($auction_list as $item)
+                                        @php
+                                            $user = \Illuminate\Support\Facades\DB::table('users')->select('*')->where('id', '=', $item->user_id)->get();
+                                        @endphp
+                                        @foreach($user as $value)
+                                            <tr>
+                                                <th scope="row">{{$value->name}}</th>
+                                                <th scope="row">{{number_format(($item->offer),0,'','.')}} Ft</th>
+                                            </tr>
+                                        @endforeach
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -140,44 +159,73 @@
                         @if(isset(auth()->user()->is_ingatlanos))
                             <h2 style="font-size: 20px">(IDE JÖHET EGY ICON){{$agents->phone_number}}</h2>
                         @else
-                            <h1 class="card-title"><a href="{{route('login')}}" class="btn btn-primary">@lang('messages.show_phone_number')</a></h1>
+                            <h1 class="card-title"><a href="{{route('login')}}"
+                                                      class="btn btn-primary">@lang('messages.show_phone_number')</a>
+                            </h1>
                         @endif
 
                         <img class="mt-5 mb-3 rounded-3 shadow-lg"
                              src="{{asset('storage/'.$agents->profile_photo_path)}}" alt="{{$agents->name}}">
                         <h1 class="card-title">{{$agents->name}}</h1>
 
-                        @if(auth()->user() == null)
-                            <div id="liveAlertPlaceholder"></div>
-                            <button type="button" class="btn btn-primary" id="liveAlertBtn"><i
-                                    class="fa-regular fa-star fa-xl"
-                                    style="color: #f8c920;"></i>@lang('messages.save_ad')
-                            </button>
+                        @php
+                            $auction_entered = \Illuminate\Support\Facades\DB::table('auctions_entereds')->select('*')->where([['auctions_id', '=', $auction->id],['user_id','=',auth()->id()]])->get();
+                        @endphp
+                        @if(count($auction_entered)<1 && isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m")
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registration">Regisztráció az árverésre</button>
+                        @elseif(count($auction_entered)>=1)
+                            <form action="/entered_auction/delete/{{$auction->id}}" method="GET">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-primary">Kilépés az árverésről</button>
+                            </form>
+                        @endif
 
-                        @else
-                            @if(\App\Models\LikedAuctions::where([['user_id', '=', auth()->id()], ['auctions_id', '=', $auctions->id]])->count()>0)
-                                <form action="/liked_auction/delete/{{$auctions->id}}" method="GET">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-primary"><i class="fa-solid fa-star fa-xl"
-                                                                       style="color: #f8c920;"></i>Aukció mentése
-                                    </button>
-                                </form>
-                            @else
-                                <form action="/liked_auction/{{$auctions->id}}" method="POST">
-                                    @csrf
-                                    <button class="btn btn-primary"><i class="fa-regular fa-star fa-xl"
-                                                                       style="color: #f8c920;"></i>Aukció mentése
-                                    </button>
-                                </form>
+                        <!-- Modal -->
+                        <div class="modal fade" id="registration" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="/enter_auction/{{$auction->id}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5"
+                                                id="exampleModalLabel">Regisztráció az aukcióra</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>A regisztrációhoz szükséges letét díjat fizetni. Ezt azért kell, mert így tudunk megbizonyosodni, hogy komoly a vevő szándéka.<br>Regisztráció ára: {{number_format((($properties_info->price)*($properties_info->deposit/100)),0,'','.')}} Ft</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">@lang('messages.back')
+                                            </button>
 
-                            @endif
+                                            <button class="btn btn-primary">@lang('messages.registration')</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                             <div class="mt-3">
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
-                                    @lang('messages.send_message')
-                                </button>
+                                @if(!auth()->user()->is_ingatlanos == "i")
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
+                                        @lang('messages.send_message')
+                                    </button>
+                                @elseif(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "i")
+                                    <form action="/own_closed/{{$properties_info->id}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn btn-warning"><i class="fa-solid fa-sack-dollar"></i>
+                                            Lezárás
+                                        </button>
+                                    </form>
+                                @endif
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1"
@@ -186,7 +234,8 @@
                                         <div class="modal-content">
                                             <form action="/email/{{$properties_info->id}}" method="GET">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">@lang('messages.send_message')</h1>
+                                                    <h1 class="modal-title fs-5"
+                                                        id="exampleModalLabel">@lang('messages.send_message')</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
@@ -198,7 +247,8 @@
                                                                  autofocus autocomplete="name"/>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="exampleFormControlTextarea1" class="form-label">@lang('messages.message')</label>
+                                                        <label for="exampleFormControlTextarea1"
+                                                               class="form-label">@lang('messages.message')</label>
                                                         <textarea class="form-control"
                                                                   id="exampleFormControlTextarea1"
                                                                   rows="3" name="description"></textarea>
@@ -215,7 +265,6 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
                         <script>
                             const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
                             const appendAlert = (message, type) => {
@@ -230,12 +279,6 @@
                                 alertPlaceholder.append(wrapper)
                             }
 
-                            const alertTrigger = document.getElementById('liveAlertBtn')
-                            if (alertTrigger) {
-                                alertTrigger.addEventListener('click', () => {
-                                    appendAlert('@lang('messages.only_auth_user')', 'danger')
-                                })
-                            }
                         </script>
                     </div>
                 </div>

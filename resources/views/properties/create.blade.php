@@ -102,11 +102,11 @@
                                  required autocomplete="price"/>
                     </div>
 
-                    <div class="col" style="display: none" id="starting_price">
-                        <x-label for="price">Kezdőár</x-label>
-                        <x-input id="price" class="block mt-1 w-full" type="number" name="price" :value="old('price')"
-                                 required autocomplete="price"/>
-                    </div>
+                    {{--<div class="col" style="display: none" id="starting_price">
+                        <x-label for="starting_price">Kezdőár</x-label>
+                        <x-input id="starting_price" class="block mt-1 w-full" type="number" name="starting_price" :value="old('price')"
+                                 />
+                    </div>--}}
 
                     <div class="col">
                         <x-label for="condition">@lang('messages.condition')</x-label>
@@ -381,9 +381,15 @@
                         <x-input id="immediate_purchase" class="block mt-1 w-full" type="number" name="immediate_purchase" :value="old('immediate_purchase')"
                                  autocomplete="immediate_purchase"/>
                     </div>
+
+                    <div class="col-sm-4">
+                        <x-label for="deadline">Határidő</x-label>
+                        <x-input id="deadline" class="block mt-1 w-full" type="date" name="deadline" :value="old('deadline')"
+                                 autocomplete="deadline"/>
+                    </div>
                 </div>
 
-                <div class="flex items-center justify-end mt-4">
+                <div class="flex items-center justify-end mt-4" id="auction_div">
                     <label class="btn btn-block btn-success active">
                         <x-input id="auction" name="auction" type="checkbox" onclick="auctions()" value="{{true}}"/>
                         <span class="ms-2 text-sm text-gray-600">Árverésre bocsátás</span>

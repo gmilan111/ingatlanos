@@ -50,6 +50,7 @@ return new class extends Migration
             $table->boolean('auction')->default(false);
             $table->double('deposit')->nullable();
             $table->integer('immediate_purchase')->nullable();
+            $table->integer('auction_price');
 
             $table->timestamps();
         });
