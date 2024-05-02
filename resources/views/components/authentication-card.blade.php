@@ -1,31 +1,11 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<link rel="preconnect" href="https://fonts.bunny.net">
-<link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous" referrerpolicy="no-referrer"/>
-@vite(['resources/css/app.css'])
 
-<!-- import Material Icons from Google Fonts -->
-<link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
 
-<link rel="stylesheet" href="{{asset('css\mdb.min.css')}}" type="text/css">
+<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
 
-{{--<link rel="stylesheet" href="{{asset('css\owl.carousel.min.css')}}" type="text/css">--}}
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-      integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
-      crossorigin="anonymous" referrerpolicy="no-referrer"/>
-
-<link rel="stylesheet" href="{{asset('css\style.css')}}" type="text/css">
-
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-light">
-    <div>
-        {{ $logo }}
-    </div>
-
-    <div class="w-25 auth-card-w mt-3 px-6 py-4 shadow-md overflow-hidden sm:rounded-lg bg-secondary-color">
+    <div class="w-25 auth-card-w mt-3 px-6 py-4 shadow-custom overflow-hidden sm:rounded-lg bg-secondary-color">
+        <div class="flex flex-col sm:justify-center items-center mb-5">
+            {{ $logo }}
+        </div>
         {{ $slot }}
     </div>
 </div>
