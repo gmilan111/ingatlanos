@@ -1,8 +1,15 @@
-@import '~mdb-ui-kit/css/mdb.min.css';
+/*@import '~mdb-ui-kit/css/mdb.min.css';*/
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root{
+    --secondary-color: #9B9B9B;
+    --third-color: #868689;
+    --main-color: #060C14;
+    --second-main-color: #FF7625;
+}
 
 [x-cloak] {
     display: none;
@@ -23,7 +30,7 @@ body{
     content: '';
     height: 2px;
     width: 100%;
-    background-color: red;
+    background-color: var(--second-main-color);
     position: absolute;
     top: 0;
     left: 0;
@@ -64,9 +71,9 @@ body{
     object-fit: cover;
 }
 
-.auth-hatter{
+/*.auth-hatter{
     background-color: darkgrey;
-}
+}*/
 
 .width-33{
     width: 33%!important;
@@ -125,6 +132,96 @@ body{
 
 .mt-6{
     margin-top: 10rem !important;
+}
+
+.search-header{
+    background-color: var(--main-color);
+    border-radius: 15px;
+}
+
+.text-15{
+    font-size: 15px;
+}
+
+.text-25{
+    font-size: 25px;
+}
+
+.text-56{
+    font-size: 56px !important;
+}
+
+.shadow-custom{
+    box-shadow: 5px 10px 18px var(--main-color);
+}
+
+.navbar{
+    background-color: var(--main-color)!important;
+    height: 80px;
+    margin: 30px;
+    border-radius: 20px;
+    font-size: 18px;
+}
+
+.register-btn{
+    background-color: var(--second-main-color) !important;
+    position: relative;
+    margin-right: 30px;
+    border-radius: 15px;
+}
+
+.btn-second-main-color{
+    background-color: var(--second-main-color) !important;
+    border-radius: 15px;
+}
+
+.bg-section{
+    background-color: var(--secondary-color);
+}
+
+.font-main-color{
+    color: var(--main-color) !important;
+}
+
+.footer-bg{
+    background-color: var(--main-color);
+}
+
+.bg-main-color{
+    background-color: var(--main-color) !important;
+}
+
+.bg-secondary-color{
+    background-color: var(--secondary-color);
+}
+
+.navbar-collapse{
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.changeLang{
+    background-color: var(--main-color);
+    border-color: var(--second-main-color);
+    border-radius: 15px;
+}
+
+.header{
+    max-width: 1700px !important;
+}
+
+.custom-card{
+    background-color: var(--main-color);
+    border-radius: 15px;
+    box-shadow: 5px 10px 18px var(--second-main-color);
+}
+
+.icon-orange{
+    color: var(--second-main-color);
+}
+
+.custom-border{
+    border-color: var(--second-main-color) !important;
 }
 
 @media (max-width: 992px){

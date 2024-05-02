@@ -1,9 +1,30 @@
-/*import '@/bootstrap.js';*/
+/*import '@/bootstrap.js';
 
-/*import { Navbar, Dropdown, initMDB } from "mdb-ui-kit";
+import { Navbar, Dropdown, initMDB } from "mdb-ui-kit";
 
 initMDB({ Navbar, Dropdown });*/
 
+
+$('.owl-carousel').owlCarousel({
+    loop:false,
+    margin:10,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:1,
+            nav:false
+        },
+        1000:{
+            items:4,
+            nav:true,
+            loop:false
+        }
+    }
+})
 $(document).ready(function(){
     $("button.plusbtn").on("click",function(){
         $("#plus").append("" +
@@ -51,4 +72,6 @@ function auctions(){
         document.getElementById('auctions_info').style.display = "none";
     }
 }
+
+
 

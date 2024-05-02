@@ -84,7 +84,10 @@
                     <button class="btn btn-outline-primary">@lang('messages.search')</button>
                 </div>
                 <div class="col">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                    <button type="button" class="btn btn-primary btn-rounded ripple-surface" data-mdb-ripple-init>
+                        Primary
+                    </button>
+                    <button class="btn btn-primary ripple-surface" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         @lang('messages.filter')
                     </button>

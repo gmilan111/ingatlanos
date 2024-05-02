@@ -18,6 +18,7 @@ class Controller extends BaseController
 
     public function index()
     {
+        $agents = DB::table('agents')->select('*')->get();
         if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == 'm') {
             $user_id = auth()->id();
             $helper = DB::table('recommendations')->select('*')->where('user_id', '=', $user_id)->inRandomOrder()->get();
@@ -27,6 +28,7 @@ class Controller extends BaseController
                 return view('index',[
                     'properties' => $non_reg_prop,
                     'igaz' => true,
+                    'agents' => $agents,
                 ]);
             }
             $settlement = array();
@@ -55,8 +57,6 @@ class Controller extends BaseController
             }
             foreach ($liked_helper as $item) {
                 $settlement[] = $item->settlement;
-
-
             }
             if(isset($min_size_helper)){
                 $min_size = min($min_size_helper);
@@ -109,8 +109,6 @@ class Controller extends BaseController
                 $properties->whereIn('state', $states);
             });*/
 
-
-
             if(isset($min_size)) {
                 $properties->when($min_size != null, function ($properties) use ($min_size) {
                     $properties->where('size', '>=', $min_size);
@@ -154,6 +152,7 @@ class Controller extends BaseController
             return view('index', [
                 'recommendations' => $recommendations,
                 'igaz' => false,
+                'agents' => $agents,
             ]);
         }
 
@@ -161,6 +160,7 @@ class Controller extends BaseController
         return view('index',[
             'properties' => $non_reg_prop,
             'igaz' => false,
+            'agents' => $agents,
         ]);
     }
 
