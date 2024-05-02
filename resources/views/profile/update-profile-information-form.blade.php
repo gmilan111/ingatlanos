@@ -4,7 +4,7 @@
     </x-slot>
 
     <x-slot name="description">
-        @lang('messages.profile.edit')
+        @lang('messages.profile_edit')
     </x-slot>
 
     <x-slot name="form">

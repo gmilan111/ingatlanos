@@ -19,17 +19,27 @@
     <!-- import Material Icons from Google Fonts -->
     <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
 
-    
+    <link rel="stylesheet" href="{{asset('css\mdb.min.css')}}" type="text/css">
+
+    {{--<link rel="stylesheet" href="{{asset('css\owl.carousel.min.css')}}" type="text/css">--}}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+          integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <link rel="stylesheet" href="{{asset('css\style.css')}}" type="text/css">
 
 </head>
 <body>
-<nav data-mdb-navbar-init class="navbar shadow-lg fixed-top navbar-expand-lg navbar-light bg-body-tertiary">
+{{--<nav data-mdb-navbar-init class="navbar shadow-lg fixed-top navbar-expand-lg navbar-light">
     <!-- Container wrapper -->
-    <div class="container ">
+    <div class="container header d-flex justify-content-between">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+        </button>
         <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse" id="navbarLeftAlignExample">
+        <div class="collapse navbar-collapse justify-content-center">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="navbar-brand me-2" href="/">
@@ -39,91 +49,85 @@
             </ul>
         </div>
 
-        <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
+        <div class="collapse navbar-collapse justify-content-around align-items-center bg-main-color" id="navbarTogglerDemo02">
             <!-- Left links -->
             @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {{request()->is('/')?'active a-fejlec':''}} fejlec" aria-current="page"
+                        <a class="nav-link text-light {{request()->is('/')?'active a-fejlec':''}} fejlec font-light"
+                           aria-current="page"
                            href="/">@lang('messages.homepage')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{request()->is('properties')?'active a-fejlec':''}} fejlec"
+                        <a class="nav-link text-light {{request()->is('properties')?'active a-fejlec':''}} fejlec"
                            href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
                     </li>
 
-                    <li class="nav-item"><a href="{{route('auctions.index')}}" class="nav-link fejlec">Aukciók</a></li>
-                    <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{route('agents.index')}}">@lang('messages.agents')</a>
+                    <li class="nav-item text-light"><a href="{{route('auctions.index')}}" class="nav-link fejlec">Aukciók</a>
                     </li>
                     <li class="nav-item">
-                        <select class="form-select changeLang">
-                            <option value="hu" {{session()->get('locale') == 'hu' ? 'selected' : ''}}>Magyar</option>
-                            <option value="en" {{session()->get('locale') == 'en' ? 'selected' : ''}}>English</option>
-                        </select>
+                        <a class="nav-link text-light fejlec"
+                           href="{{route('agents.index')}}">@lang('messages.agents')</a>
                     </li>
                 </ul>
             @elseif(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'i')
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {{request()->is('/')?'active a-fejlec':''}} fejlec" aria-current="page"
+                        <a class="nav-link text-light {{request()->is('/')?'active a-fejlec':''}} fejlec"
+                           aria-current="page"
                            href="/">@lang('messages.homepage')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{request()->is('properties') ? 'active a-fejlec' : (request()->is('properties/store') ? 'active a-fejlec' : (request()->is('properties/*') ? 'active a-fejlec' : (request()->is('search*') ? 'active a-fejlec' : '')))}} fejlec"
+                        <a class="nav-link text-light {{request()->is('properties') ? 'active a-fejlec' : (request()->is('properties/store') ? 'active a-fejlec' : (request()->is('properties/*') ? 'active a-fejlec' : (request()->is('search*') ? 'active a-fejlec' : '')))}} fejlec"
                            href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{route('properties.create')}}">@lang('messages.add_new_property')</a>
+                        <a class="nav-link fejlec text-light"
+                           href="{{route('properties.create')}}">@lang('messages.add_new_property')</a>
                     </li>
-                    <li class="nav-item"><a href="{{route('auctions.index')}}" class="nav-link fejlec">Aukciók</a></li>
-                    {{--<li class="nav-item">
-                        <a class="nav-link {{request()->is('properties_own')?'active a-fejlec':''}} fejlec"
-                           href="{{route('properties.own')}}">@lang('messages.own_properties')</a>
-                    </li>--}}
-                    <li class="nav-item">
-                        <select class="form-select changeLang">
-                            <option value="hu" {{session()->get('locale') == 'hu' ? 'selected' : ''}}>Magyar</option>
-                            <option value="en" {{session()->get('locale') == 'en' ? 'selected' : ''}}>English</option>
-                        </select>
+                    <li class="nav-item"><a href="{{route('auctions.index')}}" class="nav-link fejlec text-light">Aukciók</a>
                     </li>
                 </ul>
             @else
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active a-fejlec fejlec" aria-current="page" href="/">@lang('messages.homepage')</a>
+                        <a class="nav-link active a-fejlec fejlec text-light" aria-current="page"
+                           href="/">@lang('messages.homepage')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
+                        <a class="nav-link fejlec text-light"
+                           href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{route('agents.index')}}">@lang('messages.agents')</a>
-                    </li>
-                    <li class="nav-item">
-                        <select class="form-select changeLang">
-                            <option value="hu" {{session()->get('locale') == 'hu' ? 'selected' : ''}}><a href="locale/hu" class="text-decoration-none">Magyar</a> </option>
-                            <option value="en" {{session()->get('locale') == 'en' ? 'selected' : ''}}><a href="locale/en" class="text-decoration-none">English</a> </option>
-                        </select>
+                        <a class="nav-link fejlec text-light"
+                           href="{{route('agents.index')}}">@lang('messages.agents')</a>
                     </li>
                 </ul>
             @endif
-            <!-- Left links -->
-        </div>
 
-        <div class="collapse navbar-collapse" id="navbarRightAlignExample">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav --}}{{--ms-auto --}}{{--mb-2 mb-lg-0">
                 @auth
                     @livewire('navigation-menu')
                 @else
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{ route('register') }}">@lang('messages.registration')</a>
+                        <a class="nav-link fejlec text-light" href="{{ route('login') }}">@lang('messages.login')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec" href="{{ route('login') }}">@lang('messages.login')</a>
+                        <a class="nav-link text-light btn-primary register-btn px-4" data-mdb-ripple-init
+                           href="{{ route('register') }}">@lang('messages.registration')</a>
                     </li>
                 @endauth
+                <li class="nav-item d-flex justify-content-center">
+                    <select class="form-select changeLang">
+                        <option value="hu" {{session()->get('locale') == 'hu' ? 'selected' : ''}}>Magyar</option>
+                        <option value="en" {{session()->get('locale') == 'en' ? 'selected' : ''}}><a
+                                href="locale/en" class="text-decoration-none">English</a></option>
+                    </select>
+                </li>
             </ul>
         </div>
+
+
     </div>
     @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m")
         @php
@@ -139,7 +143,116 @@
             }
         @endphp
     @endif
+</nav>--}}
+
+<nav class="navbar shadow-lg fixed-top navbar-expand-lg">
+    <!-- Container wrapper -->
+    <div class="container header">
+        <!-- Navbar brand -->
+        <a class="navbar-brand me-2" href="/">
+            <img src="{{asset('img\icon.png')}}" alt="Logo" width="60" height="60"/>
+        </a>
+
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-light {{request()->is('/')?'active a-fejlec':''}} fejlec font-light"
+                           aria-current="page"
+                           href="/">@lang('messages.homepage')</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light {{request()->is('properties')?'active a-fejlec':''}} fejlec"
+                           href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('auctions.index')}}" class="nav-link fejlec">Aukciók</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light fejlec"
+                           href="{{route('agents.index')}}">@lang('messages.agents')</a>
+                    </li>
+                </ul>
+            @elseif(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'i')
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-light {{request()->is('/')?'active a-fejlec':''}} fejlec"
+                           aria-current="page"
+                           href="/">@lang('messages.homepage')</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light {{request()->is('properties') ? 'active a-fejlec' : (request()->is('properties/store') ? 'active a-fejlec' : (request()->is('properties/*') ? 'active a-fejlec' : (request()->is('search*') ? 'active a-fejlec' : '')))}} fejlec"
+                           href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fejlec text-light"
+                           href="{{route('properties.create')}}">@lang('messages.add_new_property')</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('auctions.index')}}" class="nav-link fejlec text-light">Aukciók</a>
+                    </li>
+                </ul>
+            @else
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active a-fejlec fejlec text-light" aria-current="page"
+                           href="/">@lang('messages.homepage')</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fejlec text-light"
+                           href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fejlec text-light"
+                           href="{{route('agents.index')}}">@lang('messages.agents')</a>
+                    </li>
+                </ul>
+            @endif
+            <!-- Left links -->
+
+            <div class="d-flex align-items-center">
+                @auth()
+                    @livewire('navigation-menu')
+                @else
+                    <a class="nav-link fejlec text-light" href="{{ route('login') }}">@lang('messages.login')</a>
+                    <a class="nav-link text-light btn-primary register-btn px-4 py-2" data-mdb-ripple-init
+                       href="{{ route('register') }}">@lang('messages.registration')</a>
+                @endauth
+                    <select class="changeLang">
+                        <option value="hu" {{session()->get('locale') == 'hu' ? 'selected' : ''}}><a
+                                href="locale/hu" class="text-decoration-none">Magyar</a></option>
+                        <option value="en" {{session()->get('locale') == 'en' ? 'selected' : ''}}><a
+                                href="locale/en" class="text-decoration-none">English</a></option>
+                    </select>
+            </div>
+        </div>
+        @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m")
+            @php
+                $user_info = \Illuminate\Support\Facades\DB::table('users')->select('*')->where('id', '=', auth()->id())->first();
+                $help =json_decode($user_info->notification_state);
+                $states_helper = explode(',', $help);
+                $states = array();
+                foreach ($states_helper as $item){
+                    $item = str_replace('"', "", $item);
+                    $item = str_replace('[', "", $item);
+                    $item = str_replace(']', "", $item);
+                    array_push($states, $item);
+                }
+            @endphp
+        @endif
+        <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
 </nav>
+<!-- Navbar -->
 
 <main>
     {{$slot}}
@@ -621,7 +734,8 @@
                             @endif
                         </div>
                         <div class="mt-4 modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('messages.back')</button>
+                            <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">@lang('messages.back')</button>
                             <button class="btn btn-primary">@lang('messages.save')</button>
                         </div>
                     </form>
@@ -637,46 +751,74 @@
 </div>
 
 
-<footer class="py-3 mt-4 shadow-lg">
+<footer class="py-3 shadow-lg footer-bg">
     @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">@lang('messages.homepage')</a></li>
-            <li class="nav-item"><a href="{{route('properties.index')}}" class="nav-link px-2 text-body-secondary">@lang('messages.real_estates')</a></li>
-            <li class="nav-item"><a href="{{route('auctions.index')}}" class="nav-link px-2 text-body-secondary">Aukciók</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">@lang('messages.agents')</a></li>
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-light">@lang('messages.homepage')</a>
+            </li>
+            <li class="nav-item"><a href="{{route('properties.index')}}"
+                                    class="nav-link px-2 text-light">@lang('messages.real_estates')</a></li>
+            <li class="nav-item"><a href="{{route('auctions.index')}}"
+                                    class="nav-link px-2 text-light">Aukciók</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-light">@lang('messages.agents')</a></li>
         </ul>
     @elseif(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'i')
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">@lang('messages.homepage')</a></li>
-            <li class="nav-item"><a href="{{route('properties.index')}}" class="nav-link px-2 text-body-secondary">@lang('messages.real_estates')</a>
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-light">@lang('messages.homepage')</a>
             </li>
-            <li class="nav-item"><a href="{{route('properties.create')}}" class="nav-link px-2 text-body-secondary">@lang('messages.add_new_property')</a></li>
-            <li class="nav-item"><a href="{{route('properties.own')}}" class="nav-link px-2 text-body-secondary">@lang('messages.own_properties')</a></li>
+            <li class="nav-item"><a href="{{route('properties.index')}}"
+                                    class="nav-link px-2 text-light">@lang('messages.real_estates')</a>
+            </li>
+            <li class="nav-item"><a href="{{route('properties.create')}}"
+                                    class="nav-link px-2 text-light">@lang('messages.add_new_property')</a>
+            </li>
+            <li class="nav-item"><a href="{{route('properties.own')}}"
+                                    class="nav-link px-2 text-light">@lang('messages.own_properties')</a></li>
         </ul>
     @else
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">@lang('messages.homepage')</a></li>
-            <li class="nav-item"><a href="{{route('properties.index')}}" class="nav-link px-2 text-body-secondary">@lang('messages.real_estates')</a>
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-light">@lang('messages.homepage')</a>
             </li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">@lang('messages.agents')</a></li>
+            <li class="nav-item"><a href="{{route('properties.index')}}"
+                                    class="nav-link px-2 text-light">@lang('messages.real_estates')</a>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-light">@lang('messages.agents')</a></li>
         </ul>
     @endif
-    <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
+    <p class="text-center text-light">© 2024 Company, Inc</p>
 </footer>
 <!-- MDB -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
 <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"
 ></script>
-<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+
+
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+
+<script type="text/javascript" src="{{asset('js/mdb.umd.min.js')}}"></script>
+
+{{--<script src="{{asset('js/owl.carousel.min.js')}}"></script>--}}
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     var url = "{{ route('changeLang') }}";
 
-    $(".changeLang").change(function (){
+    $(".changeLang").change(function () {
         window.location.href = url + "?lang=" + $(this).val();
     })
 </script>

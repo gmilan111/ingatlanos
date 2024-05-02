@@ -6,6 +6,7 @@
 
         <x-validation-errors class="mb-4" />
 
+
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}
@@ -16,9 +17,16 @@
             @csrf
 
             <div>
+                <div class="form-outline " data-mdb-input-init>
+                    <input type="email" class="form-control" style="border-color: var(--main-color)" id="email" name="email" required/>
+                    <label class="form-label" style="color: var(--main-color); border-color: var(--main-color)" for="email">@lang('messages.email')</label>
+                </div>
+            </div>
+
+            {{--<div>
                 <x-label for="email">@lang('messages.email')</x-label>
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            </div>
+            </div>--}}
 
             <div class="mt-4">
                 <x-label for="password">@lang('messages.password')</x-label>

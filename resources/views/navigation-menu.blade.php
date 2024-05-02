@@ -1,9 +1,9 @@
-<nav x-data="{ open: false }" class="bg-body-tertiary border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-main-color ">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between h-16 bg-main-color">
 
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="hidden sm:flex sm:items-center sm:ms-6 ">
 
                 <!-- Settings Dropdown -->
                 <div class="ms-3 relative">
@@ -11,7 +11,7 @@
                         <x-slot name="trigger">
                             <span class="inline-flex rounded-md">
                                 <button type="button"
-                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                        class="inline-flex items-center bg-main-color custom-border px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
                                     @if(Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                         <img class="h-8 w-8 rounded-full object-cover"
                                              src="{{ Auth::user()->profile_photo_url }}"
@@ -29,7 +29,8 @@
                             </span>
                         </x-slot>
 
-                        <x-slot name="content">
+
+                        <x-slot name="content" >
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 @lang('messages.edit_profile')
@@ -77,7 +78,7 @@
 
 
             <!-- Hamburger -->
-            <div class="-me-2 flex items-center sm:hidden">
+            <div class="-me-2 flex items-center sm:hidden bg-main-color">
                 <button @click="open = ! open"
                         class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
