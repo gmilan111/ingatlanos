@@ -73,5 +73,12 @@ function auctions(){
     }
 }
 
+function newsletter(){
+    if(document.getElementById('email_notification').checked){
+        document.getElementById('county').style.display = "block";
+    }else{
+        document.getElementById('county').style.display = "none";
+    }
+}
 
 

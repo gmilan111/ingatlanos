@@ -6,64 +6,125 @@
 
         <x-validation-errors class="mb-4"/>
 
+        <style>
+            /* unfocused borders and label*/
+
+            .form-outline .form-control ~ .form-notch .form-notch-trailing {
+                border-top: .125rem solid var(--main-color);
+                border-right: .125rem solid var(--main-color);
+                border-bottom: .125rem solid var(--main-color);
+            }
+
+            .form-outline .form-control ~ .form-notch .form-notch-middle {
+                border-bottom: .125rem solid var(--main-color);
+                border-top: .125rem solid var(--main-color);
+            }
+
+            .form-outline .form-control ~ .form-notch .form-notch-leading {
+                border-top: .125rem solid var(--main-color);
+                border-bottom: .125rem solid var(--main-color);
+                border-left: .125rem solid var(--main-color);
+            }
+
+            .form-outline .form-control ~ .form-label {
+                color: var(--main-color);
+            }
+
+
+            /* focused borders and label*/
+            .form-outline .form-control:focus ~ .form-notch .form-notch-leading {
+                border-top: .125rem solid var(--main-color);
+                border-bottom: .125rem solid var(--main-color);
+                border-left: .125rem solid var(--main-color);
+            }
+
+            .form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
+                border-top: .125rem solid var(--main-color);
+                border-right: .125rem solid var(--main-color);
+                border-bottom: .125rem solid var(--main-color);
+            }
+
+            .form-outline .form-control:focus ~ .form-notch .form-notch-middle {
+                border-top: 0;
+                border-bottom: .125rem solid var(--main-color);
+            }
+
+            .form-outline .form-control:focus ~ .form-label {
+                color: var(--main-color);
+            }
+        </style>
+
+        <h2 class="text-center mb-5">@lang('messages.registration')</h2>
+
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
             <div>
-                <x-label for="name">@lang('messages.name')</x-label>
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                         autofocus autocomplete="name"/>
+                <div class="form-outline" data-mdb-input-init>
+                    <input id="name" class="form-control login" type="text" name="name" required autocomplete="name"/>
+                    <label for="name" class="form-label">@lang('messages.name')</label>
+                </div>
             </div>
 
             <div class="mt-4">
-                <x-label for="email">@lang('messages.email')</x-label>
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                         autocomplete="email"/>
+                <div class="form-outline" data-mdb-input-init>
+                    <input id="email" class="form-control login" type="email" name="email" required autocomplete="email"/>
+                    <label for="email" class="form-label">@lang('messages.email')</label>
+                </div>
             </div>
 
             <div class="mt-4">
-                <x-label for="password">@lang('messages.password')</x-label>
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                         autocomplete="new-password"/>
+                <div class="form-outline" data-mdb-input-init>
+                    <input id="password" class="form-control login" type="password" name="password" required
+                             autocomplete="new-password"/>
+                    <label for="password" class="form-label">@lang('messages.password')</label>
+                </div>
             </div>
 
             <div class="mt-4">
-                <x-label for="password_confirmation">@lang('messages.password_conf')</x-label>
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                         name="password_confirmation" required autocomplete="new-password"/>
+                <div class="form-outline" data-mdb-input-init>
+                    <input id="password_confirmation" class="form-control login" type="password"
+                             name="password_confirmation" required autocomplete="new-password"/>
+                    <label for="password_confirmation" class="form-label">@lang('messages.password_conf')</label>
+                </div>
             </div>
 
             <div class="mt-4">
-                <x-label for="phone_number">@lang('messages.mobile_phone')</x-label>
-                <x-input id="phone_number" class="block mt-1 w-full" type="tel" name="phone_number"
-                         placeholder="06 70 632 3578" pattern="[0-9]{2} [0-9]{2} [0-9]{3} [0-9]{4}" requied
-                         autocomplete="phone"/>
+                <div class="form-outline" data-mdb-input-init>
+                    <input id="phone_number" class="form-control login" type="tel" name="phone_number"
+                             pattern="[0-9]{2} [0-9]{2} [0-9]{3} [0-9]{4}" required
+                             autocomplete="phone"/>
+                    <label for="phone_number" class="form-label">@lang('messages.mobile_phone')</label>
+                </div>
             </div>
 
             <div id="plus_agent" style="display: none">
                 <div class="mt-4">
-                    <x-label for="commission">@lang('messages.commission')</x-label>
-                    <x-input id="commission" class="block mt-1 w-full" type="text" name="commission"
-                             :value="old('commission')"
-                             autocomplete="commission"/>
+                    <div class="form-outline" data-mdb-input-init>
+                        <input id="commission" class="form-control login" type="text" name="commission"
+                                 autocomplete="commission"/>
+                        <label for="commission" class="form-label">@lang('messages.commission')</label>
+                    </div>
                 </div>
 
                 <div class="mt-4">
-                    <x-label for="experience">@lang('messages.experience')</x-label>
-                    <x-input id="experience" class="block mt-1 w-full" type="number" name="experience"
-                             :value="old('experience')"
-                             autocomplete="experience"/>
+                    <div class="form-outline" data-mdb-input-init>
+                        <input id="experience" class="form-control login" type="number" name="experience"
+                                 autocomplete="experience"/>
+                        <label for="experience" class="form-label">@lang('messages.experience')</label>
+                    </div>
                 </div>
 
                 <div class="row mt-4">
                     <div class="col">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                        {{--<button class="btn btn-primary" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#help" aria-expanded="false"
-                                aria-controls="collapseExample">
+                                aria-controls="collapseExample" data-mdb-ripple-init>
                             @lang('messages.help_reg')
                         </button>
-                        <div class="collapse" id="help">
-                            <div class="card card-body">
+                        <div class="collapse" id="help">--}}
+                        <label class="form-label text-black">@lang('messages.help_reg')</label>
+                            <div class="card card-body bg-third-color shadow-custom">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="belsőépítész"
                                            name="help[]" id="belsőépítész">
@@ -129,37 +190,40 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        {{--</div>--}}
                     </div>
                 </div>
                 <div class="mt-4">
-                    <x-label for="known_language">@lang('messages.language')</x-label>
-                    <x-input id="known_language" class="block mt-1 w-full" type="text" name="known_language"
-                             :value="old('known_language')"
-                             autocomplete="known_language"/>
+                    <div class="form-outline" data-mdb-input-init>
+                        <input id="known_language" class="form-control login" type="text" name="known_language"
+                                 autocomplete="known_language"/>
+                        <label for="known_language" class="form-label">@lang('messages.language')</label>
+                    </div>
                 </div>
 
                 <div class="mt-4">
                     <div class="col">
-                        <x-label for="description">@lang('messages.description')</x-label>
-                        <textarea class="block mt-1 w-full rounded border-gray-300" id="description"
-                                  name="description"></textarea>
+                        <div class="form-outline" data-mdb-input-init>
+                            <textarea class="form-control" id="description"
+                                      name="description"></textarea>
+                            <label for="description" class="form-label">@lang('messages.description')</label>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div id="plus_user" style="display: none">
                 <div class="mt-4">
-                    <label for="email_notification" class="flex items-center">
-                        <x-input id="email_notification" name="email_notification" type="checkbox" value="{{true}}"/>
-                        <span class="ms-2 text-sm text-gray-600">@lang('messages.newsletter')</span>
-                    </label>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" onclick="newsletter()" id="email_notification" name="email_notification" value="{{true}}"/>
+                        <label for="email_notification" class="form-check-label">@lang('messages.newsletter')</label>
+                    </div>
                 </div>
 
-                <div class="mt-4">
-                    <x-label for="description">@lang('messages.newsletter_county')</x-label>
+                <div class="mt-4" style="display: none" id="county">
+                    <label class="text-black mb-2">@lang('messages.newsletter_county')</label>
                     <div>
-                        <div class="card card-body">
+                        <div class="card card-body shadow-custom bg-third-color">
                             <div class="row">
                                 <div class="col">
                                     <div class="form-check">
@@ -385,30 +449,30 @@
             </div>
 
             <div class="mt-4">
-                <label for="magan" class="flex items-center">
-                    <x-input id="magan" name="user" onclick="plusinfo()" type="radio" value="m" required
-                             autocomplete="m"/>
-                    <span class="ms-2 text-sm text-gray-600">@lang('messages.private_person')</span>
-                </label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="magan" name="user" onclick="plusinfo()" value="m" required
+                           autocomplete="m">
+                    <label for="magan" class="form-check-label text-black">@lang('messages.private_person')</label>
+                </div>
             </div>
 
-            <div class="mt-4">
-                <label for="ingatlanos" class="flex items-center">
-                    <x-input id="ingatlanos" onclick="plusinfo()" name="user" type="radio" value="i" required
-                             autocomplete="i"/>
-                    <span class="ms-2 text-sm text-gray-600">@lang('messages.real_estate_agent')</span>
-                </label>
+            <div class="mt-2">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="ingatlanos" onclick="plusinfo()" name="user" value="i" required
+                           autocomplete="i">
+                    <label for="ingatlanos" class="form-check-label text-black">@lang('messages.real_estate_agent')</label>
+                </div>
             </div>
 
             <div class="flex items-center justify-end mt-4">
+                <button class="w-100 btn btn-danger text-15 px-3 btn-second-main-color"
+                        data-mdb-ripple-init> @lang('messages.registration')</button>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                    href="{{ route('login') }}">
                     @lang('messages.have_account')
                 </a>
-
-                <x-button class="ms-4">
-                    @lang('messages.registration')
-                </x-button>
             </div>
         </form>
     </x-authentication-card>
