@@ -24,7 +24,7 @@
                                     reader.readAsDataURL($refs.photo.files[0]);
                             "/>
 
-                <x-label for="photo">@lang('messages.profile_pic')</x-label>
+                <x-label for="photo" class="text-white">@lang('messages.profile_pic')</x-label>
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
@@ -39,14 +39,14 @@
                     </span>
                 </div>
 
-                <x-secondary-button class="mt-2 me-2" type="button" x-on:click.prevent="$refs.photo.click()">
+                <x-secondary-button class="mt-2 me-2 bg-second-main-color text-white border-0" data-mdb-ripple-init type="button" x-on:click.prevent="$refs.photo.click()">
                     @lang('messages.new_pic')
                 </x-secondary-button>
 
                 @if ($this->user->profile_photo_path)
-                    <x-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
+                    <x-danger-button type="button" data-mdb-ripple-init class="mt-2 border-0" wire:click="deleteProfilePhoto">
                         @lang('messages.delete_pic')
-                    </x-secondary-button>
+                    </x-danger-button>
                 @endif
 
                 <x-input-error for="photo" class="mt-2"/>
@@ -55,16 +55,16 @@
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="name">@lang('messages.name')</x-label>
-            <x-input id="name" type="text" class="mt-1 block w-full" wire:model="state.name" required
+            <x-label for="name" class="text-white">@lang('messages.name')</x-label>
+            <x-input id="name" type="text" class="mt-1 block w-full bg-main-color text-white" wire:model="state.name" required
                      autocomplete="name"/>
             <x-input-error for="name" class="mt-2"/>
         </div>
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="email">@lang('messages.email')</x-label>
-            <x-input id="email" type="email" class="mt-1 block w-full" wire:model="state.email" required
+            <x-label for="email" class="text-white">@lang('messages.email')</x-label>
+            <x-input id="email" type="email" class="mt-1 block w-full bg-main-color text-white" wire:model="state.email" required
                      autocomplete="username"/>
             <x-input-error for="email" class="mt-2"/>
 
@@ -108,11 +108,11 @@
     </x-slot>
 
     <x-slot name="actions">
-        <x-action-message class="me-3" on="saved">
+        <x-action-message class="me-3 text-white" on="saved">
             @lang('messages.saved')
         </x-action-message>
 
-        <x-button wire:loading.attr="disabled" wire:target="photo">
+        <x-button wire:loading.attr="disabled" class="btn-second-main-color border-0" data-mdb-ripple-init  wire:target="photo">
             @lang('messages.save')
         </x-button>
     </x-slot>
