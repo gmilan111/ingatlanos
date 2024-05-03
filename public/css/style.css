@@ -199,6 +199,10 @@ body{
     background-color: var(--third-color);
 }
 
+.bg-second-main-color{
+    background-color: var(--second-main-color) !important;
+}
+
 .navbar-collapse{
     padding: 15px;
     border-radius: 15px;
