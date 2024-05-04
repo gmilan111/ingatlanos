@@ -253,6 +253,22 @@ input:-webkit-autofill:active{
     color: black;
 }
 
+.file_upload{
+    color: black;
+    background-color: transparent !important;
+}
+
+.select-custom{
+    background-color: transparent !important;
+    color: black;
+    border: 0;
+    border-bottom: 2px solid grey;
+}
+
+.label-custom:after{
+    background-color: transparent !important;
+}
+
 @media (max-width: 992px){
     .carousel-inner{
         margin-top: 15%;
@@ -263,6 +279,6 @@ input:-webkit-autofill:active{
 
 @media (min-width: 640px){
     .auth-card-w{
-        max-width: 100rem;
+        max-width: 120rem;
     }
 }

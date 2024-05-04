@@ -222,7 +222,7 @@
                 @auth()
                     @livewire('navigation-menu')
                 @else
-                    <a class="nav-link fejlec text-light" href="{{ route('login') }}">@lang('messages.login')</a>
+                    <a class="nav-link fejlec text-light p-2" href="{{ route('login') }}">@lang('messages.login')</a>
                     <a class="nav-link text-light btn-primary register-btn px-4 py-2" data-mdb-ripple-init
                        href="{{ route('register') }}">@lang('messages.registration')</a>
                 @endauth
