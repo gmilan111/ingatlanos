@@ -1,8 +1,8 @@
 
 
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
+<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 mb-4">
 
-    <div class="w-25 auth-card-w mt-3 px-6 py-4 shadow-custom overflow-hidden sm:rounded-lg bg-secondary-color">
+    <div class="{{request()->is('properties/create')?'w-75':'w-25'}} auth-card-w mt-3 px-6 py-4 shadow-custom overflow-hidden sm:rounded-lg bg-secondary-color">
         <div class="flex flex-col sm:justify-center items-center mb-5">
             {{ $logo }}
         </div>
@@ -22,6 +22,8 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
 <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"
@@ -34,4 +36,3 @@
 
 {{--<script src="{{asset('js/owl.carousel.min.js')}}"></script>--}}
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>

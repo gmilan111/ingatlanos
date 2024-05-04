@@ -1,8 +1,8 @@
-/*import '@/bootstrap.js';
+/*import '@/bootstrap.js';*/
 
-import { Navbar, Dropdown, initMDB } from "mdb-ui-kit";
+/*import { Input, Dropdown, initMDB } from "mdb-ui-kit";
 
-initMDB({ Navbar, Dropdown });*/
+initMDB({ Input, Dropdown });*/
 
 
 $('.owl-carousel').owlCarousel({
@@ -24,7 +24,8 @@ $('.owl-carousel').owlCarousel({
             loop:false
         }
     }
-})
+});
+
 $(document).ready(function(){
     $("button.plusbtn").on("click",function(){
         $("#plus").append("" +
