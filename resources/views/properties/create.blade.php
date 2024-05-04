@@ -79,8 +79,6 @@
                 </div>
             </div>
 
-
-
             <div class="row mt-5">
                 <div class="col my-auto ">
                     <div class="form-outline" data-mdb-input-init>
@@ -124,8 +122,6 @@
                                autocomplete="address"/>
                         <label for="address" class="form-label">@lang('messages.address')</label>
                     </div>
-
-
                 </div>
             </div>
 
