@@ -136,7 +136,7 @@ body{
 
 .search-header{
     background-color: var(--main-color);
-    border-radius: 15px;
+    border-radius: 15px !important;
 }
 
 .text-15{
@@ -173,6 +173,10 @@ body{
 .btn-second-main-color{
     background-color: var(--second-main-color) !important;
     border-radius: 15px;
+}
+
+.text-second-main-color{
+    color: var(--second-main-color);
 }
 
 .bg-section{
@@ -265,8 +269,39 @@ input:-webkit-autofill:active{
     border-bottom: 2px solid grey;
 }
 
+.select-custom-2{
+    background-color: transparent !important;
+    color: white;
+    border: 0;
+    border-bottom: 2px solid var(--second-main-color);
+}
+
 .label-custom:after{
     background-color: transparent !important;
+}
+
+.z-99{
+    z-index: 99 !important;
+}
+
+.btn-outline-custom{
+    border-color: var(--second-main-color);
+    color: var(--second-main-color);
+    background-color: transparent;
+}
+
+.btn-outline-custom:hover{
+    border-color: var(--second-main-color);
+    color: var(--second-main-color);
+    background-color: transparent;
+}
+
+.property{
+    transition: 0.5s;
+}
+
+.property:hover{
+    transform: scale(1.1);
 }
 
 @media (max-width: 992px){
