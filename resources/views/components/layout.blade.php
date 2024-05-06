@@ -145,7 +145,7 @@
     @endif
 </nav>--}}
 
-<nav class="navbar shadow-lg fixed-top navbar-expand-lg z-1">
+<nav class="navbar shadow-lg fixed-top navbar-expand-lg z-99">
     <!-- Container wrapper -->
     <div class="container header">
         <!-- Navbar brand -->

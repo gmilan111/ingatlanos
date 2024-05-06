@@ -1,5 +1,4 @@
 <x-layout>
-
     <div class="p-5 text-center bg-image shadow-2xl"
          style="background-image: url('{{asset('img/header.jpg')}}'); height: 1050px;">
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
