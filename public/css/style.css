@@ -122,12 +122,12 @@ body{
     cursor: pointer;
 }
 
-.carousel-control-prev-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+.carousel-control-prev{
+    color: black !important;
 }
 
-.carousel-control-next-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+.carousel-control-next{
+    color: black !important;
 }
 
 .mt-6{
@@ -172,6 +172,16 @@ body{
 
 .btn-second-main-color{
     background-color: var(--second-main-color) !important;
+    border-radius: 15px;
+}
+
+.btn-third-color{
+    background-color: var(--third-color) !important;
+    border-radius: 15px;
+}
+
+.btn-main-color{
+    background-color: var(--main-color) !important;
     border-radius: 15px;
 }
 
@@ -302,6 +312,28 @@ input:-webkit-autofill:active{
 
 .property:hover{
     transform: scale(1.1);
+}
+
+.agent{
+    transition: 0.5s;
+}
+
+.agent:hover{
+    transform: scale(1.1);
+}
+
+.profile-photo{
+    border-radius: 50% !important;
+    height: 200px;
+    width: 200px;
+}
+
+.model-header-custom{
+    border-bottom: var(--mdb-modal-border-width) solid var(--second-main-color);
+}
+
+.model-footer-custom{
+    border-top: var(--mdb-modal-border-width) solid var(--second-main-color);
 }
 
 @media (max-width: 992px){

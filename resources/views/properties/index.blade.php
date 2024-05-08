@@ -45,7 +45,7 @@
     </style>
 
     <div class="container px-0 ">
-        <div class="input-group margin-top p-4 rounded  shadow-custom search-header mb-5">
+        <div class="input-group margin-top p-4 rounded shadow-custom search-header mb-5">
             <form action="{{route('properties.search')}}" method="POST" class="row d-flex align-items-center">
                 @csrf
                 <div class="col">
@@ -168,7 +168,7 @@
                         </button>
                         <div class="collapse" id="collapseExample">
                             <div class="card card-body bg-main-color">
-                                <div class="row align-items-center">
+                                <div class="row">
                                     <div class="col {{--d-flex justify-content-center--}}">
                                         <button class="btn outline-0 shadow-0 text-second-main-color custom-dropdown"
                                                 type="button" data-bs-toggle="collapse"
@@ -1649,7 +1649,7 @@
             </form>
         </div>
 
-        <div class="row d-flex justify-content-between">
+        <div class="row d-flex justify-content-evenly">
             @if(count($properties)<1)
                 <p>NINCS TALÁLAT</p>
             @endif

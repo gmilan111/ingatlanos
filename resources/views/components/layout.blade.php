@@ -174,7 +174,7 @@
                            href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('auctions.index')}}" class="nav-link fejlec">Aukciók</a>
+                        <a href="{{route('auctions.index')}}" class="nav-link fejlec text-light">Aukciók</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light fejlec"

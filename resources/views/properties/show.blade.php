@@ -3,21 +3,10 @@
     @foreach($properties as $property)
         @php
             $address = ($property->settlement).','.' '.($property->address).'.';
-            /*$carousel = sizeof($images) + sizeof($main_img);*/
         @endphp
         <div class="container mt-6">
-            <div id="carouselExampleIndicators" class="carousel slide mb-5">
-                {{--<div class="carousel-indicators">
-                    @for ($i = 0; $i < $carousel; $i++)
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="$i"
-                                class="active bg-dark" aria-current="true" aria-label="Slide {{$i}}"></button>
-                    @endfor
-
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                            class="bg-dark" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                            class="bg-dark" aria-label="Slide 3"></button>
-                </div>--}}
+            <div id="carouselExampleCrossfade" class="carousel slide carousel-fade" data-mdb-ride="carousel"
+                 data-mdb-carousel-init>
                 <div class="carousel-inner">
                     @foreach($main_img as $img)
                         <div class="carousel-item active">
@@ -30,20 +19,20 @@
                         </div>
                     @endforeach
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true" style="color: black"></span>
+                <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCrossfade"
+                        data-mdb-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCrossfade"
+                        data-mdb-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
             <div class="row">
                 <div class="col-sm-8 mb-3 mb-sm-0">
-                    <div class="card border-0 shadow-2xl">
+                    <div class="card border-0 shadow-custom text-black">
                         <div class="card-body">
                             <h1 class="card-title mt-2">{{$address}}</h1>
                             <h1 class="card-title-price card-title">{{number_format(($property->price),0,'','.')}}
@@ -72,14 +61,14 @@
                         </div>
                     </div>
 
-                    <div class="card border-0 shadow-2xl mt-5">
+                    <div class="card border-0 shadow-custom mt-5 text-black">
                         <div class="card-body">
                             <h1 class="card-title mt-2">@lang('messages.description')</h1>
                             <p class="card-text mb-2">{{___($property->description)}}</p>
                         </div>
                     </div>
 
-                    <div class="card border-0 shadow-2xl mt-5">
+                    <div class="card border-0 shadow-custom mt-5 text-black">
                         <div class="card-body row">
                             <h1 class="card-title mt-2">@lang('messages.general_info')</h1>
                             <div class="col-sm-5">
@@ -173,7 +162,7 @@
                         </div>
                     </div>
 
-                    <div class="card border-0 shadow-2xl mt-5">
+                    <div class="card border-0 shadow-custom mt-5 text-black">
                         <div class="card-body">
                             <h1 class="card-title mt-2">@lang('messages.useful_info')</h1>
                             <table class="table">
@@ -207,7 +196,7 @@
                         </div>
                     </div>
 
-                    <div class="card border-0 shadow-2xl mt-5">
+                    <div class="card border-0 shadow-custom mb-5 mt-5 text-black">
                         <div class="card-body d-flex justify-content-center">
                             <iframe src="https://maps.google.it/maps?q=<?php echo $address?>&output=embed" width="800"
                                     height="650"
@@ -218,26 +207,31 @@
 
                 </div>
                 <div class="col-sm-4">
-                    <div class="card border-0 shadow-2xl text-center">
+                    <div class="card border-0 shadow-custom text-black text-center">
                         <div class="card-body">
                             <h1 class="card-title">@lang('messages.contact_advertiser')</h1>
                             <hr class="mb-4">
                             @php
                                 $agents = DB::table('users')->select('*')->where('id', '=', $property->user_id)->first();
+                                $agent_info = \Illuminate\Support\Facades\DB::table('agents')->select('*')->where('user_id', '=', $agents->id)->first();
                             @endphp
                             @if(isset(auth()->user()->is_ingatlanos))
-                                <h2 style="font-size: 20px">(IDE JÖHET EGY ICON){{$agents->phone_number}}</h2>
+                                <h2 style="font-size: 20px"><i class="fa-solid fa-phone p-3"></i>{{$agents->phone_number}}</h2>
                             @else
-                                <h1 class="card-title"><a href="{{route('login')}}" class="btn btn-primary">@lang('messages.show_phone_number')</a></h1>
+                                <h1 class="card-title"><a href="{{route('login')}}"
+                                                          class="btn btn-second-main-color text-white px-4 py-3" data-mdb-ripple-init>@lang('messages.show_phone_number')</a>
+                                </h1>
                             @endif
 
-                            <img class="mt-5 mb-3 rounded-3 shadow-lg"
-                                 src="{{asset('storage/'.$agents->profile_photo_path)}}" alt="{{$agents->name}}">
-                            <h1 class="card-title">{{$agents->name}}</h1>
+
+                                <img class="mt-3 mb-3 rounded-3 shadow-lg profile-photo mx-auto"
+                                     src="{{asset('storage/'.$agents->profile_photo_path)}}" alt="{{$agents->name}}">
+                            </a>
+                            <h1 class="card-title mb-5">{{$agents->name}}</h1>
 
                             @if(auth()->user() == null)
                                 <div id="liveAlertPlaceholder"></div>
-                                <button type="button" class="btn btn-primary" id="liveAlertBtn"><i
+                                <button type="button" class="btn btn-main-color text-white" id="liveAlertBtn"><i
                                         class="fa-regular fa-star fa-xl"
                                         style="color: #f8c920;"></i>@lang('messages.save_ad')
                                 </button>
@@ -247,22 +241,24 @@
                                     <form action="/like/delete/{{$property->id}}" method="GET">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-primary"><i class="fa-solid fa-star fa-xl"
+                                        <button class="btn btn-main-color text-white"><i class="fa-solid fa-star fa-xl"
                                                                            style="color: #f8c920;"></i>@lang('messages.ad_saved')
                                         </button>
                                     </form>
                                 @else
                                     <form action="/like/{{$property->id}}" method="POST">
                                         @csrf
-                                        <button class="btn btn-primary"><i class="fa-regular fa-star fa-xl"
+                                        <button class="btn btn-main-color text-white"><i class="fa-regular fa-star fa-xl"
                                                                            style="color: #f8c920;"></i>@lang('messages.save_ad')
                                         </button>
                                     </form>
 
                                 @endif
+                                <a href="/agents/{{$agent_info->user_id}}" class="btn btn-second-main-color mt-3 text-white" data-mdb-ripple-init>Ingatlanos információk</a>
+
                                 <div class="mt-3">
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-third-color text-white px-4 py-3" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal">
                                         @lang('messages.send_message')
                                     </button>
@@ -271,32 +267,34 @@
                                     <div class="modal fade" id="exampleModal" tabindex="-1"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
-                                            <div class="modal-content">
+                                            <div class="modal-content bg-main-color">
                                                 <form action="/email/{{$property->id}}" method="GET">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">@lang('messages.send_message')</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
+                                                    <div class="modal-header model-header-custom">
+                                                        <h1 class="modal-title fs-5 text-light"
+                                                            id="exampleModalLabel">@lang('messages.send_message')</h1>
+                                                        <button type="button" class="btn-close my-auto" data-bs-dismiss="modal"
+                                                                aria-label="Close"><i class="fa-solid fa-xmark" style="color: #ffffff; text-align: center"></i></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class=" mb-3">
-                                                            <x-label for="name">@lang('messages.name')</x-label>
-                                                            <x-input id="name" class="block mt-1 w-full" type="text"
+                                                            <label for="name" class="form-label text-white">@lang('messages.name')</label>
+                                                            <x-input id="name" class="block mt-1 w-full bg-main-color" type="text"
                                                                      name="name" :value="old('name')" required
                                                                      autofocus autocomplete="name"/>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="exampleFormControlTextarea1" class="form-label">@lang('messages.message')</label>
-                                                            <textarea class="form-control"
+                                                            <label for="exampleFormControlTextarea1"
+                                                                   class="form-label text-white">@lang('messages.message')</label>
+                                                            <textarea class="form-control bg-main-color"
                                                                       id="exampleFormControlTextarea1"
                                                                       rows="3" name="description"></textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
+                                                    <div class="modal-footer model-footer-custom">
+                                                        {{--<button type="button" class="btn btn-secondary text-second-main-color rounded"
                                                                 data-bs-dismiss="modal">@lang('messages.back')
-                                                        </button>
-                                                        <button class="btn btn-primary">@lang('messages.send')</button>
+                                                        </button>--}}
+                                                        <button class="btn btn-second-main-color text-white">@lang('messages.send')</button>
                                                     </div>
                                                 </form>
                                             </div>
