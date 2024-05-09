@@ -470,8 +470,7 @@
             <div class="row mt-4">
                 <div class="col">
                     <div class="form-outline" data-mdb-input-init>
-                            <textarea class="form-control login" id="descrpition" name="description"
-                                      required></textarea>
+                        <textarea class="form-control login" id="descrpition" name="description" required></textarea>
                         <label for="descrpition" class="form-label">@lang('messages.description')</label>
                     </div>
                 </div>

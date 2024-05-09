@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agents;
 use App\Models\Properties;
 use App\Models\User;
 use Illuminate\Http\Request;;
@@ -168,6 +169,18 @@ class Controller extends BaseController
         $user = User::find($user_id);
         $user->notification_state = json_encode($request['state'], JSON_UNESCAPED_UNICODE);
         $user->save();
+
+        return back();
+    }
+
+    public function agent_update (Request $request, $user_id){
+        $agent = Agents::find($user_id);
+        $agent->salary = $request['commission'];
+        $agent->experience = $request['experience'];
+        $agent->language = $request['language'];
+        $agent->description = $request['description'];
+        $agent->help = json_encode($request['help'], JSON_UNESCAPED_UNICODE);
+        $agent->save();
 
         return back();
     }

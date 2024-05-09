@@ -9,7 +9,7 @@
                     <div class="col-lg-3 width-33 mb-5 agent">
                         <a href="/agents/{{$agent->id}}">
                             <div class="card border-0 shadow-2xl" style="width: 25rem;">
-                                <img src="{{asset('storage/'.$agent->profile_photo_path)}}" class="card-img-top"
+                                <img src="{{asset('storage/'.$agent->profile_photo_path)}}" class="card-img-top agent-img"
                                      alt="...">
                                 <div class="card-body">
                                     <h1 class="card-title">{{$agent->name}}</h1>

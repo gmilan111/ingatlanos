@@ -30,9 +30,9 @@ class LikedPropertiesController extends Controller
            'user_id' => $user,
         ]);
 
-        
 
-        return redirect(route('properties.index'));
+
+        return back();
     }
 
     public function destroy($data){
@@ -48,7 +48,7 @@ class LikedPropertiesController extends Controller
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
         ]);*/
 
-        return redirect(route('properties.index'));
+        return back();
     }
 
     public function destroy_liked($data){

@@ -212,18 +212,21 @@
                             <h1 class="card-title">@lang('messages.contact_advertiser')</h1>
                             <hr class="mb-4">
                             @php
-                                $agents = DB::table('users')->select('*')->where('id', '=', $property->user_id)->first();
+                                $agents = \Illuminate\Support\Facades\DB::table('users')->select('*')->where('id', '=', $property->user_id)->first();
                                 $agent_info = \Illuminate\Support\Facades\DB::table('agents')->select('*')->where('user_id', '=', $agents->id)->first();
                             @endphp
                             @if(isset(auth()->user()->is_ingatlanos))
-                                <h2 style="font-size: 20px"><i class="fa-solid fa-phone p-3"></i>{{$agents->phone_number}}</h2>
+                                <h2 style="font-size: 20px"><i
+                                        class="fa-solid fa-phone p-3"></i>{{$agents->phone_number}}</h2>
                             @else
                                 <h1 class="card-title"><a href="{{route('login')}}"
-                                                          class="btn btn-second-main-color text-white px-4 py-3" data-mdb-ripple-init>@lang('messages.show_phone_number')</a>
+                                                          class="btn btn-second-main-color text-white px-4 py-3"
+                                                          data-mdb-ripple-init>@lang('messages.show_phone_number')</a>
                                 </h1>
                             @endif
 
-                            <img class="mt-3 mb-3 rounded-3 shadow-lg profile-photo mx-auto" src="{{asset('storage/'.$agents->profile_photo_path)}}" alt="{{$agents->name}}">
+                            <img class="mt-3 mb-3 rounded-3 shadow-lg profile-photo mx-auto"
+                                 src="{{asset('storage/'.$agents->profile_photo_path)}}" alt="{{$agents->name}}">
                             <h1 class="card-title mb-5">{{$agents->name}}</h1>
 
                             @if(auth()->user() == null)
@@ -234,31 +237,38 @@
                                 </button>
 
                             @else
-                                @if(\App\Models\LikedProperties::where([['user_id', '=', auth()->id()], ['properties_id', '=', $property->id]])->count()>0)
-                                    <form action="/like/delete/{{$property->id}}" method="GET">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-main-color text-white"><i class="fa-solid fa-star fa-xl"
-                                                                           style="color: #f8c920;"></i>@lang('messages.ad_saved')
-                                        </button>
-                                    </form>
-                                @else
-                                    <form action="/like/{{$property->id}}" method="POST">
-                                        @csrf
-                                        <button class="btn btn-main-color text-white"><i class="fa-regular fa-star fa-xl"
-                                                                           style="color: #f8c920;"></i>@lang('messages.save_ad')
-                                        </button>
-                                    </form>
+                                @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m")
+                                    @if(\App\Models\LikedProperties::where([['user_id', '=', auth()->id()], ['properties_id', '=', $property->id]])->count()>0)
+                                        <form action="/like/delete/{{$property->id}}" method="GET">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-main-color text-white"><i
+                                                    class="fa-solid fa-star fa-xl"
+                                                    style="color: #f8c920;"></i>@lang('messages.ad_saved')
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form action="/like/{{$property->id}}" method="POST">
+                                            @csrf
+                                            <button class="btn btn-main-color text-white"><i
+                                                    class="fa-regular fa-star fa-xl"
+                                                    style="color: #f8c920;"></i>@lang('messages.save_ad')
+                                            </button>
+                                        </form>
 
+                                    @endif
                                 @endif
-                                <a href="/agents/{{$agent_info->user_id}}" class="btn btn-second-main-color mt-3 text-white" data-mdb-ripple-init>Ingatlanos információk</a>
+                                <a href="/agents/{{$agent_info->user_id}}"
+                                   class="btn btn-second-main-color mt-3 text-white" data-mdb-ripple-init>Ingatlanos
+                                    információk</a>
 
                                 <div class="mt-3">
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-third-color text-white px-4 py-3" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">
-                                        @lang('messages.send_message')
-                                    </button>
+                                    @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m")
+                                        <button type="button" class="btn btn-third-color text-white px-4 py-3"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">@lang('messages.send_message')</button>
+                                    @endif
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1"
@@ -269,13 +279,18 @@
                                                     <div class="modal-header model-header-custom">
                                                         <h1 class="modal-title fs-5 text-light"
                                                             id="exampleModalLabel">@lang('messages.send_message')</h1>
-                                                        <button type="button" class="btn-close my-auto" data-bs-dismiss="modal"
-                                                                aria-label="Close"><i class="fa-solid fa-xmark" style="color: #ffffff; text-align: center"></i></button>
+                                                        <button type="button" class="btn-close my-auto"
+                                                                data-bs-dismiss="modal"
+                                                                aria-label="Close"><i class="fa-solid fa-xmark"
+                                                                                      style="color: #ffffff; text-align: center"></i>
+                                                        </button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class=" mb-3">
-                                                            <label for="name" class="form-label text-white">@lang('messages.name')</label>
-                                                            <x-input id="name" class="block mt-1 w-full bg-main-color" type="text"
+                                                            <label for="name"
+                                                                   class="form-label text-white">@lang('messages.name')</label>
+                                                            <x-input id="name" class="block mt-1 w-full bg-main-color"
+                                                                     type="text"
                                                                      name="name" :value="old('name')" required
                                                                      autofocus autocomplete="name"/>
                                                         </div>
@@ -291,7 +306,8 @@
                                                         {{--<button type="button" class="btn btn-secondary text-second-main-color rounded"
                                                                 data-bs-dismiss="modal">@lang('messages.back')
                                                         </button>--}}
-                                                        <button class="btn btn-second-main-color text-white">@lang('messages.send')</button>
+                                                        <button
+                                                            class="btn btn-second-main-color text-white">@lang('messages.send')</button>
                                                     </div>
                                                 </form>
                                             </div>

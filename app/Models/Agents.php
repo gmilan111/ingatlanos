@@ -21,4 +21,6 @@ class Agents extends Model
     protected $casts = [
         'help' => 'array',
     ];
+
+    protected $primaryKey = 'user_id';
 }

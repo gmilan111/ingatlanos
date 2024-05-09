@@ -31,7 +31,7 @@ Route::get('/', [Controller::class, 'index']);
 Route::get('/properties', [PropertiesController::class, 'index'])->name('properties.index');
 
 #Ingatlanok hozzáadása form megjelenítése
-Route::get('/properties/create', [PropertiesController::class, 'store_index'])->name('properties.create');
+Route::get('/properties/create', [PropertiesController::class, 'store_index'])->name('properties.create')->middleware('auth');
 
 #Új ingatlan eltárolása adatbázisban
 Route::post('/properties/store', [PropertiesController::class, 'store'])->name('properties.store');
@@ -97,6 +97,9 @@ Route::put('/sold/{property_id}', [PropertiesController::class, 'sold']);
 
 #Hírlevél módosítása
 Route::put('/notification/{user_id}', [Controller::class, 'notification_update']);
+
+#Ingatlanos infok módosítása
+Route::put('/agent_info/{user_id}', [Controller::class, 'agent_update']);
 
 #Nyelv megváltoztatása
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
