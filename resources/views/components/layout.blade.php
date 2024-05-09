@@ -31,120 +31,6 @@
 
 </head>
 <body>
-{{--<nav data-mdb-navbar-init class="navbar shadow-lg fixed-top navbar-expand-lg navbar-light">
-    <!-- Container wrapper -->
-    <div class="container header d-flex justify-content-between">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
-        </button>
-        <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse justify-content-center">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="navbar-brand me-2" href="/">
-                        <img src="{{asset('img\icon.png')}}" alt="Logo" width="50px" height="50px"/>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="collapse navbar-collapse justify-content-around align-items-center bg-main-color" id="navbarTogglerDemo02">
-            <!-- Left links -->
-            @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-light {{request()->is('/')?'active a-fejlec':''}} fejlec font-light"
-                           aria-current="page"
-                           href="/">@lang('messages.homepage')</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light {{request()->is('properties')?'active a-fejlec':''}} fejlec"
-                           href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
-                    </li>
-
-                    <li class="nav-item text-light"><a href="{{route('auctions.index')}}" class="nav-link fejlec">Aukciók</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light fejlec"
-                           href="{{route('agents.index')}}">@lang('messages.agents')</a>
-                    </li>
-                </ul>
-            @elseif(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'i')
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-light {{request()->is('/')?'active a-fejlec':''}} fejlec"
-                           aria-current="page"
-                           href="/">@lang('messages.homepage')</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light {{request()->is('properties') ? 'active a-fejlec' : (request()->is('properties/store') ? 'active a-fejlec' : (request()->is('properties/*') ? 'active a-fejlec' : (request()->is('search*') ? 'active a-fejlec' : '')))}} fejlec"
-                           href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fejlec text-light"
-                           href="{{route('properties.create')}}">@lang('messages.add_new_property')</a>
-                    </li>
-                    <li class="nav-item"><a href="{{route('auctions.index')}}" class="nav-link fejlec text-light">Aukciók</a>
-                    </li>
-                </ul>
-            @else
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active a-fejlec fejlec text-light" aria-current="page"
-                           href="/">@lang('messages.homepage')</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fejlec text-light"
-                           href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fejlec text-light"
-                           href="{{route('agents.index')}}">@lang('messages.agents')</a>
-                    </li>
-                </ul>
-            @endif
-
-            <ul class="navbar-nav --}}{{--ms-auto --}}{{--mb-2 mb-lg-0">
-                @auth
-                    @livewire('navigation-menu')
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link fejlec text-light" href="{{ route('login') }}">@lang('messages.login')</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light btn-primary register-btn px-4" data-mdb-ripple-init
-                           href="{{ route('register') }}">@lang('messages.registration')</a>
-                    </li>
-                @endauth
-                <li class="nav-item d-flex justify-content-center">
-                    <select class="form-select changeLang">
-                        <option value="hu" {{session()->get('locale') == 'hu' ? 'selected' : ''}}>Magyar</option>
-                        <option value="en" {{session()->get('locale') == 'en' ? 'selected' : ''}}><a
-                                href="locale/en" class="text-decoration-none">English</a></option>
-                    </select>
-                </li>
-            </ul>
-        </div>
-
-
-    </div>
-    @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m")
-        @php
-            $user_info = \Illuminate\Support\Facades\DB::table('users')->select('*')->where('id', '=', auth()->id())->first();
-            $help =json_decode($user_info->notification_state);
-            $states_helper = explode(',', $help);
-            $states = array();
-            foreach ($states_helper as $item){
-                $item = str_replace('"', "", $item);
-                $item = str_replace('[', "", $item);
-                $item = str_replace(']', "", $item);
-                array_push($states, $item);
-            }
-        @endphp
-    @endif
-</nav>--}}
-
 <nav class="navbar shadow-lg fixed-top navbar-expand-lg z-99">
     <!-- Container wrapper -->
     <div class="container header">
@@ -226,12 +112,12 @@
                     <a class="nav-link text-light btn-primary register-btn px-4 py-2" data-mdb-ripple-init
                        href="{{ route('register') }}">@lang('messages.registration')</a>
                 @endauth
-                    <select class="changeLang">
-                        <option value="hu" {{session()->get('locale') == 'hu' ? 'selected' : ''}}><a
-                                href="locale/hu" class="text-decoration-none">Magyar</a></option>
-                        <option value="en" {{session()->get('locale') == 'en' ? 'selected' : ''}}><a
-                                href="locale/en" class="text-decoration-none">English</a></option>
-                    </select>
+                <select class="changeLang">
+                    <option value="hu" {{session()->get('locale') == 'hu' ? 'selected' : ''}}><a
+                            href="locale/hu" class="text-decoration-none">Magyar</a></option>
+                    <option value="en" {{session()->get('locale') == 'en' ? 'selected' : ''}}><a
+                            href="locale/en" class="text-decoration-none">English</a></option>
+                </select>
             </div>
         </div>
         @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m")
@@ -248,7 +134,6 @@
                 }
             @endphp
         @endif
-        <!-- Collapsible wrapper -->
     </div>
     <!-- Container wrapper -->
 </nav>
@@ -257,7 +142,228 @@
 <main>
     {{$slot}}
 </main>
-<!-- Modal -->
+
+
+<!--Agent Modal -->
+
+@if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "i")
+    @php
+        $agent = \Illuminate\Support\Facades\DB::table('agents')->select('*')->where('user_id', '=', auth()->id())->first();
+        $support =json_decode($agent->help);
+        $help_helper = explode(',', $support);
+        $help = array();
+        foreach ($help_helper as $item){
+            $item = str_replace('"', "", $item);
+            $item = str_replace('[', "", $item);
+            $item = str_replace(']', "", $item);
+            array_push($help, $item);
+        }
+    @endphp
+    <div class="modal fade" id="agentSettings" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-main-color">
+                <div class="modal-header model-header-custom">
+                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Ingatlanos információk
+                        módosítása</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/agent_info/{{auth()->id()}}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <div class="row mb-5 mt-3">
+                            <div class="col-md-6">
+                                <div class="form-outline" data-mdb-input-init>
+                                    <input type="text" class="form-control text-white" id="commission"
+                                           value="{{$agent->salary}}" name="commission">
+                                    <label for="commission"
+                                           class="form-label login text-white">@lang('messages.commission')
+                                        (%)</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-outline" data-mdb-input-init>
+                                    <input type="number" class="form-control text-white" value="{{$agent->experience}}"
+                                           id="experience" name="experience">
+                                    <label for="experience"
+                                           class="form-label login text-white">@lang('messages.experience')</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <div class="col-md-6">
+                                <div class="form-outline" data-mdb-input-init>
+                                    <input type="text" class="form-control text-white" id="language"
+                                           value="{{$agent->language}}" name="language">
+                                    <label for="language"
+                                           class="form-label login text-white">@lang('messages.language')</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-outline" data-mdb-input-init>
+                                    <textarea class="form-control text-white" id="description"
+                                              name="description">{{$agent->description}}</textarea>
+                                    <label for="description"
+                                           class="form-label login text-white">@lang('messages.description')</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="form-label text-white">@lang('messages.help_reg')</label>
+                            <div class="card card-body bg-main-color">
+                                @if(isset($help))
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="belsőépítész"
+                                               name="help[]" id="belsőépítész"
+                                               @if(in_array("belsőépítész", $help))checked @endif>
+                                        <label class="form-check-label text-white" for="belsőépítész">
+                                            @lang('messages.int_designer')
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="energetikai tanúsító"
+                                               name="help[]" id="energetikai_tanúsító"
+                                               @if(in_array("energetikai tanúsító", $help))checked @endif>
+                                        <label class="form-check-label text-white" for="energetikai_tanúsító">
+                                            @lang('messages.energy_certificate')
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="építész"
+                                               name="help[]" id="epitesz" @if(in_array("építész", $help))checked @endif>
+                                        <label class="form-check-label text-white" for="epitesz">
+                                            @lang('messages.architect')
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="földhivatali ügyintézés"
+                                               name="help[]" id="foldhivatali_ugyintezes"
+                                               @if(in_array("földhivatali ügyintézés", $help))checked @endif>
+                                        <label class="form-check-label text-white" for="foldhivatali_ugyintezes">
+                                            @lang('messages.land_reg_administration')
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="hitelügyintézés"
+                                               name="help[]" id="hitel"
+                                               @if(in_array("hitelügyintézés", $help))checked @endif>
+                                        <label class="form-check-label text-white" for="hitel">
+                                            @lang('messages.credit_management')
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="közjegyző"
+                                               name="help[]" id="kozjegyzo"
+                                               @if(in_array("közjegyző", $help))checked @endif>
+                                        <label class="form-check-label text-white" for="kozjegyzo">
+                                            @lang('messages.notary_public')
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="lakberendező"
+                                               name="help[]" id="lakberendezo"
+                                               @if(in_array("lakberendező", $help))checked @endif>
+                                        <label class="form-check-label text-white" for="lakberendezo">
+                                            @lang('messages.decorator')
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="ügyvéd"
+                                               name="help[]" id="ugyved" @if(in_array("ügyvéd", $help))checked @endif>
+                                        <label class="form-check-label text-white" for="ugyved">
+                                            @lang('messages.lawyer')
+                                        </label>
+                                    </div>
+                                @else
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="belsőépítész"
+                                               name="help[]" id="belsőépítész">
+                                        <label class="form-check-label text-white" for="belsőépítész">
+                                            @lang('messages.int_designer')
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="energetikai tanúsító"
+                                               name="help[]" id="energetikai_tanúsító">
+                                        <label class="form-check-label text-white" for="energetikai_tanúsító">
+                                            @lang('messages.energy_certificate')
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="építész"
+                                               name="help[]" id="epitesz">
+                                        <label class="form-check-label text-white" for="epitesz">
+                                            @lang('messages.architect')
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="földhivatali ügyintézés"
+                                               name="help[]" id="foldhivatali_ugyintezes">
+                                        <label class="form-check-label text-white" for="foldhivatali_ugyintezes">
+                                            @lang('messages.land_reg_administration')
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="hitelügyintézés"
+                                               name="help[]" id="hitel">
+                                        <label class="form-check-label text-white" for="hitel">
+                                            @lang('messages.credit_management')
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="közjegyző"
+                                               name="help[]" id="kozjegyzo">
+                                        <label class="form-check-label text-white" for="kozjegyzo">
+                                            @lang('messages.notary_public')
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="lakberendező"
+                                               name="help[]" id="lakberendezo">
+                                        <label class="form-check-label text-white" for="lakberendezo">
+                                            @lang('messages.decorator')
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="ügyvéd"
+                                               name="help[]" id="ugyved">
+                                        <label class="form-check-label text-white" for="ugyved">
+                                            @lang('messages.lawyer')
+                                        </label>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="modal-footer model-footer-custom">
+                            {{--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--}}
+                            <button class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endif
+
+<!--Notification Modal -->
 <div class="modal fade" id="notificationSetting" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -751,7 +857,7 @@
 </div>
 
 
-<footer class="py-3 shadow-lg footer-bg">
+<footer class="py-3 shadow-lg footer-bg mt-5">
     @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item"><a href="/" class="nav-link px-2 text-light">@lang('messages.homepage')</a>

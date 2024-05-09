@@ -32,9 +32,9 @@
 
                         <x-slot name="content" >
                             <!-- Account Management -->
-                            <div class="block px-4 py-2 text-xs text-gray-400">
+                            {{--<div class="block px-4 py-2 text-xs text-gray-400">
                                 @lang('messages.edit_profile')
-                            </div>
+                            </div>--}}
                             @if(auth()->user()->is_ingatlanos == 'm')
                                 <x-dropdown-link href="{{ route('liked.index') }}">
                                     @lang('messages.liked_properties')
@@ -58,6 +58,9 @@
                                 </x-dropdown-link>
                                 <x-dropdown-link href="{{ route('profile.show') }}">
                                     @lang('messages.profile')
+                                </x-dropdown-link>
+                                <x-dropdown-link type="button" data-bs-toggle="modal" data-bs-target="#agentSettings">
+                                    Ingatlanos információk
                                 </x-dropdown-link>
                             @endif
                             <div class="border-t border-gray-200"></div>

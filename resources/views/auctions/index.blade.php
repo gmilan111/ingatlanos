@@ -192,7 +192,7 @@
                                 </div>
 
 
-                                @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "i")
+                                @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "i" && $auction->user_id == auth()->id())
                                     {{--<a class="btn btn-primary" href="/auctions/{{$property->id}}">Aukció
                                         megtekintése</a>--}}
                                     <form action="/closed/{{$property->id}}" class="d-flex justify-content-center" method="POST">
