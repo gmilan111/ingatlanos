@@ -86,7 +86,6 @@
                             <label for="settlement" class="form-label">@lang('messages.settlement')</label>
                         @endif
                     </div>
-
                 </div>
                 <div class="col">
                     <div class="form-outline" data-mdb-input-init>
