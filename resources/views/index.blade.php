@@ -118,7 +118,7 @@
                                             <h1 class="card-title">{{number_format(($item->price),0,'','.')}} Ft</h1>
                                         @endif
                                         <p class="card-text mb-5">{{$address}}</p>
-                                        <div class="row mb-4">
+                                        <div class="row mb-4 text-center">
                                             <div class="col-md-3 width-33">
                                                 <div>
                                                     <i class="fa-solid fa-bed icon-size"></i><span
@@ -186,7 +186,7 @@
                                         <h1 class="card-title font-weight-600">{{number_format(($property->price),0,'','.')}}
                                             Ft</h1>
                                         <p class="card-text mb-5">{{$address}}</p>
-                                        <div class="row mb-4">
+                                        <div class="row mb-4 text-center">
                                             <div class="col-md-3 width-33">
                                                 <div>
                                                     <i class="fa-solid fa-bed icon-size"></i><span
@@ -255,7 +255,7 @@
                                     <h1 class="card-title font-weight-600">{{number_format(($property->price),0,'','.')}}
                                         Ft</h1>
                                     <p class="card-text mb-5">{{$address}}</p>
-                                    <div class="row mb-4">
+                                    <div class="row mb-4 text-center">
                                         <div class="col-md-3 width-33">
                                             <div>
                                                 <i class="fa-solid fa-bed icon-size"></i><span

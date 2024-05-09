@@ -433,6 +433,6 @@ class PropertiesController extends Controller
 
         $property->save();
 
-        return redirect(route('properties.own'));
+        return back();
     }
 }

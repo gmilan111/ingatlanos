@@ -47,7 +47,7 @@
                                 <h1 class="card-title-price card-title">Határidő: {{$auction->deadline}}</h1>
                             </div>
                         </div>
-                        <div class="row mb-2 d-flex justify-content-between">
+                        <div class="row mb-2 d-flex justify-content-between text-center">
                             <div class="col-md-3">
                                 <div>
                                     <i class="fa-solid fa-bed icon-size"></i><span

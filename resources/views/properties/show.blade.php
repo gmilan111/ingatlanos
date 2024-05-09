@@ -38,7 +38,7 @@
                             <h1 class="card-title-price card-title">{{number_format(($property->price),0,'','.')}}
                                 Ft</h1>
                             <div class="row mb-2 d-flex justify-content-between">
-                                <div class="col-md-3">
+                                <div class="col-md-3 text-center">
                                     <div>
                                         <i class="fa-solid fa-bed icon-size"></i><span
                                             class="px-2 font-weight-600">{{$property->rooms}}</span>
