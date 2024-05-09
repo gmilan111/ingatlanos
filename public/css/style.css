@@ -346,6 +346,16 @@ input:-webkit-autofill:active{
     border-top: var(--mdb-modal-border-width) solid var(--second-main-color);
 }
 
+.nav-link.active{
+    color: var(--second-main-color) !important;
+    background-color: var(--mdb-nav-tabs-link-active-bg);
+    border-color: var(--second-main-color) !important;
+}
+
+.rounded-custom{
+    border-radius: 15px;
+}
+
 @media (max-width: 992px){
     .carousel-inner{
         margin-top: 15%;
