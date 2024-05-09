@@ -1,75 +1,147 @@
 <x-layout>
+    <style>
+        /* unfocused borders and label*/
+
+        .form-outline .form-control ~ .form-notch .form-notch-trailing {
+            border: 0;
+            border-bottom: .125rem solid var(--second-main-color);
+        }
+
+        .form-outline .form-control ~ .form-notch .form-notch-middle {
+            border: 0;
+            border-bottom: .125rem solid var(--second-main-color);
+        }
+
+        .form-outline .form-control ~ .form-notch .form-notch-leading {
+            border: 0;
+            border-bottom: .125rem solid var(--second-main-color);
+        }
+
+        .form-outline .form-control ~ .form-label {
+            border: 0;
+            color: white;
+        }
+
+
+        /* focused borders and label*/
+        .form-outline .form-control:focus ~ .form-notch .form-notch-leading {
+            border: 0;
+            border-bottom: .125rem solid var(--second-main-color);
+        }
+
+        .form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
+            border: 0;
+            border-bottom: .125rem solid var(--second-main-color);
+        }
+
+        .form-outline .form-control:focus ~ .form-notch .form-notch-middle {
+            border: 0;
+            border-bottom: .125rem solid var(--second-main-color);
+        }
+
+        .form-outline .form-control:focus ~ .form-label {
+            color: white;
+        }
+    </style>
+
     <div class="container margin-top">
         <form action="{{route('auctions.search')}}" method="POST">
             @csrf
-            <div class="input-group margin-top row">
+            <div class="input-group margin-top p-4 row rounded shadow-custom search-header mb-5 mx-auto align-items-center">
                 <div class="col">
-                    @if(isset($settlement_search))
-                        <input type="search" class="form-control rounded" placeholder="@lang('messages.settlement')"
-                               aria-label="Search"
-                               name="settlement_search"
-                               aria-describedby="search-addon" value="{{$settlement_search}}"/>
-                    @else
-                        <input type="search" class="form-control rounded" placeholder="@lang('messages.settlement')"
-                               aria-label="Search"
-                               name="settlement_search"
-                               aria-describedby="search-addon"/>
-                    @endif
+                    <div class="form-outline" data-mdb-input-init>
+                        @if(isset($settlement_search))
+                            <input type="search" class="form-control text-white"
+                                   aria-label="Search"
+                                   name="settlement_search"
+                                   id="settlement"
+                                   aria-describedby="search-addon" value="{{$settlement_search}}"/>
+                            <label for="settlement" class="form-label">@lang('messages.settlement')</label>
+                        @else
+                            <input type="search" class="form-control text-white"
+                                   aria-label="Search"
+                                   name="settlement_search"
+                                   id="settlement"
+                                   aria-describedby="search-addon"/>
+                            <label for="settlement" class="form-label">@lang('messages.settlement')</label>
+                        @endif
+                    </div>
                 </div>
                 <div class="col">
-                    @if(isset($size_min))
-                        <x-input id="size_min" class="block mt-1 w-full" type="number"
-                                 name="size_min"
-                                 value="{{$size_min}}" placeholder="MIN"
-                                 autocomplete="size_min"/>
-                    @else
-                        <x-input id="size_min" class="block mt-1 w-full" type="number"
-                                 name="size_min"
-                                 :value="old('size_min')" placeholder="MIN"
-                                 autocomplete="size_min"/>
-                    @endif
+                    <div class="form-outline" data-mdb-input-init>
+                        @if(isset($size_min))
+                            <input id="size_min" class="form-control text-white"
+                                   type="number"
+                                   name="size_min"
+                                   value="{{$size_min}}"
+                                   autocomplete="size_min"/>
+                            <label for="size_min" class="form-label">Méret (min)</label>
+                        @else
+                            <input id="size_min" class="form-control text-white"
+                                   type="number"
+                                   name="size_min"
+                                   autocomplete="size_min"/>
+                            <label for="size_min" class="form-label">Méret (min)</label>
+                        @endif
+                    </div>
                 </div>
                 <div class="col">
-                    @if(isset($size_max))
-                        <x-input id="size_max" class="block mt-1 w-full" type="number"
-                                 name="size_max"
-                                 value="{{$size_max}}" placeholder="MAX"
-                                 autocomplete="size_max"/>
-                    @else
-                        <x-input id="size_max" class="block mt-1 w-full" type="number"
-                                 name="size_max"
-                                 :value="old('size_max')" placeholder="MAX"
-                                 autocomplete="size_max"/>
-                    @endif
+                    <div class="form-outline" data-mdb-input-init>
+                        @if(isset($size_max))
+                            <input id="size_max" class="form-control text-white"
+                                   type="number"
+                                   name="size_max"
+                                   value="{{$size_max}}"
+                                   autocomplete="size_max"/>
+                            <label for="size_max" class="form-label">Méret (max)</label>
+                        @else
+                            <input id="size_max" class="form-control text-white"
+                                   type="number"
+                                   name="size_max"
+                                   autocomplete="size_max"/>
+                            <label for="size_max" class="form-label">Méret (max)</label>
+                        @endif
+                    </div>
                 </div>
                 <div class="col">
-                    @if(isset($rooms_min_search))
-                        <input type="search" class="form-control rounded" placeholder="Min" aria-label="Search"
-                               name="rooms_min_search"
-                               aria-describedby="search-addon" value="{{$rooms_min_search}}"/>
-                    @else
-                        <input type="search" class="form-control rounded" placeholder="Min" aria-label="Search"
-                               name="rooms_min_search"
-                               aria-describedby="search-addon"/>
-                    @endif
+                    <div class="form-outline" data-mdb-input-init>
+                        @if(isset($price_min_search))
+                            <input type="search" class="form-control text-white" aria-label="Search"
+                                   name="price_min_search"
+                                   id="price_min"
+                                   aria-describedby="search-addon" value="{{$price_min_search}}"/>
+                            <label for="price_min" class="form-label">Ár (min)</label>
+                        @else
+                            <input type="search" class="form-control text-white" aria-label="Search"
+                                   name="price_min_search"
+                                   id="price_min"
+                                   aria-describedby="search-addon"/>
+                            <label for="price_min" class="form-label">Ár (min)</label>
+                        @endif
+                    </div>
                 </div>
                 <div class="col">
-                    @if(isset($rooms_max_search))
-                        <input type="search" class="form-control rounded" placeholder="Max" aria-label="Search"
-                               name="rooms_max_search"
-                               aria-describedby="search-addon" value="{{$rooms_max_search}}"/>
-                    @else
-                        <input type="search" class="form-control rounded" placeholder="Max" aria-label="Search"
-                               name="rooms_max_search"
-                               aria-describedby="search-addon"/>
-                    @endif
+                    <div class="form-outline" data-mdb-input-init>
+                        @if(isset($price_max_search))
+                            <input type="search" class="form-control text-white" id="price_max" aria-label="Search"
+                                   name="price_max_search"
+                                   aria-describedby="search-addon" value="{{$price_max_search}}"/>
+                            <label for="price_max" class="form-label">Ár (max)</label>
+                        @else
+                            <input type="search" class="form-control text-white" id="price_max" aria-label="Search"
+                                   name="price_max_search"
+                                   aria-describedby="search-addon"/>
+                            <label for="price_max" class="form-label">Ár (max)</label>
+                        @endif
+                    </div>
                 </div>
-                <div class="col">
-                    <button class="btn btn-outline-primary">@lang('messages.search')</button>
+                <div class="col d-flex justify-content-center">
+                    <button class="btn text-15 text-white btn-second-main-color" data-mdb-ripple-init><i
+                            class="fa-solid fa-magnifying-glass"></i> @lang('messages.search')</button>
                 </div>
             </div>
         </form>
-        <div class="row mt-5">
+        <div class="row mt-5 d-flex justify-content-evenly">
             @if(count($auctions)<1)
                 <p>NINCS TALÁLAT</p>
             @endif
@@ -79,8 +151,8 @@
                     $address = ($property->settlement).','.' '.($property->address).'.';
                 @endphp
                 @if(!$property->sold && !$auction->closed)
-                    <div class="col-lg-3 width-33 mb-5">
-                        <div class="card border-0 shadow-2xl" style="width: 25rem;">
+                    <div class="col-lg-auto width-33 mb-5">
+                        <div class="card border-0 shadow-custom text-black" style="width: 25rem;">
                             <img
                                 src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
                                 class="card-img-top " alt="...">
@@ -107,29 +179,30 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="properties/{{$property->id}}"
-                                   class="btn btn-primary">@lang('messages.details')</a>
 
-                                @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m")
-                                    <a class="btn btn-primary" href="/auctions/{{$property->id}}">Aukció
-                                        megtekintése</a>
-                                @endif
+                                <div class="d-flex justify-content-center">
+                                    <a href="properties/{{$property->id}}"
+                                       class="btn btn-second-main-color mx-2 text-white" data-mdb-ripple-init><i
+                                            class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
 
-                                <a class="btn btn-primary" href="/auction_winner/{{$property->id}}">Email</a>
+                                    @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m" || auth()->user()->is_ingatlanos == "i")
+                                        <a class="btn btn-second-main-color text-white mx-2" data-mdb-ripple-init href="/auctions/{{$property->id}}">Aukció
+                                            megtekintése</a>
+                                    @endif
+                                </div>
+
 
                                 @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "i")
-                                    <a class="btn btn-primary" href="/auctions/{{$property->id}}">Aukció
-                                        megtekintése</a>
-                                    <form action="/closed/{{$property->id}}" method="POST">
+                                    {{--<a class="btn btn-primary" href="/auctions/{{$property->id}}">Aukció
+                                        megtekintése</a>--}}
+                                    <form action="/closed/{{$property->id}}" class="d-flex justify-content-center" method="POST">
                                         @csrf
                                         @method('PUT')
-                                        <button class="btn btn-warning"><i class="fa-solid fa-sack-dollar"></i>
+                                        <button class="btn btn-warning mt-4" data-mdb-ripple-init><i class="fa-solid fa-sack-dollar"></i>
                                             Lezárás
                                         </button>
                                     </form>
                                 @endif
-
-
                             </div>
                         </div>
                     </div>

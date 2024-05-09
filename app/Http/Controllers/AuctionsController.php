@@ -143,8 +143,8 @@ class AuctionsController extends Controller
     public function search(Request $request)
     {
         $settlement_search = $request['settlement_search'];
-        $rooms_min_search = $request['rooms_min_search'];
-        $rooms_max_search = $request['rooms_max_search'];
+        $price_min_search = $request['price_min_search'];
+        $price_max_search = $request['price_max_search'];
         $size_min = $request['size_min'];
         $size_max = $request['size_max'];
 
@@ -159,12 +159,12 @@ class AuctionsController extends Controller
                 $auctions_properties->where('auction', '=', true);
             });
 
-        $auctions_properties->when($rooms_max_search != null, function ($auctions_properties) use ($request){
-            $auctions_properties->where('rooms', '<=', $request['rooms_max_search']);
+        $auctions_properties->when($price_max_search != null, function ($auctions_properties) use ($request){
+            $auctions_properties->where('price', '<=', $request['price_max_search']);
         });
 
-        $auctions_properties->when($rooms_min_search != null, function ($auctions_properties) use ($request){
-            $auctions_properties->where('rooms', '>=', $request['rooms_min_search']);
+        $auctions_properties->when($price_min_search != null, function ($auctions_properties) use ($request){
+            $auctions_properties->where('price', '>=', $request['price_min_search']);
         });
 
         $auctions_properties->when($size_max != null, function ($auctions_properties) use ($request){
@@ -187,8 +187,8 @@ class AuctionsController extends Controller
         return view('auctions.index', [
             'auctions' => $auctions,
             'settlement_search' => $settlement_search,
-            'rooms_min_search' => $rooms_min_search,
-            'rooms_max_search' => $rooms_max_search,
+            'price_min_search' => $price_min_search,
+            'price_max_search' => $price_max_search,
             'size_min' => $size_min,
             'size_max' => $size_max,
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),

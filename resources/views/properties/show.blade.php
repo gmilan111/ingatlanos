@@ -223,10 +223,7 @@
                                 </h1>
                             @endif
 
-
-                                <img class="mt-3 mb-3 rounded-3 shadow-lg profile-photo mx-auto"
-                                     src="{{asset('storage/'.$agents->profile_photo_path)}}" alt="{{$agents->name}}">
-                            </a>
+                            <img class="mt-3 mb-3 rounded-3 shadow-lg profile-photo mx-auto" src="{{asset('storage/'.$agents->profile_photo_path)}}" alt="{{$agents->name}}">
                             <h1 class="card-title mb-5">{{$agents->name}}</h1>
 
                             @if(auth()->user() == null)
