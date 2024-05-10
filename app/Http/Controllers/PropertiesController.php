@@ -219,7 +219,7 @@ class PropertiesController extends Controller
             $record->delete();
         }
 
-        return redirect(route('properties.index'));
+        return back();
     }
 
     public function search(Request $request)

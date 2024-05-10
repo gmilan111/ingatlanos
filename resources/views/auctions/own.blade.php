@@ -37,9 +37,7 @@
                             $property = \Illuminate\Support\Facades\DB::table('properties')->select('*')->where('id', '=', $auction->properties_id)->first();
                             $address = ($property->settlement).','.' '.($property->address).'.';
                         @endphp
-                        @if(!$auction->closed)
-                            {{--<iframe src="https://maps.google.it/maps?q=<?php echo $address?>&output=embed" width="600" height="450"
-                                    style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
+                        @if(!$auction->closed && $auction->user_id == auth()->id())
                             <div class="col-lg-3 width-33 mb-5">
                                 <div class="card border-0 shadow-2xl" style="width: 25rem;">
                                     <img
@@ -104,7 +102,7 @@
                         @php
                             $property = \Illuminate\Support\Facades\DB::table('properties')->select('*')->where('id', '=', $auction->properties_id)->first();
                         @endphp
-                        @if($auction->closed)
+                        @if($auction->closed && $auction->user_id == auth()->id())
 
                             @php
                                 $address = ($property->settlement).','.' '.($property->address).'.';

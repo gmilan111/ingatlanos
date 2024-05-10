@@ -46,7 +46,7 @@ class ImagesController extends Controller
             ]);
         }
 
-        return redirect(route('properties.index'));
+        return back();
     }
 
     public function edit($property){
