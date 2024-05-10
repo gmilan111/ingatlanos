@@ -40,7 +40,7 @@
                                     @lang('messages.liked_properties')
                                 </x-dropdown-link>
                                 <x-dropdown-link href="{{ route('auctions_entered.index') }}">
-                                    Kedvenc aukciók
+                                    Regisztrált aukciók???????
                                 </x-dropdown-link>
                                 <x-dropdown-link href="{{ route('profile.show') }}">
                                     @lang('messages.profile')
