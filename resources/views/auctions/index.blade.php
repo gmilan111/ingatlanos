@@ -44,7 +44,7 @@
         }
     </style>
 
-    <div class="container margin-top">
+    <div class="container">
         <form action="{{route('auctions.search')}}" method="POST">
             @csrf
             <div class="input-group margin-top p-4 row rounded shadow-custom search-header mb-5 mx-auto align-items-center">
