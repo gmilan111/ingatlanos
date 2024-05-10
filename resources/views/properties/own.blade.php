@@ -71,7 +71,7 @@
                             @php
                                 $address = ($property->settlement).','.' '.($property->address).'.';
                             @endphp
-                            <div class="col-lg-3 width-33 mb-5">
+                            <div class="col-md-4 mb-5">
                                 <div class="card border-0 shadow-custom text-black" style="width: 25rem;">
                                     <img
                                         src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
@@ -101,11 +101,11 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6 my-auto">
-                                                <a href="properties/{{$property->id}}" class="btn btn-second-main-color text-white"><i
+                                                <a href="/properties/{{$property->id}}" class="btn btn-second-main-color text-white"><i
                                                         class="fa-solid fa-circle-info" data-mdb-ripple-init></i> @lang('messages.details')</a>
                                             </div>
                                             <div class="col-md-6">
-                                                <a href="properties/{{$property->id}}/edit" class="btn btn-main-color text-white px-3"><i
+                                                <a href="/properties/{{$property->id}}/edit" class="btn btn-main-color text-white px-3"><i
                                                         class="fa-solid fa-pen-to-square" data-mdb-ripple-init></i> @lang('messages.property_edit')</a>
                                             </div>
                                         </div>
@@ -152,7 +152,7 @@
                             @endphp
                             {{--<iframe src="https://maps.google.it/maps?q=<?php echo $address?>&output=embed" width="600" height="450"
                                     style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
-                            <div class="col-lg-3 width-33 mb-5">
+                            <div class="col-md-4 mb-5">
                                 <div class="card border-0 shadow-custom text-black" style="width: 25rem;">
                                     <img
                                         src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"

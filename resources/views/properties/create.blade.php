@@ -457,12 +457,12 @@
             <div class="row mt-4">
                 <div class="col">
                     <label for="formFiles" class="form-label text-black">@lang('messages.main_img')</label>
-                    <input class="form-control file_upload" type="file" id="main_img" name="main_img" required/>
+                    <input class="form-control file_upload custom-border-3" type="file" id="main_img" name="main_img" required/>
                 </div>
 
                 <div class="col">
                     <label for="formFiles" class="form-label text-black">@lang('messages.images')</label>
-                    <input class="form-control file_upload" type="file" id="formFile" name="images[]"
+                    <input class="form-control file_upload custom-border-3" type="file" id="formFile" name="images[]"
                            multiple required/>
                 </div>
             </div>

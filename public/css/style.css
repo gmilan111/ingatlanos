@@ -256,6 +256,10 @@ body{
     border-bottom: 1px solid var(--second-main-color);
 }
 
+.custom-border-3{
+    border: .125rem var(--main-color) solid  !important;
+}
+
 .img-edit-width{
     width: 15rem;
 }
@@ -289,8 +293,7 @@ input:-webkit-autofill:active{
 .select-custom{
     background-color: transparent !important;
     color: black;
-    border: 0;
-    border-bottom: 2px solid grey;
+    border: .125rem var(--main-color) solid  !important;
 }
 
 .select-custom-2{
@@ -399,6 +402,19 @@ input:-webkit-autofill:active{
 
 .form-outline .form-control:focus ~ .form-label {
     color: white;
+}
+
+::-webkit-scrollbar{
+    width: 7px;
+}
+
+::-webkit-scrollbar-track{
+    background: var(--main-color);
+}
+
+::-webkit-scrollbar-thumb{
+    background: var(--second-main-color);
+    border-radius: 15px;
 }
 
 @media (max-width: 992px){

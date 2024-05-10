@@ -87,8 +87,6 @@
                                                     @php
                                                         $address = ($property->settlement).','.' '.($property->address).'.';
                                                     @endphp
-                                                    {{--<iframe src="https://maps.google.it/maps?q=<?php echo $address?>&output=embed" width="600" height="450"
-                                                            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
                                                     <div class="col-md-6 mb-5">
                                                         <div class="card border-0 shadow-custom text-black" style="width: 22rem;">
                                                             <img
@@ -190,8 +188,6 @@
                                                     @php
                                                         $address = ($property->settlement).','.' '.($property->address).'.';
                                                     @endphp
-                                                    {{--<iframe src="https://maps.google.it/maps?q=<?php echo $address?>&output=embed" width="600" height="450"
-                                                            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
                                                     <div class="col-lg-3 width-33 mb-5">
                                                         <div class="card border-0 text-center shadow-custom text-black"
                                                              style="width: 22rem;">

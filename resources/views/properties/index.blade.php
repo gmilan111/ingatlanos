@@ -1,10 +1,4 @@
 <x-layout>
-    <style>
-        /* unfocused borders and label*/
-
-
-    </style>
-
     <div class="container px-0 ">
         <div class="input-group margin-top p-4 rounded shadow-custom search-header mb-5">
             <form action="{{route('properties.search')}}" method="POST" class="row d-flex align-items-center">
