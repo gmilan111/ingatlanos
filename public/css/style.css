@@ -256,6 +256,10 @@ body{
     border-bottom: 1px solid var(--second-main-color);
 }
 
+.img-edit-width{
+    width: 15rem;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -354,6 +358,47 @@ input:-webkit-autofill:active{
 
 .rounded-custom{
     border-radius: 15px;
+}
+
+.form-outline .form-control ~ .form-notch .form-notch-trailing {
+    border: 0;
+    border-bottom: .125rem solid var(--second-main-color);
+}
+
+.form-outline .form-control ~ .form-notch .form-notch-middle {
+    border: 0;
+    border-bottom: .125rem solid var(--second-main-color);
+}
+
+.form-outline .form-control ~ .form-notch .form-notch-leading {
+    border: 0;
+    border-bottom: .125rem solid var(--second-main-color);
+}
+
+.form-outline .form-control ~ .form-label {
+    border: 0;
+    color: white;
+}
+
+
+/* focused borders and label*/
+.form-outline .form-control:focus ~ .form-notch .form-notch-leading {
+    border: 0;
+    border-bottom: .125rem solid var(--second-main-color);
+}
+
+.form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
+    border: 0;
+    border-bottom: .125rem solid var(--second-main-color);
+}
+
+.form-outline .form-control:focus ~ .form-notch .form-notch-middle {
+    border: 0;
+    border-bottom: .125rem solid var(--second-main-color);
+}
+
+.form-outline .form-control:focus ~ .form-label {
+    color: white;
 }
 
 @media (max-width: 992px){

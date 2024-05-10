@@ -2,46 +2,7 @@
     <style>
         /* unfocused borders and label*/
 
-        .form-outline .form-control ~ .form-notch .form-notch-trailing {
-            border: 0;
-            border-bottom: .125rem solid var(--second-main-color);
-        }
 
-        .form-outline .form-control ~ .form-notch .form-notch-middle {
-            border: 0;
-            border-bottom: .125rem solid var(--second-main-color);
-        }
-
-        .form-outline .form-control ~ .form-notch .form-notch-leading {
-            border: 0;
-            border-bottom: .125rem solid var(--second-main-color);
-        }
-
-        .form-outline .form-control ~ .form-label {
-            border: 0;
-            color: white;
-        }
-
-
-        /* focused borders and label*/
-        .form-outline .form-control:focus ~ .form-notch .form-notch-leading {
-            border: 0;
-            border-bottom: .125rem solid var(--second-main-color);
-        }
-
-        .form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
-            border: 0;
-            border-bottom: .125rem solid var(--second-main-color);
-        }
-
-        .form-outline .form-control:focus ~ .form-notch .form-notch-middle {
-            border: 0;
-            border-bottom: .125rem solid var(--second-main-color);
-        }
-
-        .form-outline .form-control:focus ~ .form-label {
-            color: white;
-        }
     </style>
 
     <div class="container px-0 ">
