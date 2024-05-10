@@ -1,6 +1,3 @@
-{{--@foreach($images as $image)
-    <img src="{{asset($image->images)}}" alt="">
-@endforeach--}}
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">

@@ -56,14 +56,15 @@
                            href="/">@lang('messages.homepage')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light {{request()->is('properties')?'active a-fejlec':''}} fejlec"
+                        <a class="nav-link text-light {{request()->is('properties')?'active a-fejlec':(request()->is('properties/*') ? 'active a-fejlec' : (request()->is('search') ? 'active a-fejlec' : ''))}} fejlec"
                            href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('auctions.index')}}" class="nav-link fejlec text-light">Aukciók</a>
+                        <a href="{{route('auctions.index')}}"
+                           class="nav-link {{request()->is('auctions') ? 'active a-fejlec' : (request()->is('auctions/*') ? 'active a-fejlec' : (request()->is('auction_search') ? 'active a-fejlec' : ''))}} fejlec text-light">Aukciók</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light fejlec"
+                        <a class="nav-link {{request()->is('agents') ? 'active a-fejlec' : (request()->is('agents/*') ? 'active a-fejlec' : '')}} text-light fejlec"
                            href="{{route('agents.index')}}">@lang('messages.agents')</a>
                     </li>
                 </ul>
@@ -83,21 +84,22 @@
                            href="{{route('properties.create')}}">@lang('messages.add_new_property')</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('auctions.index')}}" class="nav-link fejlec text-light">Aukciók</a>
+                        <a href="{{route('auctions.index')}}" class="nav-link {{request()->is('auctions') ? 'active a-fejlec' : (request()->is('auctions/*') ? 'active a-fejlec' : (request()->is('auction_search') ? 'active a-fejlec' : ''))}} fejlec text-light">Aukciók</a>
                     </li>
                 </ul>
             @else
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active a-fejlec fejlec text-light" aria-current="page"
+                        <a class="nav-link {{request()->is('/')?'active a-fejlec':''}} fejlec text-light"
+                           aria-current="page"
                            href="/">@lang('messages.homepage')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec text-light"
+                        <a class="nav-link fejlec {{request()->is('properties')?'active a-fejlec':(request()->is('properties/*')?'active a-fejlec':'')}} text-light"
                            href="{{route('properties.index')}}">@lang('messages.real_estates')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fejlec text-light"
+                        <a class="nav-link {{request()->is('agents') ? 'active a-fejlec' : (request()->is('agents/*') ? 'active a-fejlec' : '')}} fejlec text-light"
                            href="{{route('agents.index')}}">@lang('messages.agents')</a>
                     </li>
                 </ul>
@@ -380,7 +382,8 @@
     <div class="modal-dialog">
         <div class="modal-content bg-main-color">
             <div class="modal-header model-header-custom">
-                <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">@lang('messages.newsletter_settings')</h1>
+                <h1 class="modal-title fs-5 text-white"
+                    id="staticBackdropLabel">@lang('messages.newsletter_settings')</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -414,30 +417,30 @@
                                         </div>
                                     </div>
                                 </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Zala"
-                                               name="state[]" id="zala"
-                                               @if(in_array("Zala", $states)) checked @endif>
-                                        <label class="form-check-label" for="zala">
-                                            Zala
-                                        </label>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Zala"
+                                                   name="state[]" id="zala"
+                                                   @if(in_array("Zala", $states)) checked @endif>
+                                            <label class="form-check-label" for="zala">
+                                                Zala
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               value="Komárom-Esztergom"
-                                               name="state[]" id="komarom"
-                                               @if(in_array("Komárom-Esztergom", $states)) checked @endif>
-                                        <label class="form-check-label" for="komarom">
-                                            Komárom-Esztergom
-                                        </label>
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Komárom-Esztergom"
+                                                   name="state[]" id="komarom"
+                                                   @if(in_array("Komárom-Esztergom", $states)) checked @endif>
+                                            <label class="form-check-label" for="komarom">
+                                                Komárom-Esztergom
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-check">
@@ -490,30 +493,30 @@
                                     </div>
                                 </div>
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               value="Baranya"
-                                               name="state[]" id="baranya"
-                                               @if(in_array("Baranya", $states)) checked @endif>
-                                        <label class="form-check-label" for="baranya">
-                                            Baranya
-                                        </label>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Baranya"
+                                                   name="state[]" id="baranya"
+                                                   @if(in_array("Baranya", $states)) checked @endif>
+                                            <label class="form-check-label" for="baranya">
+                                                Baranya
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Pest"
-                                               name="state[]" id="pest"
-                                               @if(in_array("Pest", $states)) checked @endif>
-                                        <label class="form-check-label" for="pest">
-                                            Pest
-                                        </label>
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Pest"
+                                                   name="state[]" id="pest"
+                                                   @if(in_array("Pest", $states)) checked @endif>
+                                            <label class="form-check-label" for="pest">
+                                                Pest
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
                                 <div class="row">
                                     <div class="col">
@@ -568,31 +571,31 @@
 
                                 </div>
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               value="Csongrád-Csanád"
-                                               name="state[]" id="csongrad"
-                                               @if(in_array("Csongrád-Csanád", $states)) checked @endif>
-                                        <label class="form-check-label" for="csongrad">
-                                            Csongrád-Csanád
-                                        </label>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Csongrád-Csanád"
+                                                   name="state[]" id="csongrad"
+                                                   @if(in_array("Csongrád-Csanád", $states)) checked @endif>
+                                            <label class="form-check-label" for="csongrad">
+                                                Csongrád-Csanád
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               value="Borsod-Abaúj-Zemplén"
-                                               name="state[]" id="borsod"
-                                               @if(in_array("Borsod-Abaúj-Zemplén", $states)) checked @endif>
-                                        <label class="form-check-label" for="borsod">
-                                            Borsod-Abaúj-Zemplén
-                                        </label>
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Borsod-Abaúj-Zemplén"
+                                                   name="state[]" id="borsod"
+                                                   @if(in_array("Borsod-Abaúj-Zemplén", $states)) checked @endif>
+                                            <label class="form-check-label" for="borsod">
+                                                Borsod-Abaúj-Zemplén
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
                                 <div class="row">
                                     <div class="col">
@@ -658,28 +661,28 @@
                                     </div>
                                 </div>
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Zala"
-                                               name="state[]" id="zala">
-                                        <label class="form-check-label" for="zala">
-                                            Zala
-                                        </label>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Zala"
+                                                   name="state[]" id="zala">
+                                            <label class="form-check-label" for="zala">
+                                                Zala
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               value="Komárom-Esztergom"
-                                               name="state[]" id="komarom">
-                                        <label class="form-check-label" for="komarom">
-                                            Komárom-Esztergom
-                                        </label>
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Komárom-Esztergom"
+                                                   name="state[]" id="komarom">
+                                            <label class="form-check-label" for="komarom">
+                                                Komárom-Esztergom
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
                                 <div class="row">
                                     <div class="col">
@@ -729,28 +732,28 @@
                                     </div>
                                 </div>
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               value="Baranya"
-                                               name="state[]" id="baranya">
-                                        <label class="form-check-label" for="baranya">
-                                            Baranya
-                                        </label>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Baranya"
+                                                   name="state[]" id="baranya">
+                                            <label class="form-check-label" for="baranya">
+                                                Baranya
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Pest"
-                                               name="state[]" id="pest">
-                                        <label class="form-check-label" for="pest">
-                                            Pest
-                                        </label>
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Pest"
+                                                   name="state[]" id="pest">
+                                            <label class="form-check-label" for="pest">
+                                                Pest
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
                                 <div class="row">
 
@@ -801,28 +804,28 @@
                                     </div>
                                 </div>
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               value="Csongrád-Csanád"
-                                               name="state[]" id="csongrad">
-                                        <label class="form-check-label" for="csongrad">
-                                            Csongrád-Csanád
-                                        </label>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Csongrád-Csanád"
+                                                   name="state[]" id="csongrad">
+                                            <label class="form-check-label" for="csongrad">
+                                                Csongrád-Csanád
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Borsod-Abaúj-Zemplén"
+                                                   name="state[]" id="borsod">
+                                            <label class="form-check-label" for="borsod">
+                                                Borsod-Abaúj-Zemplén
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               value="Borsod-Abaúj-Zemplén"
-                                               name="state[]" id="borsod">
-                                        <label class="form-check-label" for="borsod">
-                                            Borsod-Abaúj-Zemplén
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
 
                                 <div class="row">
                                     <div class="col">

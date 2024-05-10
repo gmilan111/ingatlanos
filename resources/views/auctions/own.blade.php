@@ -1,21 +1,33 @@
 <x-layout>
-    <div class="container margin-top">
+    <div class="container">
         <form action="{{route('own.auctions.search')}}" method="POST" class="mb-5">
             @csrf
-            <div class="input-group margin-top row">
-                <div class="col">
-                    @if(isset($settlement_search))
-                        <input type="search" class="form-control rounded" placeholder="@lang('messages.settlement')" aria-label="Search"
-                               name="settlement_search"
-                               aria-describedby="search-addon" value="{{$settlement_search}}"/>
-                    @else
-                        <input type="search" class="form-control rounded" placeholder="@lang('messages.settlement')" aria-label="Search"
-                               name="settlement_search"
-                               aria-describedby="search-addon"/>
-                    @endif
-                </div>
-                <div class="col">
-                    <button class="btn btn-outline-primary">@lang('messages.search')</button>
+            <div class="input-group margin-top p-4 rounded shadow-custom search-header mb-5">
+                <div class="row w-75 mx-auto">
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <div class="form-outline" data-mdb-input-init>
+                            @if(isset($settlement_search))
+                                <input type="search" class="form-control text-white"
+                                       aria-label="Search"
+                                       name="settlement_search"
+                                       id="settlement"
+                                       aria-describedby="search-addon" value="{{$settlement_search}}"/>
+                                <label for="settlement" class="form-label">@lang('messages.settlement')</label>
+                            @else
+                                <input type="search" class="form-control text-white"
+                                       aria-label="Search"
+                                       name="settlement_search"
+                                       id="settlement"
+                                       aria-describedby="search-addon"/>
+                                <label for="settlement" class="form-label">@lang('messages.settlement')</label>
+                            @endif
+                        </div>
+                            <div class="d-flex justify-items-end mx-3">
+                                <button class="btn text-15 text-white btn-second-main-color" data-mdb-ripple-init>@lang('messages.search')<i
+                                        class="fa-solid fa-magnifying-glass mt-1"></i></button>
+                            </div>
+                    </div>
+
                 </div>
             </div>
         </form>
@@ -38,13 +50,14 @@
                             $address = ($property->settlement).','.' '.($property->address).'.';
                         @endphp
                         @if(!$auction->closed && $auction->user_id == auth()->id())
-                            <div class="col-lg-3 width-33 mb-5">
-                                <div class="card border-0 shadow-2xl" style="width: 25rem;">
+                            <div class="col-md-4 mb-5">
+                                <div class="card border-0 shadow-custom text-black" style="width: 25rem;">
                                     <img
                                         src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
                                         class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h1 class="card-title">{{number_format(($property->auction_price),0,'','.')}} Ft</h1>
+                                    <div class="card-body text-center">
+                                        <h1 class="card-title">{{number_format(($property->auction_price),0,'','.')}}
+                                            Ft</h1>
                                         <p class="card-text mb-5">{{$address}}</p>
                                         <div class="row mb-4 text-center">
                                             <div class="col-md-3 width-33">
@@ -66,14 +79,22 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="properties/{{$property->id}}" class="btn btn-primary"><i
-                                                class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
-                                        <a class="btn btn-primary" href="/auctions/{{$property->id}}">Aukció
-                                            megtekintése</a>
-                                        <a href="properties/{{$property->id}}/edit" class="btn btn-dark"><i
-                                                class="fa-solid fa-pen-to-square"></i> @lang('messages.property_edit')</a>
-                                        <a href="/image/{{$property->id}}/edit" class="btn btn-dark"><i
-                                                class="fa-solid fa-pen-to-square"></i> @lang('messages.property_img_edit')</a>
+                                        <div class="row">
+                                            <div class="col-md-6 my-auto">
+                                                <a href="/properties/{{$property->id}}" class="btn btn-second-main-color text-white"><i
+                                                        class="fa-solid fa-circle-info" data-mdb-ripple-init></i> @lang('messages.details')</a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a class="btn btn-main-color text-white" href="/auctions/{{$property->id}}" data-mdb-ripple-init>Aukció
+                                                    megtekintése</a>
+                                            </div>
+                                        </div>
+                                        <a href="/properties/{{$property->id}}/edit" class="btn btn-main-color text-white p-3 mt-3" data-mdb-ripple-init><i
+                                                class="fa-solid fa-pen-to-square"></i> @lang('messages.property_edit')
+                                        </a>
+                                        <a href="/image/{{$property->id}}/edit" class="btn btn-main-color text-white p-3 mt-3" data-mdb-ripple-init><i
+                                                class="fa-solid fa-pen-to-square"></i> @lang('messages.property_img_edit')
+                                        </a>
                                         {{--<form action="/properties/{{$property->id}}" method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -83,7 +104,7 @@
                                         <form action="/own_closed/{{$property->id}}" method="POST">
                                             @csrf
                                             @method('PUT')
-                                            <button class="btn btn-warning"><i class="fa-solid fa-sack-dollar"></i>
+                                            <button class="btn btn-warning rounded-custom mt-3" data-mdb-ripple-init><i class="fa-solid fa-sack-dollar"></i>
                                                 Lezárás
                                             </button>
                                         </form>
@@ -107,15 +128,14 @@
                             @php
                                 $address = ($property->settlement).','.' '.($property->address).'.';
                             @endphp
-                            {{--<iframe src="https://maps.google.it/maps?q=<?php echo $address?>&output=embed" width="600" height="450"
-                                    style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
-                            <div class="col-lg-3 width-33 mb-5">
-                                <div class="card border-0 shadow-2xl" style="width: 25rem;">
+                            <div class="col-md-4 mb-5">
+                                <div class="card border-0 shadow-custom text-black" style="width: 25rem;">
                                     <img
                                         src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
                                         class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h1 class="card-title">{{number_format(($property->auction_price),0,'','.')}} Ft</h1>
+                                    <div class="card-body text-center">
+                                        <h1 class="card-title">{{number_format(($property->auction_price),0,'','.')}}
+                                            Ft</h1>
                                         <p class="card-text mb-5">{{$address}}</p>
                                         <div class="row mb-4 text-center">
                                             <div class="col-md-3 width-33">
@@ -137,19 +157,28 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="properties/{{$property->id}}" class="btn btn-primary"><i
-                                                class="fa-solid fa-circle-info"></i>@lang('messages.details')</a>
-                                        <a class="btn btn-primary" href="/auctions/{{$property->id}}">Aukció
-                                            megtekintése</a>
-                                        <a href="properties/{{$property->id}}/edit" class="btn btn-dark"><i
-                                                class="fa-solid fa-pen-to-square"></i>@lang('messages.property_edit')</a>
+                                        <div class="row">
+                                            <div class="col-md-6 my-auto">
+                                                <a href="/properties/{{$property->id}}" class="btn btn-second-main-color text-white"><i
+                                                        class="fa-solid fa-circle-info" data-mdb-ripple-init></i> @lang('messages.details')</a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a class="btn btn-main-color text-white" href="/auctions/{{$property->id}}" data-mdb-ripple-init>Aukció
+                                                    megtekintése</a>
+                                            </div>
+                                        </div>
+                                       {{-- <a href="properties/{{$property->id}}/edit" class="btn btn-dark"><i
+                                                class="fa-solid fa-pen-to-square"></i>@lang('messages.property_edit')
+                                        </a>
                                         <a href="/image/{{$property->id}}/edit" class="btn btn-dark"><i
-                                                class="fa-solid fa-pen-to-square"></i>@lang('messages.property_img_edit')</a>
-
+                                                class="fa-solid fa-pen-to-square"></i>@lang('messages.property_img_edit')
+                                        </a>
+--}}
                                         <form action="/auction/{{$property->id}}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger"><i class="fa-solid fa-trash"></i>@lang('messages.delete')
+                                            <button class="btn btn-danger rounded-custom mt-3"><i
+                                                    class="fa-solid fa-trash" data-mdb-ripple-init></i>@lang('messages.delete')
                                             </button>
                                         </form>
                                     </div>

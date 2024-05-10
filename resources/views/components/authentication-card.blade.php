@@ -2,7 +2,7 @@
 
 <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 mb-4">
 
-    <div class="{{request()->is('properties/*')||request()->is('image/*')?'w-75':'w-26'}} auth-card-w mt-3 px-6 py-4 shadow-custom overflow-hidden sm:rounded-lg bg-secondary-color">
+    <div class="{{request()->is('properties/*')||request()->is('image/*')?'w-75':'w-25'}} auth-card-w mt-3 px-6 py-4 shadow-custom overflow-hidden sm:rounded-lg bg-secondary-color">
         <div class="flex flex-col sm:justify-center items-center mb-5">
             {{ $logo }}
         </div>
