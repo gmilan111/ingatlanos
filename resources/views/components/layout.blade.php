@@ -149,227 +149,238 @@
 @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "i")
     @php
         $agent = \Illuminate\Support\Facades\DB::table('agents')->select('*')->where('user_id', '=', auth()->id())->first();
-        $support =json_decode($agent->help);
-        $help_helper = explode(',', $support);
-        $help = array();
-        foreach ($help_helper as $item){
-            $item = str_replace('"', "", $item);
-            $item = str_replace('[', "", $item);
-            $item = str_replace(']', "", $item);
-            array_push($help, $item);
+        $appear = false;
+        if(isset($agent)){
+            $appear = true;
+            $support =json_decode($agent->help);
+            $help_helper = explode(',', $support);
+            $help = array();
+            foreach ($help_helper as $item){
+                $item = str_replace('"', "", $item);
+                $item = str_replace('[', "", $item);
+                $item = str_replace(']', "", $item);
+                array_push($help, $item);
+            }
         }
     @endphp
-    <div class="modal fade" id="agentSettings" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content bg-main-color">
-                <div class="modal-header model-header-custom">
-                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Ingatlanos információk
-                        módosítása</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="/agent_info/{{auth()->id()}}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-body">
-                        <div class="row mb-5 mt-3">
-                            <div class="col-md-6">
-                                <div class="form-outline" data-mdb-input-init>
-                                    <input type="text" class="form-control text-white" id="commission"
-                                           value="{{$agent->salary}}" name="commission">
-                                    <label for="commission"
-                                           class="form-label login text-white">@lang('messages.commission')
-                                        (%)</label>
+    @if($appear)
+        <div class="modal fade" id="agentSettings" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-main-color">
+                    <div class="modal-header model-header-custom">
+                        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Ingatlanos információk
+                            módosítása</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/agent_info/{{auth()->id()}}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-body">
+                            <div class="row mb-5 mt-3">
+                                <div class="col-md-6">
+                                    <div class="form-outline" data-mdb-input-init>
+                                        <input type="text" class="form-control text-white" id="commission"
+                                               value="{{$agent->salary}}" name="commission">
+                                        <label for="commission"
+                                               class="form-label login text-white">@lang('messages.commission')
+                                            (%)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-outline" data-mdb-input-init>
+                                        <input type="number" class="form-control text-white"
+                                               value="{{$agent->experience}}"
+                                               id="experience" name="experience">
+                                        <label for="experience"
+                                               class="form-label login text-white">@lang('messages.experience')</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-outline" data-mdb-input-init>
-                                    <input type="number" class="form-control text-white" value="{{$agent->experience}}"
-                                           id="experience" name="experience">
-                                    <label for="experience"
-                                           class="form-label login text-white">@lang('messages.experience')</label>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="row mb-5">
-                            <div class="col-md-6">
-                                <div class="form-outline" data-mdb-input-init>
-                                    <input type="text" class="form-control text-white" id="language"
-                                           value="{{$agent->language}}" name="language">
-                                    <label for="language"
-                                           class="form-label login text-white">@lang('messages.language')</label>
+                            <div class="row mb-5">
+                                <div class="col-md-6">
+                                    <div class="form-outline" data-mdb-input-init>
+                                        <input type="text" class="form-control text-white" id="language"
+                                               value="{{$agent->language}}" name="language">
+                                        <label for="language"
+                                               class="form-label login text-white">@lang('messages.language')</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-outline" data-mdb-input-init>
+                                <div class="col-md-6">
+                                    <div class="form-outline" data-mdb-input-init>
                                     <textarea class="form-control text-white" id="description"
                                               name="description">{{$agent->description}}</textarea>
-                                    <label for="description"
-                                           class="form-label login text-white">@lang('messages.description')</label>
+                                        <label for="description"
+                                               class="form-label login text-white">@lang('messages.description')</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <label class="form-label text-white">@lang('messages.help_reg')</label>
-                            <div class="card card-body bg-main-color">
-                                @if(isset($help))
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="belsőépítész"
-                                               name="help[]" id="belsőépítész"
-                                               @if(in_array("belsőépítész", $help))checked @endif>
-                                        <label class="form-check-label text-white" for="belsőépítész">
-                                            @lang('messages.int_designer')
-                                        </label>
-                                    </div>
+                            <div class="row">
+                                <label class="form-label text-white">@lang('messages.help_reg')</label>
+                                <div class="card card-body bg-main-color">
+                                    @if(isset($help))
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="belsőépítész"
+                                                   name="help[]" id="belsőépítész"
+                                                   @if(in_array("belsőépítész", $help))checked @endif>
+                                            <label class="form-check-label text-white" for="belsőépítész">
+                                                @lang('messages.int_designer')
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="energetikai tanúsító"
-                                               name="help[]" id="energetikai_tanúsító"
-                                               @if(in_array("energetikai tanúsító", $help))checked @endif>
-                                        <label class="form-check-label text-white" for="energetikai_tanúsító">
-                                            @lang('messages.energy_certificate')
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="energetikai tanúsító"
+                                                   name="help[]" id="energetikai_tanúsító"
+                                                   @if(in_array("energetikai tanúsító", $help))checked @endif>
+                                            <label class="form-check-label text-white" for="energetikai_tanúsító">
+                                                @lang('messages.energy_certificate')
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="építész"
-                                               name="help[]" id="epitesz" @if(in_array("építész", $help))checked @endif>
-                                        <label class="form-check-label text-white" for="epitesz">
-                                            @lang('messages.architect')
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="építész"
+                                                   name="help[]" id="epitesz"
+                                                   @if(in_array("építész", $help))checked @endif>
+                                            <label class="form-check-label text-white" for="epitesz">
+                                                @lang('messages.architect')
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="földhivatali ügyintézés"
-                                               name="help[]" id="foldhivatali_ugyintezes"
-                                               @if(in_array("földhivatali ügyintézés", $help))checked @endif>
-                                        <label class="form-check-label text-white" for="foldhivatali_ugyintezes">
-                                            @lang('messages.land_reg_administration')
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="földhivatali ügyintézés"
+                                                   name="help[]" id="foldhivatali_ugyintezes"
+                                                   @if(in_array("földhivatali ügyintézés", $help))checked @endif>
+                                            <label class="form-check-label text-white" for="foldhivatali_ugyintezes">
+                                                @lang('messages.land_reg_administration')
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               value="hitelügyintézés"
-                                               name="help[]" id="hitel"
-                                               @if(in_array("hitelügyintézés", $help))checked @endif>
-                                        <label class="form-check-label text-white" for="hitel">
-                                            @lang('messages.credit_management')
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="hitelügyintézés"
+                                                   name="help[]" id="hitel"
+                                                   @if(in_array("hitelügyintézés", $help))checked @endif>
+                                            <label class="form-check-label text-white" for="hitel">
+                                                @lang('messages.credit_management')
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="közjegyző"
-                                               name="help[]" id="kozjegyzo"
-                                               @if(in_array("közjegyző", $help))checked @endif>
-                                        <label class="form-check-label text-white" for="kozjegyzo">
-                                            @lang('messages.notary_public')
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="közjegyző"
+                                                   name="help[]" id="kozjegyzo"
+                                                   @if(in_array("közjegyző", $help))checked @endif>
+                                            <label class="form-check-label text-white" for="kozjegyzo">
+                                                @lang('messages.notary_public')
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="lakberendező"
-                                               name="help[]" id="lakberendezo"
-                                               @if(in_array("lakberendező", $help))checked @endif>
-                                        <label class="form-check-label text-white" for="lakberendezo">
-                                            @lang('messages.decorator')
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="lakberendező"
+                                                   name="help[]" id="lakberendezo"
+                                                   @if(in_array("lakberendező", $help))checked @endif>
+                                            <label class="form-check-label text-white" for="lakberendezo">
+                                                @lang('messages.decorator')
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="ügyvéd"
-                                               name="help[]" id="ugyved" @if(in_array("ügyvéd", $help))checked @endif>
-                                        <label class="form-check-label text-white" for="ugyved">
-                                            @lang('messages.lawyer')
-                                        </label>
-                                    </div>
-                                @else
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="belsőépítész"
-                                               name="help[]" id="belsőépítész">
-                                        <label class="form-check-label text-white" for="belsőépítész">
-                                            @lang('messages.int_designer')
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="ügyvéd"
+                                                   name="help[]" id="ugyved"
+                                                   @if(in_array("ügyvéd", $help))checked @endif>
+                                            <label class="form-check-label text-white" for="ugyved">
+                                                @lang('messages.lawyer')
+                                            </label>
+                                        </div>
+                                    @else
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="belsőépítész"
+                                                   name="help[]" id="belsőépítész">
+                                            <label class="form-check-label text-white" for="belsőépítész">
+                                                @lang('messages.int_designer')
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="energetikai tanúsító"
-                                               name="help[]" id="energetikai_tanúsító">
-                                        <label class="form-check-label text-white" for="energetikai_tanúsító">
-                                            @lang('messages.energy_certificate')
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="energetikai tanúsító"
+                                                   name="help[]" id="energetikai_tanúsító">
+                                            <label class="form-check-label text-white" for="energetikai_tanúsító">
+                                                @lang('messages.energy_certificate')
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="építész"
-                                               name="help[]" id="epitesz">
-                                        <label class="form-check-label text-white" for="epitesz">
-                                            @lang('messages.architect')
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="építész"
+                                                   name="help[]" id="epitesz">
+                                            <label class="form-check-label text-white" for="epitesz">
+                                                @lang('messages.architect')
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="földhivatali ügyintézés"
-                                               name="help[]" id="foldhivatali_ugyintezes">
-                                        <label class="form-check-label text-white" for="foldhivatali_ugyintezes">
-                                            @lang('messages.land_reg_administration')
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="földhivatali ügyintézés"
+                                                   name="help[]" id="foldhivatali_ugyintezes">
+                                            <label class="form-check-label text-white" for="foldhivatali_ugyintezes">
+                                                @lang('messages.land_reg_administration')
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               value="hitelügyintézés"
-                                               name="help[]" id="hitel">
-                                        <label class="form-check-label text-white" for="hitel">
-                                            @lang('messages.credit_management')
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="hitelügyintézés"
+                                                   name="help[]" id="hitel">
+                                            <label class="form-check-label text-white" for="hitel">
+                                                @lang('messages.credit_management')
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="közjegyző"
-                                               name="help[]" id="kozjegyzo">
-                                        <label class="form-check-label text-white" for="kozjegyzo">
-                                            @lang('messages.notary_public')
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="közjegyző"
+                                                   name="help[]" id="kozjegyzo">
+                                            <label class="form-check-label text-white" for="kozjegyzo">
+                                                @lang('messages.notary_public')
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="lakberendező"
-                                               name="help[]" id="lakberendezo">
-                                        <label class="form-check-label text-white" for="lakberendezo">
-                                            @lang('messages.decorator')
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="lakberendező"
+                                                   name="help[]" id="lakberendezo">
+                                            <label class="form-check-label text-white" for="lakberendezo">
+                                                @lang('messages.decorator')
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="ügyvéd"
-                                               name="help[]" id="ugyved">
-                                        <label class="form-check-label text-white" for="ugyved">
-                                            @lang('messages.lawyer')
-                                        </label>
-                                    </div>
-                                @endif
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="ügyvéd"
+                                                   name="help[]" id="ugyved">
+                                            <label class="form-check-label text-white" for="ugyved">
+                                                @lang('messages.lawyer')
+                                            </label>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="modal-footer model-footer-custom">
+                                {{--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--}}
+                                <button class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
-                        <div class="modal-footer model-footer-custom">
-                            {{--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--}}
-                            <button class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 @endif
 
 <!--Notification Modal -->
 <div class="modal fade" id="notificationSetting" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">@lang('messages.newsletter_settings')</h1>
+        <div class="modal-content bg-main-color">
+            <div class="modal-header model-header-custom">
+                <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">@lang('messages.newsletter_settings')</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -378,7 +389,7 @@
                     <form action="/notification/{{auth()->id()}}" method="POST">
                         @csrf
                         @method('PUT')
-                        <div class="card card-body">
+                        <div class="card card-body bg-main-color text-white">
                             @if(isset($states))
                                 <div class="row">
                                     <div class="col">
@@ -402,31 +413,32 @@
                                             </label>
                                         </div>
                                     </div>
-
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Zala"
-                                                   name="state[]" id="zala"
-                                                   @if(in_array("Zala", $states)) checked @endif>
-                                            <label class="form-check-label" for="zala">
-                                                Zala
-                                            </label>
-                                        </div>
+                                </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Zala"
+                                               name="state[]" id="zala"
+                                               @if(in_array("Zala", $states)) checked @endif>
+                                        <label class="form-check-label" for="zala">
+                                            Zala
+                                        </label>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                                   value="Komárom-Esztergom"
-                                                   name="state[]" id="komarom"
-                                                   @if(in_array("Komárom-Esztergom", $states)) checked @endif>
-                                            <label class="form-check-label" for="komarom">
-                                                Komárom-Esztergom
-                                            </label>
-                                        </div>
-                                    </div>
 
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Komárom-Esztergom"
+                                               name="state[]" id="komarom"
+                                               @if(in_array("Komárom-Esztergom", $states)) checked @endif>
+                                        <label class="form-check-label" for="komarom">
+                                            Komárom-Esztergom
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="row">
                                     <div class="col">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox"
@@ -476,32 +488,34 @@
                                             </label>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                                   value="Baranya"
-                                                   name="state[]" id="baranya"
-                                                   @if(in_array("Baranya", $states)) checked @endif>
-                                            <label class="form-check-label" for="baranya">
-                                                Baranya
-                                            </label>
-                                        </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Baranya"
+                                               name="state[]" id="baranya"
+                                               @if(in_array("Baranya", $states)) checked @endif>
+                                        <label class="form-check-label" for="baranya">
+                                            Baranya
+                                        </label>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Pest"
-                                                   name="state[]" id="pest"
-                                                   @if(in_array("Pest", $states)) checked @endif>
-                                            <label class="form-check-label" for="pest">
-                                                Pest
-                                            </label>
-                                        </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Pest"
+                                               name="state[]" id="pest"
+                                               @if(in_array("Pest", $states)) checked @endif>
+                                        <label class="form-check-label" for="pest">
+                                            Pest
+                                        </label>
                                     </div>
+                                </div>
+                            </div>
 
+                                <div class="row">
                                     <div class="col">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox"
@@ -552,32 +566,35 @@
                                         </div>
                                     </div>
 
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                                   value="Csongrád-Csanád"
-                                                   name="state[]" id="csongrad"
-                                                   @if(in_array("Csongrád-Csanád", $states)) checked @endif>
-                                            <label class="form-check-label" for="csongrad">
-                                                Csongrád-Csanád
-                                            </label>
-                                        </div>
+                                </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Csongrád-Csanád"
+                                               name="state[]" id="csongrad"
+                                               @if(in_array("Csongrád-Csanád", $states)) checked @endif>
+                                        <label class="form-check-label" for="csongrad">
+                                            Csongrád-Csanád
+                                        </label>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                                   value="Borsod-Abaúj-Zemplén"
-                                                   name="state[]" id="borsod"
-                                                   @if(in_array("Borsod-Abaúj-Zemplén", $states)) checked @endif>
-                                            <label class="form-check-label" for="borsod">
-                                                Borsod-Abaúj-Zemplén
-                                            </label>
-                                        </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Borsod-Abaúj-Zemplén"
+                                               name="state[]" id="borsod"
+                                               @if(in_array("Borsod-Abaúj-Zemplén", $states)) checked @endif>
+                                        <label class="form-check-label" for="borsod">
+                                            Borsod-Abaúj-Zemplén
+                                        </label>
                                     </div>
+                                </div>
+                            </div>
 
+                                <div class="row">
                                     <div class="col">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox"
@@ -639,30 +656,32 @@
                                             </label>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Zala"
-                                                   name="state[]" id="zala">
-                                            <label class="form-check-label" for="zala">
-                                                Zala
-                                            </label>
-                                        </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Zala"
+                                               name="state[]" id="zala">
+                                        <label class="form-check-label" for="zala">
+                                            Zala
+                                        </label>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                                   value="Komárom-Esztergom"
-                                                   name="state[]" id="komarom">
-                                            <label class="form-check-label" for="komarom">
-                                                Komárom-Esztergom
-                                            </label>
-                                        </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Komárom-Esztergom"
+                                               name="state[]" id="komarom">
+                                        <label class="form-check-label" for="komarom">
+                                            Komárom-Esztergom
+                                        </label>
                                     </div>
+                                </div>
+                            </div>
 
+                                <div class="row">
                                     <div class="col">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox"
@@ -708,29 +727,32 @@
                                             </label>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                                   value="Baranya"
-                                                   name="state[]" id="baranya">
-                                            <label class="form-check-label" for="baranya">
-                                                Baranya
-                                            </label>
-                                        </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Baranya"
+                                               name="state[]" id="baranya">
+                                        <label class="form-check-label" for="baranya">
+                                            Baranya
+                                        </label>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Pest"
-                                                   name="state[]" id="pest">
-                                            <label class="form-check-label" for="pest">
-                                                Pest
-                                            </label>
-                                        </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Pest"
+                                               name="state[]" id="pest">
+                                        <label class="form-check-label" for="pest">
+                                            Pest
+                                        </label>
                                     </div>
+                                </div>
+                            </div>
+
+                                <div class="row">
 
                                     <div class="col">
                                         <div class="form-check">
@@ -777,31 +799,32 @@
                                             </label>
                                         </div>
                                     </div>
-
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                                   value="Csongrád-Csanád"
-                                                   name="state[]" id="csongrad">
-                                            <label class="form-check-label" for="csongrad">
-                                                Csongrád-Csanád
-                                            </label>
-                                        </div>
-                                    </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                                   value="Borsod-Abaúj-Zemplén"
-                                                   name="state[]" id="borsod">
-                                            <label class="form-check-label" for="borsod">
-                                                Borsod-Abaúj-Zemplén
-                                            </label>
-                                        </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Csongrád-Csanád"
+                                               name="state[]" id="csongrad">
+                                        <label class="form-check-label" for="csongrad">
+                                            Csongrád-Csanád
+                                        </label>
                                     </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               value="Borsod-Abaúj-Zemplén"
+                                               name="state[]" id="borsod">
+                                        <label class="form-check-label" for="borsod">
+                                            Borsod-Abaúj-Zemplén
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
 
+                                <div class="row">
                                     <div class="col">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox"
@@ -839,10 +862,10 @@
                                 </div>
                             @endif
                         </div>
-                        <div class="mt-4 modal-footer">
-                            <button type="button" class="btn btn-secondary"
+                        <div class="mt-4 modal-footer model-footer-custom">
+                            <button type="button" class="btn btn-secondary rounded-custom"
                                     data-bs-dismiss="modal">@lang('messages.back')</button>
-                            <button class="btn btn-primary">@lang('messages.save')</button>
+                            <button class="btn btn-second-main-color text-white">@lang('messages.save')</button>
                         </div>
                     </form>
                 </div>

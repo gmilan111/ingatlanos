@@ -117,20 +117,27 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <a href="properties/{{$property->id}}"
-                                                                   class="btn btn-second-main-color text-white" data-mdb-ripple-init><i
-                                                                        class="fa-solid fa-circle-info"></i>@lang('messages.details')
-                                                                </a>
-                                                                <a href="properties/{{$property->id}}/edit"
-                                                                   class="btn btn-main-color text-white mt-3 px-3" data-mdb-ripple-init><i
-                                                                        class="fa-solid fa-pen-to-square"></i> @lang('messages.property_edit')
-                                                                </a>
+                                                                <div class="row">
+                                                                    <div class="col-md-6 my-auto">
+                                                                        <a href="properties/{{$property->id}}"
+                                                                           class="btn btn-second-main-color text-white" data-mdb-ripple-init><i
+                                                                                class="fa-solid fa-circle-info"></i>@lang('messages.details')
+                                                                        </a>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <a href="properties/{{$property->id}}/edit"
+                                                                           class="btn btn-main-color text-white px-3" data-mdb-ripple-init><i
+                                                                                class="fa-solid fa-pen-to-square"></i> @lang('messages.property_edit')
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
                                                                 <a href="/image/{{$property->id}}/edit"
                                                                    class="btn btn-main-color text-white mt-3 p-3" data-mdb-ripple-init><i
                                                                         class="fa-solid fa-pen-to-square"></i>
                                                                     @lang('messages.property_img_edit')</a>
                                                                 <div class="row">
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-md-12">
                                                                         <form action="/properties/{{$property->id}}"
                                                                               method="POST">
                                                                             @csrf
@@ -141,7 +148,7 @@
                                                                             </button>
                                                                         </form>
                                                                     </div>
-                                                                    <div class="col-md-6">
+                                                                    {{--<div class="col-md-6">
                                                                         <form action="/sold/{{$property->id}}" method="POST">
                                                                             @csrf
                                                                             @method('PUT')
@@ -150,7 +157,7 @@
                                                                                 @lang('messages.sold')
                                                                             </button>
                                                                         </form>
-                                                                    </div>
+                                                                    </div>--}}
                                                                 </div>
                                                             </div>
                                                         </div>
