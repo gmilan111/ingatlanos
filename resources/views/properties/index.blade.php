@@ -75,6 +75,7 @@
                                    aria-label="Search"
                                    name="settlement_search"
                                    id="settlement"
+                                   required
                                    aria-describedby="search-addon" value="{{$settlement_search}}"/>
                             <label for="settlement" class="form-label">@lang('messages.settlement')</label>
                         @else
@@ -82,6 +83,7 @@
                                    aria-label="Search"
                                    name="settlement_search"
                                    id="settlement"
+                                   required
                                    aria-describedby="search-addon"/>
                             <label for="settlement" class="form-label">@lang('messages.settlement')</label>
                         @endif
