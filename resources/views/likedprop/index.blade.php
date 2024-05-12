@@ -4,7 +4,7 @@
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
             <div class="d-flex justify-content-center align-items-center h-100">
                 <div class="text-white">
-                    <h1 class="text-center align-items-center mb-10">Kedvenc ingatlanok</h1>
+                    <h1 class="text-center align-items-center mb-10">@lang('messages.liked_properties')</h1>
                 </div>
             </div>
         </div>

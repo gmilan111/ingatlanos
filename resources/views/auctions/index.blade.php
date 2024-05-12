@@ -30,13 +30,13 @@
                                    name="size_min"
                                    value="{{$size_min}}"
                                    autocomplete="size_min"/>
-                            <label for="size_min" class="form-label">Méret (min)</label>
+                            <label for="size_min" class="form-label">@lang('messages.size_input') (min)</label>
                         @else
                             <input id="size_min" class="form-control text-white"
                                    type="number"
                                    name="size_min"
                                    autocomplete="size_min"/>
-                            <label for="size_min" class="form-label">Méret (min)</label>
+                            <label for="size_min" class="form-label">@lang('messages.size_input') (min)</label>
                         @endif
                     </div>
                 </div>
@@ -48,13 +48,13 @@
                                    name="size_max"
                                    value="{{$size_max}}"
                                    autocomplete="size_max"/>
-                            <label for="size_max" class="form-label">Méret (max)</label>
+                            <label for="size_max" class="form-label">@lang('messages.size_input') (max)</label>
                         @else
                             <input id="size_max" class="form-control text-white"
                                    type="number"
                                    name="size_max"
                                    autocomplete="size_max"/>
-                            <label for="size_max" class="form-label">Méret (max)</label>
+                            <label for="size_max" class="form-label">@lang('messages.size_input') (max)</label>
                         @endif
                     </div>
                 </div>
@@ -65,13 +65,13 @@
                                    name="price_min_search"
                                    id="price_min"
                                    aria-describedby="search-addon" value="{{$price_min_search}}"/>
-                            <label for="price_min" class="form-label">Ár (min)</label>
+                            <label for="price_min" class="form-label">@lang('messages.price_input') (min)</label>
                         @else
                             <input type="search" class="form-control text-white" aria-label="Search"
                                    name="price_min_search"
                                    id="price_min"
                                    aria-describedby="search-addon"/>
-                            <label for="price_min" class="form-label">Ár (min)</label>
+                            <label for="price_min" class="form-label">@lang('messages.price_input') (min)</label>
                         @endif
                     </div>
                 </div>
@@ -81,12 +81,12 @@
                             <input type="search" class="form-control text-white" id="price_max" aria-label="Search"
                                    name="price_max_search"
                                    aria-describedby="search-addon" value="{{$price_max_search}}"/>
-                            <label for="price_max" class="form-label">Ár (max)</label>
+                            <label for="price_max" class="form-label">@lang('messages.price_input') (max)</label>
                         @else
                             <input type="search" class="form-control text-white" id="price_max" aria-label="Search"
                                    name="price_max_search"
                                    aria-describedby="search-addon"/>
-                            <label for="price_max" class="form-label">Ár (max)</label>
+                            <label for="price_max" class="form-label">@lang('messages.price_input') (max)</label>
                         @endif
                     </div>
                 </div>
@@ -98,7 +98,7 @@
         </form>
         <div class="row mt-5 d-flex justify-content-evenly">
             @if(count($auctions)<1)
-                <p>NINCS TALÁLAT</p>
+                <h1>@lang('messages.no_result')</h1>
             @endif
             @foreach($auctions as $auction)
                 @php
@@ -141,8 +141,7 @@
                                             class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
 
                                     @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m" || auth()->user()->is_ingatlanos == "i")
-                                        <a class="btn btn-second-main-color text-white mx-2" data-mdb-ripple-init href="/auctions/{{$property->id}}">Aukció
-                                            megtekintése</a>
+                                        <a class="btn btn-second-main-color text-white mx-2" data-mdb-ripple-init href="/auctions/{{$property->id}}">@lang('messages.view_auction')</a>
                                     @endif
                                 </div>
 
@@ -154,7 +153,7 @@
                                         @csrf
                                         @method('PUT')
                                         <button class="btn btn-warning mt-4" data-mdb-ripple-init><i class="fa-solid fa-sack-dollar"></i>
-                                            Lezárás
+                                            @lang('messages.close_auction')
                                         </button>
                                     </form>
                                 @endif

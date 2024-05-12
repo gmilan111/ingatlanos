@@ -61,7 +61,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{route('auctions.index')}}"
-                           class="nav-link {{request()->is('auctions') ? 'active a-fejlec' : (request()->is('auctions/*') ? 'active a-fejlec' : (request()->is('auction_search') ? 'active a-fejlec' : ''))}} fejlec text-light">Aukciók</a>
+                           class="nav-link {{request()->is('auctions') ? 'active a-fejlec' : (request()->is('auctions/*') ? 'active a-fejlec' : (request()->is('auction_search') ? 'active a-fejlec' : ''))}} fejlec text-light">@lang('messages.auctions')</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{request()->is('agents') ? 'active a-fejlec' : (request()->is('agents/*') ? 'active a-fejlec' : '')}} text-light fejlec"
@@ -84,7 +84,11 @@
                            href="{{route('properties.create')}}">@lang('messages.add_new_property')</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('auctions.index')}}" class="nav-link {{request()->is('auctions') ? 'active a-fejlec' : (request()->is('auctions/*') ? 'active a-fejlec' : (request()->is('auction_search') ? 'active a-fejlec' : ''))}} fejlec text-light">Aukciók</a>
+                        <a href="{{route('auctions.index')}}" class="nav-link {{request()->is('auctions') ? 'active a-fejlec' : (request()->is('auctions/*') ? 'active a-fejlec' : (request()->is('auction_search') ? 'active a-fejlec' : ''))}} fejlec text-light">@lang('messages.auctions')</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{request()->is('agents') ? 'active a-fejlec' : (request()->is('agents/*') ? 'active a-fejlec' : '')}} fejlec text-light"
+                           href="{{route('agents.index')}}">@lang('messages.agents')</a>
                     </li>
                 </ul>
             @else
@@ -170,8 +174,7 @@
             <div class="modal-dialog">
                 <div class="modal-content bg-main-color">
                     <div class="modal-header model-header-custom">
-                        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Ingatlanos információk
-                            módosítása</h1>
+                        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">@lang('messages.edit_agent_info')</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form action="/agent_info/{{auth()->id()}}" method="POST">
@@ -366,7 +369,7 @@
                             </div>
                             <div class="modal-footer model-footer-custom">
                                 {{--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--}}
-                                <button class="btn btn-primary">Save changes</button>
+                                <button class="btn btn-second-main-color text-white text-15">@lang('messages.save_changes')</button>
                             </div>
                         </div>
                     </form>
@@ -891,8 +894,8 @@
             <li class="nav-item"><a href="{{route('properties.index')}}"
                                     class="nav-link px-2 text-light">@lang('messages.real_estates')</a></li>
             <li class="nav-item"><a href="{{route('auctions.index')}}"
-                                    class="nav-link px-2 text-light">Aukciók</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-light">@lang('messages.agents')</a></li>
+                                    class="nav-link px-2 text-light">@lang('messages.auctions')</a></li>
+            <li class="nav-item"><a href="{{route('agents.index')}}" class="nav-link px-2 text-light">@lang('messages.agents')</a></li>
         </ul>
     @elseif(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'i')
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
@@ -904,8 +907,10 @@
             <li class="nav-item"><a href="{{route('properties.create')}}"
                                     class="nav-link px-2 text-light">@lang('messages.add_new_property')</a>
             </li>
-            <li class="nav-item"><a href="{{route('properties.own')}}"
-                                    class="nav-link px-2 text-light">@lang('messages.own_properties')</a></li>
+            <li class="nav-item"><a href="{{route('auctions.index')}}"
+                                    class="nav-link px-2 text-light">@lang('messages.auctions')</a></li>
+
+            <li class="nav-item"><a href="{{route('agents.index')}}" class="nav-link px-2 text-light">@lang('messages.agents')</a></li>
         </ul>
     @else
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
@@ -914,7 +919,9 @@
             <li class="nav-item"><a href="{{route('properties.index')}}"
                                     class="nav-link px-2 text-light">@lang('messages.real_estates')</a>
             </li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-light">@lang('messages.agents')</a></li>
+            <li class="nav-item"><a href="{{route('auctions.index')}}"
+                                    class="nav-link px-2 text-light">@lang('messages.auctions')</a></li>
+            <li class="nav-item"><a href="{{route('agents.index')}}" class="nav-link px-2 text-light">@lang('messages.agents')</a></li>
         </ul>
     @endif
     <p class="text-center text-light">© 2024 Company, Inc</p>

@@ -51,13 +51,13 @@
                                    name="price_min_search"
                                    id="price_min"
                                    aria-describedby="search-addon" value="{{$price_min_search}}"/>
-                            <label for="price_min" class="form-label">Ár (min)</label>
+                            <label for="price_min" class="form-label">@lang('messages.price_input') (min)</label>
                         @else
                             <input type="search" class="form-control text-white" aria-label="Search"
                                    name="price_min_search"
                                    id="price_min"
                                    aria-describedby="search-addon"/>
-                            <label for="price_min" class="form-label">Ár (min)</label>
+                            <label for="price_min" class="form-label">@lang('messages.price_input') (min)</label>
                         @endif
                     </div>
                 </div>
@@ -67,12 +67,12 @@
                             <input type="search" class="form-control text-white" id="price_max" aria-label="Search"
                                    name="price_max_search"
                                    aria-describedby="search-addon" value="{{$price_max_search}}"/>
-                            <label for="price_max" class="form-label">Ár (max)</label>
+                            <label for="price_max" class="form-label">@lang('messages.price_input') (max)</label>
                         @else
                             <input type="search" class="form-control text-white" id="price_max" aria-label="Search"
                                    name="price_max_search"
                                    aria-describedby="search-addon"/>
-                            <label for="price_max" class="form-label">Ár (max)</label>
+                            <label for="price_max" class="form-label">@lang('messages.price_input') (max)</label>
                         @endif
                     </div>
 
@@ -84,13 +84,13 @@
                                    name="rooms_min_search"
                                    id="rooms_min"
                                    aria-describedby="search-addon" value="{{$rooms_min_search}}"/>
-                            <label for="rooms_min" class="form-label">Szobaszám (min)</label>
+                            <label for="rooms_min" class="form-label">@lang('messages.number_of_rooms') (min)</label>
                         @else
                             <input type="search" class="form-control text-white" aria-label="Search"
                                    name="rooms_min_search"
                                    id="rooms_min"
                                    aria-describedby="search-addon"/>
-                            <label for="rooms_min" class="form-label">Szobaszám (min)</label>
+                            <label for="rooms_min" class="form-label">@lang('messages.number_of_rooms') (min)</label>
                         @endif
                     </div>
                 </div>
@@ -101,13 +101,13 @@
                                    name="rooms_max_search"
                                    id="rooms_min"
                                    aria-describedby="search-addon" value="{{$rooms_max_search}}"/>
-                            <label for="rooms_max" class="form-label">Szobaszám (max)</label>
+                            <label for="rooms_max" class="form-label">@lang('messages.number_of_rooms') (max)</label>
                         @else
                             <input type="search" class="form-control text-white" aria-label="Search"
                                    name="rooms_max_search"
                                    id="rooms_min"
                                    aria-describedby="search-addon"/>
-                            <label for="rooms_max" class="form-label">Szobaszám (max)</label>
+                            <label for="rooms_max" class="form-label">@lang('messages.number_of_rooms') (max)</label>
                         @endif
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                         <button class="btn outline-0 text-second-main-color custom-dropdown" type="button"
                                 data-bs-toggle="collapse"
                                 data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Részletes keresés <i class="fa-solid fa-chevron-down"></i>
+                            @lang('messages.detailed_search') <i class="fa-solid fa-chevron-down"></i>
                         </button>
                         <div class="collapse" id="collapseExample">
                             <div class="card card-body bg-main-color">
@@ -653,13 +653,13 @@
                                                                name="size_min"
                                                                value="{{$size_min}}"
                                                                autocomplete="size_min"/>
-                                                        <label for="size_min" class="form-label">Méret (min)</label>
+                                                        <label for="size_min" class="form-label">@lang('messages.size_input') (min)</label>
                                                     @else
                                                         <input id="size_min" class="form-control text-white"
                                                                type="number"
                                                                name="size_min"
                                                                autocomplete="size_min"/>
-                                                        <label for="size_min" class="form-label">Méret (min)</label>
+                                                        <label for="size_min" class="form-label">@lang('messages.size_input') (min)</label>
                                                     @endif
                                                 </div>
                                             </div>
@@ -671,13 +671,13 @@
                                                                name="size_max"
                                                                value="{{$size_max}}"
                                                                autocomplete="size_max"/>
-                                                        <label for="size_max" class="form-label">Méret (max)</label>
+                                                        <label for="size_max" class="form-label">@lang('messages.size_input') (max)</label>
                                                     @else
                                                         <input id="size_max" class="form-control text-white"
                                                                type="number"
                                                                name="size_max"
                                                                autocomplete="size_max"/>
-                                                        <label for="size_max" class="form-label">Méret (max)</label>
+                                                        <label for="size_max" class="form-label">@lang('messages.size_input') (max)</label>
                                                     @endif
                                                 </div>
                                             </div>
@@ -694,14 +694,14 @@
                                                                name="bathrooms_min"
                                                                value="{{$bathrooms_min}}"
                                                                autocomplete="bathrooms_min"/>
-                                                        <label for="bathrooms_min" class="form-label">Fürdőszobák
+                                                        <label for="bathrooms_min" class="form-label">@lang('messages.bathrooms_input')
                                                             (min)</label>
                                                     @else
                                                         <input id="bathrooms_min" class="form-control text-white"
                                                                type="number"
                                                                name="bathrooms_min"
                                                                autocomplete="bathrooms_min"/>
-                                                        <label for="bathrooms_min" class="form-label">Fürdőszobák
+                                                        <label for="bathrooms_min" class="form-label">@lang('messages.bathrooms_input')
                                                             (min)</label>
                                                     @endif
                                                 </div>
@@ -715,14 +715,14 @@
                                                                name="bathrooms_max"
                                                                value="{{$bathrooms_max}}"
                                                                autocomplete="bathrooms_max"/>
-                                                        <label for="bathrooms_max" class="form-label">Fürdőszobák
+                                                        <label for="bathrooms_max" class="form-label">@lang('messages.bathrooms_input')
                                                             (max)</label>
                                                     @else
                                                         <input id="bathrooms_max" class="form-control text-white"
                                                                type="number"
                                                                name="bathrooms_max"
                                                                autocomplete="bathrooms_max"/>
-                                                        <label for="bathrooms_max" class="form-label">Fürdőszobák
+                                                        <label for="bathrooms_max" class="form-label">@lang('messages.bathrooms_input')
                                                             (max)</label>
                                                     @endif
                                                 </div>
@@ -956,7 +956,7 @@
                                                                         @if($floor_min == 10) selected @endif>10.
                                                                 </option>
                                                             </select>
-                                                            <label for="floor" class="form-label mb-0 label-custom">Emelet
+                                                            <label for="floor" class="form-label mb-0 label-custom">@lang('messages.floor_input')
                                                                 (min)</label>
                                                         @else
                                                             <select
@@ -977,7 +977,7 @@
                                                                 <option value="9">9.</option>
                                                                 <option value="10">10.</option>
                                                             </select>
-                                                            <label for="floor" class="form-label mb-0 label-custom">Emelet
+                                                            <label for="floor" class="form-label mb-0 label-custom">@lang('messages.floor_input')
                                                                 (min)</label>
                                                         @endif
                                                     </div>
@@ -1026,7 +1026,7 @@
                                                                         @if($floor_max == 10) selected @endif>10.
                                                                 </option>
                                                             </select>
-                                                            <label for="floor" class="form-label mb-0 label-custom">Emelet
+                                                            <label for="floor" class="form-label mb-0 label-custom">@lang('messages.floor_input')
                                                                 (max)</label>
                                                         @else
                                                             <select
@@ -1047,7 +1047,7 @@
                                                                 <option value="9">9.</option>
                                                                 <option value="10">10.</option>
                                                             </select>
-                                                            <label for="floor" class="form-label mb-0 label-custom">Emelet
+                                                            <label for="floor" class="form-label mb-0 label-custom">@lang('messages.floor_input')
                                                                 (max)</label>
                                                         @endif
                                                     </div>

@@ -40,7 +40,7 @@
                                     @lang('messages.liked_properties')
                                 </x-dropdown-link>
                                 <x-dropdown-link href="{{ route('auctions_entered.index') }}">
-                                    Regisztrált aukciók???????
+                                    @lang('messages.registered_auctions')
                                 </x-dropdown-link>
                                 <x-dropdown-link href="{{ route('profile.show') }}">
                                     @lang('messages.profile')
@@ -54,13 +54,13 @@
                                     @lang('messages.own_properties')
                                 </x-dropdown-link>
                                 <x-dropdown-link href="{{route('auctions.own')}}">
-                                    Saját aukciók
+                                    @lang('messages.own_auctions')
                                 </x-dropdown-link>
                                 <x-dropdown-link href="{{ route('profile.show') }}">
                                     @lang('messages.profile')
                                 </x-dropdown-link>
                                 <x-dropdown-link type="button" data-bs-toggle="modal" data-bs-target="#agentSettings">
-                                    Ingatlanos információk
+                                    @lang('messages.agent_info')
                                 </x-dropdown-link>
                             @endif
                             <div class="border-t border-gray-200"></div>

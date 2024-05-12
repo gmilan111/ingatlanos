@@ -40,11 +40,11 @@
                         <div class="row mt-4 mb-4">
                             <div class="col-sm-6">
                                 <h1 class="card-title-price card-title">
-                                    Kezdőár: {{number_format(($properties_info->auction_price),0,'','.')}}
+                                    @lang('messages.starting_price'): {{number_format(($properties_info->auction_price),0,'','.')}}
                                     Ft</h1>
                             </div>
                             <div class="col-sm-6">
-                                <h1 class="card-title-price card-title">Határidő: {{$auction->deadline}}</h1>
+                                <h1 class="card-title-price card-title">@lang('messages.deadline'): {{$auction->deadline}}</h1>
                             </div>
                         </div>
                         <div class="row mb-2 d-flex justify-content-between text-center">
@@ -73,7 +73,7 @@
                 @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m" && isset(auth()->user()->auction_entered) && auth()->user()->auction_entered == true && count($auction_list2)>0)
                     <div class="card border-0 shadow-custom text-black">
                         <div class="card-body">
-                            <h1 class="card-title mt-2 mb-4">Licitálás</h1>
+                            <h1 class="card-title mt-2 mb-4">@lang('messages.bidding')</h1>
                             <form action="/bid/{{$properties_info->id}}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -91,7 +91,7 @@
                                     <div class="col-sm-5 d-flex align-items-center">
                                         <div>
                                             <button class="btn btn-second-main-color text-white" data-mdb-ripple-init>
-                                                Licitálás
+                                                @lang('messages.bidding')
                                             </button>
                                         </div>
                                     </div>
@@ -101,7 +101,7 @@
                         </div>
 
                         <div class="card-body">
-                            <h1 class="card-title mt-2">Azonnali megvásárlás</h1>
+                            <h1 class="card-title mt-2">@lang('messages.immediate_purchase')</h1>
                             <h1 class="card-title-price">
                                 Ára: {{number_format(($properties_info->immediate_purchase),0,'','.')}} Ft</h1>
                             <div class="row mt-2 mb-2 d-flex justify-content-between">
@@ -111,7 +111,7 @@
                                     <div class="col d-flex align-items-center">
                                         <div>
                                             <button class="btn btn-second-main-color text-white" data-mdb-ripple-init>
-                                                Vásárlás
+                                                @lang('messages.purchase')
                                             </button>
                                         </div>
                                     </div>
@@ -123,14 +123,14 @@
                 @elseif(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "i" && $auction->user_id == auth()->id())
                     <div class="card border-0 shadow-custom text-black mt-5">
                         <div class="card-body row">
-                            <h1 class="card-title mt-2">Eddig tett ajánlatok</h1>
+                            <h1 class="card-title mt-2">@lang('messages.offers_made')</h1>
                             <div class="col">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                         <tr>
-                                            <td>Felhasználó neve</td>
-                                            <td>Ajánlat</td>
+                                            <td>@lang('messages.users_name')</td>
+                                            <td>@lang('messages.offer')</td>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -185,13 +185,13 @@
                             @if(count($auction_entered)<1 && isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m")
                                 <button type="button" class="btn btn-second-main-color text-white"
                                         data-bs-toggle="modal"
-                                        data-mdb-ripple-init data-bs-target="#registration">Regisztráció az árverésre
+                                        data-mdb-ripple-init data-bs-target="#registration">@lang('messages.register_auction')
                                 </button>
                             @elseif(count($auction_entered)>=1)
                                 <form action="/entered_auction/delete/{{$auction->id}}" method="GET">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger" data-mdb-ripple-init>Kilépés az árverésről</button>
+                                    <button class="btn btn-danger" data-mdb-ripple-init>@lang('messages.exit_auction')</button>
                                 </form>
                             @endif
 
@@ -207,15 +207,12 @@
                                             @method('PUT')
                                             <div class="modal-header model-header-custom">
                                                 <h1 class="modal-title fs-5 text-white"
-                                                    id="exampleModalLabel">Regisztráció az aukcióra</h1>
+                                                    id="exampleModalLabel">@lang('messages.register_auction')</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body text-white">
-                                                <p>A regisztrációhoz szükséges letét díjat fizetni. Ezt azért kell, mert
-                                                    így
-                                                    tudunk megbizonyosodni, hogy komoly a vevő szándéka.<br>Regisztráció
-                                                    ára: {{number_format((($properties_info->price)*($properties_info->deposit/100)),0,'','.')}}
+                                                <p>@lang('messages.deposit_info')<br>@lang('messages.deposit_register') {{number_format((($properties_info->price)*($properties_info->deposit/100)),0,'','.')}}
                                                     Ft</p>
                                             </div>
                                             <div class="modal-footer model-footer-custom">

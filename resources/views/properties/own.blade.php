@@ -99,36 +99,44 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6 my-auto">
-                                                <a href="/properties/{{$property->id}}" class="btn btn-second-main-color text-white"><i
+                                        <div class="row mb-3">
+                                            <div>
+                                                <a href="/properties/{{$property->id}}" class="btn btn-second-main-color text-15 text-white"><i
                                                         class="fa-solid fa-circle-info" data-mdb-ripple-init></i> @lang('messages.details')</a>
                                             </div>
-                                            <div class="col-md-6">
-                                                <a href="/properties/{{$property->id}}/edit" class="btn btn-main-color text-white px-3"><i
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="">
+                                                <a href="/properties/{{$property->id}}/edit" class="btn btn-main-color text-15 text-white px-3"><i
                                                         class="fa-solid fa-pen-to-square" data-mdb-ripple-init></i> @lang('messages.property_edit')</a>
                                             </div>
                                         </div>
 
-                                        <a href="/image/{{$property->id}}/edit" class="btn btn-main-color text-white p-3 mt-3" data-mdb-ripple-init><i
-                                                class="fa-solid fa-pen-to-square"></i> @lang('messages.property_img_edit')
-                                        </a>
-                                        <div class="row mt-3">
-                                            <div class="col-md-6">
+                                        <div class="row mb-3">
+                                            <div>
+                                                <a href="/image/{{$property->id}}/edit" class="btn btn-main-color text-white text-15 p-3" data-mdb-ripple-init><i
+                                                        class="fa-solid fa-pen-to-square"></i> @lang('messages.property_img_edit')
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div>
                                                 <form action="/properties/{{$property->id}}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-danger rounded-custom" data-mdb-ripple-init><i
+                                                    <button class="btn btn-danger rounded-custom text-15" data-mdb-ripple-init><i
                                                             class="fa-solid fa-trash"></i> @lang('messages.delete')
                                                     </button>
                                                 </form>
                                             </div>
-
-                                            <div class="col-md-6">
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div>
                                                 <form action="sold/{{$property->id}}" method="POST">
                                                     @csrf
                                                     @method('PUT')
-                                                    <button class="btn btn-warning rounded-custom" data-mdb-ripple-init><i class="fa-solid fa-sack-dollar"></i>
+                                                    <button class="btn btn-warning rounded-custom text-15" data-mdb-ripple-init><i class="fa-solid fa-sack-dollar"></i>
                                                         @lang('messages.sold')
                                                     </button>
                                                 </form>
@@ -195,8 +203,6 @@
                                                 </form>
                                             </div>
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>

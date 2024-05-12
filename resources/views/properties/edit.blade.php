@@ -54,7 +54,7 @@
             }
         </style>
 
-        <h2 class="text-center mb-5">Ingatlan módosítása</h2>
+        <h2 class="text-center mb-5">@lang('messages.property_edit')</h2>
 
         <form method="POST" action="/properties/{{$item->id}}" enctype="multipart/form-data">
             @csrf
@@ -467,7 +467,7 @@
                         <div class="form-outline" data-mdb-input-init>
                             <input id="deposit" class="form-control login" type="number" name="deposit" value="{{$item->deposit}}"
                                      autocomplete="deposit"/>
-                            <label for="deposit" class="form-label">Letét (%-ban)</label>
+                            <label for="deposit" class="form-label">@lang('messages.deposit')</label>
                         </div>
                     </div>
 
@@ -475,7 +475,7 @@
                         <div class="form-outline" data-mdb-input-init>
                             <input id="immediate_purchase" class="form-control login" type="number" name="immediate_purchase" value="{{$item->immediate_purchase}}"
                                      autocomplete="immediate_purchase"/>
-                            <label for="immediate_purchase" class="form-label">Azonnali vételár</label>
+                            <label for="immediate_purchase" class="form-label">@lang('messages.immediate_price')</label>
                         </div>
                     </div>
 
@@ -483,7 +483,7 @@
                         <div class="form-outline" data-mdb-input-init>
                             <input id="deadline" class="form-control login" type="date" name="deadline" value="{{$item->deadline}}"
                                      autocomplete="deadline"/>
-                            <label for="deadline" class="form-label">Határidő</label>
+                            <label for="deadline" class="form-label">@lang('messages.deadline')</label>
                         </div>
                     </div>
                 </div>
