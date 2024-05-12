@@ -1,10 +1,10 @@
 <x-layout>
-    <div class="p-5 text-center bg-image shadow-2xl"
+    <div class="p-5 text-center bg-image shadow-custom"
          style="background-image: url('{{asset('img/header.jpg')}}'); height: 1050px;">
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
             <div class="d-flex justify-content-center align-items-center h-100">
                 <div class="text-white">
-                    <h1 class="text-center align-items-center mb-10">"Álmai otthona egy kattintásra - Otthonvadász, az ingatlankeresés új dimenziója."</h1>
+                    <h1 class="text-center align-items-center mb-10">@lang('messages.index_text')</h1>
                     <form action="{{route('properties.search')}}" method="POST">
                         @csrf
                         <div class="input-group search-header p-5 row">
@@ -17,25 +17,25 @@
                             <div class="col">
                                 <div class="form-outline" data-mdb-input-init>
                                     <input type="search" class="form-control" id="price_min" name="price_min_search"/>
-                                    <label for="price_min" class="form-label">Ár (min)</label>
+                                    <label for="price_min" class="form-label">@lang('messages.price_input') (min)</label>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-outline" data-mdb-input-init>
                                     <input type="search" class="form-control" id="price_max" name="price_min_search"/>
-                                    <label for="price_max" class="form-label">Ár (max)</label>
+                                    <label for="price_max" class="form-label">@lang('messages.price_input') (max)</label>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-outline" data-mdb-input-init>
                                     <input type="search" class="form-control" id="rooms_min" name="rooms_min_search"/>
-                                    <label for="rooms_min" class="form-label">Szobaszám (min)</label>
+                                    <label for="rooms_min" class="form-label">@lang('messages.number_of_rooms') (min)</label>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-outline" data-mdb-input-init>
                                     <input type="search" class="form-control" id="rooms_max" name="rooms_max_search"/>
-                                    <label for="rooms_max" class="form-label">Szobaszám (max)</label>
+                                    <label for="rooms_max" class="form-label">@lang('messages.number_of_rooms') (max)</label>
                                 </div>
                             </div>
                             <div class="col d-flex justify-content-center align-items-center">
@@ -49,33 +49,33 @@
         </div>
     </div>
 
-    <section class="py-5 bg-section shadow-2xl text-light">
-        <h1 class="text-center mt-5" style="color: var(--main-color)">Miért minket válassz?</h1>
-        <h4 class="text-center mb-10">Válassza az Otthonvadász oldalt, hogy egyedülálló élményben részesüljön az álmai otthona megtalálása során.</h4>
+    <section class="py-5 bg-section shadow-custom text-light">
+        <h1 class="text-center mt-5" style="color: var(--main-color)">@lang('messages.why_choose_us')</h1>
+        <h4 class="text-center mb-10">@lang('messages.choose_text')</h4>
         <div class="container my-5 mb-10">
             <div class="row d-flex justify-content-between">
                 <div class="col-md-3 p-4 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-user text-56 my-4 icon-orange"></i>
-                    <h3 class="mb-5">Képzett munkavállalók</h3>
-                    <p>A csapatunk több mint 20 képzett és tapasztalt ingatlanügynök és ingatlankezelőből áll, akik készen állnak segíteni Önt.</p>
+                    <h3 class="mb-5">@lang('messages.skilled_workers')</h3>
+                    <p>@lang('messages.skilled_workers_text')</p>
                 </div>
                 <div class="col-md-3 p-4 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-handshake text-56 my-4 icon-orange"></i>
-                    <h3 class="mb-5">Ingyenes konzultációk</h3>
-                    <p>A klienssel való ismerkedésünk mindig egy ingyenes konzultációval kezdődik annak kiderítésére, hogy milyen ingatlant keresnek.</p>
+                    <h3 class="mb-5">@lang('messages.free_consultation')</h3>
+                    <p>@lang('messages.free_consultation_text')</p>
                 </div>
                 <div class="col-md-3 p-4 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-medal text-56 my-4 icon-orange"></i>
-                    <h3 class="mb-5">Magyarországon a legjobb</h3>
-                    <p>Minden eredmény, amit a ingatlanközvetítőinktől kap, 100%-osan garantáltan a legjobb ingatlanválasztékot kínálja Magyarországon.</p>
+                    <h3 class="mb-5">@lang('messages.best_in_hungary')</h3>
+                    <p>@lang('messages.best_in_hungary_text')</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-5">
-        <h1 class="mx-5 text-56 font-main-color font-weight-600 text-center my-5">Neked ajánlott</h1>
-        <div class="owl-carousel owl-theme mb-10">
+    <section class="">
+        <h1 class="mx-5 text-56 font-main-color font-weight-600 text-center my-5">@lang('messages.recommended_for_you')</h1>
+        <div class="owl-carousel owl-theme">
             @if(!$igaz)
                 @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m")
                     @foreach($recommendations as $item)
@@ -289,29 +289,32 @@
         </div>
     </section>
 
-    <section class="py-5 bg-section shadow-2xl text-light">
-        <h1 class="text-center mt-5" style="color: var(--main-color)">Amit ajánlunk</h1>
+    <section class="py-5 bg-section shadow-custom text-light">
+        <h1 class="text-center mt-5" style="color: var(--main-color)">@lang('messages.what_we_offer')</h1>
         <div class="container my-5 mb-10">
             <div class="row d-flex justify-content-between">
                 <div class="col-md-3 p-4 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-house text-56 my-4 icon-orange"></i>
-                    <h3 class="mb-5">Ingatlanok</h3>
+                    <h3 class="mb-5">@lang('messages.real_estates')</h3>
                     <a href="{{route('properties.index')}}"
-                       class="btn btn-primary text-15 btn-second-main-color">@lang('messages.details')</a>
+                       class="btn btn-primary text-15 btn-second-main-color"><i
+                            class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
                     {{--<p>A csapatunk több mint 20 képzett és tapasztalt ingatlanügynök és ingatlankezelőből áll, akik készen állnak segíteni Önt.</p>--}}
                 </div>
                 <div class="col-md-3 p-4 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-gavel text-56 my-4 icon-orange"></i>
-                    <h3 class="mb-5">Aukciók</h3>
+                    <h3 class="mb-5">@lang('messages.auctions')</h3>
                     <a href="{{route('auctions.index')}}"
-                       class="btn btn-primary text-15 btn-second-main-color">@lang('messages.details')</a>
+                       class="btn btn-primary text-15 btn-second-main-color"><i
+                            class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
                     {{--<p>A klienssel való ismerkedésünk mindig egy ingyenes konzultációval kezdődik annak kiderítésére, hogy milyen ingatlant keresnek.</p>--}}
                 </div>
                 <div class="col-md-3 p-4 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-house-chimney-user text-56 my-4 icon-orange"></i>
-                    <h3 class="mb-5">Albérletek</h3>
+                    <h3 class="mb-5">@lang('messages.rents')</h3>
                     <a href="{{route('properties.index')}}"
-                       class="btn btn-primary text-15 btn-second-main-color">@lang('messages.details')</a>
+                       class="btn btn-primary text-15 btn-second-main-color"><i
+                            class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
                     {{--<p>Minden eredmény, amit a ingatlanközvetítőinktől kap, 100%-osan garantáltan a legjobb ingatlanválasztékot kínálja Magyarországon.</p>--}}
                 </div>
             </div>
@@ -319,7 +322,7 @@
     </section>
 
     <section class="py-5">
-        <h1 class="mx-5 text-56 text-center my-5 font-main-color">Ingatlanközvetítők</h1>
+        <h1 class="mx-5 text-56 text-center my-5 font-main-color">@lang('messages.real_estate_agents')</h1>
         <div class="owl-carousel owl-theme mb-10">
             @foreach($agents as $agent)
                 @php
@@ -343,5 +346,4 @@
             @endforeach
         </div>
     </section>
-
 </x-layout>

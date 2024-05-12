@@ -4,7 +4,7 @@
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
             <div class="d-flex justify-content-center align-items-center h-100">
                 <div class="text-white">
-                    <h1 class="text-center align-items-center">A mi csapatunk</h1>
+                    <h1 class="text-center align-items-center">@lang('messages.our_team')</h1>
                 </div>
             </div>
         </div>

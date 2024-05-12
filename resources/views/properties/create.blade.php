@@ -481,7 +481,7 @@
                     <div class="form-outline" data-mdb-input-init>
                         <input id="deposit" class="form-control login" type="number" name="deposit"
                                  autocomplete="deposit"/>
-                        <label for="deposit" class="form-label">Letét (%-ban)</label>
+                        <label for="deposit" class="form-label">@lang('messages.deposit')</label>
                     </div>
                 </div>
 
@@ -489,7 +489,7 @@
                     <div class="form-outline" data-mdb-input-init>
                         <input id="immediate_purchase" class="form-control login" type="number" name="immediate_purchase"
                                  autocomplete="immediate_purchase"/>
-                        <label for="immediate_purchase" class="form-label">Azonnali vételár</label>
+                        <label for="immediate_purchase" class="form-label">@lang('messages.immediate_price')</label>
                     </div>
                 </div>
 
@@ -497,14 +497,14 @@
                     <div class="form-outline" data-mdb-input-init>
                         <input id="deadline" class="form-control login" type="date" name="deadline"
                                  autocomplete="deadline"/>
-                        <label for="deadline" class="form-label">Határidő</label>
+                        <label for="deadline" class="form-label">@lang('messages.deadline')</label>
                     </div>
                 </div>
             </div>
 
             <div class=" mt-4 w-25 form-check" id="auction_div">
                     <input id="auction" class="form-check-input" name="auction" type="checkbox" onclick="auctions()" value="{{true}}"/>
-                    <label class="form-check-label" for="auction">Árverésre bocsátás</label>
+                    <label class="form-check-label" for="auction">@lang('messages.put_up_for_auction')</label>
             </div>
 
             <div class="flex items-center justify-end mt-4 w-25 mx-auto">

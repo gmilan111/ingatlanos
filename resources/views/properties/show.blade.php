@@ -259,8 +259,7 @@
                                     @endif
                                 @endif
                                 <a href="/agents/{{$agent_info->user_id}}"
-                                   class="btn btn-second-main-color mt-3 text-white" data-mdb-ripple-init>Ingatlanos
-                                    információk</a>
+                                   class="btn btn-second-main-color mt-3 text-white" data-mdb-ripple-init>@lang('messages.agent_info')</a>
 
                                 <div class="mt-3">
                                     <!-- Button trigger modal -->

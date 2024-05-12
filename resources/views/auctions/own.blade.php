@@ -34,10 +34,10 @@
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-offer-tab" data-bs-toggle="tab" data-bs-target="#nav-offer"
-                        type="button" role="tab" aria-controls="nav-offer" aria-selected="true">Aukciók
+                        type="button" role="tab" aria-controls="nav-offer" aria-selected="true">@lang('messages.auctions')
                 </button>
                 <button class="nav-link" id="nav-sold-tab" data-bs-toggle="tab" data-bs-target="#nav-sold"
-                        type="button" role="tab" aria-controls="nav-sold" aria-selected="false">Lezárt aukciók
+                        type="button" role="tab" aria-controls="nav-sold" aria-selected="false">@lang('messages.closed_auctions')
                 </button>
             </div>
         </nav>
@@ -79,35 +79,52 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6 my-auto">
-                                                <a href="/properties/{{$property->id}}" class="btn btn-second-main-color text-white"><i
+                                        <div class="row mb-3">
+                                            <div>
+                                                <a href="/properties/{{$property->id}}" class="btn btn-second-main-color text-15 text-white"><i
                                                         class="fa-solid fa-circle-info" data-mdb-ripple-init></i> @lang('messages.details')</a>
                                             </div>
-                                            <div class="col-md-6">
-                                                <a class="btn btn-main-color text-white" href="/auctions/{{$property->id}}" data-mdb-ripple-init>Aukció
-                                                    megtekintése</a>
+                                        </div>
+
+                                        <div class="row">
+                                            <div>
+                                                <a class="btn btn-main-color text-15 text-white" href="/auctions/{{$property->id}}" data-mdb-ripple-init><i class="fa-solid fa-eye"></i> @lang('messages.view_auction')</a>
                                             </div>
                                         </div>
-                                        <a href="/properties/{{$property->id}}/edit" class="btn btn-main-color text-white p-3 mt-3" data-mdb-ripple-init><i
-                                                class="fa-solid fa-pen-to-square"></i> @lang('messages.property_edit')
-                                        </a>
-                                        <a href="/image/{{$property->id}}/edit" class="btn btn-main-color text-white p-3 mt-3" data-mdb-ripple-init><i
-                                                class="fa-solid fa-pen-to-square"></i> @lang('messages.property_img_edit')
-                                        </a>
+
+                                        <div class="row">
+                                            <div>
+                                                <a href="/properties/{{$property->id}}/edit" class="btn btn-main-color text-15 text-white p-3 mt-3" data-mdb-ripple-init><i
+                                                        class="fa-solid fa-pen-to-square"></i> @lang('messages.property_edit')
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div>
+                                                <a href="/image/{{$property->id}}/edit" class="btn btn-main-color text-15 text-white p-3 mt-3" data-mdb-ripple-init><i
+                                                        class="fa-solid fa-pen-to-square"></i> @lang('messages.property_img_edit')
+                                                </a>
+                                            </div>
+                                        </div>
                                         {{--<form action="/properties/{{$property->id}}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger"><i class="fa-solid fa-trash"></i> @lang('messages.delete')
                                             </button>
                                         </form>--}}
-                                        <form action="/own_closed/{{$property->id}}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <button class="btn btn-warning rounded-custom mt-3" data-mdb-ripple-init><i class="fa-solid fa-sack-dollar"></i>
-                                                Lezárás
-                                            </button>
-                                        </form>
+                                        <div class="row">
+                                            <div>
+                                                <form action="/own_closed/{{$property->id}}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button class="btn btn-warning text-15 rounded-custom mt-3" data-mdb-ripple-init><i class="fa-solid fa-sack-dollar"></i>
+                                                        @lang('messages.close_auction')
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -163,8 +180,7 @@
                                                         class="fa-solid fa-circle-info" data-mdb-ripple-init></i> @lang('messages.details')</a>
                                             </div>
                                             <div class="col-md-6">
-                                                <a class="btn btn-main-color text-white" href="/auctions/{{$property->id}}" data-mdb-ripple-init>Aukció
-                                                    megtekintése</a>
+                                                <a class="btn btn-main-color text-white" href="/auctions/{{$property->id}}" data-mdb-ripple-init><i class="fa-solid fa-eye"></i> @lang('messages.view_auction')</a>
                                             </div>
                                         </div>
                                        {{-- <a href="properties/{{$property->id}}/edit" class="btn btn-dark"><i
