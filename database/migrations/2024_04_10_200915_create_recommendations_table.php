@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('recommendations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('settlement');
+            $table->string('settlement')->nullable() ;
             $table->string('state')->nullable();
             /*$table->integer('size');*/
             $table->integer('min_size')->nullable();

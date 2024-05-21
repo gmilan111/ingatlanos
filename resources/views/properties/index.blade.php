@@ -1,7 +1,7 @@
 <x-layout>
     <div class="container px-0 ">
-        <div class="input-group margin-top p-4 rounded shadow-custom search-header mb-5">
-            <form action="{{route('properties.search')}}" method="POST" class="row d-flex align-items-center">
+        <div class="input-group search p-4 rounded shadow-custom search-header mb-5">
+            <form action="{{route('properties.search')}}" method="GET" class="row d-flex align-items-center">
                 @csrf
                 <div class="col">
                     <div class="form-check px-0">
@@ -1621,7 +1621,7 @@
 
         <div class="row d-flex justify-content-evenly">
             @if(count($properties)<1)
-                <p>NINCS TALÁLAT</p>
+                <h1 class="text-center">@lang('messages.no_result')</h1>
             @endif
 
             @foreach($properties as $property)
@@ -1631,7 +1631,7 @@
                     @endphp
                     {{--<iframe src="https://maps.google.it/maps?q=<?php echo $address?>&output=embed" width="600" height="450"
                             style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
-                    <div class="col-lg-auto mb-5">
+                    <div class="col-lg-auto d-flex justify-content-evenly mb-5">
                         <a href="properties/{{$property->id}}">
                             <div class="card border-0 shadow-custom property text-black" style="width: 25rem;">
                                 @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')

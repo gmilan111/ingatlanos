@@ -122,16 +122,20 @@ class PropertiesController extends Controller
         $state = $newProperty->state;
         $user_helper = User::query();
         $user_helper -> select('*')
-            ->where('notification_state', 'like', "%".$state."%")
+            /*->where('notification_state', 'like', "%".$state."%")*/
             ->where('email_notification', '=', true);
 
         $users = $user_helper->get();
         $url = "http://otthonvadasz.test/properties/".$newProperty->id;
         $agent = DB::table('users')->select('*')->where('id', "=", $newProperty->user_id)->first();
 
+        $notification_array = array();
         if(isset($users)) {
             foreach ($users as $user) {
-                Mail::to($user->email)->send(new Notification($newProperty, $user, $url, $agent));
+                $notification_array = json_decode($user->notification_state, JSON_UNESCAPED_UNICODE);
+                if(in_array($state,$notification_array)){
+                    Mail::to("gebeimilan@gmail.com")->send(new Notification($newProperty, $user, $url, $agent));
+                }
             }
         }
 
@@ -140,7 +144,7 @@ class PropertiesController extends Controller
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->where('images.properties_id', '=', 'properties.id')->get(),
             'main_img' => DB::table('main_images')->select('*')->join('properties', 'main_images.properties_id', '=', 'properties.id')->get(),
         ]);*/
-        return redirect(route('index'))->with([
+        return redirect(route('properties.index'))->with([
             'properties' => DB::table('properties')->select('*')->get(),
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
         ]);
@@ -167,7 +171,8 @@ class PropertiesController extends Controller
     public function edit($property)
     {
         $item = Properties::find($property);
-        return view('properties.edit', compact('item'));
+        $auction = DB::table('auctions')->select('*')->where('properties_id', '=', $property)->first();
+        return view('properties.edit', compact('item', 'auction'));
     }
 
     public function update(Request $request, $property)

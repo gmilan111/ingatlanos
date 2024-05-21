@@ -5,9 +5,9 @@
             <div class="d-flex justify-content-center align-items-center h-100">
                 <div class="text-white">
                     <h1 class="text-center align-items-center mb-10">@lang('messages.index_text')</h1>
-                    <form action="{{route('properties.search')}}" method="POST">
+                    <form action="{{route('properties.search')}}" method="GET">
                         @csrf
-                        <div class="input-group search-header p-5 row">
+                        <div class="mx-auto input-group search-header p-5 row">
                             <div class="col">
                                 <div class="form-outline" data-mdb-input-init>
                                     <input type="search" class="form-control" id="settlement" name="settlement_search"/>
@@ -54,17 +54,17 @@
         <h4 class="text-center mb-10">@lang('messages.choose_text')</h4>
         <div class="container my-5 mb-10">
             <div class="row d-flex justify-content-between">
-                <div class="col-md-3 p-4 text-center custom-card shadow-custom-2">
+                <div class="col-md-3 p-4 mb-5 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-user text-56 my-4 icon-orange"></i>
                     <h3 class="mb-5">@lang('messages.skilled_workers')</h3>
                     <p>@lang('messages.skilled_workers_text')</p>
                 </div>
-                <div class="col-md-3 p-4 text-center custom-card shadow-custom-2">
+                <div class="col-md-3 p-4 mb-5 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-handshake text-56 my-4 icon-orange"></i>
                     <h3 class="mb-5">@lang('messages.free_consultation')</h3>
                     <p>@lang('messages.free_consultation_text')</p>
                 </div>
-                <div class="col-md-3 p-4 text-center custom-card shadow-custom-2">
+                <div class="col-md-3 p-4 mb-5 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-medal text-56 my-4 icon-orange"></i>
                     <h3 class="mb-5">@lang('messages.best_in_hungary')</h3>
                     <p>@lang('messages.best_in_hungary_text')</p>
@@ -76,7 +76,7 @@
     <section class="">
         <h1 class="mx-5 text-56 font-main-color font-weight-600 text-center my-5">@lang('messages.recommended_for_you')</h1>
         <div class="owl-carousel owl-theme">
-            @if(!$igaz)
+            @if(!$rec_helper)
                 @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m")
                     @foreach($recommendations as $item)
                         @php
@@ -293,7 +293,7 @@
         <h1 class="text-center mt-5" style="color: var(--main-color)">@lang('messages.what_we_offer')</h1>
         <div class="container my-5 mb-10">
             <div class="row d-flex justify-content-between">
-                <div class="col-md-3 p-4 text-center custom-card shadow-custom-2">
+                <div class="col-md-3 mb-5 p-4 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-house text-56 my-4 icon-orange"></i>
                     <h3 class="mb-5">@lang('messages.real_estates')</h3>
                     <a href="{{route('properties.index')}}"
@@ -301,7 +301,7 @@
                             class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
                     {{--<p>A csapatunk több mint 20 képzett és tapasztalt ingatlanügynök és ingatlankezelőből áll, akik készen állnak segíteni Önt.</p>--}}
                 </div>
-                <div class="col-md-3 p-4 text-center custom-card shadow-custom-2">
+                <div class="col-md-3 p-4 mb-5 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-gavel text-56 my-4 icon-orange"></i>
                     <h3 class="mb-5">@lang('messages.auctions')</h3>
                     <a href="{{route('auctions.index')}}"
@@ -309,7 +309,7 @@
                             class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
                     {{--<p>A klienssel való ismerkedésünk mindig egy ingyenes konzultációval kezdődik annak kiderítésére, hogy milyen ingatlant keresnek.</p>--}}
                 </div>
-                <div class="col-md-3 p-4 text-center custom-card shadow-custom-2">
+                <div class="col-md-3 mb-5 p-4 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-house-chimney-user text-56 my-4 icon-orange"></i>
                     <h3 class="mb-5">@lang('messages.rents')</h3>
                     <a href="{{route('properties.index')}}"

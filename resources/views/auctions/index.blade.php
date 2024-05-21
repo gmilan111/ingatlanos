@@ -1,9 +1,9 @@
 <x-layout>
     <div class="container">
-        <form action="{{route('auctions.search')}}" method="POST">
+        <form action="{{route('auctions.search')}}" method="GET">
             @csrf
             <div
-                class="input-group margin-top p-4 row rounded shadow-custom search-header mb-5 mx-auto align-items-center">
+                class="input-group search p-4 row rounded shadow-custom search-header mb-5 mx-auto align-items-center">
                 <div class="col">
                     <div class="form-outline" data-mdb-input-init>
                         @if(isset($settlement_search))
@@ -99,7 +99,7 @@
         </form>
         <div class="row mt-5 d-flex justify-content-evenly">
             @if(count($auctions)<1)
-                <h1>@lang('messages.no_result')</h1>
+                <h1 class="text-center">@lang('messages.no_result')</h1>
             @endif
             @foreach($auctions as $auction)
                 @php
@@ -107,7 +107,7 @@
                     $address = ($property->settlement).','.' '.($property->address).'.';
                 @endphp
                 @if(!$property->sold && !$auction->closed)
-                    <div class="col-lg-auto width-33 mb-5">
+                    <div class="col-lg-auto d-flex justify-content-evenly mb-5">
                         <div class="card border-0 shadow-custom text-black" style="width: 25rem;">
                             <img
                                 src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"

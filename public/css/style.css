@@ -404,6 +404,10 @@ input:-webkit-autofill:active{
     color: white;
 }
 
+.search{
+    margin-top: 15%!important;
+}
+
 ::-webkit-scrollbar{
     width: 7px;
 }
@@ -417,11 +421,31 @@ input:-webkit-autofill:active{
     border-radius: 15px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.number-input{
+    border-right: 2px solid black;
+}
+
 @media (max-width: 992px){
     .carousel-inner{
         margin-top: 15%;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .input-group {
+        position: relative;
+        display: block;
+        border-collapse: separate;
+    }
+
+    .search{
+        margin-top: 150px!important;
     }
 }
 
