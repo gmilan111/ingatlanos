@@ -92,7 +92,7 @@
             <div class="mt-4">
                 <div class="form-outline" data-mdb-input-init>
                     <input id="phone_number" class="form-control login" type="tel" name="phone_number"
-                             pattern="[0-9]{2} [0-9]{2} [0-9]{3} [0-9]{4}" required
+                             pattern="[0-9]{2}[0-9]{2}[0-9]{3}[0-9]{4}" required
                              autocomplete="phone"/>
                     <label for="phone_number" class="form-label">@lang('messages.mobile_phone')</label>
                 </div>

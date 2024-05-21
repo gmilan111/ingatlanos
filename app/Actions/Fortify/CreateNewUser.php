@@ -24,15 +24,19 @@ class CreateNewUser implements CreatesNewUsers
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
-            /*'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',*/
             'phone_number' => ['required'],
-            'salary' => ['nullable', 'string'],
-            'experience' => ['nullable', 'integer'],
-            'help' => 'nullable',
-            'language' => ['nullable', 'string'],
-            'descritpion' => ['nullable', 'string'],
             'notification_state' => ['nullable'],
         ])->validate();
+
+        if($input['user']== 'i'){
+            Validator::make($input, [
+                'salary' => ['required'],
+                'experience' => ['required'],
+                'help' => 'nullable',
+                'language' => ['required'],
+                'description' => ['required'],
+            ])->validate();
+        }
 
         if(!isset($input['state'])){
             $input['state'] = array();

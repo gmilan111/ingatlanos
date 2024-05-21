@@ -9,7 +9,6 @@ use App\Models\MainImage;
 use App\Models\Properties;
 use App\Models\Recommendations;
 use App\Models\User;
-use DeepCopy\Matcher\PropertyTypeMatcher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,8 +21,8 @@ class PropertiesController extends Controller
     public function index()
     {
         return view('properties.index', [
-            'properties' => DB::table('properties')->select('*')->get(),
-            'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
+            'properties' => DB::table('properties')->select('*')->where([['sold', '=', false],['auction', '=', false]])->paginate(12),
+            /*'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),*/
         ]);
     }
 
@@ -141,7 +140,7 @@ class PropertiesController extends Controller
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->where('images.properties_id', '=', 'properties.id')->get(),
             'main_img' => DB::table('main_images')->select('*')->join('properties', 'main_images.properties_id', '=', 'properties.id')->get(),
         ]);*/
-        return redirect(route('properties.index'))->with([
+        return redirect(route('index'))->with([
             'properties' => DB::table('properties')->select('*')->get(),
             'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
         ]);
@@ -150,9 +149,9 @@ class PropertiesController extends Controller
     public function show($property)
     {
         return view('properties.show', [
-            'properties' => DB::table('properties')->select('*')->where('properties.id', '=', $property)->get(),
+            'property' => DB::table('properties')->select('*')->where('properties.id', '=', $property)->first(),
             'images' => DB::table('images')->select('*')->where('images.properties_id', '=', $property)->get(),
-            'main_img' => DB::table('main_images')->select('*')->where('main_images.properties_id', '=', $property)->get(),
+            'main_img' => DB::table('main_images')->select('*')->where('main_images.properties_id', '=', $property)->first(),
             /*'agents' => DB::table('users')->select('*')->join('properties', 'users.id', '=', 'properties.user_id')->first(),*/
         ]);
     }
@@ -161,9 +160,8 @@ class PropertiesController extends Controller
     {
         $user = auth()->id();
         return view('properties.own', [
-            'properties' => DB::table('properties')->select('*')->where('user_id', '=', $user)->get()
+            'properties' => DB::table('properties')->select('*')->where([['user_id', '=', $user],['sold', '=', false], ['auction', '=', false]])->paginate(12)
         ]);
-
     }
 
     public function edit($property)
@@ -371,7 +369,9 @@ class PropertiesController extends Controller
             }
         }
 
-        $search=$a->get();
+        $a->where([['sold','=',false],['auction', '=', false]]);
+
+        $search=$a->paginate(12);
         return view('properties.index', [
             'sale_rent' => $sale_rent_search,
             'properties' => $search,

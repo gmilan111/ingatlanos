@@ -73,6 +73,9 @@
                     </a>
                 </div>
             @endforeach
+            <div class="m-5">
+                {{$properties->links('pagination::bootstrap-5')}}
+            </div>
         </div>
     </div>
 </x-layout>

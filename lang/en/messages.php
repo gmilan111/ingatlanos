@@ -201,4 +201,7 @@ return [
     'real_estate_agents' => 'Real estate agents',
     'rents' => 'Rents',
     'own_auctions' => 'Own auctions',
+    'verify_email' => 'Verify Email Address',
+    'verify_email_text' => 'Please click the button below to verify your email address.',
+    'did_not_create' => 'If you did not create an account, no further action is required.',
 ];

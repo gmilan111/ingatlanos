@@ -73,18 +73,18 @@
             <x-input-error for="email" class="mt-2"/>
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
-                <p class="text-sm mt-2">
+                <p class="text-sm mt-2 text-white">
                     @lang('messages.email_verify')
 
                     <button type="button"
-                            class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            class="underline text-sm text-white hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             wire:click.prevent="sendEmailVerification">
                         @lang('messages.email_verify_btn')
                     </button>
                 </p>
 
                 @if ($this->verificationLinkSent)
-                    <p class="mt-2 font-medium text-sm text-green-600">
+                    <p class="mt-2 font-medium text-sm text-white">
                         @lang('messages.new_email_verify')
                     </p>
                 @endif
@@ -96,7 +96,7 @@
                 <label for="email_notification" class="flex items-center">
                     <x-input id="email_notification" wire:model="state.email_notification" type="checkbox"
                              value="{{true}}"/>
-                    <span class="ms-2 text-sm text-gray-600">@lang('messages.newsletter')</span>
+                    <span class="ms-2 text-sm text-white">@lang('messages.newsletter')</span>
                 </label>
             </div>
         @elseif($this->user->is_ingatlanos == 'm' && $this->user->email_notification)

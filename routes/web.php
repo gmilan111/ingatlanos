@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [Controller::class, 'index']);
+Route::get('/', [Controller::class, 'index'])->name('index');
 
 #Ingatlanok megjelenítése
 Route::get('/properties', [PropertiesController::class, 'index'])->name('properties.index');
@@ -64,7 +64,7 @@ Route::post('/images/{propertyID}', [ImagesController::class, 'store']);
 Route::get('main_image/{image}',[MainImageController::class, 'destroy']);
 
 #Keresés
-Route::post('search', [PropertiesController::class, 'search'])->name('properties.search');
+Route::any('search', [PropertiesController::class, 'search'])->name('properties.search');
 
 #Kedvelt ingatlan mentése
 Route::post('like/{data}', [LikedPropertiesController::class, 'store']);
@@ -81,7 +81,7 @@ Route::get('liked_prop/delete/{data}', [LikedPropertiesController::class, 'destr
 /*Route::post('search_liked', [LikedPropertiesController::class, 'search_liked'])->name('liked_prop.search');*/
 
 #Ingatlanos tud keresni saját ingatlanjai között
-Route::post('own_search', [PropertiesController::class, 'own_search'])->name('own.properties.search');
+Route::any('own_search', [PropertiesController::class, 'own_search'])->name('own.properties.search');
 
 #Ingatlanosok megjelenítése
 Route::get('/agents', [AgentsController::class, 'index'])->name('agents.index');
@@ -129,10 +129,10 @@ Route::put('bid/{property_id}', [AuctionsController::class, 'bid']);
 Route::put('buy/{property_id}', [AuctionsController::class, 'buy']);
 
 #Aukciók keresése
-Route::post('auction_search', [AuctionsController::class, 'search'])->name('auctions.search');
+Route::any('auction_search', [AuctionsController::class, 'search'])->name('auctions.search');
 
 #Ingatlanos tud keresni saját aukciói között
-Route::post('own_auction_search', [AuctionsController::class, 'own_search'])->name('own.auctions.search');
+Route::any('own_auction_search', [AuctionsController::class, 'own_search'])->name('own.auctions.search');
 
 Route::get('entered_auction/delete/{data}', [AuctionsEnteredController::class, 'destroy']);
 

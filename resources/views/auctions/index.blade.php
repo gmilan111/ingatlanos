@@ -2,7 +2,8 @@
     <div class="container">
         <form action="{{route('auctions.search')}}" method="POST">
             @csrf
-            <div class="input-group margin-top p-4 row rounded shadow-custom search-header mb-5 mx-auto align-items-center">
+            <div
+                class="input-group margin-top p-4 row rounded shadow-custom search-header mb-5 mx-auto align-items-center">
                 <div class="col">
                     <div class="form-outline" data-mdb-input-init>
                         @if(isset($settlement_search))
@@ -141,7 +142,8 @@
                                             class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
 
                                     @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m" || auth()->user()->is_ingatlanos == "i")
-                                        <a class="btn btn-second-main-color text-white mx-2" data-mdb-ripple-init href="/auctions/{{$property->id}}">@lang('messages.view_auction')</a>
+                                        <a class="btn btn-second-main-color text-white mx-2" data-mdb-ripple-init
+                                           href="/auctions/{{$property->id}}">@lang('messages.view_auction')</a>
                                     @endif
                                 </div>
 
@@ -149,10 +151,12 @@
                                 @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "i" && $auction->user_id == auth()->id())
                                     {{--<a class="btn btn-primary" href="/auctions/{{$property->id}}">Aukció
                                         megtekintése</a>--}}
-                                    <form action="/closed/{{$property->id}}" class="d-flex justify-content-center" method="POST">
+                                    <form action="/closed/{{$property->id}}" class="d-flex justify-content-center"
+                                          method="POST">
                                         @csrf
                                         @method('PUT')
-                                        <button class="btn btn-warning mt-4" data-mdb-ripple-init><i class="fa-solid fa-sack-dollar"></i>
+                                        <button class="btn btn-warning mt-4" data-mdb-ripple-init><i
+                                                class="fa-solid fa-sack-dollar"></i>
                                             @lang('messages.close_auction')
                                         </button>
                                     </form>
@@ -162,6 +166,9 @@
                     </div>
                 @endif
             @endforeach
+            <div class=" m-5">
+                {{ $auctions->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </div>
 </x-layout>
