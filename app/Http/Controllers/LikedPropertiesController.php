@@ -15,8 +15,8 @@ class LikedPropertiesController extends Controller
     public function index(){
         $user = Auth::user();
         $liked_properties = Properties::whereHas('liked', function ($query) use($user){
-            $query->where('user_id', $user->id);
-        })->get();
+            $query->where([['user_id', $user->id],['sold', '=',false], ['auction','=',false]]);
+        })->paginate(9);
         return view('likedprop.index', [
             'properties' => $liked_properties,
         ]);
@@ -30,14 +30,11 @@ class LikedPropertiesController extends Controller
            'user_id' => $user,
         ]);
 
-
-
         return back();
     }
 
     public function destroy($data){
         $record = LikedProperties::where([['properties_id', '=', $data],['user_id','=', auth()->id()]])->first();
-
 
         if($record){
             $record->delete();
@@ -54,7 +51,6 @@ class LikedPropertiesController extends Controller
     public function destroy_liked($data){
         $record = LikedProperties::where([['properties_id', '=', $data],['user_id','=', auth()->id()]])->first();
 
-
         if($record){
             $record->delete();
         }
@@ -66,23 +62,4 @@ class LikedPropertiesController extends Controller
 
         return redirect(route('liked.index'));
     }
-
-    /*public function search_liked(Request $request)
-    {
-        $settlement_search = $request['settlement_search'];
-
-        $a = Properties::query();
-
-        $a->select('*')
-            ->when($settlement_search != null, function ($a) use ($request) {
-                $a->where('settlement', 'like', '%' . $request['settlement_search'] . '%');
-            });
-
-        $search=$a->get();
-        return view('likedprop.index', [
-            'properties' => $search,
-            'settlement_search' => $settlement_search,
-            'images' => DB::table('images')->select('*')->join('properties', 'images.properties_id', '=', 'properties.id')->get(),
-        ]);
-    }*/
 }

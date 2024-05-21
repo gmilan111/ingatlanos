@@ -130,6 +130,9 @@
                             </div>
                         @endif
                     @endforeach
+                    <div class=" m-5">
+                        {{ $auctions->links('pagination::bootstrap-5') }}
+                    </div>
                 </div>
             </div>
 
@@ -202,6 +205,9 @@
                             </div>
                         @endif
                     @endforeach
+                    <div class=" m-5">
+                        {{ $auctions->links('pagination::bootstrap-5') }}
+                    </div>
                 </div>
             </div>
         </div>

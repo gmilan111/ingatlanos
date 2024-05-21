@@ -30,7 +30,6 @@
                                    aria-label="Search"
                                    name="settlement_search"
                                    id="settlement"
-                                   required
                                    aria-describedby="search-addon" value="{{$settlement_search}}"/>
                             <label for="settlement" class="form-label">@lang('messages.settlement')</label>
                         @else
@@ -38,7 +37,6 @@
                                    aria-label="Search"
                                    name="settlement_search"
                                    id="settlement"
-                                   required
                                    aria-describedby="search-addon"/>
                             <label for="settlement" class="form-label">@lang('messages.settlement')</label>
                         @endif
@@ -653,13 +651,17 @@
                                                                name="size_min"
                                                                value="{{$size_min}}"
                                                                autocomplete="size_min"/>
-                                                        <label for="size_min" class="form-label">@lang('messages.size_input') (min)</label>
+                                                        <label for="size_min"
+                                                               class="form-label">@lang('messages.size_input')
+                                                            (min)</label>
                                                     @else
                                                         <input id="size_min" class="form-control text-white"
                                                                type="number"
                                                                name="size_min"
                                                                autocomplete="size_min"/>
-                                                        <label for="size_min" class="form-label">@lang('messages.size_input') (min)</label>
+                                                        <label for="size_min"
+                                                               class="form-label">@lang('messages.size_input')
+                                                            (min)</label>
                                                     @endif
                                                 </div>
                                             </div>
@@ -671,13 +673,17 @@
                                                                name="size_max"
                                                                value="{{$size_max}}"
                                                                autocomplete="size_max"/>
-                                                        <label for="size_max" class="form-label">@lang('messages.size_input') (max)</label>
+                                                        <label for="size_max"
+                                                               class="form-label">@lang('messages.size_input')
+                                                            (max)</label>
                                                     @else
                                                         <input id="size_max" class="form-control text-white"
                                                                type="number"
                                                                name="size_max"
                                                                autocomplete="size_max"/>
-                                                        <label for="size_max" class="form-label">@lang('messages.size_input') (max)</label>
+                                                        <label for="size_max"
+                                                               class="form-label">@lang('messages.size_input')
+                                                            (max)</label>
                                                     @endif
                                                 </div>
                                             </div>
@@ -694,14 +700,16 @@
                                                                name="bathrooms_min"
                                                                value="{{$bathrooms_min}}"
                                                                autocomplete="bathrooms_min"/>
-                                                        <label for="bathrooms_min" class="form-label">@lang('messages.bathrooms_input')
+                                                        <label for="bathrooms_min"
+                                                               class="form-label">@lang('messages.bathrooms_input')
                                                             (min)</label>
                                                     @else
                                                         <input id="bathrooms_min" class="form-control text-white"
                                                                type="number"
                                                                name="bathrooms_min"
                                                                autocomplete="bathrooms_min"/>
-                                                        <label for="bathrooms_min" class="form-label">@lang('messages.bathrooms_input')
+                                                        <label for="bathrooms_min"
+                                                               class="form-label">@lang('messages.bathrooms_input')
                                                             (min)</label>
                                                     @endif
                                                 </div>
@@ -715,14 +723,16 @@
                                                                name="bathrooms_max"
                                                                value="{{$bathrooms_max}}"
                                                                autocomplete="bathrooms_max"/>
-                                                        <label for="bathrooms_max" class="form-label">@lang('messages.bathrooms_input')
+                                                        <label for="bathrooms_max"
+                                                               class="form-label">@lang('messages.bathrooms_input')
                                                             (max)</label>
                                                     @else
                                                         <input id="bathrooms_max" class="form-control text-white"
                                                                type="number"
                                                                name="bathrooms_max"
                                                                autocomplete="bathrooms_max"/>
-                                                        <label for="bathrooms_max" class="form-label">@lang('messages.bathrooms_input')
+                                                        <label for="bathrooms_max"
+                                                               class="form-label">@lang('messages.bathrooms_input')
                                                             (max)</label>
                                                     @endif
                                                 </div>
@@ -956,7 +966,8 @@
                                                                         @if($floor_min == 10) selected @endif>10.
                                                                 </option>
                                                             </select>
-                                                            <label for="floor" class="form-label mb-0 label-custom">@lang('messages.floor_input')
+                                                            <label for="floor"
+                                                                   class="form-label mb-0 label-custom">@lang('messages.floor_input')
                                                                 (min)</label>
                                                         @else
                                                             <select
@@ -977,7 +988,8 @@
                                                                 <option value="9">9.</option>
                                                                 <option value="10">10.</option>
                                                             </select>
-                                                            <label for="floor" class="form-label mb-0 label-custom">@lang('messages.floor_input')
+                                                            <label for="floor"
+                                                                   class="form-label mb-0 label-custom">@lang('messages.floor_input')
                                                                 (min)</label>
                                                         @endif
                                                     </div>
@@ -1026,7 +1038,8 @@
                                                                         @if($floor_max == 10) selected @endif>10.
                                                                 </option>
                                                             </select>
-                                                            <label for="floor" class="form-label mb-0 label-custom">@lang('messages.floor_input')
+                                                            <label for="floor"
+                                                                   class="form-label mb-0 label-custom">@lang('messages.floor_input')
                                                                 (max)</label>
                                                         @else
                                                             <select
@@ -1047,7 +1060,8 @@
                                                                 <option value="9">9.</option>
                                                                 <option value="10">10.</option>
                                                             </select>
-                                                            <label for="floor" class="form-label mb-0 label-custom">@lang('messages.floor_input')
+                                                            <label for="floor"
+                                                                   class="form-label mb-0 label-custom">@lang('messages.floor_input')
                                                                 (max)</label>
                                                         @endif
                                                     </div>
@@ -1678,6 +1692,9 @@
 
                 @endif
             @endforeach
+            <div class=" m-5">
+                {{ $properties->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </div>
 </x-layout>

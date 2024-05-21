@@ -27,6 +27,8 @@
           integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
     <link rel="stylesheet" href="{{asset('css\style.css')}}" type="text/css">
 
 </head>
@@ -118,11 +120,11 @@
                     <a class="nav-link text-light btn-primary register-btn px-4 py-2" data-mdb-ripple-init
                        href="{{ route('register') }}">@lang('messages.registration')</a>
                 @endauth
-                <select class="changeLang">
+                <select class="changeLang text-white">
                     <option value="hu" {{session()->get('locale') == 'hu' ? 'selected' : ''}}><a
-                            href="locale/hu" class="text-decoration-none">Magyar</a></option>
+                            href="locale/hu" class="text-decoration-none">&#x1f1ed;&#x1f1fa;</a></option>
                     <option value="en" {{session()->get('locale') == 'en' ? 'selected' : ''}}><a
-                            href="locale/en" class="text-decoration-none">English</a></option>
+                            href="locale/en" class="text-decoration-none">&#x1f1fa;&#x1f1f8;</a></option>
                 </select>
             </div>
         </div>
@@ -919,8 +921,6 @@
             <li class="nav-item"><a href="{{route('properties.index')}}"
                                     class="nav-link px-2 text-light">@lang('messages.real_estates')</a>
             </li>
-            <li class="nav-item"><a href="{{route('auctions.index')}}"
-                                    class="nav-link px-2 text-light">@lang('messages.auctions')</a></li>
             <li class="nav-item"><a href="{{route('agents.index')}}" class="nav-link px-2 text-light">@lang('messages.agents')</a></li>
         </ul>
     @endif
@@ -945,6 +945,10 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"
 ></script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 

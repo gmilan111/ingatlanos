@@ -83,7 +83,6 @@ class Controller extends BaseController
                 $max_rooms = max($max_rooms_helper);
             }
 
-
             $states = array();
             foreach ($states_helper as $value) {
                 if ($value != null) {

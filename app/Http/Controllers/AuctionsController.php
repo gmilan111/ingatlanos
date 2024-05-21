@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Mail;
 class AuctionsController extends Controller
 {
     public function index(){
-        $auctions = DB::table('auctions')->select('*')->get();
+        $auctions = DB::table('auctions')->select('*')->where('closed','=', false)->paginate(12);
 
         /*if(count($properties_id)>0){
             foreach ($properties_id as $item){
@@ -71,7 +71,7 @@ class AuctionsController extends Controller
         foreach($properties as $item){
             array_push($helper,$item->id);
         }
-        $auctions = DB::table('auctions')->select('*')->whereIn('properties_id', $helper)->get();
+        $auctions = DB::table('auctions')->select('*')->where('closed','=', false)->whereIn('properties_id', $helper)->paginate(12);
 
 
         return view('auctions.own', [

@@ -140,7 +140,7 @@
                                         </div>
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <a href="properties/{{$item->id}}"
-                                                   class="btn btn-primary text-15 btn-second-main-color"><i
+                                                   class="btn btn-primary text-15 btn-second-main-color" data-mdb-ripple-init><i
                                                         class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
                                             </div>
                                     </div>
@@ -208,7 +208,7 @@
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center">
                                             <a href="properties/{{$property->id}}"
-                                               class="btn btn-primary text-15 btn-second-main-color"><i
+                                               class="btn btn-primary text-15 btn-second-main-color" data-mdb-ripple-init><i
                                                     class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
                                         </div>
                                     </div>
@@ -277,7 +277,7 @@
                                     </div>
                                     <div class="d-flex justify-content-center align-items-center">
                                         <a href="properties/{{$property->id}}"
-                                           class="btn btn-primary text-15 btn-second-main-color"><i
+                                           class="btn btn-primary text-15 btn-second-main-color" data-mdb-ripple-init><i
                                                 class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
                                     </div>
                                 </div>
@@ -297,7 +297,7 @@
                     <i class="fa-solid fa-house text-56 my-4 icon-orange"></i>
                     <h3 class="mb-5">@lang('messages.real_estates')</h3>
                     <a href="{{route('properties.index')}}"
-                       class="btn btn-primary text-15 btn-second-main-color"><i
+                       class="btn btn-primary text-15 btn-second-main-color" data-mdb-ripple-init><i
                             class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
                     {{--<p>A csapatunk több mint 20 képzett és tapasztalt ingatlanügynök és ingatlankezelőből áll, akik készen állnak segíteni Önt.</p>--}}
                 </div>
@@ -305,7 +305,7 @@
                     <i class="fa-solid fa-gavel text-56 my-4 icon-orange"></i>
                     <h3 class="mb-5">@lang('messages.auctions')</h3>
                     <a href="{{route('auctions.index')}}"
-                       class="btn btn-primary text-15 btn-second-main-color"><i
+                       class="btn btn-primary text-15 btn-second-main-color" data-mdb-ripple-init><i
                             class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
                     {{--<p>A klienssel való ismerkedésünk mindig egy ingyenes konzultációval kezdődik annak kiderítésére, hogy milyen ingatlant keresnek.</p>--}}
                 </div>
@@ -313,7 +313,7 @@
                     <i class="fa-solid fa-house-chimney-user text-56 my-4 icon-orange"></i>
                     <h3 class="mb-5">@lang('messages.rents')</h3>
                     <a href="{{route('properties.index')}}"
-                       class="btn btn-primary text-15 btn-second-main-color"><i
+                       class="btn btn-primary text-15 btn-second-main-color" data-mdb-ripple-init><i
                             class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
                     {{--<p>Minden eredmény, amit a ingatlanközvetítőinktől kap, 100%-osan garantáltan a legjobb ingatlanválasztékot kínálja Magyarországon.</p>--}}
                 </div>
@@ -337,7 +337,7 @@
                             <p class="card-text mb-5">{{$agent->salary}}</p>
                             <div class="d-flex justify-content-center align-items-center">
                                 <a href="/agents/{{$agent->user_id}}"
-                                   class="btn btn-primary text-15 btn-second-main-color"><i
+                                   class="btn btn-primary text-15 btn-second-main-color" data-mdb-ripple-init><i
                                         class="fa-solid fa-circle-info"></i> @lang('messages.details')</a>
                             </div>
                         </div>

@@ -39,11 +39,8 @@ class AuctionsEnteredController extends Controller
         ]);
 
         $user->save();
-        $auctions = DB::table('auctions')->select('*')->get();
 
-        return redirect(route('auctions.index'))->with([
-            'auctions' => $auctions,
-        ]);
+        return back();
 
     }
 

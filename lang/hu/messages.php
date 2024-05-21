@@ -201,4 +201,7 @@ return [
     'real_estate_agents' => 'Ingatlanközvetítők',
     'rents' => 'Albérletek',
     'own_auctions' => 'Saját aukciók',
+    'verify_email' => 'Email Cím Hitelesítése',
+    'verify_email_text' => 'Kérjük, kattintson az alábbi gombra az e-mail címének megerősítéséhez.',
+    'did_not_create' => 'Ha nem hozott létre fiókot, nincs szükség további teendőkre.',
 ];

@@ -1,6 +1,6 @@
 <x-layout>
 
-    @foreach($properties as $property)
+    {{--@foreach($properties as $property)--}}
         @php
             $address = ($property->settlement).','.' '.($property->address).'.';
         @endphp
@@ -8,11 +8,10 @@
             <div id="carouselExampleCrossfade" class="carousel slide carousel-fade" data-mdb-ride="carousel"
                  data-mdb-carousel-init>
                 <div class="carousel-inner">
-                    @foreach($main_img as $img)
+
                         <div class="carousel-item active">
-                            <img src="{{asset($img->main_img)}}" class="d-block w-100" alt="...">
+                            <img src="{{asset($main_img->main_img)}}" class="d-block w-100" alt="...">
                         </div>
-                    @endforeach
                     @foreach($images as $image)
                         <div class="carousel-item">
                             <img src="{{asset($image->images)}}" class="d-block w-100" alt="...">
@@ -71,9 +70,13 @@
                     <div class="card border-0 shadow-custom mt-5 text-black">
                         <div class="card-body row">
                             <h1 class="card-title mt-2">@lang('messages.general_info')</h1>
-                            <div class="col-sm-5">
+                            <div class="col-md-6">
                                 <table class="table">
                                     <tbody>
+                                    <tr>
+                                        <th scope="row">@lang('messages.county')</th>
+                                        <td>{{($property->state)}}</td>
+                                    </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.condition')</th>
                                         <td>{{___($property->condition)}}</td>
@@ -104,6 +107,12 @@
                                             <td>@lang('messages.not_selected')</td>
                                         @endif
                                     </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table class="table">
+                                    <tbody>
                                     <tr>
                                         <th scope="row">@lang('messages.inner_height')</th>
                                         @if($property->inner_height == "3 méternél alacsonyabb")
@@ -114,12 +123,6 @@
                                             <td>@lang('messages.not_selected')</td>
                                         @endif
                                     </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-sm-7">
-                                <table class="table">
-                                    <tbody>
                                     <tr>
                                         <th scope="row">@lang('messages.air_conditioner')</th>
                                         @if($property->air_conditioner == "Van")
@@ -154,7 +157,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.parking_costs')</th>
-                                        <td>{{$property->parking_price}}</td>
+                                        <td>{{number_format(($property->parking_price),0,'','.')}} Ft</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -340,5 +343,5 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    {{--@endforeach--}}
 </x-layout>

@@ -4,7 +4,6 @@
 
 initMDB({ Input, Dropdown });*/
 
-
 $('.owl-carousel').owlCarousel({
     loop:false,
     margin:10,
@@ -14,12 +13,17 @@ $('.owl-carousel').owlCarousel({
             items:1,
             nav:true
         },
-        600:{
+        820:{
             items:2,
             nav:false
         },
-        1000:{
+        1260:{
             items:3,
+            nav:true,
+            loop:false
+        },
+        1920:{
+            items:4,
             nav:true,
             loop:false
         }

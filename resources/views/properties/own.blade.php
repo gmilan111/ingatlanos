@@ -147,6 +147,9 @@
                             </div>
                         @endif
                     @endforeach
+                    <div class="m-5">
+                        {{$properties->links('pagination::bootstrap-5')}}
+                    </div>
                 </div>
             </div>
 
@@ -208,6 +211,9 @@
                             </div>
                         @endif
                     @endforeach
+                        <div class="m-5">
+                            {{$properties->links('pagination::bootstrap-5')}}
+                        </div>
                 </div>
             </div>
         </div>
