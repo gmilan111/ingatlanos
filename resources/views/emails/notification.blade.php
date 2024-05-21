@@ -1,7 +1,7 @@
 <x-mail::message>
 # Kedves {{$user_data->name}}!
 
-Tájékoztatni szeretném, hogy új ingatlan lett közzétéve, ami érdekelhetné Önt.
+Tájékoztatni szeretném, hogy új ingatlan lett közzétéve, ami lehet érdekli Önt.
 
 # Ingatlan adatai:<br>
 Település: {{$properties_data->settlement}}<br>

@@ -55,8 +55,8 @@
         </style>
 
         <h2 class="text-center mb-5">@lang('messages.property_edit')</h2>
-
         <form method="POST" action="/properties/{{$item->id}}" enctype="multipart/form-data">
+
             @csrf
             @method('PUT')
             <div class="row mt-2">
@@ -129,7 +129,8 @@
                 </div>
 
                 <div class="col">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">m<sup>2</sup></span>
                         <input id="size" class="form-control login" type="number" name="size"
                                  value="{{$item->size}}" required autocomplete="size"/>
                         <label for="size" class="form-label">@lang('messages.size')</label>
@@ -153,7 +154,8 @@
                     </div>
                 </div>
                 <div class="col my-auto">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">Ft</span>
                         <input id="price" class="form-control login" type="number" name="price"
                                  value="{{$item->price}}" required autocomplete="price"/>
                         <label for="price" class="form-label">@lang('messages.price')</label>
@@ -293,7 +295,8 @@
                 </div>
 
                 <div class="col my-auto">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">m<sup>2</sup></span>
                         <input id="balcony" class="form-control login" type="number" name="balcony"
                                  value="{{$item->balcony}}"/>
                         <label for="balcony" class="form-label">@lang('messages.balcony')</label>
@@ -320,7 +323,8 @@
                 </div>
 
                 <div class="col my-auto">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">Ft</span>
                         <input id="parking_price" class="form-control login" type="number" name="parking_price"
                                  value="{{$item->parking_price}}"
                                  autocomplete="parking_price"/>
@@ -329,7 +333,8 @@
                 </div>
 
                 <div class="col my-auto">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">Ft</span>
                         <input id="avg_gas" class="form-control login" type="number" name="avg_gas"
                                  value="{{$item->avg_gas}}" autocomplete="avg_gas"/>
                         <label for="avg_gas" class="form-label">@lang('messages.avg_gas')</label>
@@ -339,7 +344,8 @@
 
             <div class="row mt-4">
                 <div class="col">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">Ft</span>
                         <input id="avg_electricity" class="form-control login" type="number" name="avg_electricity"
                                  value="{{$item->avg_electricity}}"/>
                         <label for="avg_electricity" class="form-label">@lang('messages.avg_electricity')</label>
@@ -347,7 +353,8 @@
                 </div>
 
                 <div class="col">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">Ft</span>
                         <input id="overhead_cost" class="form-control login" type="number" name="overhead_cost"
                                  value="{{$item->overhead_cost}}"
                                  autocomplete="overhead_cost"/>
@@ -356,7 +363,8 @@
                 </div>
 
                 <div class="col">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">Ft</span>
                         <input id="common_cost" class="form-control login" type="number" name="common_cost"
                                  value="{{$item->common_cost}}" autocomplete="common_cost"/>
                         <label for="common_cost" class="form-label">@lang('messages.common_cost')</label>
@@ -472,16 +480,17 @@
                     </div>
 
                     <div class="col">
-                        <div class="form-outline" data-mdb-input-init>
+                        <div class="form-outline input-group" data-mdb-input-init>
+                            <span class="input-group-text text-black number-input">Ft</span>
                             <input id="immediate_purchase" class="form-control login" type="number" name="immediate_purchase" value="{{$item->immediate_purchase}}"
                                      autocomplete="immediate_purchase"/>
                             <label for="immediate_purchase" class="form-label">@lang('messages.immediate_price')</label>
                         </div>
                     </div>
-
                     <div class="col">
                         <div class="form-outline" data-mdb-input-init>
-                            <input id="deadline" class="form-control login" type="date" name="deadline" value="{{$item->deadline}}"
+
+                            <input id="deadline" class="form-control login" type="date" name="deadline" value="{{$auction->deadline}}"
                                      autocomplete="deadline"/>
                             <label for="deadline" class="form-label">@lang('messages.deadline')</label>
                         </div>

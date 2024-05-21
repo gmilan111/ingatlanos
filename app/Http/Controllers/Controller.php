@@ -22,13 +22,13 @@ class Controller extends BaseController
         $agents = DB::table('agents')->select('*')->get();
         if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == 'm') {
             $user_id = auth()->id();
-            $helper = DB::table('recommendations')->select('*')->where('user_id', '=', $user_id)->inRandomOrder()->get();
+            $helper = DB::table('recommendations')->select('*')->where('user_id', '=', $user_id)->get();
             $liked_helper = DB::table('properties')->select('*')->join('liked_properties', 'liked_properties.properties_id', '=', 'properties.id')->where('liked_properties.user_id', '=', $user_id)->inRandomOrder()->get();
             if(count($helper) < 1 && count($liked_helper) < 1){
                 $non_reg_prop = DB::table('properties')->select('*')->where('sold', '=', false)->inRandomOrder()->get();
                 return view('index',[
                     'properties' => $non_reg_prop,
-                    'igaz' => true,
+                    'rec_helper' => true,
                     'agents' => $agents,
                 ]);
             }
@@ -96,7 +96,6 @@ class Controller extends BaseController
                     }
                 }
             }
-
             $properties = Properties::query();
 
             $properties->select('*')
@@ -151,7 +150,7 @@ class Controller extends BaseController
 
             return view('index', [
                 'recommendations' => $recommendations,
-                'igaz' => false,
+                'rec_helper' => false,
                 'agents' => $agents,
             ]);
         }
@@ -159,7 +158,7 @@ class Controller extends BaseController
         $non_reg_prop = DB::table('properties')->select('*')->where('sold', '=', false)->inRandomOrder()->get();
         return view('index',[
             'properties' => $non_reg_prop,
-            'igaz' => false,
+            'rec_helper' => false,
             'agents' => $agents,
         ]);
     }

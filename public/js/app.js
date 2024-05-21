@@ -99,9 +99,9 @@ function salerent() {
 
 function auctions(){
     if(document.getElementById('auction').checked){
-        document.getElementById('auctions_info').style.display = "flex";
+        document.getElementById('auctions_info').style.visibility = "visible";
     }else{
-        document.getElementById('auctions_info').style.display = "none";
+        document.getElementById('auctions_info').style.visibility = "hidden";
     }
 }
 

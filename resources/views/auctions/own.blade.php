@@ -1,8 +1,8 @@
 <x-layout>
     <div class="container">
-        <form action="{{route('own.auctions.search')}}" method="POST" class="mb-5">
+        <form action="{{route('own.auctions.search')}}" method="GET" class="mb-5">
             @csrf
-            <div class="input-group margin-top p-4 rounded shadow-custom search-header mb-5">
+            <div class="input-group search p-4 rounded shadow-custom search-header mb-5">
                 <div class="row w-75 mx-auto">
                     <div class="col d-flex align-items-center justify-content-center">
                         <div class="form-outline" data-mdb-input-init>
@@ -50,7 +50,7 @@
                             $address = ($property->settlement).','.' '.($property->address).'.';
                         @endphp
                         @if(!$auction->closed && $auction->user_id == auth()->id())
-                            <div class="col-md-4 mb-5">
+                            <div class="col-lg-auto d-flex justify-content-evenly mb-5">
                                 <div class="card border-0 shadow-custom text-black" style="width: 25rem;">
                                     <img
                                         src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
@@ -148,7 +148,7 @@
                             @php
                                 $address = ($property->settlement).','.' '.($property->address).'.';
                             @endphp
-                            <div class="col-md-4 mb-5">
+                            <div class="col-lg-auto d-flex justify-content-evenly mb-5">
                                 <div class="card border-0 shadow-custom text-black" style="width: 25rem;">
                                     <img
                                         src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($property->id)->main_img)}}"
@@ -205,9 +205,6 @@
                             </div>
                         @endif
                     @endforeach
-                    <div class=" m-5">
-                        {{ $auctions->links('pagination::bootstrap-5') }}
-                    </div>
                 </div>
             </div>
         </div>

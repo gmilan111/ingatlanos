@@ -135,9 +135,10 @@
                 </div>
 
                 <div class="col">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">m<sup>2</sup></span>
                         <input id="size" class="form-control login" type="number" name="size"
-                               required autocomplete="size"/>
+                               required autocomplete="size" min="0"/>
                         <label for="size" class="form-label">@lang('messages.size')</label>
                     </div>
                 </div>
@@ -162,7 +163,8 @@
                 </div>
 
                 <div class="col my-auto" id="price">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">Ft</span>
                         <input id="price" class="form-control login" type="number" name="price"
                                required autocomplete="price"/>
                         <label for="price" class="form-label">@lang('messages.price')</label>
@@ -293,7 +295,8 @@
                 </div>
 
                 <div class="col my-auto">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">m<sup>2</sup></span>
                         <input id="balcony" class="form-control login" type="number" name="balcony"/>
                         <label for="balcony" class="form-label">@lang('messages.balcony')</label>
                     </div>
@@ -317,7 +320,8 @@
                 </div>
 
                 <div class="col my-auto">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">Ft</span>
                         <input id="parking_price" class="form-control login" type="number" name="parking_price"
                                autocomplete="parking_price"/>
                         <label for="parking_price" class="form-label">@lang('messages.parking_price')</label>
@@ -325,7 +329,8 @@
                 </div>
 
                 <div class="col my-auto">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">Ft</span>
                         <input id="avg_gas" class="form-control login" type="number" name="avg_gas"
                                autocomplete="avg_gas"/>
                         <label for="avg_gas" class="form-label">@lang('messages.avg_gas')</label>
@@ -335,14 +340,16 @@
 
             <div class="row mt-4">
                 <div class="col">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">Ft</span>
                         <input id="avg_electricity" class="form-control login" type="number" name="avg_electricity"/>
                         <label for="avg_electricity" class="form-label">@lang('messages.avg_electricity')</label>
                     </div>
                 </div>
 
                 <div class="col">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">Ft</span>
                         <input id="overhead_cost" class="form-control login" type="number" name="overhead_cost"
                                autocomplete="overhead_cost"/>
                         <label for="overhead_cost" class="form-label">@lang('messages.overhead_cost')</label>
@@ -350,7 +357,8 @@
                 </div>
 
                 <div class="col">
-                    <div class="form-outline" data-mdb-input-init>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">Ft</span>
                         <input id="common_cost" class="form-control login" type="number" name="common_cost"
                                autocomplete="common_cost"/>
                         <label for="common_cost" class="form-label">@lang('messages.common_cost')</label>
@@ -476,7 +484,7 @@
                 </div>
             </div>
 
-            <div class="row mt-4" style="display: none" id="auctions_info">
+            <div class="row mt-4" style="visibility: hidden" id="auctions_info">
                 <div class="col">
                     <div class="form-outline" data-mdb-input-init>
                         <input id="deposit" class="form-control login" type="number" name="deposit"
@@ -486,9 +494,9 @@
                 </div>
 
                 <div class="col">
-                    <div class="form-outline" data-mdb-input-init>
-                        <input id="immediate_purchase" class="form-control login" type="number" name="immediate_purchase"
-                                 autocomplete="immediate_purchase"/>
+                    <div class="form-outline input-group" data-mdb-input-init>
+                        <span class="input-group-text text-black number-input">Ft</span>
+                        <input id="immediate_purchase" class="form-control login" type="number" name="immediate_purchase"/>
                         <label for="immediate_purchase" class="form-label">@lang('messages.immediate_price')</label>
                     </div>
                 </div>
