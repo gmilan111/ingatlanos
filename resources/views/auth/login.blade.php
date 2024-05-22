@@ -61,7 +61,7 @@
             }
         </style>
 
-        <h2 class="text-center mb-5">@lang('messages.login')</h2>
+        <h1 class="text-center mb-5">@lang('messages.login')</h1>
 
         <form method="POST" action="{{ route('login') }}">
             @csrf

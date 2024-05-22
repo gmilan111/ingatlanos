@@ -204,4 +204,5 @@ return [
     'verify_email' => 'Email Cím Hitelesítése',
     'verify_email_text' => 'Kérjük, kattintson az alábbi gombra az e-mail címének megerősítéséhez.',
     'did_not_create' => 'Ha nem hozott létre fiókot, nincs szükség további teendőkre.',
+    'expired_auction' => 'Lejárt aukciók',
 ];

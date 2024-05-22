@@ -71,7 +71,7 @@ class AuctionsController extends Controller
         foreach($properties as $item){
             array_push($helper,$item->id);
         }
-        $auctions = DB::table('auctions')->select('*')->where('closed','=', false)->whereIn('properties_id', $helper)->paginate(12);
+        $auctions = DB::table('auctions')->select('*')/*->where('closed','=', false)*/->whereIn('properties_id', $helper)->paginate(12);
 
 
         return view('auctions.own', [
@@ -100,7 +100,7 @@ class AuctionsController extends Controller
         $agent = DB::table('users')->select('*')->where('id', '=', $item->user_id)->first();
         $user_information = Auth::user();
         $url = 'http://otthonvadasz.test/auctions/'.$property_id;
-        Mail::to("gebeimilan@gmail.com")->send(new AuctionsOffer($item, $user_information, $url));
+        Mail::to($agent->email)->send(new AuctionsOffer($item, $user_information, $url));
 
         return back();
     }
@@ -128,9 +128,9 @@ class AuctionsController extends Controller
         $item->save();
         $auction->save();
 
-        Mail::to("gebeimilan@gmail.com")->send(new AuctionImmediatePurchase($item, $user_information, $url, $agent->name));
+        Mail::to($agent->email)->send(new AuctionImmediatePurchase($item, $user_information, $url, $agent->name));
 
-        Mail::to("gebeimilan@gmail.com")->send(new AuctionPurchaseNotification($item, $user_information, $url));
+        Mail::to($user_information->email)->send(new AuctionPurchaseNotification($item, $user_information, $url));
 
         $auctions = DB::table('auctions')->select('*')->get();
 
@@ -238,7 +238,7 @@ class AuctionsController extends Controller
 
             $url = 'http://otthonvadasz.test/auctions/'.$property_id;
 
-            Mail::to("gebeimilan@gmail.com")->send(new ClosedAuctionWinner($user->name, $max, $url, $property_id));
+            Mail::to($user->email)->send(new ClosedAuctionWinner($user->name, $max, $url, $property_id));
 
             $closed_auction = DB::table('auction_lists')->select('*')->where([['user_id', '!=', $user->id], ['offer', '!=', $max]])->where([['auction_id', '=', $auction_helper->id], ['buy_now', '=', false]])->get();
             $loser_user_helper = array();
@@ -247,7 +247,7 @@ class AuctionsController extends Controller
             }
             $loser_user = DB::table('users')->select('*')->whereIn('id', $loser_user_helper)->get();
             foreach($loser_user as $item){
-                Mail::to("gebeimilan@gmail.com")->send(new ClosedAuction($item->name, $property_id));
+                Mail::to($item->email)->send(new ClosedAuction($item->name, $property_id));
             }
         }else{
             $auction = Auctions::find($auction_helper->id);
@@ -283,7 +283,7 @@ class AuctionsController extends Controller
 
             $url = 'http://otthonvadasz.test/auctions/'.$property_id;
 
-            Mail::to("gebeimilan@gmail.com")->send(new ClosedAuctionWinner($user->name, $max, $url, $property_id));
+            Mail::to($user->email)->send(new ClosedAuctionWinner($user->name, $max, $url, $property_id));
 
             $closed_auction = DB::table('auction_lists')->select('*')->where([['user_id', '!=', $user->id], ['offer', '!=', $max]])->where([['auction_id', '=', $auction_helper->id], ['buy_now', '=', false]])->get();
             $loser_user_helper = array();
@@ -292,7 +292,7 @@ class AuctionsController extends Controller
             }
             $loser_user = DB::table('users')->select('*')->whereIn('id', $loser_user_helper)->get();
             foreach($loser_user as $item){
-                Mail::to("gebeimilan@gmail.com")->send(new ClosedAuction($item->name, $property_id));
+                Mail::to($item->email)->send(new ClosedAuction($item->name, $property_id));
             }
         }else{
             $auction = Auctions::find($auction_helper->id);

@@ -4,7 +4,7 @@
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
             <div class="d-flex justify-content-center align-items-center h-100">
                 <div class="text-white">
-                    <h1 class="text-center align-items-center mb-10">@lang('messages.index_text')</h1>
+                    <h1 class="text-center align-items-center mb-10 h1-custom">@lang('messages.index_text')</h1>
                     <form action="{{route('properties.search')}}" method="GET">
                         @csrf
                         <div class="mx-auto input-group search-header p-5 row">
@@ -50,23 +50,23 @@
     </div>
 
     <section class="py-5 bg-section shadow-custom text-light">
-        <h1 class="text-center mt-5" style="color: var(--main-color)">@lang('messages.why_choose_us')</h1>
+        <h1 class="text-center mt-5 text-56 font-main-color h1-custom" style="color: var(--main-color)">@lang('messages.why_choose_us')</h1>
         <h4 class="text-center mb-10">@lang('messages.choose_text')</h4>
         <div class="container my-5 mb-10">
             <div class="row d-flex justify-content-between">
                 <div class="col-md-3 p-4 mb-5 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-user text-56 my-4 icon-orange"></i>
-                    <h3 class="mb-5">@lang('messages.skilled_workers')</h3>
+                    <h3 class="mb-5 h1-custom">@lang('messages.skilled_workers')</h3>
                     <p>@lang('messages.skilled_workers_text')</p>
                 </div>
                 <div class="col-md-3 p-4 mb-5 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-handshake text-56 my-4 icon-orange"></i>
-                    <h3 class="mb-5">@lang('messages.free_consultation')</h3>
+                    <h3 class="mb-5 h1-custom">@lang('messages.free_consultation')</h3>
                     <p>@lang('messages.free_consultation_text')</p>
                 </div>
                 <div class="col-md-3 p-4 mb-5 text-center custom-card shadow-custom-2">
                     <i class="fa-solid fa-medal text-56 my-4 icon-orange"></i>
-                    <h3 class="mb-5">@lang('messages.best_in_hungary')</h3>
+                    <h3 class="mb-5 h1-custom">@lang('messages.best_in_hungary')</h3>
                     <p>@lang('messages.best_in_hungary_text')</p>
                 </div>
             </div>
@@ -74,7 +74,7 @@
     </section>
 
     <section class="">
-        <h1 class="mx-5 text-56 font-main-color font-weight-600 text-center my-5">@lang('messages.recommended_for_you')</h1>
+        <h1 class="mx-5 text-56 font-main-color font-weight-600 text-center my-5 h1-custom">@lang('messages.recommended_for_you')</h1>
         <div class="owl-carousel owl-theme">
             @if(!$rec_helper)
                 @if(isset(auth()->user()->is_ingatlanos) && auth()->user()->is_ingatlanos == "m")
@@ -89,7 +89,7 @@
                                     @if(isset(auth()->user()->is_ingatlanos) and auth()->user()->is_ingatlanos == 'm')
                                         <img
                                             src="{{asset(\App\Http\Controllers\MainImageController::main_img_show($item->id)->main_img)}}"
-                                            class="card-img-top image" alt="...">
+                                            class="card-img-top image" alt="..." height="260">
                                         @if(\App\Models\LikedProperties::where([['user_id', '=', auth()->id()], ['properties_id', '=', $item->id]])->count()>0)
                                             <form action="/like/delete/{{$item->id}}" method="GET">
                                                 @csrf
@@ -290,7 +290,7 @@
     </section>
 
     <section class="py-5 bg-section shadow-custom text-light">
-        <h1 class="text-center mt-5" style="color: var(--main-color)">@lang('messages.what_we_offer')</h1>
+        <h1 class="text-center mt-5 text-56 font-main-color h1-custom">@lang('messages.what_we_offer')</h1>
         <div class="container my-5 mb-10">
             <div class="row d-flex justify-content-between">
                 <div class="col-md-3 mb-5 p-4 text-center custom-card shadow-custom-2">
@@ -322,7 +322,7 @@
     </section>
 
     <section class="py-5">
-        <h1 class="mx-5 text-56 text-center my-5 font-main-color">@lang('messages.real_estate_agents')</h1>
+        <h1 class="mx-5 text-56 text-center my-5 font-main-color h1-custom">@lang('messages.real_estate_agents')</h1>
         <div class="owl-carousel owl-theme mb-10">
             @foreach($agents as $agent)
                 @php
