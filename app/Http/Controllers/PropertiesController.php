@@ -134,7 +134,7 @@ class PropertiesController extends Controller
             foreach ($users as $user) {
                 $notification_array = json_decode($user->notification_state, JSON_UNESCAPED_UNICODE);
                 if(in_array($state,$notification_array)){
-                    Mail::to("gebeimilan@gmail.com")->send(new Notification($newProperty, $user, $url, $agent));
+                    Mail::to($user->email)->send(new Notification($newProperty, $user, $url, $agent));
                 }
             }
         }
@@ -178,6 +178,8 @@ class PropertiesController extends Controller
     public function update(Request $request, $property)
     {
         $item = Properties::find($property);
+        $auctions = DB::table('auctions')->select('*')->where('properties_id', '=', $property)->first();
+        $auction = Auctions::find($auctions->id);
         $item->settlement = $request['settlement'];
         $item->state = $request['state'];
         $item->address = $request['address'];
@@ -209,9 +211,13 @@ class PropertiesController extends Controller
         $item->furniture = $request['furniture'];
         $item->smoking = $request['smoking'];
         $item->animal = $request['animal'];
+        $item->deposit = $request['deposit'];
+        $item->immediate_purchase = $request['immediate_purchase'];
+        $auction->deadline = $request['deadline'];
 
         $item->save();
-        return redirect(route('properties.own'));
+        $auction->save();
+        return redirect(route('index'));
     }
 
     public function destroy($property)

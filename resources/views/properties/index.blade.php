@@ -1621,7 +1621,7 @@
 
         <div class="row d-flex justify-content-evenly">
             @if(count($properties)<1)
-                <h1 class="text-center">@lang('messages.no_result')</h1>
+                <h1 class="text-center h1-custom text-70 mb-5">@lang('messages.no_result')</h1>
             @endif
 
             @foreach($properties as $property)

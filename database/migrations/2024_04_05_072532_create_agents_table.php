@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('experience')->nullable();
             $table->json('help')->nullable();
             $table->string('language')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

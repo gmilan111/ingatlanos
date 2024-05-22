@@ -54,7 +54,7 @@
             }
         </style>
 
-        <h2 class="text-center mb-5">@lang('messages.registration')</h2>
+        <h1 class="text-center mb-5">@lang('messages.registration')</h1>
 
         <form method="POST" action="{{ route('register') }}">
             @csrf

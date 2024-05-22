@@ -99,14 +99,15 @@
         </form>
         <div class="row mt-5 d-flex justify-content-evenly">
             @if(count($auctions)<1)
-                <h1 class="text-center">@lang('messages.no_result')</h1>
+                <h1 class="text-center h1-custom text-70 mb-5">@lang('messages.no_result')</h1>
             @endif
             @foreach($auctions as $auction)
                 @php
                     $property = \Illuminate\Support\Facades\DB::table('properties')->select('*')->where('id', '=', $auction->properties_id)->first();
                     $address = ($property->settlement).','.' '.($property->address).'.';
+                    $currentDate = date('Y-m-d');
                 @endphp
-                @if(!$property->sold && !$auction->closed)
+                @if(!$property->sold && !$auction->closed && $auction->deadline >= $currentDate)
                     <div class="col-lg-auto d-flex justify-content-evenly mb-5">
                         <div class="card border-0 shadow-custom text-black" style="width: 25rem;">
                             <img
